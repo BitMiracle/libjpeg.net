@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibJpeg", "LibJpeg\LibJpeg.csproj", "{7300CDF5-1C93-4611-8CC9-47FE79F340AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cJpeg", "cJpeg\cJpeg.csproj", "{C0DFBCE2-9E77-4697-AA67-A46C088A1D45}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7300CDF5-1C93-4611-8CC9-47FE79F340AB} = {7300CDF5-1C93-4611-8CC9-47FE79F340AB}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dJpeg", "dJpeg\dJpeg.csproj", "{3B558417-DD92-481E-9202-2693059E344C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7300CDF5-1C93-4611-8CC9-47FE79F340AB} = {7300CDF5-1C93-4611-8CC9-47FE79F340AB}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7300CDF5-1C93-4611-8CC9-47FE79F340AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7300CDF5-1C93-4611-8CC9-47FE79F340AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7300CDF5-1C93-4611-8CC9-47FE79F340AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7300CDF5-1C93-4611-8CC9-47FE79F340AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0DFBCE2-9E77-4697-AA67-A46C088A1D45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0DFBCE2-9E77-4697-AA67-A46C088A1D45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0DFBCE2-9E77-4697-AA67-A46C088A1D45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0DFBCE2-9E77-4697-AA67-A46C088A1D45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B558417-DD92-481E-9202-2693059E344C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B558417-DD92-481E-9202-2693059E344C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B558417-DD92-481E-9202-2693059E344C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B558417-DD92-481E-9202-2693059E344C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
