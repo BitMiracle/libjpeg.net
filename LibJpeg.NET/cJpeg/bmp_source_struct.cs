@@ -357,6 +357,7 @@ namespace cJpeg
                     break;
                 default:
                     cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
+                    break;
             }
 
             source_row = cinfo.m_image_height;
