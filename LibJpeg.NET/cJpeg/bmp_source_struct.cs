@@ -334,11 +334,11 @@ namespace cJpeg
                 for (uint col = row_width; col > 0; col--)
                 {
                     /* inline copy of read_byte() for speed */
-                    //int c = getc(input_file);
-                    //if (c == EOF)
+                    int c = input_file.ReadByte();
+                    if (c == -1)
                         cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_INPUT_EOF);
 
-                    //image_ptr[0][imageIndex] = (byte)c;
+                    image_ptr[0][imageIndex] = (byte)c;
                     imageIndex++;
                 }
             }

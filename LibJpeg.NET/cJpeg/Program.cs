@@ -191,7 +191,7 @@ namespace cJpeg
             cinfo.m_err.m_trace_level = 0;
 
             /* Scan command line options, adjust parameters */
-            int argn = 1;
+            int argn = 0;
             for ( ; argn < argv.Length; argn++)
             {
                 string arg = argv[argn];
