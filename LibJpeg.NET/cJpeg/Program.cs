@@ -1,6 +1,25 @@
-﻿using System;
+﻿/* Copyright (C) 2008-2009, Bit Miracle
+ * http://www.bitmiracle.com
+ * 
+ * Copyright (C) 1994-1996, Thomas G. Lane.
+ * This file is part of the Independent JPEG Group's software.
+ * For conditions of distribution and use, see the accompanying README file.
+ *
+ */
+
+/*
+ * This file contains a command-line user interface for the JPEG compressor.
+ *
+ * To simplify script writing, the "-outfile" switch is provided.  The syntax
+ *  cjpeg [options]  -outfile outputfile  inputfile
+ * works regardless of which command line style is used.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Globalization;
 
 using LibJpeg.NET;
 
@@ -8,13 +27,16 @@ namespace cJpeg
 {
     class Program
     {
+        static bool printed_version = false;
+        static string progname;    /* program name for error messages */
+        static string outfilename;   /* for -outfile switch */
+
         static void Main(string[] args)
         {
-            //progname = argv[0];
+            progname = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
 
-            jpeg_compress_struct cinfo;
-            cd_jpeg_error_mgr err;
-            cinfo.SetErrorManager(err);
+            cd_jpeg_error_mgr err = new cd_jpeg_error_mgr();
+            jpeg_compress_struct cinfo = new jpeg_compress_struct(err);
 
             /* Initialize JPEG parameters.
              * Much of this may be overridden later.
@@ -31,73 +53,75 @@ namespace cJpeg
              * the input file.
              */
 
-            int file_index = parse_switches(cinfo, argc, argv, 0, false);
+            //int file_index;
+            bool parsedOK = parse_switches(cinfo, args, 0, false);
 
             /* Must have either -outfile switch or explicit output file name */
-            if (outfilename == NULL)
+            if (outfilename == null)
             {
-                if (file_index != argc - 2)
-                {
-                    fprintf(stderr, "%s: must name one input and one output file\n", progname);
-                    usage();
-                }
-                outfilename = argv[file_index + 1];
+                //if (file_index != argc - 2)
+                //{
+                //    fprintf(stderr, "%s: must name one input and one output file\n", progname);
+                //    usage();
+                //}
+                //outfilename = argv[file_index + 1];
             }
             else
             {
-                if (file_index != argc - 1)
-                {
-                    fprintf(stderr, "%s: must name one input and one output file\n", progname);
-                    usage();
-                }
+                //if (file_index != argc - 1)
+                //{
+                //    fprintf(stderr, "%s: must name one input and one output file\n", progname);
+                //    usage();
+                //}
             }
 
-            FILE* input_file;
+            FileStream input_file = null;
 
             /* Open the input file. */
-            if (file_index < argc)
-            {
-                if ((input_file = fopen(argv[file_index], "rb")) == NULL)
-                {
-                    fprintf(stderr, "%s: can't open %s\n", progname, argv[file_index]);
-                    return EXIT_FAILURE;
-                }
-            }
-            else
-            {
-                /* default input file is stdin */
-                input_file = read_stdin();
-            }
+            //if (file_index < argc)
+            //{
+            //    if ((input_file = fopen(argv[file_index], "rb")) == null)
+            //    {
+            //        fprintf(stderr, "%s: can't open %s\n", progname, argv[file_index]);
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    /* default input file is stdin */
+            //    input_file = read_stdin();
+            //}
 
-            FILE* output_file;
+            FileStream output_file = null;
 
             /* Open the output file. */
-            if (outfilename != NULL)
+            if (outfilename != null)
             {
-                if ((output_file = fopen(outfilename, "wb")) == NULL)
-                {
-                    fprintf(stderr, "%s: can't open %s\n", progname, outfilename);
-                    return EXIT_FAILURE;
-                }
+                //if ((output_file = fopen(outfilename, "wb")) == null)
+                //{
+                //    fprintf(stderr, "%s: can't open %s\n", progname, outfilename);
+                //    return;
+                //}
             }
             else
             {
                 /* default output file is stdout */
-                output_file = write_stdout();
+                //output_file = write_stdout();
             }
 
             /* Figure out the input file format, and set up to read it. */
-            cjpeg_source_struct* src_mgr = new bmp_source_struct(&cinfo);
-            src_mgr->input_file = input_file;
+            cjpeg_source_struct src_mgr = new bmp_source_struct(cinfo);
+            src_mgr.input_file = input_file;
 
             /* Read the input file header to obtain file size & colorspace. */
-            src_mgr->start_input();
+            src_mgr.start_input();
 
             /* Now that we know input colorspace, fix colorspace-dependent defaults */
             cinfo.jpeg_default_colorspace();
 
             /* Adjust default compression parameters by re-parsing the options */
-            file_index = parse_switches(&cinfo, argc, argv, 0, true);
+            //file_index = 
+                parse_switches(cinfo, args, 0, true);
 
             /* Specify data destination for compression */
             cinfo.jpeg_stdio_dest(output_file);
@@ -108,26 +132,366 @@ namespace cJpeg
             /* Process data */
             while (cinfo.m_next_scanline < cinfo.m_image_height)
             {
-                JDIMENSION num_scanlines = src_mgr->get_pixel_rows();
-                cinfo.jpeg_write_scanlines(src_mgr->buffer, num_scanlines);
+                uint num_scanlines = src_mgr.get_pixel_rows();
+                cinfo.jpeg_write_scanlines(src_mgr.buffer, num_scanlines);
             }
 
             /* Finish compression and release memory */
-            src_mgr->finish_input();
+            src_mgr.finish_input();
             cinfo.jpeg_finish_compress();
 
             /* Close files, if we opened them */
-            if (input_file != stdin)
-                fclose(input_file);
+            input_file.Close();
+            input_file.Dispose();
 
-            if (output_file != stdout)
-                fclose(output_file);
+            output_file.Close();
+            output_file.Dispose();
 
             /* All done. */
-            if (cinfo.m_err->m_num_warnings != 0)
-                return EXIT_WARNING;
+            if (cinfo.m_err.m_num_warnings != 0)
+                Console.WriteLine("Corrupt-data warning count is not zero");
+        }
 
-            return EXIT_SUCCESS;
+        /// <summary>
+        /// Parse optional switches.
+        /// Returns index of first file-name argument (== argc if none).
+        /// Any file names with indexes <= last_file_arg_seen are ignored;
+        /// they have presumably been processed in a previous iteration.
+        /// (Pass 0 for last_file_arg_seen on the first or only iteration.)
+        /// for_real is false on the first (dummy) pass; we may skip any expensive
+        /// processing.
+        /// </summary>
+        static bool parse_switches(jpeg_compress_struct cinfo, string[] argv, int last_file_arg_seen, bool for_real)
+        {
+            /* Set up default JPEG parameters. */
+            /* Note that default -quality level need not, and does not,
+             * match the default scaling for an explicit -qtables argument.
+             */
+            int quality = 75;           /* default -quality value */
+            int q_scale_factor = 100;       /* default to no scaling for -qtables */
+            bool force_baseline = false; /* by default, allow 16-bit quantizers */
+            bool simple_progressive = false;
+
+            string qtablefile = null;    /* saves -qtables filename if any */
+            string qslotsarg = null; /* saves -qslots parm if any */
+            string samplearg = null; /* saves -sample parm if any */
+
+            outfilename = null;
+            cinfo.m_err.m_trace_level = 0;
+
+            /* Scan command line options, adjust parameters */
+            int argn = 1;
+            for ( ; argn < argv.Length; argn++)
+            {
+                string arg = argv[argn];
+                if (arg[0] != '-')
+                {
+                    /* Not a switch, must be a file name argument */
+                    if (argn <= last_file_arg_seen)
+                    {
+                        outfilename = null; /* -outfile applies to just one input file */
+                        continue;       /* ignore this name if previously processed */
+                    }
+                    break;          /* else done parsing switches */
+                }
+
+                arg = arg.Substring(1);
+
+                if (keymatch(arg, "baseline", 1))
+                {
+                    /* Force baseline-compatible output (8-bit quantizer values). */
+                    force_baseline = true;
+                }
+                else if (keymatch(arg, "dct", 2))
+                {
+                    /* Select DCT algorithm. */
+                    argn++; /* advance to next argument */
+                    if (argn >= argv.Length)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    if (keymatch(argv[argn], "int", 1))
+                        cinfo.m_dct_method = J_DCT_METHOD.JDCT_ISLOW;
+                    else if (keymatch(argv[argn], "fast", 2))
+                        cinfo.m_dct_method = J_DCT_METHOD.JDCT_IFAST;
+                    else if (keymatch(argv[argn], "float", 2))
+                        cinfo.m_dct_method = J_DCT_METHOD.JDCT_FLOAT;
+                    else
+                    {
+                        usage();
+                        return false;
+                    }
+                }
+                else if (keymatch(arg, "debug", 1) || keymatch(arg, "verbose", 1))
+                {
+                    /* Enable debug printouts. */
+                    /* On first -d, print version identification */
+                    if (!printed_version)
+                    {
+                        Console.Write(string.Format("Bit Miracle's CJPEG, version {0}\n{1}\n", jpeg_common_struct.Version, jpeg_common_struct.Copyright));
+                        printed_version = true;
+                    }
+                    cinfo.m_err.m_trace_level++;
+                }
+                else if (keymatch(arg, "grayscale", 2) || keymatch(arg, "greyscale", 2))
+                {
+                    /* Force a monochrome JPEG file to be generated. */
+                    cinfo.jpeg_set_colorspace(J_COLOR_SPACE.JCS_GRAYSCALE);
+                }
+                else if (keymatch(arg, "optimize", 1) || keymatch(arg, "optimise", 1))
+                {
+                    /* Enable entropy parm optimization. */
+                    cinfo.m_optimize_coding = true;
+                }
+                else if (keymatch(arg, "outfile", 4))
+                {
+                    /* Set output file name. */
+                    argn++;/* advance to next argument */
+                    if (argn >= argv.Length)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    outfilename = argv[argn];   /* save it away for later use */
+                }
+                else if (keymatch(arg, "progressive", 1))
+                {
+                    /* Select simple progressive mode. */
+                    simple_progressive = true;
+                    /* We must postpone execution until num_components is known. */
+                }
+                else if (keymatch(arg, "quality", 1))
+                {
+                    /* Quality factor (quantization table scaling factor). */
+                    argn++;/* advance to next argument */
+                    if (argn >= argv.Length)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    try
+                    {
+                        quality = int.Parse(argv[argn]);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        usage();
+                        return false;
+                    }
+
+                    /* Change scale factor in case -qtables is present. */
+                    q_scale_factor = jpeg_compress_struct.jpeg_quality_scaling(quality);
+                }
+                else if (keymatch(arg, "qslots", 2))
+                {
+                    /* Quantization table slot numbers. */
+                    argn++; /* advance to next argument */
+                    if (argn >= argv.Length)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    qslotsarg = argv[argn];
+                    /* Must delay setting qslots until after we have processed any
+                     * colorspace-determining switches, since jpeg_set_colorspace sets
+                     * default quant table numbers.
+                     */
+                }
+                else if (keymatch(arg, "qtables", 2))
+                {
+                    /* Quantization tables fetched from file. */
+                    argn++; /* advance to next argument */
+                    if (argn >= argv.Length)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    qtablefile = argv[argn];
+                    /* We postpone actually reading the file in case -quality comes later. */
+                }
+                else if (keymatch(arg, "restart", 1))
+                {
+                    /* Restart interval in MCU rows (or in MCUs with 'b'). */
+                    argn++; /* advance to next argument */
+
+                    if (argn >= argv.Length)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    bool inBlocks = false;
+                    if (argv[argn].EndsWith("b") || argv[argn].EndsWith("B"))
+                        inBlocks = true;
+
+                    string parsee = argv[argn];
+                    if (inBlocks)
+                        parsee = parsee.Remove(parsee.Length - 1);
+
+                    long lval;
+                    try
+                    {
+                        lval = long.Parse(parsee);
+                    }
+                    catch (Exception e)
+                    {
+                    	Console.WriteLine(e.Message);
+                        usage();
+                        return false;
+                    }
+
+                    if (lval < 0 || lval> 65535L)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    if (inBlocks)
+                    {
+                        cinfo.m_restart_interval = (uint) lval;
+                        cinfo.m_restart_in_rows = 0; /* else prior '-restart n' overrides me */
+                    }
+                    else
+                    {
+                        cinfo.m_restart_in_rows = (int) lval;
+                        /* restart_interval will be computed during startup */
+                    }
+                }
+                else if (keymatch(arg, "sample", 2))
+                {
+                    /* Set sampling factors. */
+                    argn++; /* advance to next argument */
+                    if (argn >= argv.Length)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    samplearg = argv[argn];
+                    /* Must delay setting sample factors until after we have processed any
+                     * colorspace-determining switches, since jpeg_set_colorspace sets
+                     * default sampling factors.
+                     */
+                }
+                else if (keymatch(arg, "smooth", 2))
+                {
+                    /* Set input smoothing factor. */
+                    
+                    argn++; /* advance to next argument */
+                    if (argn >= argv.Length)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    int val;
+                    try
+                    {
+                        val = int.Parse(argv[argn]);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        usage();
+                        return false;
+                    }
+
+                    if (val < 0 || val > 100)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    cinfo.m_smoothing_factor = val;
+                }
+                else
+                {
+                    usage(); /* bogus switch */
+                    return false;
+                }
+            }
+
+            /* Post-switch-scanning cleanup */
+
+            if (for_real)
+            {
+                /* Set quantization tables for selected quality. */
+                /* Some or all may be overridden if -qtables is present. */
+                cinfo.jpeg_set_quality(quality, force_baseline);
+
+            //    if (qtablefile != null) /* process -qtables if it was present */
+            //        if (!read_quant_tables(cinfo, qtablefile, q_scale_factor, force_baseline))
+            //            usage();
+
+            //    if (qslotsarg != null)  /* process -qslots if it was present */
+            //        if (!set_quant_slots(cinfo, qslotsarg))
+            //            usage();
+
+            //    if (samplearg != null)  /* process -sample if it was present */
+            //        if (!set_sample_factors(cinfo, samplearg))
+            //            usage();
+
+                if (simple_progressive) /* process -progressive; -scans can override */
+                    cinfo.jpeg_simple_progression();
+            }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Case-insensitive matching of possibly-abbreviated keyword switches.
+        /// keyword is the constant keyword (must be lower case already),
+        /// minchars is length of minimum legal abbreviation.
+        /// </summary>
+        static bool keymatch(string arg, string keyword, int minchars)
+        {
+            string lowered = arg.ToLower(CultureInfo.InvariantCulture);
+            if (lowered.Length > keyword.Length)
+            {
+                // arg longer than keyword, no good
+                return false;
+            }
+            else if (lowered.Length == keyword.Length)
+            {
+                return lowered == keyword;
+            }
+
+            return (lowered == keyword.Substring(0, minchars));
+        }
+
+        /// <summary>
+        /// complain about bad command line
+        /// </summary>
+        static void usage()
+        {
+            Console.WriteLine(string.Format("usage: {0} [switches] inputfile outputfile", progname));
+
+            Console.WriteLine("Switches (names may be abbreviated):");
+            Console.WriteLine("  -quality N     Compression quality (0..100; 5-95 is useful range)");
+            Console.WriteLine("  -grayscale     Create monochrome JPEG file");
+            Console.WriteLine("  -optimize      Optimize Huffman table (smaller file, but slow compression)");
+            Console.WriteLine("  -progressive   Create progressive JPEG file");
+            Console.WriteLine("Switches for advanced users:");
+            Console.WriteLine(string.Format("  -dct int       Use integer DCT method {0}", (Constants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_ISLOW ? " (default)" : "")));
+            Console.WriteLine(string.Format("  -dct fast      Use fast integer DCT (less accurate) {0}", (Constants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_IFAST ? " (default)" : "")));
+            Console.WriteLine(string.Format("  -dct float     Use floating-point DCT method {0}", (Constants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_FLOAT ? " (default)" : "")));
+            Console.WriteLine("  -restart N     Set restart interval in rows, or in blocks with B");
+            Console.WriteLine("  -smooth N      Smooth dithered input (N=1..100 is strength)");
+            Console.WriteLine("  -outfile name  Specify name for output file");
+            Console.WriteLine("  -verbose  or  -debug   Emit debug output");
+            Console.WriteLine("Switches for wizards:");
+            Console.WriteLine("  -baseline      Force baseline quantization tables");
+            Console.WriteLine("  -qtables file  Use quantization tables given in file");
+            Console.WriteLine("  -qslots N[,...]    Set component quantization tables");
+            Console.WriteLine("  -sample HxV[,...]  Set component sampling factors");
         }
     }
 }

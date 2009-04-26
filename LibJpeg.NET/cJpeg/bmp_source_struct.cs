@@ -408,8 +408,8 @@ namespace cJpeg
         
         private static bool ReadOK(Stream file, byte[] buffer, int offset, int len)
         {
-            //return (fread((void *)(buffer), 1, len, file) == ((size_t) (len)));
-            return false;
+            int read = file.Read(buffer, offset, len);
+            return (read == len);
         }
 
         private static uint GET_2B(byte[] array, int offset)
