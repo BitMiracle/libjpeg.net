@@ -52,61 +52,74 @@ namespace cJpeg
              * values read here are ignored; we will rescan the switches after opening
              * the input file.
              */
-
-            //int file_index;
-            bool parsedOK = parse_switches(cinfo, args, 0, false);
+            int file_index;
+            bool parsedOK = parse_switches(cinfo, args, false, out file_index);
 
             /* Must have either -outfile switch or explicit output file name */
             if (outfilename == null)
             {
-                //if (file_index != argc - 2)
-                //{
-                //    fprintf(stderr, "%s: must name one input and one output file\n", progname);
-                //    usage();
-                //}
-                //outfilename = argv[file_index + 1];
+                // file_index should point to input file 
+                if (file_index != args.Length - 2)
+                {
+                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", progname));
+                    usage();
+                    return;
+                }
+
+                // output file comes right after input one
+                outfilename = args[file_index + 1];
             }
             else
             {
-                //if (file_index != argc - 1)
-                //{
-                //    fprintf(stderr, "%s: must name one input and one output file\n", progname);
-                //    usage();
-                //}
+                // file_index should point to input file
+                if (file_index != args.Length - 1)
+                {
+                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", progname));
+                    usage();
+                    return;
+                }
             }
-
-            FileStream input_file = null;
 
             /* Open the input file. */
-            //if (file_index < argc)
-            //{
-            //    if ((input_file = fopen(argv[file_index], "rb")) == null)
-            //    {
-            //        fprintf(stderr, "%s: can't open %s\n", progname, argv[file_index]);
-            //        return;
-            //    }
-            //}
-            //else
-            //{
-            //    /* default input file is stdin */
-            //    input_file = read_stdin();
-            //}
-
-            FileStream output_file = null;
-
-            /* Open the output file. */
-            if (outfilename != null)
+            FileStream input_file = null;
+            if (file_index < args.Length)
             {
-                //if ((output_file = fopen(outfilename, "wb")) == null)
-                //{
-                //    fprintf(stderr, "%s: can't open %s\n", progname, outfilename);
-                //    return;
-                //}
+                try
+                {
+                    input_file = new FileStream(args[file_index], FileMode.Open);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
+                    Console.WriteLine(e.Message);
+                    return;
+                }
             }
             else
             {
-                /* default output file is stdout */
-                //output_file = write_stdout();
+                Console.WriteLine(string.Format("{0}: sorry, can't read file from console"));
+                return;
+            }
+
+            /* Open the output file. */
+            FileStream output_file = null;
+            if (outfilename != null)
+            {
+                try
+                {
+                    output_file = new FileStream(outfilename, FileMode.Create);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
+                    Console.WriteLine(e.Message);
+                    return;	
+                }
+            }
+            else
+            {
+                Console.WriteLine(string.Format("{0}: sorry, can't write file to console"));
+                return;
             }
 
             /* Figure out the input file format, and set up to read it. */
@@ -120,8 +133,7 @@ namespace cJpeg
             cinfo.jpeg_default_colorspace();
 
             /* Adjust default compression parameters by re-parsing the options */
-            //file_index = 
-                parse_switches(cinfo, args, 0, true);
+            parse_switches(cinfo, args, true, out file_index);
 
             /* Specify data destination for compression */
             cinfo.jpeg_stdio_dest(output_file);
@@ -154,14 +166,12 @@ namespace cJpeg
 
         /// <summary>
         /// Parse optional switches.
-        /// Returns index of first file-name argument (== argc if none).
-        /// Any file names with indexes <= last_file_arg_seen are ignored;
-        /// they have presumably been processed in a previous iteration.
-        /// (Pass 0 for last_file_arg_seen on the first or only iteration.)
+        /// Returns true if switches were parsed successfully; false otherwise.
+        /// fileIndex receives index of first file-name argument (== -1 if none).
         /// for_real is false on the first (dummy) pass; we may skip any expensive
         /// processing.
         /// </summary>
-        static bool parse_switches(jpeg_compress_struct cinfo, string[] argv, int last_file_arg_seen, bool for_real)
+        static bool parse_switches(jpeg_compress_struct cinfo, string[] argv, bool for_real, out int fileIndex)
         {
             /* Set up default JPEG parameters. */
             /* Note that default -quality level need not, and does not,
@@ -177,6 +187,7 @@ namespace cJpeg
             string samplearg = null; /* saves -sample parm if any */
 
             outfilename = null;
+            fileIndex = -1;
             cinfo.m_err.m_trace_level = 0;
 
             /* Scan command line options, adjust parameters */
@@ -187,11 +198,13 @@ namespace cJpeg
                 if (arg[0] != '-')
                 {
                     /* Not a switch, must be a file name argument */
-                    if (argn <= last_file_arg_seen)
+                    if (argn <= 0)
                     {
                         outfilename = null; /* -outfile applies to just one input file */
                         continue;       /* ignore this name if previously processed */
                     }
+
+                    fileIndex = argn;
                     break;          /* else done parsing switches */
                 }
 
@@ -426,17 +439,32 @@ namespace cJpeg
                 /* Some or all may be overridden if -qtables is present. */
                 cinfo.jpeg_set_quality(quality, force_baseline);
 
-            //    if (qtablefile != null) /* process -qtables if it was present */
-            //        if (!read_quant_tables(cinfo, qtablefile, q_scale_factor, force_baseline))
-            //            usage();
+                if (qtablefile != null) /* process -qtables if it was present */
+                {
+                    if (!read_quant_tables(cinfo, qtablefile, q_scale_factor, force_baseline))
+                    {
+                        usage();
+                        return false;
+                    }
+                }
 
-            //    if (qslotsarg != null)  /* process -qslots if it was present */
-            //        if (!set_quant_slots(cinfo, qslotsarg))
-            //            usage();
+                if (qslotsarg != null)  /* process -qslots if it was present */
+                {
+                    if (!set_quant_slots(cinfo, qslotsarg))
+                    {
+                        usage();
+                        return false;
+                    }
+                }
 
-            //    if (samplearg != null)  /* process -sample if it was present */
-            //        if (!set_sample_factors(cinfo, samplearg))
-            //            usage();
+                if (samplearg != null)  /* process -sample if it was present */
+                {
+                    if (!set_sample_factors(cinfo, samplearg))
+                    {
+                        usage();
+                        return false;
+                    }
+                }
 
                 if (simple_progressive) /* process -progressive; -scans can override */
                     cinfo.jpeg_simple_progression();
@@ -492,6 +520,24 @@ namespace cJpeg
             Console.WriteLine("  -qtables file  Use quantization tables given in file");
             Console.WriteLine("  -qslots N[,...]    Set component quantization tables");
             Console.WriteLine("  -sample HxV[,...]  Set component sampling factors");
+        }
+
+        static bool read_quant_tables(jpeg_compress_struct cinfo, string filename, int scale_factor, bool force_baseline)
+        {
+            // not implemented yet
+            return false;
+        }
+
+        static bool set_quant_slots(jpeg_compress_struct cinfo, string arg)
+        {
+            // not implemented yet
+            return false;
+        }
+
+        static bool set_sample_factors(jpeg_compress_struct cinfo, string arg)
+        {
+            // not implemented yet
+            return false;
         }
     }
 }
