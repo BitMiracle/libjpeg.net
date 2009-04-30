@@ -25,13 +25,13 @@ using LibJpeg.NET;
 
 namespace cJpeg
 {
-    class Program
+    public class Program
     {
         static bool printed_version = false;
         static string progname;    /* program name for error messages */
         static string outfilename;   /* for -outfile switch */
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             progname = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
 
@@ -198,14 +198,8 @@ namespace cJpeg
                 if (arg[0] != '-')
                 {
                     /* Not a switch, must be a file name argument */
-                    if (argn <= 0)
-                    {
-                        outfilename = null; /* -outfile applies to just one input file */
-                        continue;       /* ignore this name if previously processed */
-                    }
-
                     fileIndex = argn;
-                    break;          /* else done parsing switches */
+                    break;
                 }
 
                 arg = arg.Substring(1);

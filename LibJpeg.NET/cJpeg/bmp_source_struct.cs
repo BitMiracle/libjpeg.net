@@ -369,10 +369,10 @@ namespace cJpeg
         // Read next byte from BMP file
         private int read_byte()
         {
-            int c = 0;
-                //getc(input_file);
-            //if (c == EOF)
+            int c = input_file.ReadByte();
+            if (c == -1)
                 cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_INPUT_EOF);
+
             return c;
         }
 
