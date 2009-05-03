@@ -11,14 +11,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LibJpeg.NET
+namespace dJpeg
 {
     /// <summary>
-    /// Coefficient buffer control
+    /// This list defines the known output image formats
+    /// (not all of which need be supported by a given version).
     /// </summary>
-    interface jpeg_c_coef_controller
+    enum IMAGE_FORMATS
     {
-        void start_pass(J_BUF_MODE pass_mode);
-        bool compress_data(byte[][][] input_buf);
+        FMT_BMP, /* BMP format (Windows flavor) */
+        FMT_OS2, /* BMP format (OS/2 flavor) */
     }
 }

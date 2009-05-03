@@ -14,7 +14,7 @@
  * some other language.
  */
 
-namespace LibJpeg.NET
+namespace cdJpeg
 {
     public enum ADDON_MESSAGE_CODE
     {

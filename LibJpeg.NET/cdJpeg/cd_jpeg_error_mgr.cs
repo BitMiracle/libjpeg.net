@@ -7,7 +7,9 @@
  *
  */
 
-namespace LibJpeg.NET
+using LibJpeg.NET;
+
+namespace cdJpeg
 {
     class cd_jpeg_error_mgr : jpeg_error_mgr
     {

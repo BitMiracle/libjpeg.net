@@ -22,6 +22,7 @@ using System.IO;
 using System.Globalization;
 
 using LibJpeg.NET;
+using cdJpeg;
 
 namespace cJpeg
 {
@@ -502,9 +503,9 @@ namespace cJpeg
             Console.WriteLine("  -optimize      Optimize Huffman table (smaller file, but slow compression)");
             Console.WriteLine("  -progressive   Create progressive JPEG file");
             Console.WriteLine("Switches for advanced users:");
-            Console.WriteLine(string.Format("  -dct int       Use integer DCT method {0}", (Constants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_ISLOW ? " (default)" : "")));
-            Console.WriteLine(string.Format("  -dct fast      Use fast integer DCT (less accurate) {0}", (Constants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_IFAST ? " (default)" : "")));
-            Console.WriteLine(string.Format("  -dct float     Use floating-point DCT method {0}", (Constants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_FLOAT ? " (default)" : "")));
+            Console.WriteLine(string.Format("  -dct int       Use integer DCT method {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_ISLOW ? " (default)" : "")));
+            Console.WriteLine(string.Format("  -dct fast      Use fast integer DCT (less accurate) {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_IFAST ? " (default)" : "")));
+            Console.WriteLine(string.Format("  -dct float     Use floating-point DCT method {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_FLOAT ? " (default)" : "")));
             Console.WriteLine("  -restart N     Set restart interval in rows, or in blocks with B");
             Console.WriteLine("  -smooth N      Smooth dithered input (N=1..100 is strength)");
             Console.WriteLine("  -outfile name  Specify name for output file");

@@ -7,7 +7,9 @@
  *
  */
 
-namespace LibJpeg.NET
+using LibJpeg.NET;
+
+namespace cdJpeg
 {
     /// <summary>
     /// cjpeg/djpeg may need to perform extra passes to convert to or from

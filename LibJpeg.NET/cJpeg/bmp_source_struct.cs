@@ -23,6 +23,7 @@ using System.Text;
 using System.IO;
 
 using LibJpeg.NET;
+using cdJpeg;
 
 namespace cJpeg
 {
