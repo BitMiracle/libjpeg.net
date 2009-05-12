@@ -39,9 +39,14 @@
     <Compile Include="..\cdJpeg\ADDON_MESSAGE_CODE.cs">
       <Link>ADDON_MESSAGE_CODE.cs</Link>
     </Compile>
+    <Compile Include="..\cdJpeg\cdjpeg_utils.cs">
+      <Link>cdjpeg_utils.cs</Link>
+    </Compile>
     <Compile Include="..\cdJpeg\cd_jpeg_error_mgr.cs">
       <Link>cd_jpeg_error_mgr.cs</Link>
     </Compile>
+    <Compile Include="bmp_dest_struct.cs" />
+    <Compile Include="djpeg_dest_struct.cs" />
     <Compile Include="IMAGE_FORMATS.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

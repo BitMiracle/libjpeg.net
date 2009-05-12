@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C0DFBCE2-9E77-4697-AA67-A46C088A1D45}</ProjectGuid>
     <OutputType>Exe</OutputType>
@@ -41,6 +41,9 @@
     </Compile>
     <Compile Include="..\cdJpeg\cdjpeg_progress_mgr.cs">
       <Link>cdjpeg_progress_mgr.cs</Link>
+    </Compile>
+    <Compile Include="..\cdJpeg\cdjpeg_utils.cs">
+      <Link>cdjpeg_utils.cs</Link>
     </Compile>
     <Compile Include="..\cdJpeg\cd_jpeg_error_mgr.cs">
       <Link>cd_jpeg_error_mgr.cs</Link>

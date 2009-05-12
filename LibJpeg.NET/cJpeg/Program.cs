@@ -205,12 +205,12 @@ namespace cJpeg
 
                 arg = arg.Substring(1);
 
-                if (keymatch(arg, "baseline", 1))
+                if (cdjpeg_utils.keymatch(arg, "baseline", 1))
                 {
                     /* Force baseline-compatible output (8-bit quantizer values). */
                     force_baseline = true;
                 }
-                else if (keymatch(arg, "dct", 2))
+                else if (cdjpeg_utils.keymatch(arg, "dct", 2))
                 {
                     /* Select DCT algorithm. */
                     argn++; /* advance to next argument */
@@ -220,11 +220,11 @@ namespace cJpeg
                         return false;
                     }
 
-                    if (keymatch(argv[argn], "int", 1))
+                    if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
                         cinfo.m_dct_method = J_DCT_METHOD.JDCT_ISLOW;
-                    else if (keymatch(argv[argn], "fast", 2))
+                    else if (cdjpeg_utils.keymatch(argv[argn], "fast", 2))
                         cinfo.m_dct_method = J_DCT_METHOD.JDCT_IFAST;
-                    else if (keymatch(argv[argn], "float", 2))
+                    else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
                         cinfo.m_dct_method = J_DCT_METHOD.JDCT_FLOAT;
                     else
                     {
@@ -232,7 +232,7 @@ namespace cJpeg
                         return false;
                     }
                 }
-                else if (keymatch(arg, "debug", 1) || keymatch(arg, "verbose", 1))
+                else if (cdjpeg_utils.keymatch(arg, "debug", 1) || cdjpeg_utils.keymatch(arg, "verbose", 1))
                 {
                     /* Enable debug printouts. */
                     /* On first -d, print version identification */
@@ -243,17 +243,17 @@ namespace cJpeg
                     }
                     cinfo.m_err.m_trace_level++;
                 }
-                else if (keymatch(arg, "grayscale", 2) || keymatch(arg, "greyscale", 2))
+                else if (cdjpeg_utils.keymatch(arg, "grayscale", 2) || cdjpeg_utils.keymatch(arg, "greyscale", 2))
                 {
                     /* Force a monochrome JPEG file to be generated. */
                     cinfo.jpeg_set_colorspace(J_COLOR_SPACE.JCS_GRAYSCALE);
                 }
-                else if (keymatch(arg, "optimize", 1) || keymatch(arg, "optimise", 1))
+                else if (cdjpeg_utils.keymatch(arg, "optimize", 1) || cdjpeg_utils.keymatch(arg, "optimise", 1))
                 {
                     /* Enable entropy parm optimization. */
                     cinfo.m_optimize_coding = true;
                 }
-                else if (keymatch(arg, "outfile", 4))
+                else if (cdjpeg_utils.keymatch(arg, "outfile", 4))
                 {
                     /* Set output file name. */
                     argn++;/* advance to next argument */
@@ -265,13 +265,13 @@ namespace cJpeg
 
                     outfilename = argv[argn];   /* save it away for later use */
                 }
-                else if (keymatch(arg, "progressive", 1))
+                else if (cdjpeg_utils.keymatch(arg, "progressive", 1))
                 {
                     /* Select simple progressive mode. */
                     simple_progressive = true;
                     /* We must postpone execution until num_components is known. */
                 }
-                else if (keymatch(arg, "quality", 1))
+                else if (cdjpeg_utils.keymatch(arg, "quality", 1))
                 {
                     /* Quality factor (quantization table scaling factor). */
                     argn++;/* advance to next argument */
@@ -295,7 +295,7 @@ namespace cJpeg
                     /* Change scale factor in case -qtables is present. */
                     q_scale_factor = jpeg_compress_struct.jpeg_quality_scaling(quality);
                 }
-                else if (keymatch(arg, "qslots", 2))
+                else if (cdjpeg_utils.keymatch(arg, "qslots", 2))
                 {
                     /* Quantization table slot numbers. */
                     argn++; /* advance to next argument */
@@ -311,7 +311,7 @@ namespace cJpeg
                      * default quant table numbers.
                      */
                 }
-                else if (keymatch(arg, "qtables", 2))
+                else if (cdjpeg_utils.keymatch(arg, "qtables", 2))
                 {
                     /* Quantization tables fetched from file. */
                     argn++; /* advance to next argument */
@@ -324,7 +324,7 @@ namespace cJpeg
                     qtablefile = argv[argn];
                     /* We postpone actually reading the file in case -quality comes later. */
                 }
-                else if (keymatch(arg, "restart", 1))
+                else if (cdjpeg_utils.keymatch(arg, "restart", 1))
                 {
                     /* Restart interval in MCU rows (or in MCUs with 'b'). */
                     argn++; /* advance to next argument */
@@ -372,7 +372,7 @@ namespace cJpeg
                         /* restart_interval will be computed during startup */
                     }
                 }
-                else if (keymatch(arg, "sample", 2))
+                else if (cdjpeg_utils.keymatch(arg, "sample", 2))
                 {
                     /* Set sampling factors. */
                     argn++; /* advance to next argument */
@@ -388,7 +388,7 @@ namespace cJpeg
                      * default sampling factors.
                      */
                 }
-                else if (keymatch(arg, "smooth", 2))
+                else if (cdjpeg_utils.keymatch(arg, "smooth", 2))
                 {
                     /* Set input smoothing factor. */
                     
@@ -466,28 +466,6 @@ namespace cJpeg
             }
 
             return true;
-        }
-
-
-        /// <summary>
-        /// Case-insensitive matching of possibly-abbreviated keyword switches.
-        /// keyword is the constant keyword (must be lower case already),
-        /// minchars is length of minimum legal abbreviation.
-        /// </summary>
-        static bool keymatch(string arg, string keyword, int minchars)
-        {
-            string lowered = arg.ToLower(CultureInfo.InvariantCulture);
-            if (lowered.Length > keyword.Length)
-            {
-                // arg longer than keyword, no good
-                return false;
-            }
-            else if (lowered.Length == keyword.Length)
-            {
-                return lowered == keyword;
-            }
-
-            return (lowered == keyword.Substring(0, minchars));
         }
 
         /// <summary>
