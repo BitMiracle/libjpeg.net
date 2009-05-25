@@ -25,14 +25,14 @@ using cdJpeg;
 
 namespace dJpeg
 {
-    class Program
+    public class Program
     {
         static bool printed_version = false;
         static IMAGE_FORMATS requested_fmt;
         static string progname;    /* program name for error messages */
         static string outfilename;   /* for -outfile switch */
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             progname = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
 
@@ -244,8 +244,9 @@ namespace dJpeg
                     }
                     else
                     {
-                        fprintf(stderr, "\\%03o", ch);
+                        Console.Write(encodeOctalString(ch));
                     }
+
                     lastch = ch;
                 }
             }
@@ -256,6 +257,19 @@ namespace dJpeg
             return true;
         }
 
+        private static string encodeOctalString(uint value)
+        {
+            //convert to int, for cleaner syntax below. 
+            int x = (int)value;
+
+            //return octal encoding \ddd of the character value. 
+            return string.Format(
+                @"\{0}{1}{2}",
+                ((x >> 6) & 7),
+                ((x >> 3) & 7),
+                (x & 7)
+            );
+        }
         /// <summary>
         /// Parse optional switches.
         /// Returns argv[] index of first file-name argument (== argc if none).

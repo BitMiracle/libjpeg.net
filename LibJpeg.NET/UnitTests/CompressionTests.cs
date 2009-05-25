@@ -9,7 +9,7 @@ using cJpeg;
 namespace UnitTests
 {
     [TestFixture]
-    public class CompressionTests
+    public class CompressionTests : JpegTestBase
     {
         private string m_dataFolder = @"..\..\..\..\TestCase\jpeg_compression_data\";
 
@@ -18,29 +18,9 @@ namespace UnitTests
             return Path.Combine(m_dataFolder, imageName);
         }
 
-        private bool filesAreEqual(string left, string right)
-        {
-            byte[] leftBytes = File.ReadAllBytes(left);
-            byte[] rightBytes = File.ReadAllBytes(right);
-
-            if (leftBytes == null || rightBytes == null)
-                return false;
-
-            if (leftBytes.Length != rightBytes.Length)
-                return false;
-
-            for (int i = 0; i < leftBytes.Length; i++)
-            {
-                if (leftBytes[i] != rightBytes[i])
-                    return false;
-            }
-
-            return true;
-        }
-
         private void runTest(string[] args, string sourceImage, string targetImage)
         {
-            // cJpeg.Program.Main is static, so lock concurent acces to a test code
+            // cJpeg.Program.Main is static, so lock concurent access to a test code
             // use a private field to lock upon 
 
             lock (m_dataFolder)

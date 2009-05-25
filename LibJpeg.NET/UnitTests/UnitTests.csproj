@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1CBA5A80-BCCE-4C6D-8A27-31D27E317182}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -41,12 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompressionTests.cs" />
+    <Compile Include="DecompressionTests.cs" />
+    <Compile Include="JpegTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cJpeg\cJpeg.csproj">
       <Project>{C0DFBCE2-9E77-4697-AA67-A46C088A1D45}</Project>
       <Name>cJpeg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dJpeg\dJpeg.csproj">
+      <Project>{3B558417-DD92-481E-9202-2693059E344C}</Project>
+      <Name>dJpeg</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

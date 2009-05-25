@@ -39,6 +39,9 @@
     <Compile Include="..\cdJpeg\ADDON_MESSAGE_CODE.cs">
       <Link>ADDON_MESSAGE_CODE.cs</Link>
     </Compile>
+    <Compile Include="..\cdJpeg\cdjpeg_progress_mgr.cs">
+      <Link>cdjpeg_progress_mgr.cs</Link>
+    </Compile>
     <Compile Include="..\cdJpeg\cdjpeg_utils.cs">
       <Link>cdjpeg_utils.cs</Link>
     </Compile>
