@@ -136,8 +136,52 @@ namespace UnitTests
         [Test]
         public void TestXING_fast()
         {
-            runTest(new string[] { "-fast", "-colors", "256", "-bmp" }, "XING.JPG", "XING_fast.bmp");
+            runTest(new string[] { "-colors", "256", "-bmp" }, "XING.JPG", "XING_fast.bmp");
         }
 
+        //////////////////////////////////////////////////////////////////////////
+        // test slow (2-pass) dequantizer
+
+        [Test]
+        public void Test3D_slow()
+        {
+            runTest(new string[] { "-colors", "256", "-bmp" }, "3D.JPG", "3D_slow.bmp");
+        }
+
+        [Test]
+        public void TestBLU_slow()
+        {
+            runTest(new string[] { "-colors", "256", "-bmp" }, "BLU.JPG", "BLU_slow.bmp");
+        }
+
+        [Test]
+        public void TestGLOBE1_slow()
+        {
+            runTest(new string[] { "-colors", "256", "-bmp" }, "GLOBE1.JPG", "GLOBE1_slow.bmp");
+        }
+
+        [Test]
+        public void TestMARBLES_slow()
+        {
+            runTest(new string[] { "-colors", "256", "-bmp" }, "MARBLES.JPG", "MARBLES_slow.bmp");
+        }
+
+        [Test]
+        public void TestPARROTS_slow()
+        {
+            runTest(new string[] { "-colors", "256", "-bmp" }, "PARROTS.JPG", "PARROTS_slow.bmp");
+        }
+
+        [Test]
+        public void TestSPACE_slow()
+        {
+            runTest(new string[] { "-colors", "256", "-bmp" }, "SPACE.JPG", "SPACE_slow.bmp");
+        }
+
+        [Test]
+        public void TestXING_slow()
+        {
+            runTest(new string[] { "-colors", "256", "-bmp" }, "XING.JPG", "XING_slow.bmp");
+        }
     }
 }

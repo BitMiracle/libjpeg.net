@@ -295,7 +295,7 @@ namespace dJpeg
             }
             catch (Exception e)
             {
-                cinfo.TRACEMSS(0, (int)J_MESSAGE_CODE.JERR_FILE_WRITE, e.Message);
+                cinfo.TRACEMS(0, (int)J_MESSAGE_CODE.JERR_FILE_WRITE, e.Message);
                 cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_FILE_WRITE);
             }
 
@@ -305,7 +305,7 @@ namespace dJpeg
             }
             catch (Exception e)
             {
-                cinfo.TRACEMSS(0, (int)J_MESSAGE_CODE.JERR_FILE_WRITE, e.Message);
+                cinfo.TRACEMS(0, (int)J_MESSAGE_CODE.JERR_FILE_WRITE, e.Message);
                 cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_FILE_WRITE);
             }
 
@@ -372,7 +372,7 @@ namespace dJpeg
             }
             catch (Exception e)
             {
-                cinfo.TRACEMSS(0, (int)J_MESSAGE_CODE.JERR_FILE_WRITE, e.Message);
+                cinfo.TRACEMS(0, (int)J_MESSAGE_CODE.JERR_FILE_WRITE, e.Message);
                 cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_FILE_WRITE);
             }
 
@@ -382,7 +382,7 @@ namespace dJpeg
             }
             catch (Exception e)
             {
-                cinfo.TRACEMSS(0, (int)J_MESSAGE_CODE.JERR_FILE_WRITE, e.Message);
+                cinfo.TRACEMS(0, (int)J_MESSAGE_CODE.JERR_FILE_WRITE, e.Message);
                 cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_FILE_WRITE);
             }
 
@@ -442,7 +442,7 @@ namespace dJpeg
 
             /* Pad colormap with zeros to ensure specified number of colormap entries */
             if (i > map_colors)
-                cinfo.ERREXIT1((int)ADDON_MESSAGE_CODE.JERR_TOO_MANY_COLORS, i);
+                cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_TOO_MANY_COLORS, i);
 
             for (; i < map_colors; i++)
             {

@@ -114,11 +114,11 @@ namespace cJpeg
                 case 8:
                     /* colormapped image */
                     mapentrysize = 3;       /* OS/2 uses RGBTRIPLE colormap */
-                    cinfo.TRACEMS2(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2_MAPPED, (int)biWidth, (int)biHeight);
+                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2_MAPPED, (int)biWidth, (int)biHeight);
                     break;
                 case 24:
                     /* RGB image */
-                    cinfo.TRACEMS2(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2, (int)biWidth, (int)biHeight);
+                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2, (int)biWidth, (int)biHeight);
                     break;
                 default:
                     cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
@@ -146,11 +146,11 @@ namespace cJpeg
                 case 8:
                     /* colormapped image */
                     mapentrysize = 4;       /* Windows uses RGBQUAD colormap */
-                    cinfo.TRACEMS2(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_MAPPED, (int)biWidth, (int)biHeight);
+                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_MAPPED, (int)biWidth, (int)biHeight);
                     break;
                 case 24:
                     /* RGB image */
-                    cinfo.TRACEMS2(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP, (int)biWidth, (int)biHeight);
+                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP, (int)biWidth, (int)biHeight);
                     break;
                 default:
                     cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
