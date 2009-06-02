@@ -136,7 +136,7 @@ namespace UnitTests
         [Test]
         public void TestXING_fast()
         {
-            runTest(new string[] { "-colors", "256", "-bmp" }, "XING.JPG", "XING_fast.bmp");
+            runTest(new string[] { "-fast", "-colors", "256", "-bmp" }, "XING.JPG", "XING_fast.bmp");
         }
 
         //////////////////////////////////////////////////////////////////////////
