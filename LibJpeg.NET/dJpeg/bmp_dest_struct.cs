@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using LibJpeg.NET;
+using LibJpeg.Classic;
 using cdJpeg;
 
 /*

@@ -7,7 +7,7 @@
  *
  */
 
-using LibJpeg.NET;
+using LibJpeg.Classic;
 
 namespace cdJpeg
 {

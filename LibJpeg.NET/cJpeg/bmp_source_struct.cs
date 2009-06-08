@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-using LibJpeg.NET;
+using LibJpeg.Classic;
 using cdJpeg;
 
 namespace cJpeg

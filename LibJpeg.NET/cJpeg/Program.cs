@@ -21,7 +21,7 @@ using System.Text;
 using System.IO;
 using System.Globalization;
 
-using LibJpeg.NET;
+using LibJpeg.Classic;
 using cdJpeg;
 
 namespace cJpeg
