@@ -58,13 +58,13 @@ namespace dJpeg
             this.cinfo = cinfo;
             this.is_os2 = is_os2;
 
-            if (cinfo.m_out_color_space == J_COLOR_SPACE.JCS_GRAYSCALE)
+            if (cinfo.Out_color_space == J_COLOR_SPACE.JCS_GRAYSCALE)
             {
                 m_putGrayRows = true;
             }
-            else if (cinfo.m_out_color_space == J_COLOR_SPACE.JCS_RGB)
+            else if (cinfo.Out_color_space == J_COLOR_SPACE.JCS_RGB)
             {
-                if (cinfo.m_quantize_colors)
+                if (cinfo.Quantize_colors)
                     m_putGrayRows = true;
                 else
                     m_putGrayRows = false;
@@ -78,7 +78,7 @@ namespace dJpeg
             cinfo.jpeg_calc_output_dimensions();
 
             /* Determine width of rows in the BMP file (padded to 4-byte boundary). */
-            row_width = (uint)(cinfo.m_output_width * cinfo.m_output_components);
+            row_width = (uint)(cinfo.Output_width * cinfo.Output_components);
             data_width = row_width;
             while ((row_width & 3) != 0)
                 row_width++;
@@ -86,11 +86,11 @@ namespace dJpeg
             pad_bytes = (int)(row_width - data_width);
 
             /* Allocate space for inversion array, prepare for write pass */
-            whole_image = new jvirt_sarray_control(cinfo, false, row_width, cinfo.m_output_height);
+            whole_image = new jvirt_sarray_control(cinfo, false, row_width, cinfo.Output_height);
             cur_output_row = 0;
-            if (cinfo.m_progress != null)
+            if (cinfo.Progress != null)
             {
-                cdjpeg_progress_mgr progress = (cdjpeg_progress_mgr)cinfo.m_progress;
+                cdjpeg_progress_mgr progress = (cdjpeg_progress_mgr)cinfo.Progress;
                 progress.total_extra_passes++; /* count file input as separate pass */
             }
 
@@ -132,14 +132,14 @@ namespace dJpeg
             else
                 write_bmp_header();
 
-            cdjpeg_progress_mgr progress = (cdjpeg_progress_mgr)cinfo.m_progress;
+            cdjpeg_progress_mgr progress = (cdjpeg_progress_mgr)cinfo.Progress;
             /* Write the file body from our virtual array */
-            for (uint row = cinfo.m_output_height; row > 0; row--)
+            for (uint row = cinfo.Output_height; row > 0; row--)
             {
                 if (progress != null)
                 {
-                    progress.m_pass_counter = (long)(cinfo.m_output_height - row);
-                    progress.m_pass_limit = (long)cinfo.m_output_height;
+                    progress.Pass_counter = (long)(cinfo.Output_height - row);
+                    progress.Pass_limit = (long)cinfo.Output_height;
                     progress.progress_monitor();
                 }
 
@@ -176,7 +176,7 @@ namespace dJpeg
              */
             int bufferIndex = 0;
             int imageIndex = 0;
-            for (uint col = cinfo.m_output_width; col > 0; col--)
+            for (uint col = cinfo.Output_width; col > 0; col--)
             {
                 image_ptr[0][imageIndex + 2] = buffer[0][bufferIndex];   /* can omit GETJSAMPLE() safely */
                 bufferIndex++;
@@ -210,7 +210,7 @@ namespace dJpeg
 
             /* Transfer data. */
             int index = 0;
-            for (uint col = cinfo.m_output_width; col > 0; col--)
+            for (uint col = cinfo.Output_width; col > 0; col--)
             {
                 image_ptr[0][index] = buffer[0][index];/* can omit GETJSAMPLE() safely */
                 index++;
@@ -234,9 +234,9 @@ namespace dJpeg
             int cmap_entries;
 
             /* Compute colormap size and total file size */
-            if (cinfo.m_out_color_space == J_COLOR_SPACE.JCS_RGB)
+            if (cinfo.Out_color_space == J_COLOR_SPACE.JCS_RGB)
             {
-                if (cinfo.m_quantize_colors)
+                if (cinfo.Quantize_colors)
                 {
                     /* Colormapped RGB */
                     bits_per_pixel = 8;
@@ -258,7 +258,7 @@ namespace dJpeg
 
             /* File size */
             int headersize = 14 + 40 + cmap_entries * 4; /* Header and colormap */
-            int bfSize = headersize + (int)row_width * (int) cinfo.m_output_height;
+            int bfSize = headersize + (int)row_width * (int) cinfo.Output_height;
 
             /* Set unused fields of header to 0 */
             byte[] bmpfileheader = new byte[14];
@@ -273,18 +273,18 @@ namespace dJpeg
 
             /* Fill the info header (Microsoft calls this a BITMAPINFOHEADER) */
             PUT_2B(bmpinfoheader, 0, 40);   /* biSize */
-            PUT_4B(bmpinfoheader, 4, (int)cinfo.m_output_width); /* biWidth */
-            PUT_4B(bmpinfoheader, 8, (int)cinfo.m_output_height); /* biHeight */
+            PUT_4B(bmpinfoheader, 4, (int)cinfo.Output_width); /* biWidth */
+            PUT_4B(bmpinfoheader, 8, (int)cinfo.Output_height); /* biHeight */
             PUT_2B(bmpinfoheader, 12, 1);   /* biPlanes - must be 1 */
             PUT_2B(bmpinfoheader, 14, bits_per_pixel); /* biBitCount */
             /* we leave biCompression = 0, for none */
             /* we leave biSizeImage = 0; this is correct for uncompressed data */
 
-            if (cinfo.m_density_unit == 2)
+            if (cinfo.Density_unit == 2)
             {
                 /* if have density in dots/cm, then */
-                PUT_4B(bmpinfoheader, 24, (int) (cinfo.m_X_density * 100)); /* XPels/M */
-                PUT_4B(bmpinfoheader, 28, (int) (cinfo.m_Y_density * 100)); /* XPels/M */
+                PUT_4B(bmpinfoheader, 24, (int) (cinfo.X_density * 100)); /* XPels/M */
+                PUT_4B(bmpinfoheader, 28, (int) (cinfo.Y_density * 100)); /* XPels/M */
             }
             PUT_2B(bmpinfoheader, 32, cmap_entries); /* biClrUsed */
             /* we leave biClrImportant = 0 */
@@ -322,9 +322,9 @@ namespace dJpeg
             int cmap_entries;
 
             /* Compute colormap size and total file size */
-            if (cinfo.m_out_color_space == J_COLOR_SPACE.JCS_RGB)
+            if (cinfo.Out_color_space == J_COLOR_SPACE.JCS_RGB)
             {
-                if (cinfo.m_quantize_colors)
+                if (cinfo.Quantize_colors)
                 {
                     /* Colormapped RGB */
                     bits_per_pixel = 8;
@@ -346,7 +346,7 @@ namespace dJpeg
 
             /* File size */
             int headersize = 14 + 12 + cmap_entries * 3; /* Header and colormap */
-            int bfSize = headersize + (int)row_width * (int) cinfo.m_output_height;
+            int bfSize = headersize + (int)row_width * (int) cinfo.Output_height;
 
             /* Set unused fields of header to 0 */
             byte[] bmpfileheader = new byte[14];
@@ -361,8 +361,8 @@ namespace dJpeg
 
             /* Fill the info header (Microsoft calls this a BITMAPCOREHEADER) */
             PUT_2B(bmpcoreheader, 0, 12);   /* bcSize */
-            PUT_2B(bmpcoreheader, 4, (int)cinfo.m_output_width); /* bcWidth */
-            PUT_2B(bmpcoreheader, 6, (int)cinfo.m_output_height); /* bcHeight */
+            PUT_2B(bmpcoreheader, 4, (int)cinfo.Output_width); /* bcWidth */
+            PUT_2B(bmpcoreheader, 6, (int)cinfo.Output_height); /* bcHeight */
             PUT_2B(bmpcoreheader, 8, 1);    /* bcPlanes - must be 1 */
             PUT_2B(bmpcoreheader, 10, bits_per_pixel); /* bcBitCount */
 
@@ -396,13 +396,13 @@ namespace dJpeg
         /// </summary>
         private void write_colormap(int map_colors, int map_entry_size)
         {
-            byte[][] colormap = cinfo.m_colormap;
-            int num_colors = cinfo.m_actual_number_of_colors;
+            byte[][] colormap = cinfo.Colormap;
+            int num_colors = cinfo.Actual_number_of_colors;
 
             int i = 0;
             if (colormap != null)
             {
-                if (cinfo.m_out_color_components == 3)
+                if (cinfo.Out_color_components == 3)
                 {
                     /* Normal case with RGB colormap */
                     for (i = 0; i < num_colors; i++)

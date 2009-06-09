@@ -164,9 +164,9 @@ namespace cJpeg
                 if (biXPelsPerMeter > 0 && biYPelsPerMeter > 0)
                 {
                     /* Set JFIF density parameters from the BMP data */
-                    cinfo.m_X_density = (UInt16) (biXPelsPerMeter / 100); /* 100 cm per meter */
-                    cinfo.m_Y_density = (UInt16) (biYPelsPerMeter / 100);
-                    cinfo.m_density_unit = 2;  /* dots/cm */
+                    cinfo.X_density = (UInt16) (biXPelsPerMeter / 100); /* 100 cm per meter */
+                    cinfo.Y_density = (UInt16) (biYPelsPerMeter / 100);
+                    cinfo.Density_unit = 2;  /* dots/cm */
                 }
                 break;
             default:
@@ -213,9 +213,9 @@ namespace cJpeg
             /* Allocate space for inversion array, prepare for preload pass */
             whole_image = new jvirt_sarray_control(cinfo, false, row_width, (uint) biHeight);
             m_pixelRowsMethod = PixelRowsMethod.preload;
-            if (cinfo.m_progress != null)
+            if (cinfo.Progress != null)
             {
-                cdjpeg_progress_mgr progress = cinfo.m_progress as cdjpeg_progress_mgr;
+                cdjpeg_progress_mgr progress = cinfo.Progress as cdjpeg_progress_mgr;
                 progress.total_extra_passes++; /* count file input as separate pass */
             }
 
@@ -223,11 +223,11 @@ namespace cJpeg
             buffer = jpeg_common_struct.AllocJpegSamples((uint) (biWidth * 3), (uint) 1);
             buffer_height = 1;
 
-            cinfo.m_in_color_space = J_COLOR_SPACE.JCS_RGB;
-            cinfo.m_input_components = 3;
-            cinfo.m_data_precision = 8;
-            cinfo.m_image_width = (uint) biWidth;
-            cinfo.m_image_height = (uint) biHeight;
+            cinfo.In_color_space = J_COLOR_SPACE.JCS_RGB;
+            cinfo.Input_components = 3;
+            cinfo.Data_precision = 8;
+            cinfo.Image_width = (uint) biWidth;
+            cinfo.Image_height = (uint) biHeight;
         }
 
         public override uint get_pixel_rows()
@@ -263,7 +263,7 @@ namespace cJpeg
             /* Expand the colormap indexes to real data */
             int imageIndex = 0;
             int outIndex = 0;
-            for (uint col = cinfo.m_image_width; col > 0; col--)
+            for (uint col = cinfo.Image_width; col > 0; col--)
             {
                 int t = image_ptr[0][imageIndex];
                 imageIndex++;
@@ -298,7 +298,7 @@ namespace cJpeg
             int imageIndex = 0;
             int outIndex = 0;
 
-            for (uint col = cinfo.m_image_width; col > 0; col--)
+            for (uint col = cinfo.Image_width; col > 0; col--)
             {
                 buffer[0][outIndex + 2] = image_ptr[0][imageIndex];   /* can omit GETbyte() safely */
                 imageIndex++;
@@ -318,15 +318,15 @@ namespace cJpeg
         /// </summary>
         private uint preload_image()
         {
-            cdjpeg_progress_mgr progress = cinfo.m_progress as cdjpeg_progress_mgr;
+            cdjpeg_progress_mgr progress = cinfo.Progress as cdjpeg_progress_mgr;
 
             /* Read the data into a virtual array in input-file row order. */
-            for (uint row = 0; row < cinfo.m_image_height; row++)
+            for (uint row = 0; row < cinfo.Image_height; row++)
             {
                 if (progress != null)
                 {
-                    progress.m_pass_counter = (long)row;
-                    progress.m_pass_limit = (long)cinfo.m_image_height;
+                    progress.Pass_counter = (long)row;
+                    progress.Pass_limit = (long)cinfo.Image_height;
                     progress.progress_monitor();
                 }
 
@@ -361,7 +361,7 @@ namespace cJpeg
                     break;
             }
 
-            source_row = cinfo.m_image_height;
+            source_row = cinfo.Image_height;
 
             /* And read the first row */
             return get_pixel_rows();

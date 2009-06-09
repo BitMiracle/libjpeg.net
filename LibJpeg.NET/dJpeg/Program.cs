@@ -162,7 +162,7 @@ namespace dJpeg
             dest_mgr.start_output();
 
             /* Process data */
-            while (cinfo.m_output_scanline < cinfo.m_output_height)
+            while (cinfo.Output_scanline < cinfo.Output_height)
             {
                 uint num_scanlines = cinfo.jpeg_read_scanlines(dest_mgr.buffer, dest_mgr.buffer_height);
                 dest_mgr.put_pixel_rows(num_scanlines);
@@ -183,7 +183,7 @@ namespace dJpeg
             output_file.Dispose();
 
             /* All done. */
-            if (cinfo.m_err.m_num_warnings != 0)
+            if (cinfo.Err.Num_warnings != 0)
                 Console.WriteLine("Corrupt-data warning count is not zero");
         }
 
@@ -195,7 +195,7 @@ namespace dJpeg
         /// </summary>
         static bool print_text_marker(jpeg_decompress_struct cinfo)
         {
-            bool traceit = (cinfo.m_err.m_trace_level >= 1);
+            bool traceit = (cinfo.Err.Trace_level >= 1);
             
             int length = (int)(jpeg_getc(cinfo) << 8);
             length += (int)jpeg_getc(cinfo);
@@ -203,14 +203,14 @@ namespace dJpeg
 
             if (traceit)
             {
-                if (cinfo.m_unread_marker == (int)JPEG_MARKER.M_COM)
+                if (cinfo.Unread_marker == (int)JPEG_MARKER.M_COM)
                 {
                     Console.WriteLine("Comment, length {0}:", length);
                 }
                 else
                 {
                     /* assume it is an APPn otherwise */
-                    Console.WriteLine("APP{0}, length {1}:", cinfo.m_unread_marker - JPEG_MARKER.M_APP0, length);
+                    Console.WriteLine("APP{0}, length {1}:", cinfo.Unread_marker - JPEG_MARKER.M_APP0, length);
                 }
             }
 
@@ -287,7 +287,7 @@ namespace dJpeg
             requested_fmt = IMAGE_FORMATS.FMT_BMP;    /* set default output file format */
             outfilename = null;
             last_file_arg_seen = -1;
-            cinfo.m_err.m_trace_level = 0;
+            cinfo.Err.Trace_level = 0;
 
             /* Scan command line options, adjust parameters */
             int argn = 0;
@@ -333,8 +333,8 @@ namespace dJpeg
                         return false;
                     }
 
-                    cinfo.m_desired_number_of_colors = val;
-                    cinfo.m_quantize_colors = true;
+                    cinfo.Desired_number_of_colors = val;
+                    cinfo.Quantize_colors = true;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "dct", 2))
                 {
@@ -347,15 +347,15 @@ namespace dJpeg
 
                     if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
                     {
-                        cinfo.m_dct_method = J_DCT_METHOD.JDCT_ISLOW;
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_ISLOW;
                     }
                     else if (cdjpeg_utils.keymatch(argv[argn], "fast", 2))
                     {
-                        cinfo.m_dct_method = J_DCT_METHOD.JDCT_IFAST;
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_IFAST;
                     }
                     else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
                     {
-                        cinfo.m_dct_method = J_DCT_METHOD.JDCT_FLOAT;
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_FLOAT;
                     }
                     else
                     {
@@ -374,15 +374,15 @@ namespace dJpeg
 
                     if (cdjpeg_utils.keymatch(argv[argn], "fs", 2))
                     {
-                        cinfo.m_dither_mode = J_DITHER_MODE.JDITHER_FS;
+                        cinfo.Dither_mode = J_DITHER_MODE.JDITHER_FS;
                     }
                     else if (cdjpeg_utils.keymatch(argv[argn], "none", 2))
                     {
-                        cinfo.m_dither_mode = J_DITHER_MODE.JDITHER_NONE;
+                        cinfo.Dither_mode = J_DITHER_MODE.JDITHER_NONE;
                     }
                     else if (cdjpeg_utils.keymatch(argv[argn], "ordered", 2))
                     {
-                        cinfo.m_dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
+                        cinfo.Dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
                     }
                     else
                     {
@@ -399,22 +399,22 @@ namespace dJpeg
                         Console.Write(string.Format("Bit Miracle's DJPEG, version {0}\n{1}\n", jpeg_common_struct.Version, jpeg_common_struct.Copyright));
                         printed_version = true;
                     }
-                    cinfo.m_err.m_trace_level++;
+                    cinfo.Err.Trace_level++;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "fast", 1))
                 {
                     /* Select recommended processing options for quick-and-dirty output. */
-                    cinfo.m_two_pass_quantize = false;
-                    cinfo.m_dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
-                    if (!cinfo.m_quantize_colors) /* don't override an earlier -colors */
-                        cinfo.m_desired_number_of_colors = 216;
-                    cinfo.m_dct_method = JpegConstants.JDCT_FASTEST;
-                    cinfo.m_do_fancy_upsampling = false;
+                    cinfo.Two_pass_quantize = false;
+                    cinfo.Dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
+                    if (!cinfo.Quantize_colors) /* don't override an earlier -colors */
+                        cinfo.Desired_number_of_colors = 216;
+                    cinfo.Dct_method = JpegConstants.JDCT_FASTEST;
+                    cinfo.Do_fancy_upsampling = false;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "grayscale", 2) || cdjpeg_utils.keymatch(arg, "greyscale", 2))
                 {
                     /* Force monochrome output. */
-                    cinfo.m_out_color_space = J_COLOR_SPACE.JCS_GRAYSCALE;
+                    cinfo.Out_color_space = J_COLOR_SPACE.JCS_GRAYSCALE;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "maxmemory", 3))
                 {
@@ -445,12 +445,12 @@ namespace dJpeg
                 else if (cdjpeg_utils.keymatch(arg, "nosmooth", 3))
                 {
                     /* Suppress fancy upsampling */
-                    cinfo.m_do_fancy_upsampling = false;
+                    cinfo.Do_fancy_upsampling = false;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "onepass", 3))
                 {
                     /* Use fast one-pass quantization. */
-                    cinfo.m_two_pass_quantize = false;
+                    cinfo.Two_pass_quantize = false;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "os2", 3))
                 {
@@ -487,7 +487,7 @@ namespace dJpeg
                     try
                     {
                         string num = argv[argn].Substring(0, slashPos);
-                        cinfo.m_scale_num = uint.Parse(num);
+                        cinfo.Scale_num = uint.Parse(num);
                     }
                     catch (Exception e)
                     {
@@ -499,7 +499,7 @@ namespace dJpeg
                     try
                     {
                         string denom = argv[argn].Substring(slashPos + 1);
-                        cinfo.m_scale_denom = uint.Parse(denom);
+                        cinfo.Scale_denom = uint.Parse(denom);
                     }
                     catch (Exception e)
                     {
@@ -551,7 +551,7 @@ namespace dJpeg
         static int jpeg_getc(jpeg_decompress_struct cinfo)
         {
             int v;
-            if (!cinfo.m_src.GetByte(out v))
+            if (!cinfo.Src.GetByte(out v))
                 cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_CANT_SUSPEND);
 
             return v;

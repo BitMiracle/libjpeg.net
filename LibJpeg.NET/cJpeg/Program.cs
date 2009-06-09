@@ -45,7 +45,7 @@ namespace cJpeg
              * but we need to provide some value for jpeg_set_defaults() to work.
              */
 
-            cinfo.m_in_color_space = J_COLOR_SPACE.JCS_RGB; /* arbitrary guess */
+            cinfo.In_color_space = J_COLOR_SPACE.JCS_RGB; /* arbitrary guess */
             cinfo.jpeg_set_defaults();
 
             /* Scan command line to find file names.
@@ -143,7 +143,7 @@ namespace cJpeg
             cinfo.jpeg_start_compress(true);
 
             /* Process data */
-            while (cinfo.m_next_scanline < cinfo.m_image_height)
+            while (cinfo.Next_scanline < cinfo.Image_height)
             {
                 uint num_scanlines = src_mgr.get_pixel_rows();
                 cinfo.jpeg_write_scanlines(src_mgr.buffer, num_scanlines);
@@ -161,7 +161,7 @@ namespace cJpeg
             output_file.Dispose();
 
             /* All done. */
-            if (cinfo.m_err.m_num_warnings != 0)
+            if (cinfo.Err.Num_warnings != 0)
                 Console.WriteLine("Corrupt-data warning count is not zero");
         }
 
@@ -189,7 +189,7 @@ namespace cJpeg
 
             outfilename = null;
             fileIndex = -1;
-            cinfo.m_err.m_trace_level = 0;
+            cinfo.Err.Trace_level = 0;
 
             /* Scan command line options, adjust parameters */
             int argn = 0;
@@ -221,11 +221,11 @@ namespace cJpeg
                     }
 
                     if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
-                        cinfo.m_dct_method = J_DCT_METHOD.JDCT_ISLOW;
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_ISLOW;
                     else if (cdjpeg_utils.keymatch(argv[argn], "fast", 2))
-                        cinfo.m_dct_method = J_DCT_METHOD.JDCT_IFAST;
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_IFAST;
                     else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
-                        cinfo.m_dct_method = J_DCT_METHOD.JDCT_FLOAT;
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_FLOAT;
                     else
                     {
                         usage();
@@ -241,7 +241,7 @@ namespace cJpeg
                         Console.Write(string.Format("Bit Miracle's CJPEG, version {0}\n{1}\n", jpeg_common_struct.Version, jpeg_common_struct.Copyright));
                         printed_version = true;
                     }
-                    cinfo.m_err.m_trace_level++;
+                    cinfo.Err.Trace_level++;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "grayscale", 2) || cdjpeg_utils.keymatch(arg, "greyscale", 2))
                 {
@@ -251,7 +251,7 @@ namespace cJpeg
                 else if (cdjpeg_utils.keymatch(arg, "optimize", 1) || cdjpeg_utils.keymatch(arg, "optimise", 1))
                 {
                     /* Enable entropy parm optimization. */
-                    cinfo.m_optimize_coding = true;
+                    cinfo.Optimize_coding = true;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "outfile", 4))
                 {
@@ -363,12 +363,12 @@ namespace cJpeg
 
                     if (inBlocks)
                     {
-                        cinfo.m_restart_interval = (uint) lval;
-                        cinfo.m_restart_in_rows = 0; /* else prior '-restart n' overrides me */
+                        cinfo.Restart_interval = (uint) lval;
+                        cinfo.Restart_in_rows = 0; /* else prior '-restart n' overrides me */
                     }
                     else
                     {
-                        cinfo.m_restart_in_rows = (int) lval;
+                        cinfo.Restart_in_rows = (int) lval;
                         /* restart_interval will be computed during startup */
                     }
                 }
@@ -417,7 +417,7 @@ namespace cJpeg
                         return false;
                     }
 
-                    cinfo.m_smoothing_factor = val;
+                    cinfo.Smoothing_factor = val;
                 }
                 else
                 {
