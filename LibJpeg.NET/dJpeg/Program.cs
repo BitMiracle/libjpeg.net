@@ -550,8 +550,7 @@ namespace dJpeg
              * found during jpeg_read_header...)
              */
             int file_index;
-            jpeg_decompress_struct cinfo = decompressor.ClassicDecompressor;
-            bool parsedOK = parse_switches(cinfo, args, false, out file_index);
+            bool parsedOK = parse_switches(decompressor, args, false, out file_index);
 
             /* Must have either -outfile switch or explicit output file name */
             if (outfilename == null)
@@ -579,106 +578,110 @@ namespace dJpeg
             }
 
             /* Open the input file. */
-            FileStream input_file = null;
-            if (file_index < args.Length)
+            using (FileStream inputFile = openInputFile(file_index, args))
             {
-                try
-                {
-                    input_file = new FileStream(args[file_index], FileMode.Open);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
-                    Console.WriteLine(e.Message);
+                if (inputFile == null)
                     return;
+
+                /* Open the output file. */
+                using (FileStream outputFile = createOutputFile(file_index, args))
+                {
+                    if (outputFile == null)
+                        return;
+
+                    /* Specify data source for decompression */
+                    decompressor.InputStream = inputFile;
+
+                    /* Read file header, set default decompression parameters */
+                    decompressor.ReadHeader(true);
+
+                    /* Adjust default decompression parameters by re-parsing the options */
+                    parse_switches(decompressor, args, true, out file_index);
+
+                    /* Initialize the output module now to let it override any crucial
+                     * option settings (for instance, GIF wants to force color quantization).
+                     */
+                    djpeg_dest_struct dest_mgr = null;
+                    switch (requested_fmt)
+                    {
+                        case IMAGE_FORMATS.FMT_BMP:
+                            dest_mgr = new bmp_dest_struct(decompressor, false);
+                            break;
+                        case IMAGE_FORMATS.FMT_OS2:
+                            dest_mgr = new bmp_dest_struct(decompressor, true);
+                            break;
+                        default:
+                            decompressor.ClassicDecompressor.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_UNSUPPORTED_FORMAT);
+                            break;
+                    }
+
+                    dest_mgr.output_file = outputFile;
+
+                    /* Start decompressor */
+                    decompressor.StartDecompress();
+
+                    /* Write output file header */
+                    dest_mgr.start_output();
+
+                    /* Process data */
+                    while (decompressor.OutputScanline < decompressor.OutputHeight)
+                    {
+                        int num_scanlines = decompressor.ReadScanlines(dest_mgr.buffer, (int)dest_mgr.buffer_height);
+                        dest_mgr.put_pixel_rows((uint)num_scanlines);
+                    }
+
+                    /* Finish decompression and release memory.
+                     * I must do it in this order because output module has allocated memory
+                     * of lifespan JPOOL_IMAGE; it needs to finish before releasing memory.
+                     */
+                    dest_mgr.finish_output();
+                    decompressor.FinishDecompress();
                 }
             }
-            else
+            
+            /* All done. */
+            if (decompressor.ClassicDecompressor.Err.Num_warnings != 0)
+                Console.WriteLine("Corrupt-data warning count is not zero");
+        }
+
+        static FileStream openInputFile(int fileIndex, string[] args)
+        {
+            if (fileIndex >= args.Length)
             {
                 Console.WriteLine(string.Format("{0}: sorry, can't read file from console"));
-                return;
+                return null;
             }
 
-            /* Open the output file. */
-            FileStream output_file = null;
-            if (outfilename != null)
+            try
             {
-                try
-                {
-                    output_file = new FileStream(outfilename, FileMode.Create);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
-                    Console.WriteLine(e.Message);
-                    return;
-                }
+                return new FileStream(args[fileIndex], FileMode.Open);
             }
-            else
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[fileIndex]));
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        static FileStream createOutputFile(int fileIndex, string[] args)
+        {
+            if (outfilename == null)
             {
                 Console.WriteLine(string.Format("{0}: sorry, can't write file to console"));
-                return;
+                return null;
             }
 
-            /* Specify data source for decompression */
-            decompressor.InputStream = input_file;
-
-            /* Read file header, set default decompression parameters */
-            decompressor.ReadHeader(true);
-
-            /* Adjust default decompression parameters by re-parsing the options */
-            parse_switches(cinfo, args, true, out file_index);
-
-            /* Initialize the output module now to let it override any crucial
-             * option settings (for instance, GIF wants to force color quantization).
-             */
-            djpeg_dest_struct dest_mgr = null;
-
-            switch (requested_fmt)
+            try
             {
-                case IMAGE_FORMATS.FMT_BMP:
-                    dest_mgr = new bmp_dest_struct(cinfo, false);
-                    break;
-                case IMAGE_FORMATS.FMT_OS2:
-                    dest_mgr = new bmp_dest_struct(cinfo, true);
-                    break;
-                default:
-                    cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_UNSUPPORTED_FORMAT);
-                    break;
+                return new FileStream(outfilename, FileMode.Create);
             }
-
-            dest_mgr.output_file = output_file;
-
-            /* Start decompressor */
-            decompressor.StartDecompress();
-
-            /* Write output file header */
-            dest_mgr.start_output();
-
-            /* Process data */
-            while (cinfo.Output_scanline < cinfo.Output_height)
+            catch (Exception e)
             {
-                int num_scanlines = decompressor.ReadScanlines(dest_mgr.buffer, (int)dest_mgr.buffer_height);
-                dest_mgr.put_pixel_rows((uint)num_scanlines);
+                Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[fileIndex]));
+                Console.WriteLine(e.Message);
+                return null;
             }
-
-            /* Finish decompression and release memory.
-             * I must do it in this order because output module has allocated memory
-             * of lifespan JPOOL_IMAGE; it needs to finish before releasing memory.
-             */
-            dest_mgr.finish_output();
-            decompressor.FinishDecompress();
-
-            /* Close files, if we opened them */
-            input_file.Close();
-            input_file.Dispose();
-
-            output_file.Close();
-            output_file.Dispose();
-
-            /* All done. */
-            if (cinfo.Err.Num_warnings != 0)
-                Console.WriteLine("Corrupt-data warning count is not zero");
         }
 
         /// <summary>
@@ -760,7 +763,7 @@ namespace dJpeg
         /// for_real is false on the first (dummy) pass; we may skip any expensive
         /// processing.
         /// </summary>
-        static bool parse_switches(jpeg_decompress_struct cinfo, string[] argv, bool for_real, out int last_file_arg_seen)
+        static bool parse_switches(Decompressor decompressor, string[] argv, bool for_real, out int last_file_arg_seen)
         {
             string arg;
 
@@ -768,6 +771,8 @@ namespace dJpeg
             requested_fmt = IMAGE_FORMATS.FMT_BMP;    /* set default output file format */
             outfilename = null;
             last_file_arg_seen = -1;
+
+            jpeg_decompress_struct cinfo = decompressor.ClassicDecompressor;
             cinfo.Err.Trace_level = 0;
 
             /* Scan command line options, adjust parameters */
