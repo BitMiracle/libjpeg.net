@@ -27,7 +27,7 @@ namespace dJpeg
          * height is buffer_height.
          */
         public byte[][] buffer;
-        public uint buffer_height;
+        public int buffer_height;
 
         /* start_output is called after jpeg_start_decompress finishes.
          * The color map will be ready at this time, if one is needed.
@@ -35,7 +35,7 @@ namespace dJpeg
         public abstract void start_output();
 
         /* Emit the specified number of pixel rows from the buffer. */
-        public abstract void put_pixel_rows(uint rows_supplied);
+        public abstract void put_pixel_rows(int rows_supplied);
 
         /* Finish up at the end of the image. */
         public abstract void finish_output();

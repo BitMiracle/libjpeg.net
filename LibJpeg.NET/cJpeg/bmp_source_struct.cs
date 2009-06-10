@@ -49,10 +49,10 @@ namespace cJpeg
         private jvirt_sarray_control whole_image;
 
         // Current source row number
-        private uint source_row;
+        private int source_row;
 
         // Physical width of scanlines in file
-        private uint row_width;
+        private int row_width;
 
         // remembers 8- or 24-bit format
         private int bits_per_pixel;
@@ -70,12 +70,12 @@ namespace cJpeg
             byte[] bmpfileheader = new byte[14];
             /* Read and verify the bitmap file header */
             if (!ReadOK(input_file, bmpfileheader, 0, 14))
-                cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_INPUT_EOF);
+                cinfo.ERREXIT(J_MESSAGE_CODE.JERR_INPUT_EOF);
 
             if (GET_2B(bmpfileheader, 0) != 0x4D42) /* 'BM' */
                 cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_NOT);
             
-            int bfOffBits = (int) GET_4B(bmpfileheader, 10);
+            int bfOffBits = GET_4B(bmpfileheader, 10);
             /* We ignore the remaining fileheader fields */
 
             /* The infoheader might be 12 bytes (OS/2 1.x), 40 bytes (Windows),
@@ -83,42 +83,42 @@ namespace cJpeg
              */
             byte[] bmpinfoheader = new byte[64];
             if (!ReadOK(input_file, bmpinfoheader, 0, 4))
-                cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_INPUT_EOF);
+                cinfo.ERREXIT(J_MESSAGE_CODE.JERR_INPUT_EOF);
 
-            int headerSize = (int) GET_4B(bmpinfoheader, 0);
+            int headerSize = GET_4B(bmpinfoheader, 0);
             if (headerSize < 12 || headerSize> 64)
                 cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADHEADER);
 
             if (!ReadOK(input_file, bmpinfoheader, 4, headerSize - 4))
-                cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_INPUT_EOF);
+                cinfo.ERREXIT(J_MESSAGE_CODE.JERR_INPUT_EOF);
 
             int biWidth = 0;      /* initialize to avoid compiler warning */
             int biHeight = 0;
-            uint biPlanes;
+            int biPlanes;
             int biCompression;
             int biXPelsPerMeter;
             int biYPelsPerMeter;
             int biClrUsed = 0;
             int mapentrysize = 0;       /* 0 indicates no colormap */
-            switch ((int) headerSize)
+            switch (headerSize)
             {
             case 12:
                 /* Decode OS/2 1.x header (Microsoft calls this a BITMAPCOREHEADER) */
-                biWidth = (int) GET_2B(bmpinfoheader, 4);
-                biHeight = (int) GET_2B(bmpinfoheader, 6);
+                biWidth = GET_2B(bmpinfoheader, 4);
+                biHeight = GET_2B(bmpinfoheader, 6);
                 biPlanes = GET_2B(bmpinfoheader, 8);
-                bits_per_pixel = (int) GET_2B(bmpinfoheader, 10);
+                bits_per_pixel = GET_2B(bmpinfoheader, 10);
 
                 switch (bits_per_pixel)
                 {
                 case 8:
                     /* colormapped image */
                     mapentrysize = 3;       /* OS/2 uses RGBTRIPLE colormap */
-                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2_MAPPED, (int)biWidth, (int)biHeight);
+                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2_MAPPED, biWidth, biHeight);
                     break;
                 case 24:
                     /* RGB image */
-                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2, (int)biWidth, (int)biHeight);
+                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2, biWidth, biHeight);
                     break;
                 default:
                     cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
@@ -131,14 +131,14 @@ namespace cJpeg
             case 64:
                 /* Decode Windows 3.x header (Microsoft calls this a BITMAPINFOHEADER) */
                 /* or OS/2 2.x header, which has additional fields that we ignore */
-                biWidth = (int)GET_4B(bmpinfoheader, 4);
-                biHeight = (int)GET_4B(bmpinfoheader, 8);
+                biWidth = GET_4B(bmpinfoheader, 4);
+                biHeight = GET_4B(bmpinfoheader, 8);
                 biPlanes = GET_2B(bmpinfoheader, 12);
-                bits_per_pixel = (int) GET_2B(bmpinfoheader, 14);
-                biCompression = (int)GET_4B(bmpinfoheader, 16);
-                biXPelsPerMeter = (int)GET_4B(bmpinfoheader, 24);
-                biYPelsPerMeter = (int)GET_4B(bmpinfoheader, 28);
-                biClrUsed = (int)GET_4B(bmpinfoheader, 32);
+                bits_per_pixel = GET_2B(bmpinfoheader, 14);
+                biCompression = GET_4B(bmpinfoheader, 16);
+                biXPelsPerMeter = GET_4B(bmpinfoheader, 24);
+                biYPelsPerMeter = GET_4B(bmpinfoheader, 28);
+                biClrUsed = GET_4B(bmpinfoheader, 32);
                 /* biSizeImage, biClrImportant fields are ignored */
 
                 switch (bits_per_pixel)
@@ -146,11 +146,11 @@ namespace cJpeg
                 case 8:
                     /* colormapped image */
                     mapentrysize = 4;       /* Windows uses RGBQUAD colormap */
-                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_MAPPED, (int)biWidth, (int)biHeight);
+                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_MAPPED, biWidth, biHeight);
                     break;
                 case 24:
                     /* RGB image */
-                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP, (int)biWidth, (int)biHeight);
+                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP, biWidth, biHeight);
                     break;
                 default:
                     cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
@@ -164,8 +164,8 @@ namespace cJpeg
                 if (biXPelsPerMeter > 0 && biYPelsPerMeter > 0)
                 {
                     /* Set JFIF density parameters from the BMP data */
-                    cinfo.X_density = (UInt16) (biXPelsPerMeter / 100); /* 100 cm per meter */
-                    cinfo.Y_density = (UInt16) (biYPelsPerMeter / 100);
+                    cinfo.X_density = (short)(biXPelsPerMeter / 100); /* 100 cm per meter */
+                    cinfo.Y_density = (short)(biYPelsPerMeter / 100);
                     cinfo.Density_unit = 2;  /* dots/cm */
                 }
                 break;
@@ -185,9 +185,9 @@ namespace cJpeg
                 else if (biClrUsed > 256)
                     cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADCMAP);
                 /* Allocate space to store the colormap */
-                colormap = jpeg_common_struct.AllocJpegSamples((uint) biClrUsed, (uint) 3);
+                colormap = jpeg_common_struct.AllocJpegSamples(biClrUsed, 3);
                 /* and read it from the file */
-                read_colormap((int) biClrUsed, mapentrysize);
+                read_colormap(biClrUsed, mapentrysize);
                 /* account for size of colormap */
                 bPad -= biClrUsed * mapentrysize;
             }
@@ -203,15 +203,15 @@ namespace cJpeg
 
             /* Compute row width in file, including padding to 4-byte boundary */
             if (bits_per_pixel == 24)
-                row_width = (uint) (biWidth * 3);
+                row_width = biWidth * 3;
             else
-                row_width = (uint) biWidth;
+                row_width = biWidth;
 
             while ((row_width & 3) != 0)
                 row_width++;
 
             /* Allocate space for inversion array, prepare for preload pass */
-            whole_image = new jvirt_sarray_control(cinfo, false, row_width, (uint) biHeight);
+            whole_image = new jvirt_sarray_control(cinfo, false, row_width, biHeight);
             m_pixelRowsMethod = PixelRowsMethod.preload;
             if (cinfo.Progress != null)
             {
@@ -220,17 +220,17 @@ namespace cJpeg
             }
 
             /* Allocate one-row buffer for returned data */
-            buffer = jpeg_common_struct.AllocJpegSamples((uint) (biWidth * 3), (uint) 1);
+            buffer = jpeg_common_struct.AllocJpegSamples(biWidth * 3, 1);
             buffer_height = 1;
 
             cinfo.In_color_space = J_COLOR_SPACE.JCS_RGB;
             cinfo.Input_components = 3;
             cinfo.Data_precision = 8;
-            cinfo.Image_width = (uint) biWidth;
-            cinfo.Image_height = (uint) biHeight;
+            cinfo.Image_width = biWidth;
+            cinfo.Image_height = biHeight;
         }
 
-        public override uint get_pixel_rows()
+        public override int get_pixel_rows()
         {
             if (m_pixelRowsMethod == PixelRowsMethod.preload)
                 return preload_image();
@@ -253,17 +253,17 @@ namespace cJpeg
         /// it is an 8-bit image, we must expand colormapped pixels to 24bit format.
         /// This version is for reading 8-bit colormap indexes.
         /// </summary>
-        private uint get_8bit_row()
+        private int get_8bit_row()
         {
             /* Fetch next row from virtual array */
             source_row--;
 
-            byte[][] image_ptr = whole_image.access_virt_sarray(source_row, (uint)1);
+            byte[][] image_ptr = whole_image.access_virt_sarray(source_row, 1);
 
             /* Expand the colormap indexes to real data */
             int imageIndex = 0;
             int outIndex = 0;
-            for (uint col = cinfo.Image_width; col > 0; col--)
+            for (int col = cinfo.Image_width; col > 0; col--)
             {
                 int t = image_ptr[0][imageIndex];
                 imageIndex++;
@@ -286,11 +286,11 @@ namespace cJpeg
         /// it is an 8-bit image, we must expand colormapped pixels to 24bit format.
         /// This version is for reading 24-bit pixels.
         /// </summary>
-        private uint get_24bit_row()
+        private int get_24bit_row()
         {
             /* Fetch next row from virtual array */
             source_row--;
-            byte[][] image_ptr = whole_image.access_virt_sarray(source_row, (uint)1);
+            byte[][] image_ptr = whole_image.access_virt_sarray(source_row, 1);
 
             /* Transfer data.  Note source values are in BGR order
              * (even though Microsoft's own documents say the opposite).
@@ -298,7 +298,7 @@ namespace cJpeg
             int imageIndex = 0;
             int outIndex = 0;
 
-            for (uint col = cinfo.Image_width; col > 0; col--)
+            for (int col = cinfo.Image_width; col > 0; col--)
             {
                 buffer[0][outIndex + 2] = image_ptr[0][imageIndex];   /* can omit GETbyte() safely */
                 imageIndex++;
@@ -316,28 +316,28 @@ namespace cJpeg
         /// This method loads the image into whole_image during the first call on
         /// get_pixel_rows. 
         /// </summary>
-        private uint preload_image()
+        private int preload_image()
         {
             cdjpeg_progress_mgr progress = cinfo.Progress as cdjpeg_progress_mgr;
 
             /* Read the data into a virtual array in input-file row order. */
-            for (uint row = 0; row < cinfo.Image_height; row++)
+            for (int row = 0; row < cinfo.Image_height; row++)
             {
                 if (progress != null)
                 {
-                    progress.Pass_counter = (long)row;
-                    progress.Pass_limit = (long)cinfo.Image_height;
+                    progress.Pass_counter = row;
+                    progress.Pass_limit = cinfo.Image_height;
                     progress.progress_monitor();
                 }
 
-                byte[][] image_ptr = whole_image.access_virt_sarray(row, (uint)1);
+                byte[][] image_ptr = whole_image.access_virt_sarray(row, 1);
                 int imageIndex = 0;
-                for (uint col = row_width; col > 0; col--)
+                for (int col = row_width; col > 0; col--)
                 {
                     /* inline copy of read_byte() for speed */
                     int c = input_file.ReadByte();
                     if (c == -1)
-                        cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_INPUT_EOF);
+                        cinfo.ERREXIT(J_MESSAGE_CODE.JERR_INPUT_EOF);
 
                     image_ptr[0][imageIndex] = (byte)c;
                     imageIndex++;
@@ -372,7 +372,7 @@ namespace cJpeg
         {
             int c = input_file.ReadByte();
             if (c == -1)
-                cinfo.ERREXIT((int)J_MESSAGE_CODE.JERR_INPUT_EOF);
+                cinfo.ERREXIT(J_MESSAGE_CODE.JERR_INPUT_EOF);
 
             return c;
         }
@@ -413,14 +413,14 @@ namespace cJpeg
             return (read == len);
         }
 
-        private static uint GET_2B(byte[] array, int offset)
+        private static int GET_2B(byte[] array, int offset)
         {
-            return ((uint)array[offset] + (((uint)array[offset + 1]) << 8));
+            return (int)array[offset] + ((int)array[offset + 1] << 8);
         }
 
-        private static uint GET_4B(byte[] array, int offset)
+        private static int GET_4B(byte[] array, int offset)
         {
-            return (uint)((int)array[offset] + (((int)array[offset + 1]) << 8) + (((int)array[offset + 2]) << 16) + (((int)array[offset + 3]) << 24));
+            return (int)array[offset] + ((int)array[offset + 1] << 8) + ((int)array[offset + 2] << 16) + ((int)array[offset + 3] << 24);
         }
     }
 }

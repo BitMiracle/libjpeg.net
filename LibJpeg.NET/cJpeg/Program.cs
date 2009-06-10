@@ -145,7 +145,7 @@ namespace cJpeg
             /* Process data */
             while (cinfo.Next_scanline < cinfo.Image_height)
             {
-                uint num_scanlines = src_mgr.get_pixel_rows();
+                int num_scanlines = src_mgr.get_pixel_rows();
                 cinfo.jpeg_write_scanlines(src_mgr.buffer, num_scanlines);
             }
 
@@ -343,10 +343,10 @@ namespace cJpeg
                     if (inBlocks)
                         parsee = parsee.Remove(parsee.Length - 1);
 
-                    long lval;
+                    int val;
                     try
                     {
-                        lval = long.Parse(parsee);
+                        val = int.Parse(parsee);
                     }
                     catch (Exception e)
                     {
@@ -355,7 +355,7 @@ namespace cJpeg
                         return false;
                     }
 
-                    if (lval < 0 || lval> 65535L)
+                    if (val < 0 || val> 65535)
                     {
                         usage();
                         return false;
@@ -363,12 +363,12 @@ namespace cJpeg
 
                     if (inBlocks)
                     {
-                        cinfo.Restart_interval = (uint) lval;
+                        cinfo.Restart_interval = val;
                         cinfo.Restart_in_rows = 0; /* else prior '-restart n' overrides me */
                     }
                     else
                     {
-                        cinfo.Restart_in_rows = (int) lval;
+                        cinfo.Restart_in_rows = val;
                         /* restart_interval will be computed during startup */
                     }
                 }
