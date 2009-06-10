@@ -48,6 +48,7 @@
     <Compile Include="..\cdJpeg\cd_jpeg_error_mgr.cs">
       <Link>cd_jpeg_error_mgr.cs</Link>
     </Compile>
+    <Compile Include="AssemblyVersion.cs" />
     <Compile Include="bmp_source_struct.cs" />
     <Compile Include="cjpeg_source_struct.cs" />
     <Compile Include="Program.cs" />
@@ -67,4 +68,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PreBuildEvent>cd "$(SolutionDir)"
+update_version_info.bat "$(ProjectDir)AssemblyVersion.cs"</PreBuildEvent>
+  </PropertyGroup>
 </Project>
