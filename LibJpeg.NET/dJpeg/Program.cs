@@ -29,10 +29,31 @@ namespace dJpeg
 {
     public class Program
     {
+        class Options
+        {
+            public string InputFileName = "";
+            public string OutputFileName = "";
+            public IMAGE_FORMATS OutputFormat = IMAGE_FORMATS.FMT_BMP;
+
+            public bool QuantizeColors = false;
+            public int DesiredNumberOfColors = 256;
+
+            public J_DCT_METHOD DCTMethod = JpegConstants.JDCT_DEFAULT;
+            public J_DITHER_MODE DitherMode = J_DITHER_MODE.JDITHER_FS;
+
+            public bool Debug = false;
+            public bool Fast = false;
+            public bool Grayscale = false;
+            public bool NoSmooth = false;
+            public bool OnePass = false;
+
+            public bool Scaled = false;
+            public int ScaleNumerator = 1;
+            public int ScaleDenominator = 1;
+        }
+
         static bool printed_version = false;
-        static IMAGE_FORMATS requested_fmt;
         static string progname;    /* program name for error messages */
-        static string outfilename;   /* for -outfile switch */
 
         public static void Main(string[] args)
         {
@@ -58,73 +79,31 @@ namespace dJpeg
              * (Exception: tracing level set here controls verbosity for COM markers
              * found during jpeg_read_header...)
              */
-            int file_index;
-            bool parsedOK = parse_switches(cinfo, args, false, out file_index);
+            Options options = parse_switches(args);
+            if (options == null)
+                return;
 
-            /* Must have either -outfile switch or explicit output file name */
-            if (outfilename == null)
+            FileStream input_file;
+            try
             {
-                // file_index should point to input file 
-                if (file_index != args.Length - 2)
-                {
-                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", progname));
-                    usage();
-                    return;
-                }
-
-                // output file comes right after input one
-                outfilename = args[file_index + 1];
+                input_file = new FileStream(options.InputFileName, FileMode.Open);
             }
-            else
+            catch (Exception e)
             {
-                // file_index should point to input file
-                if (file_index != args.Length - 1)
-                {
-                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", progname));
-                    usage();
-                    return;
-                }
-            }
-
-            /* Open the input file. */
-            FileStream input_file = null;
-            if (file_index < args.Length)
-            {
-                try
-                {
-                    input_file = new FileStream(args[file_index], FileMode.Open);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
-                    Console.WriteLine(e.Message);
-                    return;
-                }
-            }
-            else
-            {
-                Console.WriteLine(string.Format("{0}: sorry, can't read file from console"));
+                Console.WriteLine(string.Format("{0}: can't open {1}", progname, options.InputFileName));
+                Console.WriteLine(e.Message);
                 return;
             }
 
-            /* Open the output file. */
-            FileStream output_file = null;
-            if (outfilename != null)
+            FileStream output_file;
+            try
             {
-                try
-                {
-                    output_file = new FileStream(outfilename, FileMode.Create);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
-                    Console.WriteLine(e.Message);
-                    return;
-                }
+                output_file = new FileStream(options.OutputFileName, FileMode.Create);
             }
-            else
+            catch (Exception e)
             {
-                Console.WriteLine(string.Format("{0}: sorry, can't write file to console"));
+                Console.WriteLine(string.Format("{0}: can't open {1}", progname, options.OutputFileName));
+                Console.WriteLine(e.Message);
                 return;
             }
 
@@ -134,15 +113,17 @@ namespace dJpeg
             /* Read file header, set default decompression parameters */
             cinfo.jpeg_read_header(true);
 
+            applyOptions(cinfo, options);
+
             /* Adjust default decompression parameters by re-parsing the options */
-            parse_switches(cinfo, args, true, out file_index);
+            //parse_switches(cinfo, args, true, out file_index);
 
             /* Initialize the output module now to let it override any crucial
              * option settings (for instance, GIF wants to force color quantization).
              */
             djpeg_dest_struct dest_mgr = null;
 
-            switch (requested_fmt)
+            switch (options.OutputFormat)
             {
                 case IMAGE_FORMATS.FMT_BMP:
                     dest_mgr = new bmp_dest_struct(cinfo, false);
@@ -259,6 +240,50 @@ namespace dJpeg
             return true;
         }
 
+        static void applyOptions(jpeg_decompress_struct decompressor, Options options)
+        {
+            Debug.Assert(decompressor != null);
+            Debug.Assert(options != null);
+
+            if (options.QuantizeColors)
+            {
+                decompressor.Quantize_colors = true;
+                decompressor.Desired_number_of_colors = options.DesiredNumberOfColors;
+            }
+
+            decompressor.Dct_method = options.DCTMethod;
+            decompressor.Dither_mode = options.DitherMode;
+
+            if (options.Debug)
+                decompressor.Err.Trace_level = 1;
+
+            if (options.Fast)
+            {
+                /* Select recommended processing options for quick-and-dirty output. */
+                decompressor.Two_pass_quantize = false;
+                decompressor.Dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
+                if (!decompressor.Quantize_colors) /* don't override an earlier -colors */
+                    decompressor.Desired_number_of_colors = 216;
+                decompressor.Dct_method = JpegConstants.JDCT_FASTEST;
+                decompressor.Do_fancy_upsampling = false;
+            }
+
+            if (options.Grayscale)
+                decompressor.Out_color_space = J_COLOR_SPACE.JCS_GRAYSCALE;
+
+            if (options.NoSmooth)
+                decompressor.Do_fancy_upsampling = false;
+
+            if (options.OnePass)
+                decompressor.Two_pass_quantize = false;
+
+            if (options.Scaled)
+            {
+                decompressor.Scale_num = options.ScaleNumerator;
+                decompressor.Scale_denom = options.ScaleDenominator;
+            }
+        }
+
         /// <summary>
         /// Parse optional switches.
         /// Returns argv[] index of first file-name argument (== argc if none).
@@ -268,25 +293,28 @@ namespace dJpeg
         /// for_real is false on the first (dummy) pass; we may skip any expensive
         /// processing.
         /// </summary>
-        static bool parse_switches(jpeg_decompress_struct cinfo, string[] argv, bool for_real, out int last_file_arg_seen)
+        static Options parse_switches(string[] argv)
         {
-            string arg;
+            Debug.Assert(argv != null);
+            if (argv.Length <= 0)
+            {
+                usage();
+                return null;
+            }
 
-            /* Set up default JPEG parameters. */
-            requested_fmt = IMAGE_FORMATS.FMT_BMP;    /* set default output file format */
-            outfilename = null;
-            last_file_arg_seen = -1;
-            cinfo.Err.Trace_level = 0;
+            Options result = new Options();
+
+            int lastFileArgSeen = -1;
 
             /* Scan command line options, adjust parameters */
-            int argn = 0;
-            for ( ; argn < argv.Length; argn++)
+            string arg;
+            for (int argn = 0; argn < argv.Length; argn++)
             {
                 arg = argv[argn];
                 if (arg[0] != '-')
                 {
                     /* Not a switch, must be a file name argument */
-                    last_file_arg_seen = argn;
+                    lastFileArgSeen = argn;
                     break;
                 }
 
@@ -294,8 +322,7 @@ namespace dJpeg
 
                 if (cdjpeg_utils.keymatch(arg, "bmp", 1))
                 {
-                    /* BMP output format. */
-                    requested_fmt = IMAGE_FORMATS.FMT_BMP;
+                    result.OutputFormat = IMAGE_FORMATS.FMT_BMP;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "colors", 1) ||
                          cdjpeg_utils.keymatch(arg, "colours", 1) ||
@@ -303,27 +330,24 @@ namespace dJpeg
                          cdjpeg_utils.keymatch(arg, "quantise", 1))
                 {
                     /* Do color quantization. */
-                    int val;
-
+                    
                     if (++argn >= argv.Length) /* advance to next argument */
                     {
                         usage();
-                        return false;
+                        return null;
                     }
 
                     try
                     {
-                        val = int.Parse(argv[argn]);
+                        result.QuantizeColors = true;
+                        result.DesiredNumberOfColors = int.Parse(argv[argn]);
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                         usage();
-                        return false;
+                        return null;
                     }
-
-                    cinfo.Desired_number_of_colors = val;
-                    cinfo.Quantize_colors = true;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "dct", 2))
                 {
@@ -331,25 +355,25 @@ namespace dJpeg
                     if (++argn >= argv.Length) /* advance to next argument */
                     {
                         usage();
-                        return false;
+                        return null;
                     }
 
                     if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
                     {
-                        cinfo.Dct_method = J_DCT_METHOD.JDCT_ISLOW;
+                        result.DCTMethod = J_DCT_METHOD.JDCT_ISLOW;
                     }
                     else if (cdjpeg_utils.keymatch(argv[argn], "fast", 2))
                     {
-                        cinfo.Dct_method = J_DCT_METHOD.JDCT_IFAST;
+                        result.DCTMethod = J_DCT_METHOD.JDCT_IFAST;
                     }
                     else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
                     {
-                        cinfo.Dct_method = J_DCT_METHOD.JDCT_FLOAT;
+                        result.DCTMethod = J_DCT_METHOD.JDCT_FLOAT;
                     }
                     else
                     {
                         usage();
-                        return false;
+                        return null;
                     }
                 }
                 else if (cdjpeg_utils.keymatch(arg, "dither", 2))
@@ -358,67 +382,62 @@ namespace dJpeg
                     if (++argn >= argv.Length) /* advance to next argument */
                     {
                         usage();
-                        return false;
+                        return null;
                     }
 
                     if (cdjpeg_utils.keymatch(argv[argn], "fs", 2))
                     {
-                        cinfo.Dither_mode = J_DITHER_MODE.JDITHER_FS;
+                        result.DitherMode = J_DITHER_MODE.JDITHER_FS;
                     }
                     else if (cdjpeg_utils.keymatch(argv[argn], "none", 2))
                     {
-                        cinfo.Dither_mode = J_DITHER_MODE.JDITHER_NONE;
+                        result.DitherMode = J_DITHER_MODE.JDITHER_NONE;
                     }
                     else if (cdjpeg_utils.keymatch(argv[argn], "ordered", 2))
                     {
-                        cinfo.Dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
+                        result.DitherMode = J_DITHER_MODE.JDITHER_ORDERED;
                     }
                     else
                     {
                         usage();
-                        return false;
+                        return null;
                     }
                 }
                 else if (cdjpeg_utils.keymatch(arg, "debug", 1) || cdjpeg_utils.keymatch(arg, "verbose", 1))
                 {
                     /* Enable debug printouts. */
+                    result.Debug = true;
+
                     /* On first -d, print version identification */
                     if (!printed_version)
                     {
                         Console.Write(string.Format("Bit Miracle's DJPEG, version {0}\n{1}\n", jpeg_common_struct.Version, jpeg_common_struct.Copyright));
                         printed_version = true;
                     }
-                    cinfo.Err.Trace_level++;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "fast", 1))
                 {
-                    /* Select recommended processing options for quick-and-dirty output. */
-                    cinfo.Two_pass_quantize = false;
-                    cinfo.Dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
-                    if (!cinfo.Quantize_colors) /* don't override an earlier -colors */
-                        cinfo.Desired_number_of_colors = 216;
-                    cinfo.Dct_method = JpegConstants.JDCT_FASTEST;
-                    cinfo.Do_fancy_upsampling = false;
+                    result.Fast = true;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "grayscale", 2) || cdjpeg_utils.keymatch(arg, "greyscale", 2))
                 {
                     /* Force monochrome output. */
-                    cinfo.Out_color_space = J_COLOR_SPACE.JCS_GRAYSCALE;
+                    result.Grayscale = true;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "nosmooth", 3))
                 {
                     /* Suppress fancy upsampling */
-                    cinfo.Do_fancy_upsampling = false;
+                    result.NoSmooth = true;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "onepass", 3))
                 {
                     /* Use fast one-pass quantization. */
-                    cinfo.Two_pass_quantize = false;
+                    result.OnePass = true;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "os2", 3))
                 {
                     /* BMP output format (OS/2 flavor). */
-                    requested_fmt = IMAGE_FORMATS.FMT_OS2;
+                    result.OutputFormat = IMAGE_FORMATS.FMT_OS2; 
                 }
                 else if (cdjpeg_utils.keymatch(arg, "outfile", 4))
                 {
@@ -426,10 +445,10 @@ namespace dJpeg
                     if (++argn >= argv.Length) /* advance to next argument */
                     {
                         usage();
-                        return false;
+                        return null;
                     }
 
-                    outfilename = argv[argn];   /* save it away for later use */
+                    result.OutputFileName = argv[argn];   /* save it away for later use */
                 }
                 else if (cdjpeg_utils.keymatch(arg, "scale", 1))
                 {
@@ -437,49 +456,67 @@ namespace dJpeg
                     if (++argn >= argv.Length) /* advance to next argument */
                     {
                         usage();
-                        return false;
+                        return null;
                     }
 
                     int slashPos = argv[argn].IndexOf('/');
                     if (slashPos == -1)
                     {
                         usage();
-                        return false;
+                        return null;
                     }
 
                     try
                     {
                         string num = argv[argn].Substring(0, slashPos);
-                        cinfo.Scale_num = int.Parse(num);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        usage();
-                        return false;
-                    }
-
-                    try
-                    {
                         string denom = argv[argn].Substring(slashPos + 1);
-                        cinfo.Scale_denom = int.Parse(denom);
+                        result.Scaled = true;
+                        result.ScaleNumerator = int.Parse(num);
+                        result.ScaleDenominator = int.Parse(denom);
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                         usage();
-                        return false;
+                        return null;
                     }
                 }
                 else
                 {
                     /* bogus switch */
                     usage();
-                    return false;
+                    return null;
                 }
             }
 
-            return true;
+            /* Must have either -outfile switch or explicit output file name */
+            if (result.OutputFileName == null)
+            {
+                // file_index should point to input file 
+                if (lastFileArgSeen != argv.Length - 2)
+                {
+                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", progname));
+                    usage();
+                    return null;
+                }
+
+                // output file comes right after input one
+                result.OutputFileName = argv[lastFileArgSeen + 1];
+            }
+            else
+            {
+                // file_index should point to input file
+                if (lastFileArgSeen != argv.Length - 1)
+                {
+                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", progname));
+                    usage();
+                    return null;
+                }
+
+                result.InputFileName = argv[lastFileArgSeen];
+            }
+
+            return result;
         }
 
         /// <summary>
