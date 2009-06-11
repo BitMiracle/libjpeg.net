@@ -59,6 +59,23 @@ namespace dJpeg
         {
             m_programName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
 
+            /* Scan command line to find file names. */
+            /* It is convenient to use just one switch-parsing routine, but the switch
+             * values read here are ignored; we will rescan the switches after opening
+             * the input file.
+             * (Exception: tracing level set here controls verbosity for COM markers
+             * found during jpeg_read_header...)
+             */
+            Options options = parse_switches(args);
+            if (options == null)
+                return;
+
+            classicDecompression(options);
+            //newDecompression(options);
+        }
+
+        private static void classicDecompression(Options options)
+        {
             /* Initialize the JPEG decompression object with default error handling. */
             cd_jpeg_error_mgr err = new cd_jpeg_error_mgr();
             jpeg_decompress_struct cinfo = new jpeg_decompress_struct(err);
@@ -71,17 +88,6 @@ namespace dJpeg
              */
             cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_COM, new jpeg_decompress_struct.jpeg_marker_parser_method(printTextMarker));
             cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
-
-            /* Scan command line to find file names. */
-            /* It is convenient to use just one switch-parsing routine, but the switch
-             * values read here are ignored; we will rescan the switches after opening
-             * the input file.
-             * (Exception: tracing level set here controls verbosity for COM markers
-             * found during jpeg_read_header...)
-             */
-            Options options = parse_switches(args);
-            if (options == null)
-                return;
 
             using (FileStream inputFile = openInputFile(options.InputFileName))
             {
@@ -148,58 +154,45 @@ namespace dJpeg
                 Console.WriteLine("Corrupt-data warning count is not zero");
         }
 
-        //public static void Main(string[] args)
-        //{
-        //    m_programName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
+        private static void newDecompression(Options options)
+        {
+            /* Initialize the JPEG decompression object with default error handling. */
+            Decompressor decompressor = new Decompressor();
 
-        //    /* Initialize the JPEG decompression object with default error handling. */
-        //    Decompressor decompressor = new Decompressor();
+            /* Insert custom marker processor for COM and APP12.
+             * APP12 is used by some digital camera makers for textual info,
+             * so we provide the ability to display it as text.
+             * If you like, additional APPn marker types can be selected for display,
+             * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
+             */
+            decompressor.SetMarkerProcessor((int)JPEG_MARKER.M_COM, printTextMarker);
+            decompressor.SetMarkerProcessor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
 
-        //    /* Insert custom marker processor for COM and APP12.
-        //     * APP12 is used by some digital camera makers for textual info,
-        //     * so we provide the ability to display it as text.
-        //     * If you like, additional APPn marker types can be selected for display,
-        //     * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
-        //     */
-        //    decompressor.SetMarkerProcessor((int)JPEG_MARKER.M_COM, printTextMarker);
-        //    decompressor.SetMarkerProcessor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
+            /* Open the input file. */
+            using (FileStream inputFile = openInputFile(options.InputFileName))
+            {
+                if (inputFile == null)
+                    return;
 
-        //    /* Scan command line to find file names. */
-        //    /* It is convenient to use just one switch-parsing routine, but the switch
-        //     * values read here are ignored; we will rescan the switches after opening
-        //     * the input file.
-        //     * (Exception: tracing level set here controls verbosity for COM markers
-        //     * found during jpeg_read_header...)
-        //     */
-        //    Options options = parse_switches(args);
-        //    if (options == null)
-        //        return;
+                /* Specify data source for decompression */
+                decompressor.InputStream = inputFile;
 
-        //    /* Open the input file. */
-        //    using (FileStream inputFile = openInputFile(options.InputFileName))
-        //    {
-        //        if (inputFile == null)
-        //            return;
+                applyOptions(decompressor.ClassicDecompressor, options);
 
-        //        /* Specify data source for decompression */
-        //        decompressor.InputStream = inputFile;
+                /* Open the output file. */
+                using (FileStream outputFile = createOutputFile(options.OutputFileName))
+                {
+                    if (outputFile == null)
+                        return;
 
-        //        applyOptions(decompressor.ClassicDecompressor, options);
+                    decompressor.SaveAsBitmap(outputFile, options.OutputFormat == IMAGE_FORMATS.FMT_OS2);
+                }
+            }
 
-        //        /* Open the output file. */
-        //        using (FileStream outputFile = createOutputFile(options.OutputFileName))
-        //        {
-        //            if (outputFile == null)
-        //                return;
-
-        //            decompressor.SaveAsBitmap(outputFile, options.OutputFormat == IMAGE_FORMATS.FMT_OS2);
-        //        }
-        //    }
-
-        //    /* All done. */
-        //    if (decompressor.ClassicDecompressor.Err.Num_warnings != 0)
-        //        Console.WriteLine("Corrupt-data warning count is not zero");
-        //}
+            /* All done. */
+            if (decompressor.ClassicDecompressor.Err.Num_warnings != 0)
+                Console.WriteLine("Corrupt-data warning count is not zero");
+        }
 
         /// <summary>
         /// Parse optional switches.
