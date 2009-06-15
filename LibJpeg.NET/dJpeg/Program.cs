@@ -70,8 +70,8 @@ namespace dJpeg
             if (options == null)
                 return;
 
-            classicDecompression(options);
-            //newDecompression(options);
+            //classicDecompression(options);
+            newDecompression(options);
         }
 
         private static void classicDecompression(Options options)
@@ -156,28 +156,11 @@ namespace dJpeg
 
         private static void newDecompression(Options options)
         {
-            /* Initialize the JPEG decompression object with default error handling. */
-            Decompressor decompressor = new Decompressor();
-
-            /* Insert custom marker processor for COM and APP12.
-             * APP12 is used by some digital camera makers for textual info,
-             * so we provide the ability to display it as text.
-             * If you like, additional APPn marker types can be selected for display,
-             * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
-             */
-            decompressor.SetMarkerProcessor((int)JPEG_MARKER.M_COM, printTextMarker);
-            decompressor.SetMarkerProcessor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
-
             /* Open the input file. */
             using (FileStream inputFile = openInputFile(options.InputFileName))
             {
                 if (inputFile == null)
                     return;
-
-                /* Specify data source for decompression */
-                decompressor.InputStream = inputFile;
-
-                applyOptions(decompressor.ClassicDecompressor, options);
 
                 /* Open the output file. */
                 using (FileStream outputFile = createOutputFile(options.OutputFileName))
@@ -185,13 +168,27 @@ namespace dJpeg
                     if (outputFile == null)
                         return;
 
-                    decompressor.SaveAsBitmap(outputFile, options.OutputFormat == IMAGE_FORMATS.FMT_OS2);
+                    /* Initialize the JPEG decompression object with default error handling. */
+                    Jpeg jpeg = new Jpeg();
+
+                    /* Insert custom marker processor for COM and APP12.
+                     * APP12 is used by some digital camera makers for textual info,
+                     * so we provide the ability to display it as text.
+                     * If you like, additional APPn marker types can be selected for display,
+                     * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
+                     */
+                    jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_COM, printTextMarker);
+                    jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
+                    DecompressionParameters parameters = toDecompressionParameters(options);
+                    jpeg.Decompress(inputFile, parameters, outputFile);
+
+                    /* All done. */
+                    if (jpeg.ClassicDecompressor.Err.Num_warnings != 0)
+                        Console.WriteLine("Corrupt-data warning count is not zero");
                 }
             }
 
-            /* All done. */
-            if (decompressor.ClassicDecompressor.Err.Num_warnings != 0)
-                Console.WriteLine("Corrupt-data warning count is not zero");
+            
         }
 
         /// <summary>
@@ -474,6 +471,52 @@ namespace dJpeg
             }
         }
 
+        static DecompressionParameters toDecompressionParameters(Options options)
+        {
+            Debug.Assert(options != null);
+
+            DecompressionParameters result = new DecompressionParameters();
+            if (options.QuantizeColors)
+            {
+                result.QuantizeColors = true;
+                result.DesiredNumberOfColors = options.DesiredNumberOfColors;
+            }
+
+            result.DCTMethod = (DCTMethod)options.DCTMethod;
+            result.DitherMode = (DitherMode)options.DitherMode;
+
+            if (options.Debug)
+                result.TraceLevel = 1;
+
+            if (options.Fast)
+            {
+                /* Select recommended processing options for quick-and-dirty output. */
+                result.TwoPassQuantize = false;
+                result.DitherMode = DitherMode.Ordered;
+                if (!result.QuantizeColors) /* don't override an earlier -colors */
+                    result.DesiredNumberOfColors = 216;
+                result.DCTMethod = (DCTMethod)JpegConstants.JDCT_FASTEST;
+                result.DoFancyUpsampling = false;
+            }
+
+            if (options.Grayscale)
+                result.OutColorspace = Colorspace.Grayscale;
+
+            if (options.NoSmooth)
+                result.DoFancyUpsampling = false;
+
+            if (options.OnePass)
+                result.TwoPassQuantize = false;
+
+            if (options.Scaled)
+            {
+                result.ScaleNumerator = options.ScaleNumerator;
+                result.ScaleDenominator = options.ScaleDenominator;
+            }
+
+            return result;
+        }
+
         static FileStream openInputFile(string fileName)
         {
             try
@@ -508,7 +551,7 @@ namespace dJpeg
         /// We want to print out the marker as text, to the extent possible.
         /// Note this code relies on a non-suspending data source.
         /// </summary>
-        static bool printTextMarker(Decompressor decompressor)
+        static bool printTextMarker(Jpeg decompressor)
         {
             return printTextMarker(decompressor.ClassicDecompressor);
         }
