@@ -69,94 +69,7 @@ namespace dJpeg
             Options options = parse_switches(args);
             if (options == null)
                 return;
-
-            //classicDecompression(options);
-            newDecompression(options);
-        }
-
-        private static void classicDecompression(Options options)
-        {
-            /* Initialize the JPEG decompression object with default error handling. */
-            cd_jpeg_error_mgr err = new cd_jpeg_error_mgr();
-            jpeg_decompress_struct cinfo = new jpeg_decompress_struct(err);
-
-            /* Insert custom marker processor for COM and APP12.
-             * APP12 is used by some digital camera makers for textual info,
-             * so we provide the ability to display it as text.
-             * If you like, additional APPn marker types can be selected for display,
-             * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
-             */
-            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_COM, new jpeg_decompress_struct.jpeg_marker_parser_method(printTextMarker));
-            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
-
-            using (FileStream inputFile = openInputFile(options.InputFileName))
-            {
-                if (inputFile == null)
-                    return;
-
-                /* Specify data source for decompression */
-                cinfo.jpeg_stdio_src(inputFile);
-
-                /* Read file header, set default decompression parameters */
-                cinfo.jpeg_read_header(true);
-
-                applyOptions(cinfo, options);
-
-                using (FileStream outputFile = createOutputFile(options.OutputFileName))
-                {
-                    if (outputFile == null)
-                        return;
-
-                    /* Initialize the output module now to let it override any crucial
-                     * option settings (for instance, GIF wants to force color quantization).
-                     */
-                    djpeg_dest_struct dest_mgr = null;
-
-                    switch (options.OutputFormat)
-                    {
-                        case IMAGE_FORMATS.FMT_BMP:
-                            dest_mgr = new bmp_dest_struct(cinfo, false);
-                            break;
-                        case IMAGE_FORMATS.FMT_OS2:
-                            dest_mgr = new bmp_dest_struct(cinfo, true);
-                            break;
-                        default:
-                            cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_UNSUPPORTED_FORMAT);
-                            break;
-                    }
-
-                    dest_mgr.output_file = outputFile;
-
-                    /* Start decompressor */
-                    cinfo.jpeg_start_decompress();
-
-                    /* Write output file header */
-                    dest_mgr.start_output();
-
-                    /* Process data */
-                    while (cinfo.Output_scanline < cinfo.Output_height)
-                    {
-                        int num_scanlines = cinfo.jpeg_read_scanlines(dest_mgr.buffer, dest_mgr.buffer_height);
-                        dest_mgr.put_pixel_rows(num_scanlines);
-                    }
-
-                    /* Finish decompression and release memory.
-                     * I must do it in this order because output module has allocated memory
-                     * of lifespan JPOOL_IMAGE; it needs to finish before releasing memory.
-                     */
-                    dest_mgr.finish_output();
-                    cinfo.jpeg_finish_decompress();
-                }
-            }
-
-            /* All done. */
-            if (cinfo.Err.Num_warnings != 0)
-                Console.WriteLine("Corrupt-data warning count is not zero");
-        }
-
-        private static void newDecompression(Options options)
-        {
-            /* Open the input file. */
+                        /* Open the input file. */
             using (FileStream inputFile = openInputFile(options.InputFileName))
             {
                 if (inputFile == null)
@@ -168,27 +81,106 @@ namespace dJpeg
                     if (outputFile == null)
                         return;
 
-                    /* Initialize the JPEG decompression object with default error handling. */
-                    Jpeg jpeg = new Jpeg();
-
-                    /* Insert custom marker processor for COM and APP12.
-                     * APP12 is used by some digital camera makers for textual info,
-                     * so we provide the ability to display it as text.
-                     * If you like, additional APPn marker types can be selected for display,
-                     * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
-                     */
-                    jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_COM, printTextMarker);
-                    jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
-                    DecompressionParameters parameters = toDecompressionParameters(options);
-                    jpeg.Decompress(inputFile, parameters, outputFile);
-
-                    /* All done. */
-                    if (jpeg.ClassicDecompressor.Err.Num_warnings != 0)
-                        Console.WriteLine("Corrupt-data warning count is not zero");
+                    classicDecompression(inputFile, options, outputFile);
+                    //newDecompression(inputFile, options, outputFile);
                 }
             }
+        }
 
-            
+        private static void classicDecompression(Stream input, Options options, Stream output)
+        {
+            Debug.Assert(input != null);
+            Debug.Assert(options != null);
+            Debug.Assert(output != null);
+
+            /* Initialize the JPEG decompression object with default error handling. */
+            jpeg_decompress_struct cinfo = new jpeg_decompress_struct(new cd_jpeg_error_mgr());
+
+            /* Insert custom marker processor for COM and APP12.
+             * APP12 is used by some digital camera makers for textual info,
+             * so we provide the ability to display it as text.
+             * If you like, additional APPn marker types can be selected for display,
+             * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
+             */
+            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_COM, new jpeg_decompress_struct.jpeg_marker_parser_method(printTextMarker));
+            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
+
+            /* Specify data source for decompression */
+            cinfo.jpeg_stdio_src(input);
+
+            /* Read file header, set default decompression parameters */
+            cinfo.jpeg_read_header(true);
+
+            applyOptions(cinfo, options);
+
+            /* Initialize the output module now to let it override any crucial
+             * option settings (for instance, GIF wants to force color quantization).
+             */
+            djpeg_dest_struct dest_mgr = null;
+
+            switch (options.OutputFormat)
+            {
+                case IMAGE_FORMATS.FMT_BMP:
+                    dest_mgr = new bmp_dest_struct(cinfo, false);
+                    break;
+                case IMAGE_FORMATS.FMT_OS2:
+                    dest_mgr = new bmp_dest_struct(cinfo, true);
+                    break;
+                default:
+                    cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_UNSUPPORTED_FORMAT);
+                    break;
+            }
+
+            dest_mgr.output_file = output;
+
+            /* Start decompressor */
+            cinfo.jpeg_start_decompress();
+
+            /* Write output file header */
+            dest_mgr.start_output();
+
+            /* Process data */
+            while (cinfo.Output_scanline < cinfo.Output_height)
+            {
+                int num_scanlines = cinfo.jpeg_read_scanlines(dest_mgr.buffer, dest_mgr.buffer_height);
+                dest_mgr.put_pixel_rows(num_scanlines);
+            }
+
+            /* Finish decompression and release memory.
+             * I must do it in this order because output module has allocated memory
+             * of lifespan JPOOL_IMAGE; it needs to finish before releasing memory.
+             */
+            dest_mgr.finish_output();
+            cinfo.jpeg_finish_decompress();
+
+            /* All done. */
+            if (cinfo.Err.Num_warnings != 0)
+                Console.WriteLine("Corrupt-data warning count is not zero");
+        }
+
+        private static void newDecompression(Stream input, Options options, Stream output)
+        {
+            Debug.Assert(input != null);
+            Debug.Assert(options != null);
+            Debug.Assert(output != null);
+
+            /* Initialize the JPEG decompression object with default error handling. */
+            Jpeg jpeg = new Jpeg();
+
+            /* Insert custom marker processor for COM and APP12.
+             * APP12 is used by some digital camera makers for textual info,
+             * so we provide the ability to display it as text.
+             * If you like, additional APPn marker types can be selected for display,
+             * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
+             */
+            jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_COM, printTextMarker);
+            jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
+            DecompressionParameters parameters = toDecompressionParameters(options);
+            jpeg.Decompress(input, parameters, output);
+
+            /* All done. */
+            if (jpeg.ClassicDecompressor.Err.Num_warnings != 0)
+                Console.WriteLine("Corrupt-data warning count is not zero");
         }
 
         /// <summary>

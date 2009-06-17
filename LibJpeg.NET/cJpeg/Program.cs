@@ -22,6 +22,7 @@ using System.Text;
 using System.IO;
 using System.Globalization;
 
+using LibJpeg;
 using LibJpeg.Classic;
 using cdJpeg;
 
@@ -56,72 +57,96 @@ namespace cJpeg
         {
             m_programName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
 
-            cd_jpeg_error_mgr err = new cd_jpeg_error_mgr();
-            jpeg_compress_struct cinfo = new jpeg_compress_struct(err);
-
-            /* Initialize JPEG parameters.
-             * Much of this may be overridden later.
-             * In particular, we don't yet know the input file's color space,
-             * but we need to provide some value for jpeg_set_defaults() to work.
-             */
-
-            cinfo.In_color_space = J_COLOR_SPACE.JCS_RGB; /* arbitrary guess */
-            cinfo.jpeg_set_defaults();
-
             /* Scan command line to find file names.
              * It is convenient to use just one switch-parsing routine, but the switch
              * values read here are ignored; we will rescan the switches after opening
              * the input file.
              */
             Options options = parseSwitches(args);
+            if (options == null)
+                return;
 
             /* Open the input file. */
-            using (FileStream input_file = openInputFile(options.InputFileName))
+            using (FileStream inputFile = openInputFile(options.InputFileName))
             {
-                if (input_file == null)
+                if (inputFile == null)
                     return;
 
                 /* Open the output file. */
-                using (FileStream output_file = createOutputFile(options.OutputFileName))
+                using (FileStream outputFile = createOutputFile(options.OutputFileName))
                 {
-                    if (output_file == null)
+                    if (outputFile == null)
                         return;
 
-                    /* Figure out the input file format, and set up to read it. */
-                    cjpeg_source_struct src_mgr = new bmp_source_struct(cinfo);
-                    src_mgr.input_file = input_file;
-
-                    /* Read the input file header to obtain file size & colorspace. */
-                    src_mgr.start_input();
-
-                    /* Now that we know input colorspace, fix colorspace-dependent defaults */
-                    cinfo.jpeg_default_colorspace();
-
-                    /* Adjust default compression parameters */
-                    if (!applyOptions(cinfo, options))
-                        return;
-
-                    /* Specify data destination for compression */
-                    cinfo.jpeg_stdio_dest(output_file);
-
-                    /* Start compressor */
-                    cinfo.jpeg_start_compress(true);
-
-                    /* Process data */
-                    while (cinfo.Next_scanline < cinfo.Image_height)
-                    {
-                        int num_scanlines = src_mgr.get_pixel_rows();
-                        cinfo.jpeg_write_scanlines(src_mgr.buffer, num_scanlines);
-                    }
-
-                    /* Finish compression and release memory */
-                    src_mgr.finish_input();
-                    cinfo.jpeg_finish_compress();
+                    classicCompression(inputFile, options, outputFile);
+                    //newCompression(inputFile, options, outputFile);
                 }
             }
+        }
+
+        private static void classicCompression(Stream input, Options options, Stream output)
+        {
+            Debug.Assert(input != null);
+            Debug.Assert(options != null);
+            Debug.Assert(output != null);
+
+            jpeg_compress_struct cinfo = new jpeg_compress_struct(new cd_jpeg_error_mgr());
+
+            /* Initialize JPEG parameters.
+             * Much of this may be overridden later.
+             * In particular, we don't yet know the input file's color space,
+             * but we need to provide some value for jpeg_set_defaults() to work.
+             */
+            cinfo.In_color_space = J_COLOR_SPACE.JCS_RGB; /* arbitrary guess */
+            cinfo.jpeg_set_defaults();
+
+            /* Figure out the input file format, and set up to read it. */
+            cjpeg_source_struct src_mgr = new bmp_source_struct(cinfo);
+            src_mgr.input_file = input;
+
+            /* Read the input file header to obtain file size & colorspace. */
+            src_mgr.start_input();
+
+            /* Now that we know input colorspace, fix colorspace-dependent defaults */
+            cinfo.jpeg_default_colorspace();
+
+            /* Adjust default compression parameters */
+            if (!applyOptions(cinfo, options))
+                return;
+
+            /* Specify data destination for compression */
+            cinfo.jpeg_stdio_dest(output);
+
+            /* Start compressor */
+            cinfo.jpeg_start_compress(true);
+
+            /* Process data */
+            while (cinfo.Next_scanline < cinfo.Image_height)
+            {
+                int num_scanlines = src_mgr.get_pixel_rows();
+                cinfo.jpeg_write_scanlines(src_mgr.buffer, num_scanlines);
+            }
+
+            /* Finish compression and release memory */
+            src_mgr.finish_input();
+            cinfo.jpeg_finish_compress();
 
             /* All done. */
             if (cinfo.Err.Num_warnings != 0)
+                Console.WriteLine("Corrupt-data warning count is not zero");
+        }
+
+        private static void newCompression(Stream input, Options options, Stream output)
+        {
+            Debug.Assert(input != null);
+            Debug.Assert(options != null);
+            Debug.Assert(output != null);
+
+            Jpeg jpeg = new Jpeg();
+            jpeg.Compress(input, output);
+
+            /* All done. */
+            if (jpeg.ClassicCompressor.Err.Num_warnings != 0)
                 Console.WriteLine("Corrupt-data warning count is not zero");
         }
 

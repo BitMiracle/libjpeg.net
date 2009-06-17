@@ -20,7 +20,7 @@ namespace dJpeg
     abstract class djpeg_dest_struct
     {
         /* Target file spec; filled in by djpeg.c after object is created. */
-        public FileStream output_file;
+        public Stream output_file;
 
         /* Output pixel-row buffer.  Created by module init or start_output.
          * Width is cinfo.output_width * cinfo.output_components;
