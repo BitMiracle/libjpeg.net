@@ -78,8 +78,8 @@ namespace cJpeg
                     if (outputFile == null)
                         return;
 
-                    classicCompression(inputFile, options, outputFile);
-                    //newCompression(inputFile, options, outputFile);
+                    //classicCompression(inputFile, options, outputFile);
+                    newCompression(inputFile, options, outputFile);
                 }
             }
         }
@@ -142,8 +142,9 @@ namespace cJpeg
             Debug.Assert(options != null);
             Debug.Assert(output != null);
 
+            CompressionParameters parameters = toCompressionParameters(options);
             Jpeg jpeg = new Jpeg();
-            jpeg.Compress(input, output);
+            jpeg.Compress(input, parameters, output);
 
             /* All done. */
             if (jpeg.ClassicCompressor.Err.Num_warnings != 0)
@@ -430,6 +431,35 @@ namespace cJpeg
             }
 
             return options;
+        }
+
+        private static CompressionParameters toCompressionParameters(Options options)
+        {
+            Debug.Assert(options != null);
+
+            CompressionParameters result = new CompressionParameters();
+            result.Quality = options.Quality;
+            result.ForceBaseline = options.ForceBaseline;
+            result.DCTMethod = (DCTMethod)options.DCTMethod;
+
+            if (options.Debug)
+                result.TraceLevel = 1;
+
+            if (options.Grayscale)
+                result.Colorspace = Colorspace.Grayscale;
+
+            if (options.Optimize)
+                result.OptimizeCoding = true;
+
+            result.RestartInterval = options.RestartInterval;
+            result.RestartInRows = options.RestartInRows;
+
+            result.SmoothingFactor = options.SmoothingFactor;
+
+            if (options.Progressive) /* process -progressive; -scans can override */
+                result.SimpleProgressive = true;
+
+            return result;
         }
 
         static bool applyOptions(jpeg_compress_struct compressor, Options options)
