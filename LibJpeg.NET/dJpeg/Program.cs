@@ -81,8 +81,8 @@ namespace dJpeg
                     if (outputFile == null)
                         return;
 
-                    classicDecompression(inputFile, options, outputFile);
-                    //newDecompression(inputFile, options, outputFile);
+                    //classicDecompression(inputFile, options, outputFile);
+                    newDecompression(inputFile, options, outputFile);
                 }
             }
         }
@@ -175,8 +175,8 @@ namespace dJpeg
              */
             jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_COM, printTextMarker);
             jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
-            DecompressionParameters parameters = toDecompressionParameters(options);
-            jpeg.Decompress(input, parameters, output);
+            jpeg.DecompressionParameters = toDecompressionParameters(options);
+            jpeg.Decompress(input, output);
 
             /* All done. */
             if (jpeg.ClassicDecompressor.Err.Num_warnings != 0)
