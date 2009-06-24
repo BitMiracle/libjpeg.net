@@ -211,7 +211,7 @@ namespace cJpeg
                 row_width++;
 
             /* Allocate space for inversion array, prepare for preload pass */
-            whole_image = new jvirt_sarray_control(cinfo, false, row_width, biHeight);
+            whole_image = new jvirt_sarray_control(cinfo, row_width, biHeight);
             m_pixelRowsMethod = PixelRowsMethod.preload;
             if (cinfo.Progress != null)
             {

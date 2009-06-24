@@ -87,7 +87,7 @@ namespace dJpeg
             pad_bytes = row_width - data_width;
 
             /* Allocate space for inversion array, prepare for write pass */
-            whole_image = new jvirt_sarray_control(cinfo, false, row_width, cinfo.Output_height);
+            whole_image = new jvirt_sarray_control(cinfo, row_width, cinfo.Output_height);
             cur_output_row = 0;
             if (cinfo.Progress != null)
             {
