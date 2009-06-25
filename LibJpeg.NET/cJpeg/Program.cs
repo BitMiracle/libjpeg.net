@@ -142,9 +142,9 @@ namespace cJpeg
             Debug.Assert(options != null);
             Debug.Assert(output != null);
 
-            CompressionParameters parameters = toCompressionParameters(options);
             Jpeg jpeg = new Jpeg();
-            jpeg.Compress(input, parameters, output);
+            jpeg.CompressionParameters = toCompressionParameters(options);
+            jpeg.Compress(input, output);
 
             /* All done. */
             if (jpeg.ClassicCompressor.Err.Num_warnings != 0)
