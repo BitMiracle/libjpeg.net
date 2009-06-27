@@ -144,7 +144,7 @@ namespace cJpeg
 
             Jpeg jpeg = new Jpeg();
             jpeg.CompressionParameters = toCompressionParameters(options);
-            jpeg.Compress(input, output);
+            jpeg.CompressBitmap(input, output);
 
             /* All done. */
             if (jpeg.ClassicCompressor.Err.Num_warnings != 0)

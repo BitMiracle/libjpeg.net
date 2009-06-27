@@ -176,7 +176,7 @@ namespace dJpeg
             jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_COM, printTextMarker);
             jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
             jpeg.DecompressionParameters = toDecompressionParameters(options);
-            jpeg.Decompress(input, output);
+            jpeg.DecompressToBitmap(input, output, (BitmapFormat)options.OutputFormat);
 
             /* All done. */
             if (jpeg.ClassicDecompressor.Err.Num_warnings != 0)
