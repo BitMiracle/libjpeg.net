@@ -164,21 +164,20 @@ namespace dJpeg
             Debug.Assert(options != null);
             Debug.Assert(output != null);
 
-            /* Initialize the JPEG decompression object with default error handling. */
+            //Initialize the JPEG decompression object with default error handling.
             Jpeg jpeg = new Jpeg();
 
-            /* Insert custom marker processor for COM and APP12.
-             * APP12 is used by some digital camera makers for textual info,
-             * so we provide the ability to display it as text.
-             * If you like, additional APPn marker types can be selected for display,
-             * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
-             */
+            //Insert custom marker processor for COM and APP12.
+            //APP12 is used by some digital camera makers for textual info,
+            //so we provide the ability to display it as text.
+            //If you like, additional APPn marker types can be selected for display,
+            //but don't try to override APP0 or APP14 this way (see libjpeg.doc).
             jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_COM, printTextMarker);
             jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
             jpeg.DecompressionParameters = toDecompressionParameters(options);
             jpeg.DecompressToBitmap(input, output, (BitmapFormat)options.OutputFormat);
 
-            /* All done. */
+            //All done.
             if (jpeg.ClassicDecompressor.Err.Num_warnings != 0)
                 Console.WriteLine("Corrupt-data warning count is not zero");
         }

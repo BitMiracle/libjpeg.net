@@ -30,7 +30,9 @@ namespace UnitTests
                     jpeg.Compress(source, output);
                 }
             }
-            
         }
+
+        //[Test]
+        //public void TestJpegImage()
     }
 }
