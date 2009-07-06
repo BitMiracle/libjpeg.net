@@ -32,7 +32,19 @@ namespace UnitTests
             }
         }
 
-        //[Test]
-        //public void TestJpegImage()
+        [Test]
+        public void TestJpegImage()
+        {
+            Bitmap bmp = new Bitmap(m_dataFolder + "particle.bmp");
+            JpegImage jpeg = new JpegImage(bmp);
+            Assert.AreEqual(jpeg.Width, bmp.Width);
+            Assert.AreEqual(jpeg.Height, bmp.Height);
+            for (int i = 0; i < jpeg.Height; ++i)
+            {
+                RowOfSamples row = jpeg.GetRow(i);
+                Assert.IsNotNull(row);
+                Assert.AreEqual(row.SampleCount, jpeg.Width);
+            }
+        }
     }
 }
