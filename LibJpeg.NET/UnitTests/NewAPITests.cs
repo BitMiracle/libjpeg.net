@@ -33,17 +33,31 @@ namespace UnitTests
         }
 
         [Test]
-        public void TestJpegImage()
+        public void TestJpegImageFromBitmap()
         {
-            Bitmap bmp = new Bitmap(m_dataFolder + "particle.bmp");
+            Bitmap bmp = new Bitmap(m_dataFolder + "bmp/test16bf565.bmp");
             JpegImage jpeg = new JpegImage(bmp);
             Assert.AreEqual(jpeg.Width, bmp.Width);
             Assert.AreEqual(jpeg.Height, bmp.Height);
-            for (int i = 0; i < jpeg.Height; ++i)
+            Assert.AreEqual(jpeg.ComponentsPerSample, 3);//Number of components in Bitmap
+            for (int y = 0; y < jpeg.Height; ++y)
             {
-                RowOfSamples row = jpeg.GetRow(i);
+                RowOfSamples row = jpeg.GetRow(y);
                 Assert.IsNotNull(row);
                 Assert.AreEqual(row.SampleCount, jpeg.Width);
+
+                for (int x = 0; x < row.SampleCount; ++x)
+                {
+                    Sample sample = row[x];
+                    Assert.IsNotNull(sample);
+                    Assert.AreEqual(sample.BitsPerComponent, jpeg.BitsPerComponent);
+                    Assert.AreEqual(sample.ComponentCount, jpeg.ComponentsPerSample);
+
+                    Color bitmapPixel = bmp.GetPixel(x, y);
+                    Assert.AreEqual(sample.GetComponent(0), bitmapPixel.R);
+                    Assert.AreEqual(sample.GetComponent(1), bitmapPixel.G);
+                    Assert.AreEqual(sample.GetComponent(2), bitmapPixel.B);
+                }
             }
         }
     }
