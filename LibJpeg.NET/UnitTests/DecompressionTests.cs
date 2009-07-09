@@ -9,7 +9,7 @@ using dJpeg;
 namespace UnitTests
 {
     [TestFixture]
-    public class DecompressionTests : JpegTestBase
+    public class DecompressionTests
     {
         private string m_dataFolder = @"..\..\..\..\TestCase\jpeg_decompression_data\";
 
@@ -36,7 +36,7 @@ namespace UnitTests
 
                 dJpeg.Program.Main(completeArgs);
 
-                Assert.IsTrue(filesAreEqual(getSourcePath(targetImage), targetImage));
+                Assert.IsTrue(Utils.FilesAreEqual(getSourcePath(targetImage), targetImage));
             }
         }
 

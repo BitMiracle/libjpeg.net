@@ -5,9 +5,9 @@ using System.IO;
 
 namespace UnitTests
 {
-    public class JpegTestBase
+    class Utils
     {
-        internal bool filesAreEqual(string left, string right)
+        internal static bool FilesAreEqual(string left, string right)
         {
             byte[] leftBytes = File.ReadAllBytes(left);
             byte[] rightBytes = File.ReadAllBytes(right);

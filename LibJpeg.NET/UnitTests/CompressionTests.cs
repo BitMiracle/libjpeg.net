@@ -9,7 +9,7 @@ using cJpeg;
 namespace UnitTests
 {
     [TestFixture]
-    public class CompressionTests : JpegTestBase
+    public class CompressionTests
     {
         private string m_dataFolder = @"..\..\..\..\TestCase\jpeg_compression_data\";
 
@@ -36,7 +36,7 @@ namespace UnitTests
 
                 cJpeg.Program.Main(completeArgs);
 
-                Assert.IsTrue(filesAreEqual(getSourcePath(targetImage), targetImage));
+                Assert.IsTrue(Utils.FilesAreEqual(getSourcePath(targetImage), targetImage));
             }
         }
 
