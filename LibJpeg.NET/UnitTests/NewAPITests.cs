@@ -14,13 +14,23 @@ namespace UnitTests
     public class NewAPITests
     {
         private const string m_dataFolder = @"..\..\..\..\TestCase\Data\";
-        private static string[] m_testFiles = new string[] { "particle.bmp", "2pilots.jpg", "ammerland.jpg", "ca-map.gif", 
-            "rainbow.bmp", @"bmp\test16bf565.bmp" };
+        private static List<string> m_testFiles = new List<string>();
+
+        static NewAPITests()
+        {
+            DirectoryInfo testcaseDataDir = new DirectoryInfo(m_dataFolder);
+            foreach (FileInfo fi in testcaseDataDir.GetFiles())
+                m_testFiles.Add(fi.Name);
+
+            DirectoryInfo testcaseJpgDir = new DirectoryInfo(m_dataFolder + @"jpg\");
+            foreach (FileInfo fi in testcaseDataDir.GetFiles())
+                m_testFiles.Add(fi.Name);
+        }
 
         [Test]
         public void TestCompressionFromDotNetBitmap()
         {
-            for (int i = 0; i < m_testFiles.Length; ++i)
+            for (int i = 0; i < m_testFiles.Count; ++i)
             {
                 string fileName = m_testFiles[i];
                 Bitmap bmp = new Bitmap(m_dataFolder + fileName);
@@ -71,12 +81,20 @@ namespace UnitTests
         [Test]
         public void TestJpegImageDecompression()
         {
-            string[] jpegs = Directory.GetFiles(m_dataFolder + @"jpg\");
-            foreach (string jpegFile in jpegs)
+            for (int i = 0; i < m_testFiles.Count; ++i)
             {
-                using (FileStream jpegData = new FileStream(jpegFile, FileMode.Open))
+                string jpegFile = m_testFiles[i];
+                using (FileStream jpegData = new FileStream(m_dataFolder + jpegFile, FileMode.Open))
                 {
+                    if (jpegFile.Contains("\\"))
+                        jpegFile = jpegFile.Replace('\\', ' ');
+
                     JpegImage image = new JpegImage(jpegData);
+                    using (FileStream output = new FileStream("Compressed" + jpegFile + ".jpg", FileMode.Create))
+                        image.WriteCompressed(output);
+
+                    using (FileStream output = new FileStream("Decompressed" + jpegFile + ".png", FileMode.Create))
+                        image.WriteDecompressed(output);
                 }
             }
         }
