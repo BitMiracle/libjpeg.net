@@ -85,8 +85,7 @@ acknowledge us.
 
 Permission is NOT granted for the use of any Bit Miracle author's name or company
 name in advertising or publicity relating to this software or products derived 
-from it. This software may be referred to only as "the Independent JPEG Group's
-software".
+from it. This software may be referred to only as "the Bit Miracle's software".
 
 We specifically permit and encourage the use of this software as the basis of
 commercial products, provided that all warranty or liability claims are
