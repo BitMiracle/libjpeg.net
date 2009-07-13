@@ -22,7 +22,6 @@ using System.Text;
 using System.IO;
 using System.Globalization;
 
-using LibJpeg;
 using LibJpeg.Classic;
 using cdJpeg;
 
@@ -78,13 +77,12 @@ namespace cJpeg
                     if (outputFile == null)
                         return;
 
-                    //classicCompression(inputFile, options, outputFile);
-                    newCompression(inputFile, options, outputFile);
+                    compress(inputFile, options, outputFile);
                 }
             }
         }
 
-        private static void classicCompression(Stream input, Options options, Stream output)
+        private static void compress(Stream input, Options options, Stream output)
         {
             Debug.Assert(input != null);
             Debug.Assert(options != null);
@@ -133,21 +131,6 @@ namespace cJpeg
 
             /* All done. */
             if (cinfo.Err.Num_warnings != 0)
-                Console.WriteLine("Corrupt-data warning count is not zero");
-        }
-
-        private static void newCompression(Stream input, Options options, Stream output)
-        {
-            Debug.Assert(input != null);
-            Debug.Assert(options != null);
-            Debug.Assert(output != null);
-
-            Jpeg jpeg = new Jpeg();
-            jpeg.CompressionParameters = toCompressionParameters(options);
-            jpeg.CompressBitmap(input, output);
-
-            /* All done. */
-            if (jpeg.ClassicCompressor.Err.Num_warnings != 0)
                 Console.WriteLine("Corrupt-data warning count is not zero");
         }
 
@@ -431,35 +414,6 @@ namespace cJpeg
             }
 
             return options;
-        }
-
-        private static CompressionParameters toCompressionParameters(Options options)
-        {
-            Debug.Assert(options != null);
-
-            CompressionParameters result = new CompressionParameters();
-            result.Quality = options.Quality;
-            result.ForceBaseline = options.ForceBaseline;
-            result.DCTMethod = (DCTMethod)options.DCTMethod;
-
-            if (options.Debug)
-                result.TraceLevel = 1;
-
-            if (options.Grayscale)
-                result.Colorspace = Colorspace.Grayscale;
-
-            if (options.Optimize)
-                result.OptimizeCoding = true;
-
-            result.RestartInterval = options.RestartInterval;
-            result.RestartInRows = options.RestartInRows;
-
-            result.SmoothingFactor = options.SmoothingFactor;
-
-            if (options.Progressive) /* process -progressive; -scans can override */
-                result.SimpleProgressive = true;
-
-            return result;
         }
 
         static bool applyOptions(jpeg_compress_struct compressor, Options options)

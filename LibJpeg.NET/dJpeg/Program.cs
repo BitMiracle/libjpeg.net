@@ -21,7 +21,6 @@ using System.Diagnostics;
 using System.Text;
 using System.IO;
 
-using LibJpeg;
 using LibJpeg.Classic;
 using cdJpeg;
 
@@ -81,13 +80,12 @@ namespace dJpeg
                     if (outputFile == null)
                         return;
 
-                    //classicDecompression(inputFile, options, outputFile);
-                    newDecompression(inputFile, options, outputFile);
+                    decompress(inputFile, options, outputFile);
                 }
             }
         }
 
-        private static void classicDecompression(Stream input, Options options, Stream output)
+        private static void decompress(Stream input, Options options, Stream output)
         {
             Debug.Assert(input != null);
             Debug.Assert(options != null);
@@ -155,30 +153,6 @@ namespace dJpeg
 
             /* All done. */
             if (cinfo.Err.Num_warnings != 0)
-                Console.WriteLine("Corrupt-data warning count is not zero");
-        }
-
-        private static void newDecompression(Stream input, Options options, Stream output)
-        {
-            Debug.Assert(input != null);
-            Debug.Assert(options != null);
-            Debug.Assert(output != null);
-
-            //Initialize the JPEG decompression object with default error handling.
-            Jpeg jpeg = new Jpeg();
-
-            //Insert custom marker processor for COM and APP12.
-            //APP12 is used by some digital camera makers for textual info,
-            //so we provide the ability to display it as text.
-            //If you like, additional APPn marker types can be selected for display,
-            //but don't try to override APP0 or APP14 this way (see libjpeg.doc).
-            jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_COM, printTextMarker);
-            jpeg.SetMarkerProcessor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
-            jpeg.DecompressionParameters = toDecompressionParameters(options);
-            jpeg.DecompressToBitmap(input, output, (BitmapFormat)options.OutputFormat);
-
-            //All done.
-            if (jpeg.ClassicDecompressor.Err.Num_warnings != 0)
                 Console.WriteLine("Corrupt-data warning count is not zero");
         }
 
@@ -462,52 +436,6 @@ namespace dJpeg
             }
         }
 
-        static DecompressionParameters toDecompressionParameters(Options options)
-        {
-            Debug.Assert(options != null);
-
-            DecompressionParameters result = new DecompressionParameters();
-            if (options.QuantizeColors)
-            {
-                result.QuantizeColors = true;
-                result.DesiredNumberOfColors = options.DesiredNumberOfColors;
-            }
-
-            result.DCTMethod = (DCTMethod)options.DCTMethod;
-            result.DitherMode = (DitherMode)options.DitherMode;
-
-            if (options.Debug)
-                result.TraceLevel = 1;
-
-            if (options.Fast)
-            {
-                /* Select recommended processing options for quick-and-dirty output. */
-                result.TwoPassQuantize = false;
-                result.DitherMode = DitherMode.Ordered;
-                if (!result.QuantizeColors) /* don't override an earlier -colors */
-                    result.DesiredNumberOfColors = 216;
-                result.DCTMethod = (DCTMethod)JpegConstants.JDCT_FASTEST;
-                result.DoFancyUpsampling = false;
-            }
-
-            if (options.Grayscale)
-                result.OutColorspace = Colorspace.Grayscale;
-
-            if (options.NoSmooth)
-                result.DoFancyUpsampling = false;
-
-            if (options.OnePass)
-                result.TwoPassQuantize = false;
-
-            if (options.Scaled)
-            {
-                result.ScaleNumerator = options.ScaleNumerator;
-                result.ScaleDenominator = options.ScaleDenominator;
-            }
-
-            return result;
-        }
-
         static FileStream openInputFile(string fileName)
         {
             try
@@ -534,17 +462,6 @@ namespace dJpeg
                 Console.WriteLine(e.Message);
                 return null;
             }
-        }
-
-        /// <summary>
-        /// Marker processor for COM and interesting APPn markers.
-        /// This replaces the library's built-in processor, which just skips the marker.
-        /// We want to print out the marker as text, to the extent possible.
-        /// Note this code relies on a non-suspending data source.
-        /// </summary>
-        static bool printTextMarker(Jpeg decompressor)
-        {
-            return printTextMarker(decompressor.ClassicDecompressor);
         }
 
         /// <summary>

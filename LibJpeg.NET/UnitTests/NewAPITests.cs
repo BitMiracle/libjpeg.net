@@ -28,25 +28,6 @@ namespace UnitTests
         }
 
         [Test]
-        public void TestCompressionFromDotNetBitmap()
-        {
-            for (int i = 0; i < m_testFiles.Count; ++i)
-            {
-                string fileName = m_testFiles[i];
-                Bitmap bmp = new Bitmap(m_dataFolder + fileName);
-                DotNetBitmapSource source = new DotNetBitmapSource(bmp);
-
-                if (fileName.Contains("\\"))
-                    fileName = fileName.Replace('\\', ' ');
-                using (FileStream output = new FileStream("Compressed" + fileName + ".jpg", FileMode.Create))
-                {
-                    Jpeg jpeg = new Jpeg();
-                    jpeg.Compress(source, output);
-                }
-            }
-        }
-
-        [Test]
         public void TestJpegImageFromBitmap()
         {
             foreach (string fileName in m_testFiles)
@@ -79,7 +60,7 @@ namespace UnitTests
         }
 
         [Test]
-        public void TestJpegImageDecompression()
+        public void TestJpegImageFromStream()
         {
             for (int i = 0; i < m_testFiles.Count; ++i)
             {
