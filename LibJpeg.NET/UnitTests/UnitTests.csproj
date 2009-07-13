@@ -43,8 +43,8 @@
   <ItemGroup>
     <Compile Include="CompressionTests.cs" />
     <Compile Include="DecompressionTests.cs" />
+    <Compile Include="JpegImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NewAPITests.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
