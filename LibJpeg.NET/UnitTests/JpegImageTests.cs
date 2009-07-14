@@ -19,8 +19,9 @@ namespace UnitTests
         static JpegImageTests()
         {
             DirectoryInfo testcaseDataDir = new DirectoryInfo(m_dataFolder);
-            foreach (FileInfo fi in testcaseDataDir.GetFiles())
-                m_testFiles.Add(fi.Name);
+            //foreach (FileInfo fi in testcaseDataDir.GetFiles())
+                //m_testFiles.Add(fi.Name);
+            m_testFiles.Add("ammerland.jpg");
 
             //DirectoryInfo testcaseJpgDir = new DirectoryInfo(m_dataFolder + @"jpg\");
             //foreach (FileInfo fi in testcaseJpgDir.GetFiles())
@@ -40,11 +41,11 @@ namespace UnitTests
                     Assert.AreEqual(jpeg.ComponentsPerSample, 3);//Number of components in Bitmap
                     for (int y = 0; y < jpeg.Height; ++y)
                     {
-                        RowOfSamples row = jpeg.GetRow(y);
+                        SampleRow row = jpeg.GetRow(y);
                         Assert.IsNotNull(row);
-                        Assert.AreEqual(row.SampleCount, jpeg.Width);
+                        Assert.AreEqual(row.Length, jpeg.Width);
 
-                        for (int x = 0; x < row.SampleCount; ++x)
+                        for (int x = 0; x < row.Length; ++x)
                         {
                             Sample sample = row[x];
                             Assert.IsNotNull(sample);
@@ -102,12 +103,12 @@ namespace UnitTests
 
             const int width = 24;
             const int height = 25;
-            const int bitsPerComponent = 8;
-            const int componentsPerSample = 4;
+            const byte bitsPerComponent = 8;
+            const byte componentsPerSample = 4;
             const Colorspace colorspace = Colorspace.CMYK;
 
-            RowOfSamples row = new RowOfSamples(rowData, width, bitsPerComponent, componentsPerSample);
-            RowOfSamples[] rows = new RowOfSamples[height];
+            SampleRow row = new SampleRow(rowData, width, bitsPerComponent, componentsPerSample);
+            SampleRow[] rows = new SampleRow[height];
             for (int i = 0; i < rows.Length; ++i)
                 rows[i] = row;
 
