@@ -19,13 +19,12 @@ namespace UnitTests
         static JpegImageTests()
         {
             DirectoryInfo testcaseDataDir = new DirectoryInfo(m_dataFolder);
-            //foreach (FileInfo fi in testcaseDataDir.GetFiles())
-                //m_testFiles.Add(fi.Name);
-            m_testFiles.Add("ammerland.jpg");
+            foreach (FileInfo fi in testcaseDataDir.GetFiles())
+                m_testFiles.Add(fi.Name);
 
-            //DirectoryInfo testcaseJpgDir = new DirectoryInfo(m_dataFolder + @"jpg\");
-            //foreach (FileInfo fi in testcaseJpgDir.GetFiles())
-            //    m_testFiles.Add(@"jpg\" + fi.Name);
+            DirectoryInfo testcaseJpgDir = new DirectoryInfo(m_dataFolder + @"jpg\");
+            foreach (FileInfo fi in testcaseJpgDir.GetFiles())
+                m_testFiles.Add(@"jpg\" + fi.Name);
         }
 
         [Test]
