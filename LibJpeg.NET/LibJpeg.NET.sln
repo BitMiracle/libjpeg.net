@@ -20,6 +20,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\Unit
 		{7300CDF5-1C93-4611-8CC9-47FE79F340AB} = {7300CDF5-1C93-4611-8CC9-47FE79F340AB}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jpeg", "Jpeg\Jpeg.csproj", "{89A3BDA9-830B-4F7F-8F0B-2954576862C5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7300CDF5-1C93-4611-8CC9-47FE79F340AB} = {7300CDF5-1C93-4611-8CC9-47FE79F340AB}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +47,10 @@ Global
 		{1CBA5A80-BCCE-4C6D-8A27-31D27E317182}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CBA5A80-BCCE-4C6D-8A27-31D27E317182}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CBA5A80-BCCE-4C6D-8A27-31D27E317182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89A3BDA9-830B-4F7F-8F0B-2954576862C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A3BDA9-830B-4F7F-8F0B-2954576862C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A3BDA9-830B-4F7F-8F0B-2954576862C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A3BDA9-830B-4F7F-8F0B-2954576862C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

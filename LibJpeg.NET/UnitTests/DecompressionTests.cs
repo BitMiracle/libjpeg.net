@@ -20,21 +20,21 @@ namespace UnitTests
 
         private void runTest(string[] args, string sourceImage, string targetImage)
         {
-            // dJpeg.Program.Main is static, so lock concurent access to a test code
+            // Jpeg.Program.Main is static, so lock concurent access to a test code
             // use a private field to lock upon 
 
             lock (m_dataFolder)
             {
-                string[] completeArgs = new string[args.Length + 2];
+                List<string> completeArgs = new List<string>(1 + args.Length + 2);
 
-                int i = 0;
-                for (; i < args.Length; i++)
-                    completeArgs[i] = args[i];
+                completeArgs.Add("-d");
+                for (int i = 0; i < args.Length; ++i)
+                    completeArgs.Add(args[i]);
 
-                completeArgs[i++] = getSourcePath(sourceImage);
-                completeArgs[i] = targetImage;
+                completeArgs.Add(getSourcePath(sourceImage));
+                completeArgs.Add(targetImage);
 
-                dJpeg.Program.Main(completeArgs);
+                Jpeg.Program.Main(completeArgs.ToArray());
 
                 Assert.IsTrue(Utils.FilesAreEqual(getSourcePath(targetImage), targetImage));
             }
