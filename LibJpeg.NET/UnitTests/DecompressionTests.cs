@@ -11,66 +11,60 @@ namespace UnitTests
     [TestFixture]
     public class DecompressionTests
     {
-        private bool m_testClassicDJpeg = true;
-        private string m_dataFolder = @"..\..\..\..\TestCase\jpeg_decompression_data\";
-
-        private void runTest(string[] args, string sourceImage, string targetImage)
-        {
-            Utils.TestDecompression(args, sourceImage, targetImage, m_testClassicDJpeg, m_dataFolder);
-        }
+        private Tester m_tester = new Tester(@"jpeg_decompression_data\", false);
 
         [Test]
         public void Test3D()
         {
-            runTest(new string[] { }, "3D.JPG", "3D.bmp");
+            m_tester.Run(new string[] { }, "3D.JPG", "3D.bmp");
         }
 
         [Test]
         public void TestBLU()
         {
-            runTest(new string[] { }, "BLU.JPG", "BLU.bmp");
+            m_tester.Run(new string[] { }, "BLU.JPG", "BLU.bmp");
         }
 
         [Test]
         public void TestGLOBE1()
         {
-            runTest(new string[] { }, "GLOBE1.JPG", "GLOBE1.bmp");
+            m_tester.Run(new string[] { }, "GLOBE1.JPG", "GLOBE1.bmp");
         }
 
         [Test]
         public void TestMARBLES()
         {
-            runTest(new string[] { }, "MARBLES.JPG", "MARBLES.bmp");
+            m_tester.Run(new string[] { }, "MARBLES.JPG", "MARBLES.bmp");
         }
 
         [Test]
         public void TestPARROTS()
         {
-            runTest(new string[] { }, "PARROTS.JPG", "PARROTS.bmp");
+            m_tester.Run(new string[] { }, "PARROTS.JPG", "PARROTS.bmp");
         }
 
         [Test]
         public void TestSPACE()
         {
-            runTest(new string[] { }, "SPACE.JPG", "SPACE.bmp");
+            m_tester.Run(new string[] { }, "SPACE.JPG", "SPACE.bmp");
         }
 
         [Test]
         public void TestXING()
         {
-            runTest(new string[] { }, "XING.JPG", "XING.bmp");
+            m_tester.Run(new string[] { }, "XING.JPG", "XING.bmp");
         }
 
         [Test]
         public void Testdoor()
         {
-            runTest(new string[] { }, "door.jpg", "door.bmp");
+            m_tester.Run(new string[] { }, "door.jpg", "door.bmp");
         }
 
         [Test]
         public void Testolympusc960()
         {
-            runTest(new string[] { }, "olympus-c960.jpg", "olympus-c960.bmp");
+            m_tester.Run(new string[] { }, "olympus-c960.jpg", "olympus-c960.bmp");
         }
 
         //////////////////////////////////////////////////////////////////////////
@@ -79,43 +73,43 @@ namespace UnitTests
         [Test]
         public void Test3D_fast()
         {
-            runTest(new string[] { "-fast", "-colors", "256", "-bmp" }, "3D.JPG", "3D_fast.bmp");
+            m_tester.Run(new string[] { "-fast", "-colors", "256", "-bmp" }, "3D.JPG", "3D_fast.bmp");
         }
 
         [Test]
         public void TestBLU_fast()
         {
-            runTest(new string[] { "-fast", "-colors", "256", "-bmp" }, "BLU.JPG", "BLU_fast.bmp");
+            m_tester.Run(new string[] { "-fast", "-colors", "256", "-bmp" }, "BLU.JPG", "BLU_fast.bmp");
         }
 
         [Test]
         public void TestGLOBE1_fast()
         {
-            runTest(new string[] { "-fast", "-colors", "256", "-bmp" }, "GLOBE1.JPG", "GLOBE1_fast.bmp");
+            m_tester.Run(new string[] { "-fast", "-colors", "256", "-bmp" }, "GLOBE1.JPG", "GLOBE1_fast.bmp");
         }
 
         [Test]
         public void TestMARBLES_fast()
         {
-            runTest(new string[] { "-fast", "-colors", "256", "-bmp" }, "MARBLES.JPG", "MARBLES_fast.bmp");
+            m_tester.Run(new string[] { "-fast", "-colors", "256", "-bmp" }, "MARBLES.JPG", "MARBLES_fast.bmp");
         }
 
         [Test]
         public void TestPARROTS_fast()
         {
-            runTest(new string[] { "-fast", "-colors", "256", "-bmp" }, "PARROTS.JPG", "PARROTS_fast.bmp");
+            m_tester.Run(new string[] { "-fast", "-colors", "256", "-bmp" }, "PARROTS.JPG", "PARROTS_fast.bmp");
         }
 
         [Test]
         public void TestSPACE_fast()
         {
-            runTest(new string[] { "-fast", "-colors", "256", "-bmp" }, "SPACE.JPG", "SPACE_fast.bmp");
+            m_tester.Run(new string[] { "-fast", "-colors", "256", "-bmp" }, "SPACE.JPG", "SPACE_fast.bmp");
         }
 
         [Test]
         public void TestXING_fast()
         {
-            runTest(new string[] { "-fast", "-colors", "256", "-bmp" }, "XING.JPG", "XING_fast.bmp");
+            m_tester.Run(new string[] { "-fast", "-colors", "256", "-bmp" }, "XING.JPG", "XING_fast.bmp");
         }
 
         //////////////////////////////////////////////////////////////////////////
@@ -124,43 +118,43 @@ namespace UnitTests
         [Test]
         public void Test3D_slow()
         {
-            runTest(new string[] { "-colors", "256", "-bmp" }, "3D.JPG", "3D_slow.bmp");
+            m_tester.Run(new string[] { "-colors", "256", "-bmp" }, "3D.JPG", "3D_slow.bmp");
         }
 
         [Test]
         public void TestBLU_slow()
         {
-            runTest(new string[] { "-colors", "256", "-bmp" }, "BLU.JPG", "BLU_slow.bmp");
+            m_tester.Run(new string[] { "-colors", "256", "-bmp" }, "BLU.JPG", "BLU_slow.bmp");
         }
 
         [Test]
         public void TestGLOBE1_slow()
         {
-            runTest(new string[] { "-colors", "256", "-bmp" }, "GLOBE1.JPG", "GLOBE1_slow.bmp");
+            m_tester.Run(new string[] { "-colors", "256", "-bmp" }, "GLOBE1.JPG", "GLOBE1_slow.bmp");
         }
 
         [Test]
         public void TestMARBLES_slow()
         {
-            runTest(new string[] { "-colors", "256", "-bmp" }, "MARBLES.JPG", "MARBLES_slow.bmp");
+            m_tester.Run(new string[] { "-colors", "256", "-bmp" }, "MARBLES.JPG", "MARBLES_slow.bmp");
         }
 
         [Test]
         public void TestPARROTS_slow()
         {
-            runTest(new string[] { "-colors", "256", "-bmp" }, "PARROTS.JPG", "PARROTS_slow.bmp");
+            m_tester.Run(new string[] { "-colors", "256", "-bmp" }, "PARROTS.JPG", "PARROTS_slow.bmp");
         }
 
         [Test]
         public void TestSPACE_slow()
         {
-            runTest(new string[] { "-colors", "256", "-bmp" }, "SPACE.JPG", "SPACE_slow.bmp");
+            m_tester.Run(new string[] { "-colors", "256", "-bmp" }, "SPACE.JPG", "SPACE_slow.bmp");
         }
 
         [Test]
         public void TestXING_slow()
         {
-            runTest(new string[] { "-colors", "256", "-bmp" }, "XING.JPG", "XING_slow.bmp");
+            m_tester.Run(new string[] { "-colors", "256", "-bmp" }, "XING.JPG", "XING_slow.bmp");
         }
     }
 }

@@ -96,7 +96,7 @@ namespace Jpeg
             Debug.Assert(argv != null);
             if (argv.Length <= 1)
             {
-                usageForDecompression();
+                usage();
                 return null;
             }
 
@@ -131,7 +131,7 @@ namespace Jpeg
 
                     if (++argn >= argv.Length) /* advance to next argument */
                     {
-                        usageForDecompression();
+                        usage();
                         return null;
                     }
 
@@ -143,7 +143,7 @@ namespace Jpeg
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usageForDecompression();
+                        usage();
                         return null;
                     }
                 }
@@ -152,7 +152,7 @@ namespace Jpeg
                     /* Select IDCT algorithm. */
                     if (++argn >= argv.Length) /* advance to next argument */
                     {
-                        usageForDecompression();
+                        usage();
                         return null;
                     }
 
@@ -170,7 +170,7 @@ namespace Jpeg
                     }
                     else
                     {
-                        usageForDecompression();
+                        usage();
                         return null;
                     }
                 }
@@ -179,7 +179,7 @@ namespace Jpeg
                     /* Select dithering algorithm. */
                     if (++argn >= argv.Length) /* advance to next argument */
                     {
-                        usageForDecompression();
+                        usage();
                         return null;
                     }
 
@@ -197,7 +197,7 @@ namespace Jpeg
                     }
                     else
                     {
-                        usageForDecompression();
+                        usage();
                         return null;
                     }
                 }
@@ -242,7 +242,7 @@ namespace Jpeg
                     /* Set output file name. */
                     if (++argn >= argv.Length) /* advance to next argument */
                     {
-                        usageForDecompression();
+                        usage();
                         return null;
                     }
 
@@ -253,14 +253,14 @@ namespace Jpeg
                     /* Scale the output image by a fraction M/N. */
                     if (++argn >= argv.Length) /* advance to next argument */
                     {
-                        usageForDecompression();
+                        usage();
                         return null;
                     }
 
                     int slashPos = argv[argn].IndexOf('/');
                     if (slashPos == -1)
                     {
-                        usageForDecompression();
+                        usage();
                         return null;
                     }
 
@@ -275,14 +275,14 @@ namespace Jpeg
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usageForDecompression();
+                        usage();
                         return null;
                     }
                 }
                 else
                 {
                     /* bogus switch */
-                    usageForDecompression();
+                    usage();
                     return null;
                 }
             }
@@ -294,7 +294,7 @@ namespace Jpeg
                 if (lastFileArgSeen != argv.Length - 2)
                 {
                     Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usageForDecompression();
+                    usage();
                     return null;
                 }
 
@@ -308,7 +308,7 @@ namespace Jpeg
                 if (lastFileArgSeen != argv.Length - 1)
                 {
                     Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usageForDecompression();
+                    usage();
                     return null;
                 }
 

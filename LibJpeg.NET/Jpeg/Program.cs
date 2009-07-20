@@ -141,23 +141,30 @@ namespace Jpeg
         }
 
         
+        private static void usage()
+        {
+            Console.WriteLine(string.Format("usage: {0} (-c | -d) [switches] inputfile outputfile", m_programName));
+
+            Console.WriteLine("  -c     Compress inputfile");
+            Console.WriteLine("  -d     Decompress inputfile");
+
+            usageForCompression();
+            usageForDecompression();
+        }
 
         /// <summary>
         /// complain about bad command line
         /// </summary>
-        static void usageForCompression()
+        private static void usageForCompression()
         {
-            Console.WriteLine(string.Format("usage: {0} [switches] inputfile outputfile", m_programName));
-
-            Console.WriteLine("Switches (names may be abbreviated):");
+            Console.WriteLine("\n");
+            Console.WriteLine("Switches for compression (names may be abbreviated):");
             Console.WriteLine("  -quality N     Compression quality (0..100; 5-95 is useful range)");
             Console.WriteLine("  -grayscale     Create monochrome JPEG file");
             Console.WriteLine("  -optimize      Optimize Huffman table (smaller file, but slow compression)");
             Console.WriteLine("  -progressive   Create progressive JPEG file");
             Console.WriteLine("Switches for advanced users:");
-            Console.WriteLine(string.Format("  -dct int       Use integer DCT method {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_ISLOW ? " (default)" : "")));
-            Console.WriteLine(string.Format("  -dct fast      Use fast integer DCT (less accurate) {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_IFAST ? " (default)" : "")));
-            Console.WriteLine(string.Format("  -dct float     Use floating-point DCT method {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_FLOAT ? " (default)" : "")));
+            writeUsageForDCT();
             Console.WriteLine("  -restart N     Set restart interval in rows, or in blocks with B");
             Console.WriteLine("  -smooth N      Smooth dithered input (N=1..100 is strength)");
             Console.WriteLine("  -outfile name  Specify name for output file");
@@ -172,19 +179,17 @@ namespace Jpeg
         /// <summary>
         /// Complain about bad command line
         /// </summary>
-        static void usageForDecompression()
+        private static void usageForDecompression()
         {
-            Console.Write("usage: {0} [switches] inputfile outputfile", m_programName);
-            Console.WriteLine("Switches (names may be abbreviated):");
+            Console.WriteLine("\n");
+            Console.WriteLine("Switches for decompression (names may be abbreviated):");
             Console.WriteLine("  -colors N      Reduce image to no more than N colors");
             Console.WriteLine("  -fast          Fast, low-quality processing");
             Console.WriteLine("  -grayscale     Force grayscale output");
             Console.WriteLine("  -scale M/N     Scale output image by fraction M/N, eg, 1/8");
             Console.WriteLine("  -os2           Select BMP output format (OS/2 style)");
             Console.WriteLine("Switches for advanced users:");
-            Console.WriteLine("  -dct int       Use integer DCT method {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_ISLOW ? " (default)" : ""));
-            Console.WriteLine("  -dct fast      Use fast integer DCT (less accurate) {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_IFAST ? " (default)" : ""));
-            Console.WriteLine("  -dct float     Use floating-point DCT method {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_FLOAT ? " (default)" : ""));
+            writeUsageForDCT();
             Console.WriteLine("  -dither fs     Use F-S dithering (default)");
             Console.WriteLine("  -dither none   Don't use dithering in quantization");
             Console.WriteLine("  -dither ordered  Use ordered dither (medium speed, quality)");
@@ -193,6 +198,13 @@ namespace Jpeg
             Console.WriteLine("  -onepass       Use 1-pass quantization (fast, low quality)");
             Console.WriteLine("  -outfile name  Specify name for output file");
             Console.WriteLine("  -verbose  or  -debug   Emit debug output");
+        }
+
+        private static void writeUsageForDCT()
+        {
+            Console.WriteLine("  -dct int       Use integer DCT method {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_ISLOW ? " (default)" : ""));
+            Console.WriteLine("  -dct fast      Use fast integer DCT (less accurate) {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_IFAST ? " (default)" : ""));
+            Console.WriteLine("  -dct float     Use floating-point DCT method {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_FLOAT ? " (default)" : ""));
         }
     }
 }

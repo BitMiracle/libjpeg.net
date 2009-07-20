@@ -75,7 +75,7 @@ namespace Jpeg
             Debug.Assert(argv != null);
             if (argv.Length <= 1)
             {
-                usageForCompression();
+                usage();
                 return null;
             }
 
@@ -106,7 +106,7 @@ namespace Jpeg
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
@@ -118,7 +118,7 @@ namespace Jpeg
                         options.DCTMethod = J_DCT_METHOD.JDCT_FLOAT;
                     else
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
                 }
@@ -150,7 +150,7 @@ namespace Jpeg
                     argn++;/* advance to next argument */
                     if (argn >= argv.Length)
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
@@ -168,7 +168,7 @@ namespace Jpeg
                     argn++;/* advance to next argument */
                     if (argn >= argv.Length)
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
@@ -179,7 +179,7 @@ namespace Jpeg
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usageForCompression();
+                        usage();
                         return null;
                     }
                 }
@@ -189,7 +189,7 @@ namespace Jpeg
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
@@ -205,7 +205,7 @@ namespace Jpeg
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
@@ -219,7 +219,7 @@ namespace Jpeg
 
                     if (argn >= argv.Length)
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
@@ -239,13 +239,13 @@ namespace Jpeg
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
                     if (val < 0 || val > 65535)
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
@@ -266,7 +266,7 @@ namespace Jpeg
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
@@ -283,7 +283,7 @@ namespace Jpeg
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
@@ -295,13 +295,13 @@ namespace Jpeg
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
                     if (val < 0 || val > 100)
                     {
-                        usageForCompression();
+                        usage();
                         return null;
                     }
 
@@ -309,7 +309,7 @@ namespace Jpeg
                 }
                 else
                 {
-                    usageForCompression(); /* bogus switch */
+                    usage(); /* bogus switch */
                     return null;
                 }
             }
@@ -321,7 +321,7 @@ namespace Jpeg
                 if (lastFileArgSeen != argv.Length - 2)
                 {
                     Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usageForCompression();
+                    usage();
                     return null;
                 }
 
@@ -335,7 +335,7 @@ namespace Jpeg
                 if (lastFileArgSeen != argv.Length - 1)
                 {
                     Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usageForCompression();
+                    usage();
                     return null;
                 }
 
@@ -374,7 +374,7 @@ namespace Jpeg
             {
                 if (!read_quant_tables(compressor, options.Qtables, q_scale_factor, options.ForceBaseline))
                 {
-                    usageForCompression();
+                    usage();
                     return false;
                 }
             }
@@ -383,7 +383,7 @@ namespace Jpeg
             {
                 if (!set_quant_slots(compressor, options.Qslots))
                 {
-                    usageForCompression();
+                    usage();
                     return false;
                 }
             }
@@ -392,7 +392,7 @@ namespace Jpeg
             {
                 if (!set_sample_factors(compressor, options.Sample))
                 {
-                    usageForCompression();
+                    usage();
                     return false;
                 }
             }
