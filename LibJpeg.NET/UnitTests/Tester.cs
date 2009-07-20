@@ -12,7 +12,7 @@ namespace UnitTests
         private const string m_testcase = @"..\..\..\..\TestCase\";
         private static object locked = new object();
 
-        private const bool m_testClassicImplementation = true;
+        private bool m_testClassicImplementation = true;
 
         private bool m_compression;
         private string m_dataFolder;

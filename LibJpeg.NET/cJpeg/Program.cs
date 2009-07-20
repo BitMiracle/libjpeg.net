@@ -54,7 +54,11 @@ namespace cJpeg
              * the input file.
              */
             int file_index;
-            bool parsedOK = parse_switches(cinfo, args, false, out file_index);
+            if (!parse_switches(cinfo, args, false, out file_index))
+            {
+                usage();
+                return;
+            }
 
             /* Must have either -outfile switch or explicit output file name */
             if (outfilename == null)
@@ -215,10 +219,7 @@ namespace cJpeg
                     /* Select DCT algorithm. */
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return false;
-                    }
 
                     if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
                         cinfo.Dct_method = J_DCT_METHOD.JDCT_ISLOW;
@@ -227,10 +228,7 @@ namespace cJpeg
                     else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
                         cinfo.Dct_method = J_DCT_METHOD.JDCT_FLOAT;
                     else
-                    {
-                        usage();
                         return false;
-                    }
                 }
                 else if (cdjpeg_utils.keymatch(arg, "debug", 1) || cdjpeg_utils.keymatch(arg, "verbose", 1))
                 {
@@ -258,10 +256,7 @@ namespace cJpeg
                     /* Set output file name. */
                     argn++;/* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return false;
-                    }
 
                     outfilename = argv[argn];   /* save it away for later use */
                 }
@@ -276,34 +271,26 @@ namespace cJpeg
                     /* Quality factor (quantization table scaling factor). */
                     argn++;/* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return false;
-                    }
 
                     try
                     {
                         quality = int.Parse(argv[argn]);
+                        /* Change scale factor in case -qtables is present. */
+                        q_scale_factor = jpeg_compress_struct.jpeg_quality_scaling(quality);
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usage();
                         return false;
                     }
-
-                    /* Change scale factor in case -qtables is present. */
-                    q_scale_factor = jpeg_compress_struct.jpeg_quality_scaling(quality);
                 }
                 else if (cdjpeg_utils.keymatch(arg, "qslots", 2))
                 {
                     /* Quantization table slot numbers. */
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return false;
-                    }
 
                     qslotsarg = argv[argn];
                     /* Must delay setting qslots until after we have processed any
@@ -316,10 +303,7 @@ namespace cJpeg
                     /* Quantization tables fetched from file. */
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return false;
-                    }
 
                     qtablefile = argv[argn];
                     /* We postpone actually reading the file in case -quality comes later. */
@@ -330,10 +314,7 @@ namespace cJpeg
                     argn++; /* advance to next argument */
 
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return false;
-                    }
 
                     bool inBlocks = false;
                     if (argv[argn].EndsWith("b") || argv[argn].EndsWith("B"))
@@ -343,33 +324,27 @@ namespace cJpeg
                     if (inBlocks)
                         parsee = parsee.Remove(parsee.Length - 1);
 
-                    int val;
                     try
                     {
-                        val = int.Parse(parsee);
+                        int val = int.Parse(parsee);
+                        if (val < 0 || val > 65535)
+                            return false;
+
+                        if (inBlocks)
+                        {
+                            cinfo.Restart_interval = val;
+                            cinfo.Restart_in_rows = 0; /* else prior '-restart n' overrides me */
+                        }
+                        else
+                        {
+                            cinfo.Restart_in_rows = val;
+                            /* restart_interval will be computed during startup */
+                        }
                     }
                     catch (Exception e)
                     {
                     	Console.WriteLine(e.Message);
-                        usage();
                         return false;
-                    }
-
-                    if (val < 0 || val> 65535)
-                    {
-                        usage();
-                        return false;
-                    }
-
-                    if (inBlocks)
-                    {
-                        cinfo.Restart_interval = val;
-                        cinfo.Restart_in_rows = 0; /* else prior '-restart n' overrides me */
-                    }
-                    else
-                    {
-                        cinfo.Restart_in_rows = val;
-                        /* restart_interval will be computed during startup */
                     }
                 }
                 else if (cdjpeg_utils.keymatch(arg, "sample", 2))
@@ -377,10 +352,7 @@ namespace cJpeg
                     /* Set sampling factors. */
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return false;
-                    }
 
                     samplearg = argv[argn];
                     /* Must delay setting sample factors until after we have processed any
@@ -394,36 +366,24 @@ namespace cJpeg
                     
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return false;
-                    }
 
-                    int val;
                     try
                     {
-                        val = int.Parse(argv[argn]);
+                        int val = int.Parse(argv[argn]);
+                        if (val < 0 || val > 100)
+                            return false;
+
+                        cinfo.Smoothing_factor = val;
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usage();
                         return false;
                     }
-
-                    if (val < 0 || val > 100)
-                    {
-                        usage();
-                        return false;
-                    }
-
-                    cinfo.Smoothing_factor = val;
                 }
-                else
-                {
-                    usage(); /* bogus switch */
+                else /* bogus switch */
                     return false;
-                }
             }
 
             /* Post-switch-scanning cleanup */
@@ -437,28 +397,19 @@ namespace cJpeg
                 if (qtablefile != null) /* process -qtables if it was present */
                 {
                     if (!read_quant_tables(cinfo, qtablefile, q_scale_factor, force_baseline))
-                    {
-                        usage();
                         return false;
-                    }
                 }
 
                 if (qslotsarg != null)  /* process -qslots if it was present */
                 {
                     if (!set_quant_slots(cinfo, qslotsarg))
-                    {
-                        usage();
                         return false;
-                    }
                 }
 
                 if (samplearg != null)  /* process -sample if it was present */
                 {
                     if (!set_sample_factors(cinfo, samplearg))
-                    {
-                        usage();
                         return false;
-                    }
                 }
 
                 if (simple_progressive) /* process -progressive; -scans can override */

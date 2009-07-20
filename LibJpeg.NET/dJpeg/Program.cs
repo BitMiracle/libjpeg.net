@@ -57,7 +57,11 @@ namespace dJpeg
              * found during jpeg_read_header...)
              */
             int file_index;
-            bool parsedOK = parse_switches(cinfo, args, false, out file_index);
+            if (!parse_switches(cinfo, args, false, out file_index))
+            {
+                usage();
+                return;
+            }
 
             /* Must have either -outfile switch or explicit output file name */
             if (outfilename == null)
@@ -301,81 +305,50 @@ namespace dJpeg
                          cdjpeg_utils.keymatch(arg, "quantise", 1))
                 {
                     /* Do color quantization. */
-                    int val;
-
                     if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
                         return false;
-                    }
 
                     try
                     {
-                        val = int.Parse(argv[argn]);
+                        int val = int.Parse(argv[argn]);
+                        cinfo.Desired_number_of_colors = val;
+                        cinfo.Quantize_colors = true;
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usage();
                         return false;
                     }
-
-                    cinfo.Desired_number_of_colors = val;
-                    cinfo.Quantize_colors = true;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "dct", 2))
                 {
                     /* Select IDCT algorithm. */
                     if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
                         return false;
-                    }
 
                     if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
-                    {
                         cinfo.Dct_method = J_DCT_METHOD.JDCT_ISLOW;
-                    }
                     else if (cdjpeg_utils.keymatch(argv[argn], "fast", 2))
-                    {
                         cinfo.Dct_method = J_DCT_METHOD.JDCT_IFAST;
-                    }
                     else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
-                    {
                         cinfo.Dct_method = J_DCT_METHOD.JDCT_FLOAT;
-                    }
                     else
-                    {
-                        usage();
                         return false;
-                    }
                 }
                 else if (cdjpeg_utils.keymatch(arg, "dither", 2))
                 {
                     /* Select dithering algorithm. */
                     if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
                         return false;
-                    }
 
                     if (cdjpeg_utils.keymatch(argv[argn], "fs", 2))
-                    {
                         cinfo.Dither_mode = J_DITHER_MODE.JDITHER_FS;
-                    }
                     else if (cdjpeg_utils.keymatch(argv[argn], "none", 2))
-                    {
                         cinfo.Dither_mode = J_DITHER_MODE.JDITHER_NONE;
-                    }
                     else if (cdjpeg_utils.keymatch(argv[argn], "ordered", 2))
-                    {
                         cinfo.Dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
-                    }
                     else
-                    {
-                        usage();
                         return false;
-                    }
                 }
                 else if (cdjpeg_utils.keymatch(arg, "debug", 1) || cdjpeg_utils.keymatch(arg, "verbose", 1))
                 {
@@ -422,10 +395,7 @@ namespace dJpeg
                 {
                     /* Set output file name. */
                     if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
                         return false;
-                    }
 
                     outfilename = argv[argn];   /* save it away for later use */
                 }
@@ -433,48 +403,27 @@ namespace dJpeg
                 {
                     /* Scale the output image by a fraction M/N. */
                     if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
                         return false;
-                    }
 
                     int slashPos = argv[argn].IndexOf('/');
                     if (slashPos == -1)
-                    {
-                        usage();
                         return false;
-                    }
 
                     try
                     {
                         string num = argv[argn].Substring(0, slashPos);
                         cinfo.Scale_num = int.Parse(num);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        usage();
-                        return false;
-                    }
-
-                    try
-                    {
                         string denom = argv[argn].Substring(slashPos + 1);
                         cinfo.Scale_denom = int.Parse(denom);
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usage();
                         return false;
                     }
                 }
-                else
-                {
-                    /* bogus switch */
-                    usage();
+                else /* bogus switch */
                     return false;
-                }
             }
 
             return true;
