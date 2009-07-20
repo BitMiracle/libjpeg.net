@@ -11,6 +11,23 @@ namespace Jpeg
 {
     partial class Program
     {
+        class CompressOptions : Options
+        {
+            public int Quality = 75;
+            public bool ForceBaseline = false;
+            public J_DCT_METHOD DCTMethod = JpegConstants.JDCT_DEFAULT;
+            public bool Debug = false;
+            public bool Grayscale = false;
+            public bool Optimize = false;
+            public bool Progressive = false;
+            public string Qslots = "";
+            public string Qtables = "";
+            public int RestartInterval = 0;
+            public int RestartInRows = 0;
+            public string Sample = "";
+            public int SmoothingFactor = 0;
+        }
+
         private static void compress(Stream input, CompressOptions options, Stream output)
         {
             Debug.Assert(input != null);
@@ -74,10 +91,7 @@ namespace Jpeg
         {
             Debug.Assert(argv != null);
             if (argv.Length <= 1)
-            {
-                usage();
                 return null;
-            }
 
             CompressOptions options = new CompressOptions();
 
@@ -105,10 +119,7 @@ namespace Jpeg
                     /* Select DCT algorithm. */
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return null;
-                    }
 
                     if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
                         options.DCTMethod = J_DCT_METHOD.JDCT_ISLOW;
@@ -117,10 +128,7 @@ namespace Jpeg
                     else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
                         options.DCTMethod = J_DCT_METHOD.JDCT_FLOAT;
                     else
-                    {
-                        usage();
                         return null;
-                    }
                 }
                 else if (cdjpeg_utils.keymatch(arg, "debug", 1) || cdjpeg_utils.keymatch(arg, "verbose", 1))
                 {
@@ -149,10 +157,7 @@ namespace Jpeg
                     /* Set output file name. */
                     argn++;/* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return null;
-                    }
 
                     options.OutputFileName = argv[argn];
                 }
@@ -167,10 +172,7 @@ namespace Jpeg
                     /* Quality factor (quantization table scaling factor). */
                     argn++;/* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return null;
-                    }
 
                     try
                     {
@@ -179,7 +181,6 @@ namespace Jpeg
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usage();
                         return null;
                     }
                 }
@@ -188,10 +189,7 @@ namespace Jpeg
                     /* Quantization table slot numbers. */
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return null;
-                    }
 
                     options.Qslots = argv[argn];
                     /* Must delay setting qslots until after we have processed any
@@ -204,10 +202,7 @@ namespace Jpeg
                     /* Quantization tables fetched from file. */
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return null;
-                    }
 
                     options.Qtables = argv[argn];
                     /* We postpone actually reading the file in case -quality comes later. */
@@ -218,10 +213,7 @@ namespace Jpeg
                     argn++; /* advance to next argument */
 
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return null;
-                    }
 
                     bool inBlocks = false;
                     if (argv[argn].EndsWith("b") || argv[argn].EndsWith("B"))
@@ -239,15 +231,11 @@ namespace Jpeg
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usage();
                         return null;
                     }
 
                     if (val < 0 || val > 65535)
-                    {
-                        usage();
                         return null;
-                    }
 
                     if (inBlocks)
                     {
@@ -265,10 +253,7 @@ namespace Jpeg
                     /* Set sampling factors. */
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return null;
-                    }
 
                     options.Sample = argv[argn];
                     /* Must delay setting sample factors until after we have processed any
@@ -282,36 +267,24 @@ namespace Jpeg
 
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
-                    {
-                        usage();
                         return null;
-                    }
 
-                    int val;
                     try
                     {
-                        val = int.Parse(argv[argn]);
+                        int val = int.Parse(argv[argn]);
+                        if (val < 0 || val > 100)
+                            return null;
+
+                        options.SmoothingFactor = val;
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usage();
                         return null;
                     }
-
-                    if (val < 0 || val > 100)
-                    {
-                        usage();
-                        return null;
-                    }
-
-                    options.SmoothingFactor = val;
                 }
-                else
-                {
-                    usage(); /* bogus switch */
+                else /* bogus switch */
                     return null;
-                }
             }
 
             /* Must have either -outfile switch or explicit output file name */
@@ -321,7 +294,6 @@ namespace Jpeg
                 if (lastFileArgSeen != argv.Length - 2)
                 {
                     Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usage();
                     return null;
                 }
 
@@ -335,7 +307,6 @@ namespace Jpeg
                 if (lastFileArgSeen != argv.Length - 1)
                 {
                     Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usage();
                     return null;
                 }
 
@@ -373,28 +344,19 @@ namespace Jpeg
             if (options.Qtables != "") /* process -qtables if it was present */
             {
                 if (!read_quant_tables(compressor, options.Qtables, q_scale_factor, options.ForceBaseline))
-                {
-                    usage();
                     return false;
-                }
             }
 
             if (options.Qslots != "")  /* process -qslots if it was present */
             {
                 if (!set_quant_slots(compressor, options.Qslots))
-                {
-                    usage();
                     return false;
-                }
             }
 
             if (options.Sample != "")  /* process -sample if it was present */
             {
                 if (!set_sample_factors(compressor, options.Sample))
-                {
-                    usage();
                     return false;
-                }
             }
 
             if (options.Progressive) /* process -progressive; -scans can override */

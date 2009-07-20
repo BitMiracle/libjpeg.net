@@ -11,6 +11,27 @@ namespace Jpeg
 {
     partial class Program
     {
+        class DecompressOptions : Options
+        {
+            public IMAGE_FORMATS OutputFormat = IMAGE_FORMATS.FMT_BMP;
+
+            public bool QuantizeColors = false;
+            public int DesiredNumberOfColors = 256;
+
+            public J_DCT_METHOD DCTMethod = JpegConstants.JDCT_DEFAULT;
+            public J_DITHER_MODE DitherMode = J_DITHER_MODE.JDITHER_FS;
+
+            public bool Debug = false;
+            public bool Fast = false;
+            public bool Grayscale = false;
+            public bool NoSmooth = false;
+            public bool OnePass = false;
+
+            public bool Scaled = false;
+            public int ScaleNumerator = 1;
+            public int ScaleDenominator = 1;
+        }
+
         private static void decompress(Stream input, DecompressOptions options, Stream output)
         {
             Debug.Assert(input != null);
@@ -95,10 +116,7 @@ namespace Jpeg
         {
             Debug.Assert(argv != null);
             if (argv.Length <= 1)
-            {
-                usage();
                 return null;
-            }
 
             DecompressOptions result = new DecompressOptions();
 
@@ -130,10 +148,7 @@ namespace Jpeg
                     /* Do color quantization. */
 
                     if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
                         return null;
-                    }
 
                     try
                     {
@@ -143,7 +158,6 @@ namespace Jpeg
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usage();
                         return null;
                     }
                 }
@@ -151,55 +165,31 @@ namespace Jpeg
                 {
                     /* Select IDCT algorithm. */
                     if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
                         return null;
-                    }
 
                     if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
-                    {
                         result.DCTMethod = J_DCT_METHOD.JDCT_ISLOW;
-                    }
                     else if (cdjpeg_utils.keymatch(argv[argn], "fast", 2))
-                    {
                         result.DCTMethod = J_DCT_METHOD.JDCT_IFAST;
-                    }
                     else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
-                    {
                         result.DCTMethod = J_DCT_METHOD.JDCT_FLOAT;
-                    }
                     else
-                    {
-                        usage();
                         return null;
-                    }
                 }
                 else if (cdjpeg_utils.keymatch(arg, "dither", 2))
                 {
                     /* Select dithering algorithm. */
                     if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
                         return null;
-                    }
 
                     if (cdjpeg_utils.keymatch(argv[argn], "fs", 2))
-                    {
                         result.DitherMode = J_DITHER_MODE.JDITHER_FS;
-                    }
                     else if (cdjpeg_utils.keymatch(argv[argn], "none", 2))
-                    {
                         result.DitherMode = J_DITHER_MODE.JDITHER_NONE;
-                    }
                     else if (cdjpeg_utils.keymatch(argv[argn], "ordered", 2))
-                    {
                         result.DitherMode = J_DITHER_MODE.JDITHER_ORDERED;
-                    }
                     else
-                    {
-                        usage();
                         return null;
-                    }
                 }
                 else if (cdjpeg_utils.keymatch(arg, "debug", 1) || cdjpeg_utils.keymatch(arg, "verbose", 1))
                 {
@@ -241,10 +231,7 @@ namespace Jpeg
                 {
                     /* Set output file name. */
                     if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
                         return null;
-                    }
 
                     result.OutputFileName = argv[argn];   /* save it away for later use */
                 }
@@ -252,17 +239,11 @@ namespace Jpeg
                 {
                     /* Scale the output image by a fraction M/N. */
                     if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
                         return null;
-                    }
 
                     int slashPos = argv[argn].IndexOf('/');
                     if (slashPos == -1)
-                    {
-                        usage();
                         return null;
-                    }
 
                     try
                     {
@@ -275,16 +256,11 @@ namespace Jpeg
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        usage();
                         return null;
                     }
                 }
-                else
-                {
-                    /* bogus switch */
-                    usage();
+                else /* bogus switch */
                     return null;
-                }
             }
 
             /* Must have either -outfile switch or explicit output file name */
@@ -294,7 +270,6 @@ namespace Jpeg
                 if (lastFileArgSeen != argv.Length - 2)
                 {
                     Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usage();
                     return null;
                 }
 
@@ -308,7 +283,6 @@ namespace Jpeg
                 if (lastFileArgSeen != argv.Length - 1)
                 {
                     Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usage();
                     return null;
                 }
 

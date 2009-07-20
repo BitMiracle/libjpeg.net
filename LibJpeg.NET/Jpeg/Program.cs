@@ -17,44 +17,6 @@ namespace Jpeg
             public string OutputFileName = "";
         }
 
-        class CompressOptions : Options
-        {
-            public int Quality = 75;
-            public bool ForceBaseline = false;
-            public J_DCT_METHOD DCTMethod = JpegConstants.JDCT_DEFAULT;
-            public bool Debug = false;
-            public bool Grayscale = false;
-            public bool Optimize = false;
-            public bool Progressive = false;
-            public string Qslots = "";
-            public string Qtables = "";
-            public int RestartInterval = 0;
-            public int RestartInRows = 0;
-            public string Sample = "";
-            public int SmoothingFactor = 0;
-        }
-
-        class DecompressOptions : Options
-        {
-            public IMAGE_FORMATS OutputFormat = IMAGE_FORMATS.FMT_BMP;
-
-            public bool QuantizeColors = false;
-            public int DesiredNumberOfColors = 256;
-
-            public J_DCT_METHOD DCTMethod = JpegConstants.JDCT_DEFAULT;
-            public J_DITHER_MODE DitherMode = J_DITHER_MODE.JDITHER_FS;
-
-            public bool Debug = false;
-            public bool Fast = false;
-            public bool Grayscale = false;
-            public bool NoSmooth = false;
-            public bool OnePass = false;
-
-            public bool Scaled = false;
-            public int ScaleNumerator = 1;
-            public int ScaleDenominator = 1;
-        }
-
         static bool m_printedVersion = false;
         static string m_programName;    /* program name for error messages */
 
@@ -64,7 +26,10 @@ namespace Jpeg
 
             Options options = parseArguments(args);
             if (options == null)
+            {
+                usage();
                 return;
+            }
 
             /* Open the input file. */
             using (FileStream inputFile = openInputFile(options.InputFileName))
