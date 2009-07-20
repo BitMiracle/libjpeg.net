@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using System.IO;
 using System.Globalization;
@@ -29,78 +28,104 @@ namespace cJpeg
 {
     public class Program
     {
-        class Options
-        {
-            public string InputFileName = "";
-            public string OutputFileName = "";
-
-            public int Quality = 75;
-            public bool ForceBaseline = false;
-            public J_DCT_METHOD DCTMethod = JpegConstants.JDCT_DEFAULT;
-            public bool Debug = false;
-            public bool Grayscale = false;
-            public bool Optimize = false;
-            public bool Progressive = false;
-            public string Qslots = "";
-            public string Qtables = "";
-            public int RestartInterval = 0;
-            public int RestartInRows = 0;
-            public string Sample = "";
-            public int SmoothingFactor = 0;
-        }
-
-        static bool m_printedVersion = false;
-        static string m_programName;    /* program name for error messages */
+        static bool printed_version = false;
+        static string progname;    /* program name for error messages */
+        static string outfilename;   /* for -outfile switch */
 
         public static void Main(string[] args)
         {
-            m_programName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
+            progname = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
 
-            /* Scan command line to find file names.
-             * It is convenient to use just one switch-parsing routine, but the switch
-             * values read here are ignored; we will rescan the switches after opening
-             * the input file.
-             */
-            Options options = parseSwitches(args);
-            if (options == null)
-                return;
-
-            /* Open the input file. */
-            using (FileStream inputFile = openInputFile(options.InputFileName))
-            {
-                if (inputFile == null)
-                    return;
-
-                /* Open the output file. */
-                using (FileStream outputFile = createOutputFile(options.OutputFileName))
-                {
-                    if (outputFile == null)
-                        return;
-
-                    compress(inputFile, options, outputFile);
-                }
-            }
-        }
-
-        private static void compress(Stream input, Options options, Stream output)
-        {
-            Debug.Assert(input != null);
-            Debug.Assert(options != null);
-            Debug.Assert(output != null);
-
-            jpeg_compress_struct cinfo = new jpeg_compress_struct(new cd_jpeg_error_mgr());
+            cd_jpeg_error_mgr err = new cd_jpeg_error_mgr();
+            jpeg_compress_struct cinfo = new jpeg_compress_struct(err);
 
             /* Initialize JPEG parameters.
              * Much of this may be overridden later.
              * In particular, we don't yet know the input file's color space,
              * but we need to provide some value for jpeg_set_defaults() to work.
              */
+
             cinfo.In_color_space = J_COLOR_SPACE.JCS_RGB; /* arbitrary guess */
             cinfo.jpeg_set_defaults();
 
+            /* Scan command line to find file names.
+             * It is convenient to use just one switch-parsing routine, but the switch
+             * values read here are ignored; we will rescan the switches after opening
+             * the input file.
+             */
+            int file_index;
+            bool parsedOK = parse_switches(cinfo, args, false, out file_index);
+
+            /* Must have either -outfile switch or explicit output file name */
+            if (outfilename == null)
+            {
+                // file_index should point to input file 
+                if (file_index != args.Length - 2)
+                {
+                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", progname));
+                    usage();
+                    return;
+                }
+
+                // output file comes right after input one
+                outfilename = args[file_index + 1];
+            }
+            else
+            {
+                // file_index should point to input file
+                if (file_index != args.Length - 1)
+                {
+                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", progname));
+                    usage();
+                    return;
+                }
+            }
+
+            /* Open the input file. */
+            FileStream input_file = null;
+            if (file_index < args.Length)
+            {
+                try
+                {
+                    input_file = new FileStream(args[file_index], FileMode.Open);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
+                    Console.WriteLine(e.Message);
+                    return;
+                }
+            }
+            else
+            {
+                Console.WriteLine(string.Format("{0}: sorry, can't read file from console"));
+                return;
+            }
+
+            /* Open the output file. */
+            FileStream output_file = null;
+            if (outfilename != null)
+            {
+                try
+                {
+                    output_file = new FileStream(outfilename, FileMode.Create);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
+                    Console.WriteLine(e.Message);
+                    return;	
+                }
+            }
+            else
+            {
+                Console.WriteLine(string.Format("{0}: sorry, can't write file to console"));
+                return;
+            }
+
             /* Figure out the input file format, and set up to read it. */
             cjpeg_source_struct src_mgr = new bmp_source_struct(cinfo);
-            src_mgr.input_file = input;
+            src_mgr.input_file = input_file;
 
             /* Read the input file header to obtain file size & colorspace. */
             src_mgr.start_input();
@@ -108,12 +133,11 @@ namespace cJpeg
             /* Now that we know input colorspace, fix colorspace-dependent defaults */
             cinfo.jpeg_default_colorspace();
 
-            /* Adjust default compression parameters */
-            if (!applyOptions(cinfo, options))
-                return;
+            /* Adjust default compression parameters by re-parsing the options */
+            parse_switches(cinfo, args, true, out file_index);
 
             /* Specify data destination for compression */
-            cinfo.jpeg_stdio_dest(output);
+            cinfo.jpeg_stdio_dest(output_file);
 
             /* Start compressor */
             cinfo.jpeg_start_compress(true);
@@ -129,6 +153,13 @@ namespace cJpeg
             src_mgr.finish_input();
             cinfo.jpeg_finish_compress();
 
+            /* Close files, if we opened them */
+            input_file.Close();
+            input_file.Dispose();
+
+            output_file.Close();
+            output_file.Dispose();
+
             /* All done. */
             if (cinfo.Err.Num_warnings != 0)
                 Console.WriteLine("Corrupt-data warning count is not zero");
@@ -141,26 +172,34 @@ namespace cJpeg
         /// for_real is false on the first (dummy) pass; we may skip any expensive
         /// processing.
         /// </summary>
-        static Options parseSwitches(string[] argv)
+        static bool parse_switches(jpeg_compress_struct cinfo, string[] argv, bool for_real, out int fileIndex)
         {
-            Debug.Assert(argv != null);
-            if (argv.Length == 0)
-            {
-                usage();
-                return null;
-            }
+            /* Set up default JPEG parameters. */
+            /* Note that default -quality level need not, and does not,
+             * match the default scaling for an explicit -qtables argument.
+             */
+            int quality = 75;           /* default -quality value */
+            int q_scale_factor = 100;       /* default to no scaling for -qtables */
+            bool force_baseline = false; /* by default, allow 16-bit quantizers */
+            bool simple_progressive = false;
 
-            Options options = new Options();
+            string qtablefile = null;    /* saves -qtables filename if any */
+            string qslotsarg = null; /* saves -qslots parm if any */
+            string samplearg = null; /* saves -sample parm if any */
+
+            outfilename = null;
+            fileIndex = -1;
+            cinfo.Err.Trace_level = 0;
 
             /* Scan command line options, adjust parameters */
-            int lastFileArgSeen = -1;
-            for (int argn = 0; argn < argv.Length; argn++)
+            int argn = 0;
+            for ( ; argn < argv.Length; argn++)
             {
                 string arg = argv[argn];
                 if (arg[0] != '-')
                 {
                     /* Not a switch, must be a file name argument */
-                    lastFileArgSeen = argn;
+                    fileIndex = argn;
                     break;
                 }
 
@@ -169,7 +208,7 @@ namespace cJpeg
                 if (cdjpeg_utils.keymatch(arg, "baseline", 1))
                 {
                     /* Force baseline-compatible output (8-bit quantizer values). */
-                    options.ForceBaseline = true;
+                    force_baseline = true;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "dct", 2))
                 {
@@ -178,42 +217,41 @@ namespace cJpeg
                     if (argn >= argv.Length)
                     {
                         usage();
-                        return null;
+                        return false;
                     }
 
                     if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
-                        options.DCTMethod = J_DCT_METHOD.JDCT_ISLOW;
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_ISLOW;
                     else if (cdjpeg_utils.keymatch(argv[argn], "fast", 2))
-                        options.DCTMethod = J_DCT_METHOD.JDCT_IFAST;
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_IFAST;
                     else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
-                        options.DCTMethod = J_DCT_METHOD.JDCT_FLOAT;
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_FLOAT;
                     else
                     {
                         usage();
-                        return null;
+                        return false;
                     }
                 }
                 else if (cdjpeg_utils.keymatch(arg, "debug", 1) || cdjpeg_utils.keymatch(arg, "verbose", 1))
                 {
                     /* Enable debug printouts. */
-                    options.Debug = true;
-
                     /* On first -d, print version identification */
-                    if (!m_printedVersion)
+                    if (!printed_version)
                     {
                         Console.Write(string.Format("Bit Miracle's CJPEG, version {0}\n{1}\n", jpeg_common_struct.Version, jpeg_common_struct.Copyright));
-                        m_printedVersion = true;
+                        printed_version = true;
                     }
+                    cinfo.Err.Trace_level++;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "grayscale", 2) || cdjpeg_utils.keymatch(arg, "greyscale", 2))
                 {
                     /* Force a monochrome JPEG file to be generated. */
-                    options.Grayscale = true;
+                    cinfo.jpeg_set_colorspace(J_COLOR_SPACE.JCS_GRAYSCALE);
                 }
                 else if (cdjpeg_utils.keymatch(arg, "optimize", 1) || cdjpeg_utils.keymatch(arg, "optimise", 1))
                 {
                     /* Enable entropy parm optimization. */
-                    options.Optimize = true;
+                    cinfo.Optimize_coding = true;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "outfile", 4))
                 {
@@ -222,15 +260,15 @@ namespace cJpeg
                     if (argn >= argv.Length)
                     {
                         usage();
-                        return null;
+                        return false;
                     }
 
-                    options.OutputFileName = argv[argn];
+                    outfilename = argv[argn];   /* save it away for later use */
                 }
                 else if (cdjpeg_utils.keymatch(arg, "progressive", 1))
                 {
                     /* Select simple progressive mode. */
-                    options.Progressive = true;
+                    simple_progressive = true;
                     /* We must postpone execution until num_components is known. */
                 }
                 else if (cdjpeg_utils.keymatch(arg, "quality", 1))
@@ -240,19 +278,22 @@ namespace cJpeg
                     if (argn >= argv.Length)
                     {
                         usage();
-                        return null;
+                        return false;
                     }
 
                     try
                     {
-                        options.Quality = int.Parse(argv[argn]);
+                        quality = int.Parse(argv[argn]);
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                         usage();
-                        return null;
+                        return false;
                     }
+
+                    /* Change scale factor in case -qtables is present. */
+                    q_scale_factor = jpeg_compress_struct.jpeg_quality_scaling(quality);
                 }
                 else if (cdjpeg_utils.keymatch(arg, "qslots", 2))
                 {
@@ -261,10 +302,10 @@ namespace cJpeg
                     if (argn >= argv.Length)
                     {
                         usage();
-                        return null;
+                        return false;
                     }
 
-                    options.Qslots = argv[argn];
+                    qslotsarg = argv[argn];
                     /* Must delay setting qslots until after we have processed any
                      * colorspace-determining switches, since jpeg_set_colorspace sets
                      * default quant table numbers.
@@ -277,10 +318,10 @@ namespace cJpeg
                     if (argn >= argv.Length)
                     {
                         usage();
-                        return null;
+                        return false;
                     }
 
-                    options.Qtables = argv[argn];
+                    qtablefile = argv[argn];
                     /* We postpone actually reading the file in case -quality comes later. */
                 }
                 else if (cdjpeg_utils.keymatch(arg, "restart", 1))
@@ -291,7 +332,7 @@ namespace cJpeg
                     if (argn >= argv.Length)
                     {
                         usage();
-                        return null;
+                        return false;
                     }
 
                     bool inBlocks = false;
@@ -309,25 +350,25 @@ namespace cJpeg
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message);
+                    	Console.WriteLine(e.Message);
                         usage();
-                        return null;
+                        return false;
                     }
 
-                    if (val < 0 || val > 65535)
+                    if (val < 0 || val> 65535)
                     {
                         usage();
-                        return null;
+                        return false;
                     }
 
                     if (inBlocks)
                     {
-                        options.RestartInterval = val;
-                        options.RestartInRows = 0; /* else prior '-restart n' overrides me */
+                        cinfo.Restart_interval = val;
+                        cinfo.Restart_in_rows = 0; /* else prior '-restart n' overrides me */
                     }
                     else
                     {
-                        options.RestartInRows = val;
+                        cinfo.Restart_in_rows = val;
                         /* restart_interval will be computed during startup */
                     }
                 }
@@ -338,10 +379,10 @@ namespace cJpeg
                     if (argn >= argv.Length)
                     {
                         usage();
-                        return null;
+                        return false;
                     }
 
-                    options.Sample = argv[argn];
+                    samplearg = argv[argn];
                     /* Must delay setting sample factors until after we have processed any
                      * colorspace-determining switches, since jpeg_set_colorspace sets
                      * default sampling factors.
@@ -350,12 +391,12 @@ namespace cJpeg
                 else if (cdjpeg_utils.keymatch(arg, "smooth", 2))
                 {
                     /* Set input smoothing factor. */
-
+                    
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
                     {
                         usage();
-                        return null;
+                        return false;
                     }
 
                     int val;
@@ -367,139 +408,64 @@ namespace cJpeg
                     {
                         Console.WriteLine(e.Message);
                         usage();
-                        return null;
+                        return false;
                     }
 
                     if (val < 0 || val > 100)
                     {
                         usage();
-                        return null;
+                        return false;
                     }
 
-                    options.SmoothingFactor = val;
+                    cinfo.Smoothing_factor = val;
                 }
                 else
                 {
                     usage(); /* bogus switch */
-                    return null;
-                }
-            }
-
-            /* Must have either -outfile switch or explicit output file name */
-            if (options.OutputFileName.Length == 0)
-            {
-                // file_index should point to input file 
-                if (lastFileArgSeen != argv.Length - 2)
-                {
-                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usage();
-                    return null;
-                }
-
-                // output file comes right after input one
-                options.InputFileName = argv[lastFileArgSeen];
-                options.OutputFileName = argv[lastFileArgSeen + 1];
-            }
-            else
-            {
-                // file_index should point to input file
-                if (lastFileArgSeen != argv.Length - 1)
-                {
-                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usage();
-                    return null;
-                }
-
-                options.InputFileName = argv[lastFileArgSeen];
-            }
-
-            return options;
-        }
-
-        static bool applyOptions(jpeg_compress_struct compressor, Options options)
-        {
-            compressor.jpeg_set_quality(options.Quality, options.ForceBaseline);
-            compressor.Dct_method = options.DCTMethod;
-
-            if (options.Debug)
-                compressor.Err.Trace_level = 1;
-
-            if (options.Grayscale)
-                compressor.jpeg_set_colorspace(J_COLOR_SPACE.JCS_GRAYSCALE);
-
-            if (options.Optimize)
-                compressor.Optimize_coding = true;
-
-            compressor.Restart_interval = options.RestartInterval;
-            compressor.Restart_in_rows = options.RestartInRows;
-
-            compressor.Smoothing_factor = options.SmoothingFactor;
-
-            int q_scale_factor = 100;
-            if (options.Quality != 75)
-                q_scale_factor = jpeg_compress_struct.jpeg_quality_scaling(options.Quality);
-
-            /* Set quantization tables for selected quality. */
-            /* Some or all may be overridden if -qtables is present. */
-            if (options.Qtables != "") /* process -qtables if it was present */
-            {
-                if (!read_quant_tables(compressor, options.Qtables, q_scale_factor, options.ForceBaseline))
-                {
-                    usage();
                     return false;
                 }
             }
 
-            if (options.Qslots != "")  /* process -qslots if it was present */
-            {
-                if (!set_quant_slots(compressor, options.Qslots))
-                {
-                    usage();
-                    return false;
-                }
-            }
+            /* Post-switch-scanning cleanup */
 
-            if (options.Sample != "")  /* process -sample if it was present */
+            if (for_real)
             {
-                if (!set_sample_factors(compressor, options.Sample))
-                {
-                    usage();
-                    return false;
-                }
-            }
+                /* Set quantization tables for selected quality. */
+                /* Some or all may be overridden if -qtables is present. */
+                cinfo.jpeg_set_quality(quality, force_baseline);
 
-            if (options.Progressive) /* process -progressive; -scans can override */
-                compressor.jpeg_simple_progression();
+                if (qtablefile != null) /* process -qtables if it was present */
+                {
+                    if (!read_quant_tables(cinfo, qtablefile, q_scale_factor, force_baseline))
+                    {
+                        usage();
+                        return false;
+                    }
+                }
+
+                if (qslotsarg != null)  /* process -qslots if it was present */
+                {
+                    if (!set_quant_slots(cinfo, qslotsarg))
+                    {
+                        usage();
+                        return false;
+                    }
+                }
+
+                if (samplearg != null)  /* process -sample if it was present */
+                {
+                    if (!set_sample_factors(cinfo, samplearg))
+                    {
+                        usage();
+                        return false;
+                    }
+                }
+
+                if (simple_progressive) /* process -progressive; -scans can override */
+                    cinfo.jpeg_simple_progression();
+            }
 
             return true;
-        }
-
-        static FileStream openInputFile(string fileName)
-        {
-            try
-            {
-                return new FileStream(fileName, FileMode.Open);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(string.Format("{0}: can't open {1}", m_programName, fileName));
-                Console.WriteLine(e.Message);
-                return null;
-            }
-        }
-
-        static FileStream createOutputFile(string fileName)
-        {
-            try
-            {
-                return new FileStream(fileName, FileMode.Create);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(string.Format("{0}: can't open {1}", m_programName, fileName));
-                Console.WriteLine(e.Message);
-                return null;
-            }
         }
 
         /// <summary>
@@ -507,7 +473,7 @@ namespace cJpeg
         /// </summary>
         static void usage()
         {
-            Console.WriteLine(string.Format("usage: {0} [switches] inputfile outputfile", m_programName));
+            Console.WriteLine(string.Format("usage: {0} [switches] inputfile outputfile", progname));
 
             Console.WriteLine("Switches (names may be abbreviated):");
             Console.WriteLine("  -quality N     Compression quality (0..100; 5-95 is useful range)");

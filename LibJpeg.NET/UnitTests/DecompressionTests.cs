@@ -11,33 +11,12 @@ namespace UnitTests
     [TestFixture]
     public class DecompressionTests
     {
+        private bool m_testClassicDJpeg = true;
         private string m_dataFolder = @"..\..\..\..\TestCase\jpeg_decompression_data\";
-
-        private string getSourcePath(string imageName)
-        {
-            return Path.Combine(m_dataFolder, imageName);
-        }
 
         private void runTest(string[] args, string sourceImage, string targetImage)
         {
-            // Jpeg.Program.Main is static, so lock concurent access to a test code
-            // use a private field to lock upon 
-
-            lock (m_dataFolder)
-            {
-                List<string> completeArgs = new List<string>(1 + args.Length + 2);
-
-                completeArgs.Add("-d");
-                for (int i = 0; i < args.Length; ++i)
-                    completeArgs.Add(args[i]);
-
-                completeArgs.Add(getSourcePath(sourceImage));
-                completeArgs.Add(targetImage);
-
-                Jpeg.Program.Main(completeArgs.ToArray());
-
-                Assert.IsTrue(Utils.FilesAreEqual(getSourcePath(targetImage), targetImage));
-            }
+            Utils.TestDecompression(args, sourceImage, targetImage, m_testClassicDJpeg, m_dataFolder);
         }
 
         [Test]

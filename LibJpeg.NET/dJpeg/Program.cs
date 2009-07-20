@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using System.IO;
 
@@ -28,35 +27,27 @@ namespace dJpeg
 {
     public class Program
     {
-        class Options
-        {
-            public string InputFileName = "";
-            public string OutputFileName = "";
-            public IMAGE_FORMATS OutputFormat = IMAGE_FORMATS.FMT_BMP;
-
-            public bool QuantizeColors = false;
-            public int DesiredNumberOfColors = 256;
-
-            public J_DCT_METHOD DCTMethod = JpegConstants.JDCT_DEFAULT;
-            public J_DITHER_MODE DitherMode = J_DITHER_MODE.JDITHER_FS;
-
-            public bool Debug = false;
-            public bool Fast = false;
-            public bool Grayscale = false;
-            public bool NoSmooth = false;
-            public bool OnePass = false;
-
-            public bool Scaled = false;
-            public int ScaleNumerator = 1;
-            public int ScaleDenominator = 1;
-        }
-
-        static bool m_printedVersion = false;
-        static string m_programName;    /* program name for error messages */
+        static bool printed_version = false;
+        static IMAGE_FORMATS requested_fmt;
+        static string progname;    /* program name for error messages */
+        static string outfilename;   /* for -outfile switch */
 
         public static void Main(string[] args)
         {
-            m_programName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
+            progname = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
+
+            /* Initialize the JPEG decompression object with default error handling. */
+            cd_jpeg_error_mgr err = new cd_jpeg_error_mgr();
+            jpeg_decompress_struct cinfo = new jpeg_decompress_struct(err);
+
+            /* Insert custom marker processor for COM and APP12.
+             * APP12 is used by some digital camera makers for textual info,
+             * so we provide the ability to display it as text.
+             * If you like, additional APPn marker types can be selected for display,
+             * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
+             */
+            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_COM, new jpeg_decompress_struct.jpeg_marker_parser_method(print_text_marker));
+            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_APP0 + 12, print_text_marker);
 
             /* Scan command line to find file names. */
             /* It is convenient to use just one switch-parsing routine, but the switch
@@ -65,58 +56,91 @@ namespace dJpeg
              * (Exception: tracing level set here controls verbosity for COM markers
              * found during jpeg_read_header...)
              */
-            Options options = parse_switches(args);
-            if (options == null)
-                return;
-                        /* Open the input file. */
-            using (FileStream inputFile = openInputFile(options.InputFileName))
+            int file_index;
+            bool parsedOK = parse_switches(cinfo, args, false, out file_index);
+
+            /* Must have either -outfile switch or explicit output file name */
+            if (outfilename == null)
             {
-                if (inputFile == null)
-                    return;
-
-                /* Open the output file. */
-                using (FileStream outputFile = createOutputFile(options.OutputFileName))
+                // file_index should point to input file 
+                if (file_index != args.Length - 2)
                 {
-                    if (outputFile == null)
-                        return;
+                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", progname));
+                    usage();
+                    return;
+                }
 
-                    decompress(inputFile, options, outputFile);
+                // output file comes right after input one
+                outfilename = args[file_index + 1];
+            }
+            else
+            {
+                // file_index should point to input file
+                if (file_index != args.Length - 1)
+                {
+                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", progname));
+                    usage();
+                    return;
                 }
             }
-        }
 
-        private static void decompress(Stream input, Options options, Stream output)
-        {
-            Debug.Assert(input != null);
-            Debug.Assert(options != null);
-            Debug.Assert(output != null);
+            /* Open the input file. */
+            FileStream input_file = null;
+            if (file_index < args.Length)
+            {
+                try
+                {
+                    input_file = new FileStream(args[file_index], FileMode.Open);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
+                    Console.WriteLine(e.Message);
+                    return;
+                }
+            }
+            else
+            {
+                Console.WriteLine(string.Format("{0}: sorry, can't read file from console"));
+                return;
+            }
 
-            /* Initialize the JPEG decompression object with default error handling. */
-            jpeg_decompress_struct cinfo = new jpeg_decompress_struct(new cd_jpeg_error_mgr());
-
-            /* Insert custom marker processor for COM and APP12.
-             * APP12 is used by some digital camera makers for textual info,
-             * so we provide the ability to display it as text.
-             * If you like, additional APPn marker types can be selected for display,
-             * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
-             */
-            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_COM, new jpeg_decompress_struct.jpeg_marker_parser_method(printTextMarker));
-            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
+            /* Open the output file. */
+            FileStream output_file = null;
+            if (outfilename != null)
+            {
+                try
+                {
+                    output_file = new FileStream(outfilename, FileMode.Create);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
+                    Console.WriteLine(e.Message);
+                    return;
+                }
+            }
+            else
+            {
+                Console.WriteLine(string.Format("{0}: sorry, can't write file to console"));
+                return;
+            }
 
             /* Specify data source for decompression */
-            cinfo.jpeg_stdio_src(input);
+            cinfo.jpeg_stdio_src(input_file);
 
             /* Read file header, set default decompression parameters */
             cinfo.jpeg_read_header(true);
 
-            applyOptions(cinfo, options);
+            /* Adjust default decompression parameters by re-parsing the options */
+            parse_switches(cinfo, args, true, out file_index);
 
             /* Initialize the output module now to let it override any crucial
              * option settings (for instance, GIF wants to force color quantization).
              */
             djpeg_dest_struct dest_mgr = null;
 
-            switch (options.OutputFormat)
+            switch (requested_fmt)
             {
                 case IMAGE_FORMATS.FMT_BMP:
                     dest_mgr = new bmp_dest_struct(cinfo, false);
@@ -129,7 +153,7 @@ namespace dJpeg
                     break;
             }
 
-            dest_mgr.output_file = output;
+            dest_mgr.output_file = output_file;
 
             /* Start decompressor */
             cinfo.jpeg_start_decompress();
@@ -151,317 +175,16 @@ namespace dJpeg
             dest_mgr.finish_output();
             cinfo.jpeg_finish_decompress();
 
+            /* Close files, if we opened them */
+            input_file.Close();
+            input_file.Dispose();
+
+            output_file.Close();
+            output_file.Dispose();
+
             /* All done. */
             if (cinfo.Err.Num_warnings != 0)
                 Console.WriteLine("Corrupt-data warning count is not zero");
-        }
-
-        /// <summary>
-        /// Parse optional switches.
-        /// Returns argv[] index of first file-name argument (== argc if none).
-        /// Any file names with indexes <= last_file_arg_seen are ignored;
-        /// they have presumably been processed in a previous iteration.
-        /// (Pass 0 for last_file_arg_seen on the first or only iteration.)
-        /// for_real is false on the first (dummy) pass; we may skip any expensive
-        /// processing.
-        /// </summary>
-        static Options parse_switches(string[] argv)
-        {
-            Debug.Assert(argv != null);
-            if (argv.Length <= 0)
-            {
-                usage();
-                return null;
-            }
-
-            Options result = new Options();
-
-            int lastFileArgSeen = -1;
-
-            /* Scan command line options, adjust parameters */
-            string arg;
-            for (int argn = 0; argn < argv.Length; argn++)
-            {
-                arg = argv[argn];
-                if (arg[0] != '-')
-                {
-                    /* Not a switch, must be a file name argument */
-                    lastFileArgSeen = argn;
-                    break;
-                }
-
-                arg = arg.Substring(1);
-
-                if (cdjpeg_utils.keymatch(arg, "bmp", 1))
-                {
-                    result.OutputFormat = IMAGE_FORMATS.FMT_BMP;
-                }
-                else if (cdjpeg_utils.keymatch(arg, "colors", 1) ||
-                         cdjpeg_utils.keymatch(arg, "colours", 1) ||
-                         cdjpeg_utils.keymatch(arg, "quantize", 1) ||
-                         cdjpeg_utils.keymatch(arg, "quantise", 1))
-                {
-                    /* Do color quantization. */
-                    
-                    if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
-                        return null;
-                    }
-
-                    try
-                    {
-                        result.QuantizeColors = true;
-                        result.DesiredNumberOfColors = int.Parse(argv[argn]);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        usage();
-                        return null;
-                    }
-                }
-                else if (cdjpeg_utils.keymatch(arg, "dct", 2))
-                {
-                    /* Select IDCT algorithm. */
-                    if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
-                        return null;
-                    }
-
-                    if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
-                    {
-                        result.DCTMethod = J_DCT_METHOD.JDCT_ISLOW;
-                    }
-                    else if (cdjpeg_utils.keymatch(argv[argn], "fast", 2))
-                    {
-                        result.DCTMethod = J_DCT_METHOD.JDCT_IFAST;
-                    }
-                    else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
-                    {
-                        result.DCTMethod = J_DCT_METHOD.JDCT_FLOAT;
-                    }
-                    else
-                    {
-                        usage();
-                        return null;
-                    }
-                }
-                else if (cdjpeg_utils.keymatch(arg, "dither", 2))
-                {
-                    /* Select dithering algorithm. */
-                    if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
-                        return null;
-                    }
-
-                    if (cdjpeg_utils.keymatch(argv[argn], "fs", 2))
-                    {
-                        result.DitherMode = J_DITHER_MODE.JDITHER_FS;
-                    }
-                    else if (cdjpeg_utils.keymatch(argv[argn], "none", 2))
-                    {
-                        result.DitherMode = J_DITHER_MODE.JDITHER_NONE;
-                    }
-                    else if (cdjpeg_utils.keymatch(argv[argn], "ordered", 2))
-                    {
-                        result.DitherMode = J_DITHER_MODE.JDITHER_ORDERED;
-                    }
-                    else
-                    {
-                        usage();
-                        return null;
-                    }
-                }
-                else if (cdjpeg_utils.keymatch(arg, "debug", 1) || cdjpeg_utils.keymatch(arg, "verbose", 1))
-                {
-                    /* Enable debug printouts. */
-                    result.Debug = true;
-
-                    /* On first -d, print version identification */
-                    if (!m_printedVersion)
-                    {
-                        Console.Write(string.Format("Bit Miracle's DJPEG, version {0}\n{1}\n", jpeg_common_struct.Version, jpeg_common_struct.Copyright));
-                        m_printedVersion = true;
-                    }
-                }
-                else if (cdjpeg_utils.keymatch(arg, "fast", 1))
-                {
-                    result.Fast = true;
-                }
-                else if (cdjpeg_utils.keymatch(arg, "grayscale", 2) || cdjpeg_utils.keymatch(arg, "greyscale", 2))
-                {
-                    /* Force monochrome output. */
-                    result.Grayscale = true;
-                }
-                else if (cdjpeg_utils.keymatch(arg, "nosmooth", 3))
-                {
-                    /* Suppress fancy upsampling */
-                    result.NoSmooth = true;
-                }
-                else if (cdjpeg_utils.keymatch(arg, "onepass", 3))
-                {
-                    /* Use fast one-pass quantization. */
-                    result.OnePass = true;
-                }
-                else if (cdjpeg_utils.keymatch(arg, "os2", 3))
-                {
-                    /* BMP output format (OS/2 flavor). */
-                    result.OutputFormat = IMAGE_FORMATS.FMT_OS2; 
-                }
-                else if (cdjpeg_utils.keymatch(arg, "outfile", 4))
-                {
-                    /* Set output file name. */
-                    if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
-                        return null;
-                    }
-
-                    result.OutputFileName = argv[argn];   /* save it away for later use */
-                }
-                else if (cdjpeg_utils.keymatch(arg, "scale", 1))
-                {
-                    /* Scale the output image by a fraction M/N. */
-                    if (++argn >= argv.Length) /* advance to next argument */
-                    {
-                        usage();
-                        return null;
-                    }
-
-                    int slashPos = argv[argn].IndexOf('/');
-                    if (slashPos == -1)
-                    {
-                        usage();
-                        return null;
-                    }
-
-                    try
-                    {
-                        string num = argv[argn].Substring(0, slashPos);
-                        string denom = argv[argn].Substring(slashPos + 1);
-                        result.Scaled = true;
-                        result.ScaleNumerator = int.Parse(num);
-                        result.ScaleDenominator = int.Parse(denom);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        usage();
-                        return null;
-                    }
-                }
-                else
-                {
-                    /* bogus switch */
-                    usage();
-                    return null;
-                }
-            }
-
-            /* Must have either -outfile switch or explicit output file name */
-            if (result.OutputFileName.Length == 0)
-            {
-                // file_index should point to input file 
-                if (lastFileArgSeen != argv.Length - 2)
-                {
-                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usage();
-                    return null;
-                }
-
-                // output file comes right after input one
-                result.InputFileName = argv[lastFileArgSeen];
-                result.OutputFileName = argv[lastFileArgSeen + 1];
-            }
-            else
-            {
-                // file_index should point to input file
-                if (lastFileArgSeen != argv.Length - 1)
-                {
-                    Console.WriteLine(string.Format("{0}: must name one input and one output file.", m_programName));
-                    usage();
-                    return null;
-                }
-
-                result.InputFileName = argv[lastFileArgSeen];
-            }
-
-            return result;
-        }
-
-        static void applyOptions(jpeg_decompress_struct decompressor, Options options)
-        {
-            Debug.Assert(decompressor != null);
-            Debug.Assert(options != null);
-
-            if (options.QuantizeColors)
-            {
-                decompressor.Quantize_colors = true;
-                decompressor.Desired_number_of_colors = options.DesiredNumberOfColors;
-            }
-
-            decompressor.Dct_method = options.DCTMethod;
-            decompressor.Dither_mode = options.DitherMode;
-
-            if (options.Debug)
-                decompressor.Err.Trace_level = 1;
-
-            if (options.Fast)
-            {
-                /* Select recommended processing options for quick-and-dirty output. */
-                decompressor.Two_pass_quantize = false;
-                decompressor.Dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
-                if (!decompressor.Quantize_colors) /* don't override an earlier -colors */
-                    decompressor.Desired_number_of_colors = 216;
-                decompressor.Dct_method = JpegConstants.JDCT_FASTEST;
-                decompressor.Do_fancy_upsampling = false;
-            }
-
-            if (options.Grayscale)
-                decompressor.Out_color_space = J_COLOR_SPACE.JCS_GRAYSCALE;
-
-            if (options.NoSmooth)
-                decompressor.Do_fancy_upsampling = false;
-
-            if (options.OnePass)
-                decompressor.Two_pass_quantize = false;
-
-            if (options.Scaled)
-            {
-                decompressor.Scale_num = options.ScaleNumerator;
-                decompressor.Scale_denom = options.ScaleDenominator;
-            }
-        }
-
-        static FileStream openInputFile(string fileName)
-        {
-            try
-            {
-                return new FileStream(fileName, FileMode.Open);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(string.Format("{0}: can't open {1}", m_programName, fileName));
-                Console.WriteLine(e.Message);
-                return null;
-            }
-        }
-
-        static FileStream createOutputFile(string fileName)
-        {
-            try
-            {
-                return new FileStream(fileName, FileMode.Create);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(string.Format("{0}: can't open {1}", m_programName, fileName));
-                Console.WriteLine(e.Message);
-                return null;
-            }
         }
 
         /// <summary>
@@ -470,10 +193,10 @@ namespace dJpeg
         /// We want to print out the marker as text, to the extent possible.
         /// Note this code relies on a non-suspending data source.
         /// </summary>
-        static bool printTextMarker(jpeg_decompress_struct cinfo)
+        static bool print_text_marker(jpeg_decompress_struct cinfo)
         {
             bool traceit = (cinfo.Err.Trace_level >= 1);
-
+            
             int length = jpeg_getc(cinfo) << 8;
             length += jpeg_getc(cinfo);
             length -= 2;            /* discount the length word itself */
@@ -530,6 +253,229 @@ namespace dJpeg
 
             if (traceit)
                 Console.WriteLine();
+                
+            return true;
+        }
+
+        /// <summary>
+        /// Parse optional switches.
+        /// Returns argv[] index of first file-name argument (== argc if none).
+        /// Any file names with indexes <= last_file_arg_seen are ignored;
+        /// they have presumably been processed in a previous iteration.
+        /// (Pass 0 for last_file_arg_seen on the first or only iteration.)
+        /// for_real is false on the first (dummy) pass; we may skip any expensive
+        /// processing.
+        /// </summary>
+        static bool parse_switches(jpeg_decompress_struct cinfo, string[] argv, bool for_real, out int last_file_arg_seen)
+        {
+            string arg;
+
+            /* Set up default JPEG parameters. */
+            requested_fmt = IMAGE_FORMATS.FMT_BMP;    /* set default output file format */
+            outfilename = null;
+            last_file_arg_seen = -1;
+            cinfo.Err.Trace_level = 0;
+
+            /* Scan command line options, adjust parameters */
+            int argn = 0;
+            for ( ; argn < argv.Length; argn++)
+            {
+                arg = argv[argn];
+                if (arg[0] != '-')
+                {
+                    /* Not a switch, must be a file name argument */
+                    last_file_arg_seen = argn;
+                    break;
+                }
+
+                arg = arg.Substring(1);
+
+                if (cdjpeg_utils.keymatch(arg, "bmp", 1))
+                {
+                    /* BMP output format. */
+                    requested_fmt = IMAGE_FORMATS.FMT_BMP;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "colors", 1) ||
+                         cdjpeg_utils.keymatch(arg, "colours", 1) ||
+                         cdjpeg_utils.keymatch(arg, "quantize", 1) ||
+                         cdjpeg_utils.keymatch(arg, "quantise", 1))
+                {
+                    /* Do color quantization. */
+                    int val;
+
+                    if (++argn >= argv.Length) /* advance to next argument */
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    try
+                    {
+                        val = int.Parse(argv[argn]);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        usage();
+                        return false;
+                    }
+
+                    cinfo.Desired_number_of_colors = val;
+                    cinfo.Quantize_colors = true;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "dct", 2))
+                {
+                    /* Select IDCT algorithm. */
+                    if (++argn >= argv.Length) /* advance to next argument */
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    if (cdjpeg_utils.keymatch(argv[argn], "int", 1))
+                    {
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_ISLOW;
+                    }
+                    else if (cdjpeg_utils.keymatch(argv[argn], "fast", 2))
+                    {
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_IFAST;
+                    }
+                    else if (cdjpeg_utils.keymatch(argv[argn], "float", 2))
+                    {
+                        cinfo.Dct_method = J_DCT_METHOD.JDCT_FLOAT;
+                    }
+                    else
+                    {
+                        usage();
+                        return false;
+                    }
+                }
+                else if (cdjpeg_utils.keymatch(arg, "dither", 2))
+                {
+                    /* Select dithering algorithm. */
+                    if (++argn >= argv.Length) /* advance to next argument */
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    if (cdjpeg_utils.keymatch(argv[argn], "fs", 2))
+                    {
+                        cinfo.Dither_mode = J_DITHER_MODE.JDITHER_FS;
+                    }
+                    else if (cdjpeg_utils.keymatch(argv[argn], "none", 2))
+                    {
+                        cinfo.Dither_mode = J_DITHER_MODE.JDITHER_NONE;
+                    }
+                    else if (cdjpeg_utils.keymatch(argv[argn], "ordered", 2))
+                    {
+                        cinfo.Dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
+                    }
+                    else
+                    {
+                        usage();
+                        return false;
+                    }
+                }
+                else if (cdjpeg_utils.keymatch(arg, "debug", 1) || cdjpeg_utils.keymatch(arg, "verbose", 1))
+                {
+                    /* Enable debug printouts. */
+                    /* On first -d, print version identification */
+                    if (!printed_version)
+                    {
+                        Console.Write(string.Format("Bit Miracle's DJPEG, version {0}\n{1}\n", jpeg_common_struct.Version, jpeg_common_struct.Copyright));
+                        printed_version = true;
+                    }
+                    cinfo.Err.Trace_level++;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "fast", 1))
+                {
+                    /* Select recommended processing options for quick-and-dirty output. */
+                    cinfo.Two_pass_quantize = false;
+                    cinfo.Dither_mode = J_DITHER_MODE.JDITHER_ORDERED;
+                    if (!cinfo.Quantize_colors) /* don't override an earlier -colors */
+                        cinfo.Desired_number_of_colors = 216;
+                    cinfo.Dct_method = JpegConstants.JDCT_FASTEST;
+                    cinfo.Do_fancy_upsampling = false;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "grayscale", 2) || cdjpeg_utils.keymatch(arg, "greyscale", 2))
+                {
+                    /* Force monochrome output. */
+                    cinfo.Out_color_space = J_COLOR_SPACE.JCS_GRAYSCALE;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "nosmooth", 3))
+                {
+                    /* Suppress fancy upsampling */
+                    cinfo.Do_fancy_upsampling = false;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "onepass", 3))
+                {
+                    /* Use fast one-pass quantization. */
+                    cinfo.Two_pass_quantize = false;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "os2", 3))
+                {
+                    /* BMP output format (OS/2 flavor). */
+                    requested_fmt = IMAGE_FORMATS.FMT_OS2;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "outfile", 4))
+                {
+                    /* Set output file name. */
+                    if (++argn >= argv.Length) /* advance to next argument */
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    outfilename = argv[argn];   /* save it away for later use */
+                }
+                else if (cdjpeg_utils.keymatch(arg, "scale", 1))
+                {
+                    /* Scale the output image by a fraction M/N. */
+                    if (++argn >= argv.Length) /* advance to next argument */
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    int slashPos = argv[argn].IndexOf('/');
+                    if (slashPos == -1)
+                    {
+                        usage();
+                        return false;
+                    }
+
+                    try
+                    {
+                        string num = argv[argn].Substring(0, slashPos);
+                        cinfo.Scale_num = int.Parse(num);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        usage();
+                        return false;
+                    }
+
+                    try
+                    {
+                        string denom = argv[argn].Substring(slashPos + 1);
+                        cinfo.Scale_denom = int.Parse(denom);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        usage();
+                        return false;
+                    }
+                }
+                else
+                {
+                    /* bogus switch */
+                    usage();
+                    return false;
+                }
+            }
 
             return true;
         }
@@ -537,11 +483,11 @@ namespace dJpeg
         /// <summary>
         /// Read next byte
         /// </summary>
-        static int jpeg_getc(jpeg_decompress_struct decompressor)
+        static int jpeg_getc(jpeg_decompress_struct cinfo)
         {
             int v;
-            if (!decompressor.Src.GetByte(out v))
-                decompressor.ERREXIT(J_MESSAGE_CODE.JERR_CANT_SUSPEND);
+            if (!cinfo.Src.GetByte(out v))
+                cinfo.ERREXIT(J_MESSAGE_CODE.JERR_CANT_SUSPEND);
 
             return v;
         }
@@ -562,7 +508,7 @@ namespace dJpeg
         /// </summary>
         static void usage()
         {
-            Console.Write("usage: {0} [switches] inputfile outputfile", m_programName);
+            Console.Write("usage: {0} [switches] inputfile outputfile", progname);
             Console.WriteLine("Switches (names may be abbreviated):");
             Console.WriteLine("  -colors N      Reduce image to no more than N colors");
             Console.WriteLine("  -fast          Fast, low-quality processing");
