@@ -8,7 +8,7 @@
     <ProjectGuid>{89A3BDA9-830B-4F7F-8F0B-2954576862C5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jpeg</RootNamespace>
+    <RootNamespace>BitMiracle.Jpeg</RootNamespace>
     <AssemblyName>Jpeg</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,6 +50,7 @@
     <Compile Include="..\cdJpeg\cd_jpeg_error_mgr.cs">
       <Link>cd_jpeg_error_mgr.cs</Link>
     </Compile>
+    <Compile Include="AssemblyVersion.cs" />
     <Compile Include="bmp_dest_struct.cs" />
     <Compile Include="bmp_source_struct.cs" />
     <Compile Include="cjpeg_source_struct.cs" />
@@ -74,4 +75,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PreBuildEvent>cd "$(SolutionDir)"
+update_version_info.bat "$(ProjectDir)AssemblyVersion.cs"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

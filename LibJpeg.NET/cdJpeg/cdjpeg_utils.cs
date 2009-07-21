@@ -8,7 +8,8 @@
  */
 
 using System.Globalization;
-namespace cdJpeg
+
+namespace BitMiracle.cdJpeg
 {
     static class cdjpeg_utils
     {

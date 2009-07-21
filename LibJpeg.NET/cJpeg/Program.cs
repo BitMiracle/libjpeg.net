@@ -22,9 +22,9 @@ using System.IO;
 using System.Globalization;
 
 using BitMiracle.LibJpeg.Classic;
-using cdJpeg;
+using BitMiracle.cdJpeg;
 
-namespace cJpeg
+namespace BitMiracle.cJpeg
 {
     public class Program
     {

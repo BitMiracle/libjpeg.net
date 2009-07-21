@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace dJpeg
+namespace BitMiracle.dJpeg
 {
     /// <summary>
     /// Object interface for djpeg's output file encoding modules

@@ -23,9 +23,9 @@ using System.Text;
 using System.IO;
 
 using BitMiracle.LibJpeg.Classic;
-using cdJpeg;
+using BitMiracle.cdJpeg;
 
-namespace Jpeg
+namespace BitMiracle.Jpeg
 {
     /// <summary>
     /// 

@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Utility for Jpeg decompression")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Utility for Jpeg decompression")]
+[assembly: AssemblyProduct("dJpeg")]
 [assembly: AssemblyCopyright("Copyright (C) 2008-2009, Bit Miracle")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

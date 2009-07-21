@@ -14,7 +14,7 @@
  * some other language.
  */
 
-namespace cdJpeg
+namespace BitMiracle.cdJpeg
 {
     public enum ADDON_MESSAGE_CODE
     {

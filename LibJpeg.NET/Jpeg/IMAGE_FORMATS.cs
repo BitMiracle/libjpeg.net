@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Jpeg
+namespace BitMiracle.Jpeg
 {
     /// <summary>
     /// This list defines the known output image formats

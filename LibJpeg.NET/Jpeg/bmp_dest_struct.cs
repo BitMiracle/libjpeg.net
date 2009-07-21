@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using BitMiracle.LibJpeg.Classic;
-using cdJpeg;
+using BitMiracle.cdJpeg;
 
 /*
  * This file contains routines to write output images in Microsoft "BMP"
@@ -40,7 +40,7 @@ using cdJpeg;
 * pixel if the output is grayscale or colormapped, three if it is full color.
 */
 
-namespace Jpeg
+namespace BitMiracle.Jpeg
 {
     class bmp_dest_struct : djpeg_dest_struct
     {

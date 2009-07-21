@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace Jpeg
+namespace BitMiracle.Jpeg
 {
     abstract class cjpeg_source_struct
     {

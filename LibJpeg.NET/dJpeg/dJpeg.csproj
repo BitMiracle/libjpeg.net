@@ -8,7 +8,7 @@
     <ProjectGuid>{3B558417-DD92-481E-9202-2693059E344C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>dJpeg</RootNamespace>
+    <RootNamespace>BitMiracle.dJpeg</RootNamespace>
     <AssemblyName>dJpeg</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -21,9 +21,9 @@ using System.Text;
 using System.IO;
 
 using BitMiracle.LibJpeg.Classic;
-using cdJpeg;
+using BitMiracle.cdJpeg;
 
-namespace dJpeg
+namespace BitMiracle.dJpeg
 {
     public class Program
     {

@@ -45,12 +45,12 @@ namespace UnitTests
                 if (m_testClassicImplementation)
                 {
                     if (m_compression)
-                        cJpeg.Program.Main(completeArgs.ToArray());
+                        BitMiracle.cJpeg.Program.Main(completeArgs.ToArray());
                     else
-                        dJpeg.Program.Main(completeArgs.ToArray());
+                        BitMiracle.dJpeg.Program.Main(completeArgs.ToArray());
                 }
                 else
-                    Jpeg.Program.Main(completeArgs.ToArray());
+                    BitMiracle.Jpeg.Program.Main(completeArgs.ToArray());
 
                 Assert.IsTrue(Utils.FilesAreEqual(Path.Combine(dataFolder, targetImage), targetImage));
             }

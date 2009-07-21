@@ -9,7 +9,7 @@
 
 using BitMiracle.LibJpeg.Classic;
 
-namespace cdJpeg
+namespace BitMiracle.cdJpeg
 {
     /// <summary>
     /// cjpeg/djpeg may need to perform extra passes to convert to or from

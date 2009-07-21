@@ -74,10 +74,10 @@ namespace UnitTests
 
                     JpegImage image = new JpegImage(jpegData);
                     using (FileStream output = new FileStream("Compressed" + jpegFile + ".jpg", FileMode.Create))
-                        image.WriteCompressed(output);
+                        image.WriteJpeg(output);
 
                     using (FileStream output = new FileStream("Decompressed" + jpegFile + ".png", FileMode.Create))
-                        image.WriteDecompressed(output);
+                        image.WriteBitmap(output);
                 }
             }
         }
@@ -119,10 +119,10 @@ namespace UnitTests
             Assert.AreEqual(jpegImage.Colorspace, colorspace);
 
             using (FileStream output = new FileStream("JpegImageFromPixels.jpg", FileMode.Create))
-                jpegImage.WriteCompressed(output);
+                jpegImage.WriteJpeg(output);
 
             using (FileStream output = new FileStream("JpegImageFromPixels.png", FileMode.Create))
-                jpegImage.WriteDecompressed(output);
+                jpegImage.WriteBitmap(output);
         }
     }
 }

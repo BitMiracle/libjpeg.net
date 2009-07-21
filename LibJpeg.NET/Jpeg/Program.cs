@@ -5,9 +5,8 @@ using System.Text;
 using System.IO;
 
 using BitMiracle.LibJpeg.Classic;
-using cdJpeg;
 
-namespace Jpeg
+namespace BitMiracle.Jpeg
 {
     public partial class Program
     {

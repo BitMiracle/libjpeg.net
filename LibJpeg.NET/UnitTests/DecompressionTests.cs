@@ -4,7 +4,6 @@ using System.Text;
 using System.IO;
 
 using NUnit.Framework;
-using dJpeg;
 
 namespace UnitTests
 {

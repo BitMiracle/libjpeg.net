@@ -9,7 +9,7 @@
 
 using BitMiracle.LibJpeg.Classic;
 
-namespace cdJpeg
+namespace BitMiracle.cdJpeg
 {
     class cd_jpeg_error_mgr : jpeg_error_mgr
     {
