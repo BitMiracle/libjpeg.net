@@ -13,7 +13,10 @@ namespace UnitTests
     [TestFixture]
     public class JpegImageTests
     {
-        private const string m_dataFolder = @"..\..\..\..\TestCase\Data\";
+        private const string m_expectedResults = @"..\..\ExpectedResults\";
+        private const string m_testcase = @"..\..\..\..\TestCase\";
+        private const string m_dataFolder = m_testcase + @"Data\";
+
         private static List<string> m_testFiles = new List<string>();
 
         static JpegImageTests()
@@ -25,6 +28,17 @@ namespace UnitTests
             DirectoryInfo testcaseJpgDir = new DirectoryInfo(m_dataFolder + @"jpg\");
             foreach (FileInfo fi in testcaseJpgDir.GetFiles())
                 m_testFiles.Add(@"jpg\" + fi.Name);
+        }
+
+        [Test]
+        public void TestCompressionResultSameAsCJpeg()
+        {
+            string pathToTestFiles = m_testcase + @"jpeg_compression_data\";
+            JpegImage jpeg = new JpegImage(pathToTestFiles + "test24.bmp");
+            using (FileStream output = new FileStream("test24.jpg", FileMode.Create))
+                jpeg.WriteJpeg(output);
+
+            Assert.IsTrue(Utils.FilesAreEqual("test24.jpg", pathToTestFiles + "test24.jpg"));
         }
 
         [Test]
@@ -118,11 +132,18 @@ namespace UnitTests
             Assert.AreEqual(jpegImage.ComponentsPerSample, componentsPerSample);
             Assert.AreEqual(jpegImage.Colorspace, colorspace);
 
-            using (FileStream output = new FileStream("JpegImageFromPixels.jpg", FileMode.Create))
+            const string outputJpeg = "JpegImageFromPixels.jpg";
+            using (FileStream output = new FileStream(outputJpeg, FileMode.Create))
                 jpegImage.WriteJpeg(output);
 
-            using (FileStream output = new FileStream("JpegImageFromPixels.png", FileMode.Create))
+            Assert.IsTrue(Utils.FilesAreEqual(outputJpeg, Path.Combine(m_expectedResults, outputJpeg)));
+
+
+            const string outputBitmap = "JpegImageFromPixels.png";
+            using (FileStream output = new FileStream(outputBitmap, FileMode.Create))
                 jpegImage.WriteBitmap(output);
+
+            Assert.IsTrue(Utils.FilesAreEqual(outputBitmap, Path.Combine(m_expectedResults, outputBitmap)));
         }
     }
 }
