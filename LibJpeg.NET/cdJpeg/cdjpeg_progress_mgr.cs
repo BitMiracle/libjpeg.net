@@ -7,7 +7,7 @@
  *
  */
 
-using LibJpeg.Classic;
+using BitMiracle.LibJpeg.Classic;
 
 namespace cdJpeg
 {

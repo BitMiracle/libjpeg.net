@@ -6,7 +6,7 @@ using System.Text;
 
 using NUnit.Framework;
 
-using LibJpeg;
+using BitMiracle.LibJpeg;
 
 namespace UnitTests
 {

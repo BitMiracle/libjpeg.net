@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-using LibJpeg.Classic;
+using BitMiracle.LibJpeg.Classic;
 using cdJpeg;
 
 namespace Jpeg

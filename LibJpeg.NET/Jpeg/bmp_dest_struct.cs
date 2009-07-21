@@ -10,8 +10,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using LibJpeg;
-using LibJpeg.Classic;
+
+using BitMiracle.LibJpeg.Classic;
 using cdJpeg;
 
 /*
