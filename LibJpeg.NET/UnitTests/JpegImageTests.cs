@@ -17,19 +17,6 @@ namespace UnitTests
         private const string m_testcase = @"..\..\..\..\TestCase\";
         private const string m_dataFolder = m_testcase + @"Data\";
 
-        private static List<string> m_testFiles = new List<string>();
-
-        static JpegImageTests()
-        {
-            DirectoryInfo testcaseDataDir = new DirectoryInfo(m_dataFolder);
-            foreach (FileInfo fi in testcaseDataDir.GetFiles())
-                m_testFiles.Add(fi.Name);
-
-            DirectoryInfo testcaseJpgDir = new DirectoryInfo(m_dataFolder + @"jpg\");
-            foreach (FileInfo fi in testcaseJpgDir.GetFiles())
-                m_testFiles.Add(@"jpg\" + fi.Name);
-        }
-
         [Test]
         public void TestCompressionResultSameAsCJpeg()
         {
@@ -42,57 +29,53 @@ namespace UnitTests
         }
 
         [Test]
+        public void TestDecompressionFromCMYKJpeg()
+        {
+            JpegImage jpeg = new JpegImage(m_dataFolder + "ammerland.jpg");
+            Assert.AreEqual(jpeg.BitsPerComponent, 8);
+            Assert.AreEqual(jpeg.ComponentsPerSample, 4);
+            Assert.AreEqual(jpeg.Colorspace, Colorspace.CMYK);
+            Assert.AreEqual(jpeg.Width, 315);
+            Assert.AreEqual(jpeg.Height, 349);
+
+            using (FileStream output = new FileStream("ammerland.bmp", FileMode.Create))
+                jpeg.WriteBitmap(output);
+        }
+
+        [Test]
         public void TestJpegImageFromBitmap()
         {
-            foreach (string fileName in m_testFiles)
+            string[] bitmaps = new string[4] { "duck.bmp", "particle.bmp", "pink.png", "rainbow.bmp" };
+            foreach (string fileName in bitmaps)
             {
+                string jpegFileName = fileName.Remove(fileName.Length - 4);
+                jpegFileName += ".jpg";
+
                 using (Bitmap bmp = new Bitmap(m_dataFolder + fileName))
-                {
-                    JpegImage jpeg = new JpegImage(bmp);
-                    Assert.AreEqual(jpeg.Width, bmp.Width);
-                    Assert.AreEqual(jpeg.Height, bmp.Height);
-                    Assert.AreEqual(jpeg.ComponentsPerSample, 3);//Number of components in Bitmap
-                    for (int y = 0; y < jpeg.Height; ++y)
-                    {
-                        SampleRow row = jpeg.GetRow(y);
-                        Assert.IsNotNull(row);
-                        Assert.AreEqual(row.Length, jpeg.Width);
+                    testJpegFromBitmap(bmp, jpegFileName);
 
-                        for (int x = 0; x < row.Length; ++x)
-                        {
-                            Sample sample = row[x];
-                            Assert.IsNotNull(sample);
-                            Assert.AreEqual(sample.BitsPerComponent, jpeg.BitsPerComponent);
-                            Assert.AreEqual(sample.ComponentCount, jpeg.ComponentsPerSample);
-
-                            Color bitmapPixel = bmp.GetPixel(x, y);
-                            Assert.AreEqual(sample.GetComponent(0), bitmapPixel.R);
-                            Assert.AreEqual(sample.GetComponent(1), bitmapPixel.G);
-                            Assert.AreEqual(sample.GetComponent(2), bitmapPixel.B);
-                        }
-                    }
-                }
+                testJpegFromFile(m_dataFolder + fileName, jpegFileName);
             }
         }
 
         [Test]
         public void TestJpegImageFromStream()
         {
-            for (int i = 0; i < m_testFiles.Count; ++i)
+            List<string> jpegs = new List<string>();
+            jpegs.Add("BLU.JPG");
+            jpegs.Add("PARROTS.JPG");
+            jpegs.Add("3D.JPG");
+
+            foreach (string fileName in jpegs)
             {
-                string jpegFile = m_testFiles[i];
-                using (FileStream jpegData = new FileStream(m_dataFolder + jpegFile, FileMode.Open))
+                string outputFileName = fileName.Replace(".JPG", ".bmp");
+                using (FileStream output = new FileStream(outputFileName, FileMode.Create))
                 {
-                    if (jpegFile.Contains("\\"))
-                        jpegFile = jpegFile.Replace('\\', ' ');
-
-                    JpegImage image = new JpegImage(jpegData);
-                    using (FileStream output = new FileStream("Compressed" + jpegFile + ".jpg", FileMode.Create))
-                        image.WriteJpeg(output);
-
-                    using (FileStream output = new FileStream("Decompressed" + jpegFile + ".png", FileMode.Create))
-                        image.WriteBitmap(output);
+                    JpegImage jpeg = new JpegImage(m_dataFolder + @"jpg/" + fileName);
+                    jpeg.WriteBitmap(output);
                 }
+
+                Assert.IsTrue(Utils.FilesAreEqual(outputFileName, Path.Combine(m_expectedResults, outputFileName)));
             }
         }
 
@@ -144,6 +127,31 @@ namespace UnitTests
                 jpegImage.WriteBitmap(output);
 
             Assert.IsTrue(Utils.FilesAreEqual(outputBitmap, Path.Combine(m_expectedResults, outputBitmap)));
+        }
+
+
+        private static void testJpegFromBitmap(Bitmap bmp, string jpegFileName)
+        {
+            JpegImage jpeg = new JpegImage(bmp);
+            Assert.AreEqual(jpeg.Width, bmp.Width);
+            Assert.AreEqual(jpeg.Height, bmp.Height);
+            Assert.AreEqual(jpeg.ComponentsPerSample, 3);//Number of components in Bitmap
+
+            using (FileStream output = new FileStream(jpegFileName, FileMode.Create))
+                jpeg.WriteJpeg(output);
+
+            Assert.IsTrue(Utils.FilesAreEqual(jpegFileName, Path.Combine(m_expectedResults, jpegFileName)));
+        }
+
+        private static void testJpegFromFile(string fileName, string jpegFileName)
+        {
+            using (FileStream output = new FileStream(jpegFileName, FileMode.Create))
+            {
+                JpegImage image = new JpegImage(fileName);
+                image.WriteJpeg(output);
+            }
+
+            Assert.IsTrue(Utils.FilesAreEqual(jpegFileName, Path.Combine(m_expectedResults, jpegFileName)));
         }
     }
 }
