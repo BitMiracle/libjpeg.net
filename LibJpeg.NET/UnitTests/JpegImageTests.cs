@@ -22,10 +22,15 @@ namespace UnitTests
         {
             string pathToTestFiles = m_testcase + @"jpeg_compression_data\";
             JpegImage jpeg = new JpegImage(pathToTestFiles + "test24.bmp");
-            using (FileStream output = new FileStream("test24.jpg", FileMode.Create))
-                jpeg.WriteJpeg(output);
+            testJpegOutput(jpeg, "test24.jpg", pathToTestFiles);
 
-            Assert.IsTrue(Utils.FilesAreEqual("test24.jpg", pathToTestFiles + "test24.jpg"));
+            CompressionParameters parameters = new CompressionParameters();
+            parameters.Quality = 25;
+            testJpegOutput(jpeg, parameters, "test24_25.jpg", pathToTestFiles);
+
+            parameters = new CompressionParameters();
+            parameters.SimpleProgressive = true;
+            testJpegOutput(jpeg, parameters, "test24_prog.jpg", pathToTestFiles);
         }
 
         [Test]
@@ -54,7 +59,7 @@ namespace UnitTests
                 using (Bitmap bmp = new Bitmap(m_dataFolder + fileName))
                     testJpegFromBitmap(bmp, jpegFileName);
 
-                testJpegFromFile(m_dataFolder + fileName, jpegFileName);
+                testJpegFromFile(m_dataFolder + fileName, jpegFileName, m_expectedResults);
             }
         }
 
@@ -143,15 +148,23 @@ namespace UnitTests
             Assert.IsTrue(Utils.FilesAreEqual(jpegFileName, Path.Combine(m_expectedResults, jpegFileName)));
         }
 
-        private static void testJpegFromFile(string fileName, string jpegFileName)
+        private static void testJpegFromFile(string fileName, string jpegFileName, string folderWithExpectedResults)
+        {
+            JpegImage jpeg = new JpegImage(fileName);
+            testJpegOutput(jpeg, jpegFileName, folderWithExpectedResults);
+        }
+
+        private static void testJpegOutput(JpegImage jpeg, string jpegFileName, string folderWithExpectedResults)
+        {
+            testJpegOutput(jpeg, new CompressionParameters(), jpegFileName, folderWithExpectedResults);
+        }
+
+        private static void testJpegOutput(JpegImage jpeg, CompressionParameters parameters, string jpegFileName, string folderWithExpectedResults)
         {
             using (FileStream output = new FileStream(jpegFileName, FileMode.Create))
-            {
-                JpegImage image = new JpegImage(fileName);
-                image.WriteJpeg(output);
-            }
+                jpeg.WriteJpeg(output, parameters);
 
-            Assert.IsTrue(Utils.FilesAreEqual(jpegFileName, Path.Combine(m_expectedResults, jpegFileName)));
+            Assert.IsTrue(Utils.FilesAreEqual(jpegFileName, Path.Combine(folderWithExpectedResults, jpegFileName)));
         }
     }
 }
