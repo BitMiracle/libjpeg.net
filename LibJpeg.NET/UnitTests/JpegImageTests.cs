@@ -18,7 +18,7 @@ namespace UnitTests
         private const string m_dataFolder = m_testcase + @"Data\";
 
         [Test]
-        public void TestCompressionResultSameAsCJpeg()
+        public void TestCompressionResultsSameAsForCJpeg()
         {
             string pathToTestFiles = m_testcase + @"jpeg_compression_data\";
             JpegImage jpeg = new JpegImage(pathToTestFiles + "test24.bmp");
@@ -31,6 +31,24 @@ namespace UnitTests
             parameters = new CompressionParameters();
             parameters.SimpleProgressive = true;
             testJpegOutput(jpeg, parameters, "test24_prog.jpg", pathToTestFiles);
+        }
+
+        [Test]
+        public void TestDecompressionResultsSameAsForDJpeg()
+        {
+            const string pathToTestFiles = m_testcase + @"jpeg_decompression_data\";
+
+            List<string> jpegs = new List<string>();
+            jpegs.Add("BLU.JPG");
+            jpegs.Add("PARROTS.JPG");
+            jpegs.Add("3D.JPG");
+            jpegs.Add("MARBLES.JPG");
+
+            foreach (string fileName in jpegs)
+            {
+                string outputFileName = fileName.Replace(".JPG", ".bmp");
+                testBitmapFromFile(m_dataFolder + @"jpg/" + fileName, outputFileName, pathToTestFiles);
+            }
         }
 
         [Test]
@@ -60,28 +78,6 @@ namespace UnitTests
                     testJpegFromBitmap(bmp, jpegFileName);
 
                 testJpegFromFile(m_dataFolder + fileName, jpegFileName, m_expectedResults);
-            }
-        }
-
-        [Test]
-        [Ignore]
-        public void TestJpegImageFromStream()
-        {
-            List<string> jpegs = new List<string>();
-            jpegs.Add("BLU.JPG");
-            jpegs.Add("PARROTS.JPG");
-            jpegs.Add("3D.JPG");
-
-            foreach (string fileName in jpegs)
-            {
-                string outputFileName = fileName.Replace(".JPG", ".bmp");
-                using (FileStream output = new FileStream(outputFileName, FileMode.Create))
-                {
-                    JpegImage jpeg = new JpegImage(m_dataFolder + @"jpg/" + fileName);
-                    jpeg.WriteBitmap(output);
-                }
-
-                Assert.IsTrue(Utils.FilesAreEqual(outputFileName, Path.Combine(m_expectedResults, outputFileName)));
             }
         }
 
@@ -181,6 +177,20 @@ namespace UnitTests
                 jpeg.WriteJpeg(output, parameters);
 
             Assert.IsTrue(Utils.FilesAreEqual(jpegFileName, Path.Combine(folderWithExpectedResults, jpegFileName)));
+        }
+
+        private static void testBitmapFromFile(string sourceFileName, string bitmapFileName, string folderWithExpectedResults)
+        {
+            JpegImage jpeg = new JpegImage(sourceFileName);
+            testBitmapOutput(jpeg, bitmapFileName, folderWithExpectedResults);
+        }
+
+        private static void testBitmapOutput(JpegImage jpeg, string bitmapFileName, string folderWithExpectedResults)
+        {
+            using (FileStream output = new FileStream(bitmapFileName, FileMode.Create))
+                jpeg.WriteBitmap(output);
+
+            Assert.IsTrue(Utils.FilesAreEqual(bitmapFileName, Path.Combine(folderWithExpectedResults, bitmapFileName)));
         }
     }
 }
