@@ -61,8 +61,7 @@ namespace UnitTests
             Assert.AreEqual(jpeg.Width, 315);
             Assert.AreEqual(jpeg.Height, 349);
 
-            using (FileStream output = new FileStream("ammerland.bmp", FileMode.Create))
-                jpeg.WriteBitmap(output);
+            testBitmapOutput(jpeg, "ammerland.bmp", m_expectedResults);
         }
 
         [Test]
@@ -87,12 +86,7 @@ namespace UnitTests
             JpegImage jpegImage = createImageFromPixels();
 
             testJpegOutput(jpegImage, "JpegImageFromPixels.jpg", m_expectedResults);
-
-            const string outputBitmap = "JpegImageFromPixels.png";
-            using (FileStream output = new FileStream(outputBitmap, FileMode.Create))
-                jpegImage.WriteBitmap(output);
-
-            Assert.IsTrue(Utils.FilesAreEqual(outputBitmap, Path.Combine(m_expectedResults, outputBitmap)));
+            testBitmapOutput(jpegImage, "JpegImageFromPixels.png", m_expectedResults);
         }
 
         [Test]
