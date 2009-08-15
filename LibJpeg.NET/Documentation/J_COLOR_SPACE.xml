@@ -1,12 +1,128 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>J_COLOR_SPACE</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<enum>
-				<name>J_COLOR_SPACE</name>
-			</enum>
-		</signature>
-	</file>
+  <file>
+    <title>J_COLOR_SPACE</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Known color spaces.</text> </descriptionarticle>
+    <signature>
+      <enum>
+        <name>J_COLOR_SPACE</name>
+      </enum>
+    </signature>
+    <remarks>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <p align="center">
+                <b>
+                  <text>Name</text> </b>
+              </p>
+            </td>
+            <td>
+              <p align="center">
+                <b>
+                  <text>Description</text> </b>
+              </p>
+            </td>
+            <td>
+              <p align="center">
+                <b>
+                  <text>Value</text> </b>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="left">
+                <text>JCS_UNKNOWN</text> </p>
+            </td>
+            <td>
+              <p align="left">
+                <text>Unspecified colorspace</text> </p>
+            </td>
+            <td>
+              <p align="center">
+                <text>0</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="left">
+                <text>JCS_GRAYSCALE</text> </p>
+            </td>
+            <td>
+              <p align="left">
+                <text>Grayscale</text> </p>
+            </td>
+            <td>
+              <p align="center">
+                <text>1</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="left">
+                <text>JCS_RGB</text> </p>
+            </td>
+            <td>
+              <p align="left">
+                <text>RGB</text> </p>
+            </td>
+            <td>
+              <p align="center">
+                <text>2</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="left">
+                <text>JCS_YCbCr</text> </p>
+            </td>
+            <td>
+              <p align="left">
+                <text>YCbCr (also known as YUV)</text> </p>
+            </td>
+            <td>
+              <p align="center">
+                <text>3</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="left">
+                <text>JCS_CMYK</text> </p>
+            </td>
+            <td>
+              <p align="left">
+                <text>CMYK</text> </p>
+            </td>
+            <td>
+              <p align="center">
+                <text>4</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="left">
+                <text>JCS_YCCK</text> </p>
+            </td>
+            <td>
+              <p align="left">
+                <text>YCbCrK</text> </p>
+            </td>
+            <td>
+              <p align="center">
+                <text>5</text> </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </remarks>
+  </file>
 </xml>

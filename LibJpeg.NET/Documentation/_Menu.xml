@@ -3,6 +3,7 @@
   <node title="BitMiracle.LibJpeg namespace" file="BitMiracle_LibJpeg.xml" iconindex="0">
     <ref>CompressionParameters.xml</ref>
     <ref>SampleRow.xml</ref>
+    <ref>Colorspace.xml</ref>
     <node title="CompressionParameters" file="CompressionParameters.xml" iconindex="6">
       <node title="Equals" file="CompressionParameters.Equals.xml" iconindex="23" />
       <node title="GetHashCode" file="CompressionParameters.GetHashCode.xml" iconindex="23" />
@@ -49,6 +50,9 @@
     <ref>JBLOCK.get_Item.xml</ref>
     <ref>JPEG_MARKER.xml</ref>
     <ref>jpeg_common_struct.xml</ref>
+    <ref>J_COLOR_SPACE.xml</ref>
+    <ref>J_DCT_METHOD.xml</ref>
+    <ref>J_DITHER_MODE.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <node title="get_Progress" file="jpeg_common_struct.get_Progress.xml" iconindex="23" />
       <node title="set_Progress" file="jpeg_common_struct.set_Progress.xml" iconindex="23" />
