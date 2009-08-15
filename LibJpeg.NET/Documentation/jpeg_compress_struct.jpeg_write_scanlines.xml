@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_write_scanlines</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_write_scanlines</name>
+				<return type="Int32" />
+				<parameters>
+					<parameter name="scanlines" type="Byte[][]" file="Byte[][].xml" />
+					<parameter name="num_lines" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

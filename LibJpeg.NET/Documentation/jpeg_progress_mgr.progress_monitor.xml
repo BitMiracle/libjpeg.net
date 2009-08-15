@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>progress_monitor</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				<mod2>abstract</mod2>
+				<name>progress_monitor</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

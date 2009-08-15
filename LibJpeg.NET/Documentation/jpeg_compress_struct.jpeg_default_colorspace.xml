@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_default_colorspace</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_default_colorspace</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

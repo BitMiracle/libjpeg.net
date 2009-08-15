@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_quality_scaling</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				<mod2>static</mod2>
+				<name>jpeg_quality_scaling</name>
+				<return type="Int32" />
+				<parameters>
+					<parameter name="quality" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

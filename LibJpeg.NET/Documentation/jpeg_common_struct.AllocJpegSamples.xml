@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>AllocJpegSamples</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				<mod2>static</mod2>
+				<name>AllocJpegSamples</name>
+				<return type="Byte[][]" file="Byte[][].xml" />
+				<parameters>
+					<parameter name="samplesPerRow" type="Int32" />
+					<parameter name="numberOfRows" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_start_compress</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_start_compress</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="write_all_tables" type="Boolean" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

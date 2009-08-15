@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_marker_parser_method</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<class>
+				<name>jpeg_marker_parser_method</name>
+			</class>
+		</signature>
+	</file>
+</xml>

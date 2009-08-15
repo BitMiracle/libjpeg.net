@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>access_virt_sarray</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>access_virt_sarray</name>
+				<return type="Byte[][]" file="Byte[][].xml" />
+				<parameters>
+					<parameter name="start_row" type="Int32" />
+					<parameter name="num_rows" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

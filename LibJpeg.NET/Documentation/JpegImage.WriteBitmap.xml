@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>WriteBitmap</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>WriteBitmap</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="output" type="Stream" file="Stream.xml" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>set_Progress</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>set_Progress</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="value" type="jpeg_progress_mgr" file="jpeg_progress_mgr.xml" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

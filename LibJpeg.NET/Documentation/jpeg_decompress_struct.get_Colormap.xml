@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>get_Colormap</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>get_Colormap</name>
+				<return type="Byte[][]" file="Byte[][].xml" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

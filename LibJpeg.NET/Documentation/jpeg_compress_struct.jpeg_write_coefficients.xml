@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_write_coefficients</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_write_coefficients</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="coef_arrays" type="jvirt_barray_control[]" file="jvirt_barray_control[].xml" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

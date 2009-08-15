@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>JpegConstants</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<class>
+				<name>JpegConstants</name>
+				<mod2>static</mod2>
+			</class>
+		</signature>
+	</file>
+</xml>

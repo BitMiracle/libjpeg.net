@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>JpegImage</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<class>
+				<name>JpegImage</name>
+			</class>
+		</signature>
+	</file>
+</xml>

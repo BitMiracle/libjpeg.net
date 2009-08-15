@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>WriteJpeg</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>WriteJpeg</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="output" type="Stream" file="Stream.xml" />
+					<parameter name="parameters" type="CompressionParameters" file="CompressionParameters.xml" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

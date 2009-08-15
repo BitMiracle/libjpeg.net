@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>FromBitmap</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				<mod2>static</mod2>
+				<name>FromBitmap</name>
+				<return type="JpegImage" file="JpegImage.xml" />
+				<parameters>
+					<parameter name="bitmap" type="Bitmap" file="Bitmap.xml" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

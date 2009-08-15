@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>set_Enable_2pass_quant</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>set_Enable_2pass_quant</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="value" type="Boolean" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

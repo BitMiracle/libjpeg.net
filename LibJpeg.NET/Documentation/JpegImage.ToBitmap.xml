@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>ToBitmap</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>ToBitmap</name>
+				<return type="Bitmap" file="Bitmap.xml" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

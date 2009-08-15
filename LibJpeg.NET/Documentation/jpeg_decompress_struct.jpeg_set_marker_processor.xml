@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_set_marker_processor</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_set_marker_processor</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="marker_code" type="Int32" />
+					<parameter name="routine" type="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

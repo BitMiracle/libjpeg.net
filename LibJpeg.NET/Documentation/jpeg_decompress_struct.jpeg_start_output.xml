@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_start_output</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_start_output</name>
+				<return type="Boolean" />
+				<parameters>
+					<parameter name="scan_number" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

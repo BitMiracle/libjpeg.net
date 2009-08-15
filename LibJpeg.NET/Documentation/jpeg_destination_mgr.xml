@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>jpeg_destination_mgr</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <class>
+        <mod2>abstract</mod2>
+        <name>jpeg_destination_mgr</name>
+      </class>
+    </signature>
+  </file>
+</xml>

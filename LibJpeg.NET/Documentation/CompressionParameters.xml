@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>CompressionParameters</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg.xml">
+        <text>BitMiracle.LibJpeg namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <class>
+        <name>CompressionParameters</name>
+      </class>
+    </signature>
+  </file>
+</xml>

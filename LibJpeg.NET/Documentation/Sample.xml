@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>Sample</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<class>
+				<name>Sample</name>
+			</class>
+		</signature>
+	</file>
+</xml>

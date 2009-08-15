@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>get_Src</title>
+    <breadcumbs>
+      <link file="jpeg_decompress_struct.xml">
+        <text>jpeg_decompress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>get_Src</name>
+        <return type="jpeg_source_mgr" file="jpeg_source_mgr.xml" />
+      </function>
+    </signature>
+  </file>
+</xml>

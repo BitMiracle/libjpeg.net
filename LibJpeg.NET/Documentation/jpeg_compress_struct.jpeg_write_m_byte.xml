@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_write_m_byte</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_write_m_byte</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="val" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

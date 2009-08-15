@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>set_Item</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>set_Item</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="i" type="Int32" />
+					<parameter name="value" type="Int16" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

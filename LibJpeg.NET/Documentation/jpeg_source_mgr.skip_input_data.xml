@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>skip_input_data</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				<mod2>virtual</mod2>
+				<name>skip_input_data</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="num_bytes" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

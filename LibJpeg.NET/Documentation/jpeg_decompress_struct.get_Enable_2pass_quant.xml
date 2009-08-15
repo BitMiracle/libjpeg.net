@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>get_Enable_2pass_quant</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>get_Enable_2pass_quant</name>
+				<return type="Boolean" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

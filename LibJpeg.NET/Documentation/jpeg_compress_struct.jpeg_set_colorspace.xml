@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_set_colorspace</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_set_colorspace</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="colorspace" type="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

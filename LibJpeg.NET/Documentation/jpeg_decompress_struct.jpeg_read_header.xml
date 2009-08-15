@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_read_header</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_read_header</name>
+				<return type="ReadResult" file="ReadResult.xml" />
+				<parameters>
+					<parameter name="require_image" type="Boolean" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_read_raw_data</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_read_raw_data</name>
+				<return type="Int32" />
+				<parameters>
+					<parameter name="data" type="Byte[][][]" file="Byte[][][].xml" />
+					<parameter name="max_lines" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

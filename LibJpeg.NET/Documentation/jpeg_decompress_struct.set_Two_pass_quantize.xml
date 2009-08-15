@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>set_Two_pass_quantize</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>set_Two_pass_quantize</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="value" type="Boolean" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

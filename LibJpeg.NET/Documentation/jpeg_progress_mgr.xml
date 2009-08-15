@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_progress_mgr</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<class>
+				<name>jpeg_progress_mgr</name>
+				<mod2>abstract</mod2>
+			</class>
+		</signature>
+	</file>
+</xml>

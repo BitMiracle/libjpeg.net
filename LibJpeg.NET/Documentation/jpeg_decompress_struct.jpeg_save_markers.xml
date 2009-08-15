@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_save_markers</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_save_markers</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="marker_code" type="Int32" />
+					<parameter name="length_limit" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

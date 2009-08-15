@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>jpeg_source_mgr</title>
+    <descriptionarticle only="false" />
+    <signature>
+      <class>
+        <mod2>abstract</mod2>
+        <name>jpeg_source_mgr</name>
+      </class>
+    </signature>
+  </file>
+</xml>

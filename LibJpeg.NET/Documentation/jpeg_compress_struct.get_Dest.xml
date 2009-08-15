@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>get_Dest</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>get_Dest</name>
+				<return type="jpeg_destination_mgr" file="jpeg_destination_mgr.xml" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>get_Progress</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>get_Progress</name>
+				<return type="jpeg_progress_mgr" file="jpeg_progress_mgr.xml" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

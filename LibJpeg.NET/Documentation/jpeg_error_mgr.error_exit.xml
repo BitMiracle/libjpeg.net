@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>error_exit</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				<mod2>virtual</mod2>
+				<name>error_exit</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

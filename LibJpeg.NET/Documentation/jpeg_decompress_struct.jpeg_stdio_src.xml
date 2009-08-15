@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_stdio_src</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_stdio_src</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="infile" type="Stream" file="Stream.xml" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

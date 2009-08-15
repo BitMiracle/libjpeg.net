@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>emit_message</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				<mod2>virtual</mod2>
+				<name>emit_message</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="msg_level" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

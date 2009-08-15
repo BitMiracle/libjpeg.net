@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>init_source</title>
+    <breadcumbs>
+      <link file="jpeg_source_mgr.xml">
+        <text>jpeg_source_mgr</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <mod2>abstract</mod2>
+        <name>init_source</name>
+        <return type="void" />
+      </function>
+    </signature>
+  </file>
+</xml>

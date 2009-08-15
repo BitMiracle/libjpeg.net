@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_write_marker</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_write_marker</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="marker" type="Int32" />
+					<parameter name="data" type="Byte[]" file="Byte[].xml" />
+					<parameter name="datalen" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

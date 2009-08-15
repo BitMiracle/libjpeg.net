@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_copy_critical_parameters</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_copy_critical_parameters</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="dstinfo" type="jpeg_compress_struct" file="jpeg_compress_struct.xml" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

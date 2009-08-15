@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>SetErrorManager</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>SetErrorManager</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="errorManager" type="jpeg_error_mgr" file="jpeg_error_mgr.xml" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

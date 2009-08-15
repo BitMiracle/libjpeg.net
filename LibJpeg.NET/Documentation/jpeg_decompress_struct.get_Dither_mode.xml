@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>get_Dither_mode</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>get_Dither_mode</name>
+				<return type="J_DITHER_MODE" file="J_DITHER_MODE.xml" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

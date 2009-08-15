@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>get_Two_pass_quantize</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>get_Two_pass_quantize</name>
+				<return type="Boolean" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

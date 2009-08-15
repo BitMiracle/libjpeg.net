@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>get_Item</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>get_Item</name>
+				<return type="Sample" file="Sample.xml" />
+				<parameters>
+					<parameter name="sampleNumber" type="Int32" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

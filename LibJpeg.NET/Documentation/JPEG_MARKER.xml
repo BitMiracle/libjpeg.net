@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>JPEG_MARKER</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <enum>
+        <name>JPEG_MARKER</name>
+      </enum>
+    </signature>
+  </file>
+</xml>

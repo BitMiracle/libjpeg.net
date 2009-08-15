@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>output_message</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				<mod2>virtual</mod2>
+				<name>output_message</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

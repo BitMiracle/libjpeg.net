@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>J_DCT_METHOD</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<enum>
+				<name>J_DCT_METHOD</name>
+			</enum>
+		</signature>
+	</file>
+</xml>

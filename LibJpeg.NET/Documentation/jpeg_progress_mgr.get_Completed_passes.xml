@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>get_Completed_passes</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>get_Completed_passes</name>
+				<return type="Int32" />
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

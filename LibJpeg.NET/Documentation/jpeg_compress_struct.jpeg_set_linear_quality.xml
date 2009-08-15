@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_set_linear_quality</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				
+				<name>jpeg_set_linear_quality</name>
+				<return type="Void" file="Void.xml" />
+				<parameters>
+					<parameter name="scale_factor" type="Int32" />
+					<parameter name="force_baseline" type="Boolean" />
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

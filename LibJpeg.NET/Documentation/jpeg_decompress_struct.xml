@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>jpeg_decompress_struct</title>
+    <descriptionarticle only="false" />
+    <signature>
+      <class>
+        <name>jpeg_decompress_struct</name>
+      </class>
+    </signature>
+  </file>
+</xml>

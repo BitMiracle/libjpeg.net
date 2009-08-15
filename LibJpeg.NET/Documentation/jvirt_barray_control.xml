@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jvirt_barray_control</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<class>
+				<name>jvirt_barray_control</name>
+			</class>
+		</signature>
+	</file>
+</xml>
