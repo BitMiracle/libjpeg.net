@@ -1,13 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>JpegConstants</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<class>
-				<name>JpegConstants</name>
-				<mod2>static</mod2>
-			</class>
-		</signature>
-	</file>
+  <file>
+    <title>JpegConstants</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <class>
+        <mod2>static</mod2>
+        <name>JpegConstants</name>
+      </class>
+    </signature>
+  </file>
 </xml>

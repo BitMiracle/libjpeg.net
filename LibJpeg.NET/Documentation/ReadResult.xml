@@ -1,12 +1,127 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>ReadResult</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<enum>
-				<name>ReadResult</name>
-			</enum>
-		</signature><remarks><table><tbody><tr><td><p align="center"><b><text>Name</text></b></p></td><td><p align="center"><b><text>Description</text></b></p></td><td><p align="center"><b><text>Value</text></b></p></td></tr><tr><td><p align="justify"><text>JPEG_SUSPENDED</text></p></td><td><p align="justify"><text></text></p></td><td><p align="center"><text>0</text></p></td></tr><tr><td><p align="justify"><text>JPEG_HEADER_OK</text></p></td><td><p align="justify"><text></text></p></td><td><p align="center"><text>1</text></p></td></tr><tr><td><p align="justify"><text>JPEG_HEADER_TABLES_ONLY</text></p></td><td><p align="justify"><text></text></p></td><td><p align="center"><text>2</text></p></td></tr><tr><td><p align="justify"><text>JPEG_REACHED_SOS</text></p></td><td><p align="justify"><text></text></p></td><td><p align="center"><text>3</text></p></td></tr><tr><td><p align="justify"><text>JPEG_REACHED_EOI</text></p></td><td><p align="justify"><text></text></p></td><td><p align="center"><text>4</text></p></td></tr><tr><td><p align="justify"><text>JPEG_ROW_COMPLETED</text></p></td><td><p align="justify"><text></text></p></td><td><p align="center"><text>5</text></p></td></tr><tr><td><p align="justify"><text>JPEG_SCAN_COMPLETED</text></p></td><td><p align="justify"><text></text></p></td><td><p align="center"><text>6</text></p></td></tr></tbody></table></remarks>
-	</file>
+  <file>
+    <title>ReadResult</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <enum>
+        <name>ReadResult</name>
+      </enum>
+    </signature>
+    <remarks>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <p align="center">
+                <b>
+                  <text>Name</text> </b>
+              </p>
+            </td>
+            <td>
+              <p align="center">
+                <b>
+                  <text>Description</text> </b>
+              </p>
+            </td>
+            <td>
+              <p align="center">
+                <b>
+                  <text>Value</text> </b>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="justify">
+                <text>JPEG_SUSPENDED</text> </p>
+            </td>
+            <td>
+            </td>
+            <td>
+              <p align="center">
+                <text>0</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="justify">
+                <text>JPEG_HEADER_OK</text> </p>
+            </td>
+            <td>
+            </td>
+            <td>
+              <p align="center">
+                <text>1</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="justify">
+                <text>JPEG_HEADER_TABLES_ONLY</text> </p>
+            </td>
+            <td>
+            </td>
+            <td>
+              <p align="center">
+                <text>2</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="justify">
+                <text>JPEG_REACHED_SOS</text> </p>
+            </td>
+            <td>
+            </td>
+            <td>
+              <p align="center">
+                <text>3</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="justify">
+                <text>JPEG_REACHED_EOI</text> </p>
+            </td>
+            <td>
+            </td>
+            <td>
+              <p align="center">
+                <text>4</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="justify">
+                <text>JPEG_ROW_COMPLETED</text> </p>
+            </td>
+            <td>
+            </td>
+            <td>
+              <p align="center">
+                <text>5</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="justify">
+                <text>JPEG_SCAN_COMPLETED</text> </p>
+            </td>
+            <td>
+            </td>
+            <td>
+              <p align="center">
+                <text>6</text> </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </remarks>
+  </file>
 </xml>

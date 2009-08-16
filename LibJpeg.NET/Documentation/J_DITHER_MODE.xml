@@ -7,7 +7,8 @@
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Dithering method for decompression.</text> </descriptionarticle>
     <signature>
       <enum>
         <name>J_DITHER_MODE</name>
@@ -42,7 +43,7 @@
                 <text>JDITHER_NONE</text> </p>
             </td>
             <td>
-            </td>
+              <text>No dithering: fast, very low quality</text> </td>
             <td>
               <p align="center">
                 <text>0</text> </p>
@@ -54,7 +55,7 @@
                 <text>JDITHER_ORDERED</text> </p>
             </td>
             <td>
-            </td>
+              <text>Ordered dither: moderate speed and quality</text> </td>
             <td>
               <p align="center">
                 <text>1</text> </p>
@@ -66,7 +67,7 @@
                 <text>JDITHER_FS</text> </p>
             </td>
             <td>
-            </td>
+              <text>Floyd-Steinberg dither: slow, high quality</text> </td>
             <td>
               <p align="center">
                 <text>2</text> </p>
@@ -74,6 +75,8 @@
           </tr>
         </tbody>
       </table>
+      <p>
+        <text>Default is JDITHER_FS. (At present, ordered dither is implemented only in the single-pass, standard-colormap case. If you ask for ordered dither when </text> <link file="jpeg_decompress_struct.get_Enable_2pass_quant.xml"><text>two_pass_quantize</text> </link><text> is TRUE or when you supply an external color map, you'll get F-S dithering.)</text> <br /></p>
     </remarks>
   </file>
 </xml>

@@ -7,7 +7,8 @@
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Selects the algorithm used for the DCT step.</text> </descriptionarticle>
     <signature>
       <enum>
         <name>J_DCT_METHOD</name>
@@ -42,7 +43,7 @@
                 <text>JDCT_ISLOW</text> </p>
             </td>
             <td>
-            </td>
+              <text>Slow but accurate integer algorithm</text> </td>
             <td>
               <p align="center">
                 <text>0</text> </p>
@@ -54,7 +55,7 @@
                 <text>JDCT_IFAST</text> </p>
             </td>
             <td>
-            </td>
+              <text>Faster, less accurate integer method</text> </td>
             <td>
               <p align="center">
                 <text>1</text> </p>
@@ -66,7 +67,7 @@
                 <text>JDCT_FLOAT</text> </p>
             </td>
             <td>
-            </td>
+              <text>Floating-point method</text> </td>
             <td>
               <p align="center">
                 <text>2</text> </p>
@@ -74,6 +75,8 @@
           </tr>
         </tbody>
       </table>
+      <p>
+        <text>The FLOAT method is very slightly more accurate than the ISLOW method, but may give different results on different machines due to varying roundoff behavior. The integer methods should give the same results on all machines. On machines with sufficiently fast hardware, the floating-point method may also be the fastest. The IFAST method is considerably less accurate than the other two; its use is not recommended if high quality is a concern.</text> </p>
     </remarks>
   </file>
 </xml>

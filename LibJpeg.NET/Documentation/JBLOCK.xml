@@ -7,7 +7,8 @@
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>One block of coefficients.</text> </descriptionarticle>
     <signature>
       <class>
         <name>JBLOCK</name>

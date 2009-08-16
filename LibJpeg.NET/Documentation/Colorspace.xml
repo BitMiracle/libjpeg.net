@@ -7,7 +7,8 @@
         <text>BitMiracle.LibJpeg namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Known color spaces.</text> </descriptionarticle>
     <signature>
       <enum>
         <name>Colorspace</name>
@@ -42,6 +43,8 @@
                 <text>Unknown</text> </p>
             </td>
             <td>
+              <p>
+                <text>Unspecified colorspace</text> </p>
             </td>
             <td>
               <p align="center">
@@ -54,7 +57,7 @@
                 <text>Grayscale</text> </p>
             </td>
             <td>
-            </td>
+              <text>Grayscale</text> </td>
             <td>
               <p align="center">
                 <text>1</text> </p>
@@ -66,7 +69,7 @@
                 <text>RGB</text> </p>
             </td>
             <td>
-            </td>
+              <text>RGB</text> </td>
             <td>
               <p align="center">
                 <text>2</text> </p>
@@ -78,7 +81,7 @@
                 <text>YCbCr</text> </p>
             </td>
             <td>
-            </td>
+              <text>YCbCr (also known as YUV)</text> </td>
             <td>
               <p align="center">
                 <text>3</text> </p>
@@ -90,7 +93,7 @@
                 <text>CMYK</text> </p>
             </td>
             <td>
-            </td>
+              <text>CMYK</text> </td>
             <td>
               <p align="center">
                 <text>4</text> </p>
@@ -102,7 +105,7 @@
                 <text>YCCK</text> </p>
             </td>
             <td>
-            </td>
+              <text>YCbCrK</text> </td>
             <td>
               <p align="center">
                 <text>5</text> </p>

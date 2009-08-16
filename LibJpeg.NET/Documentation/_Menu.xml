@@ -180,7 +180,9 @@
       <node title="set_Enable_1pass_quant" file="jpeg_decompress_struct.set_Enable_1pass_quant.xml" iconindex="23" />
       <node title="get_Enable_external_quant" file="jpeg_decompress_struct.get_Enable_external_quant.xml" iconindex="23" />
       <node title="set_Enable_external_quant" file="jpeg_decompress_struct.set_Enable_external_quant.xml" iconindex="23" />
-      <node title="get_Enable_2pass_quant" file="jpeg_decompress_struct.get_Enable_2pass_quant.xml" iconindex="23" />
+      <node title="get_Enable_2pass_quant" file="jpeg_decompress_struct.get_Enable_2pass_quant.xml" iconindex="23">
+        <ref>J_DITHER_MODE.xml</ref>
+      </node>
       <node title="set_Enable_2pass_quant" file="jpeg_decompress_struct.set_Enable_2pass_quant.xml" iconindex="23" />
       <node title="get_Output_width" file="jpeg_decompress_struct.get_Output_width.xml" iconindex="23" />
       <node title="get_Output_height" file="jpeg_decompress_struct.get_Output_height.xml" iconindex="23" />

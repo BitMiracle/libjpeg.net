@@ -2,6 +2,11 @@
 <xml>
   <file>
     <title>jpeg_decompress_struct</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
     <descriptionarticle only="false" />
     <signature>
       <class>

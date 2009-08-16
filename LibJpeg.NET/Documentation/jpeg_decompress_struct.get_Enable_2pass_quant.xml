@@ -1,16 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>get_Enable_2pass_quant</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>get_Enable_2pass_quant</name>
-				<return type="Boolean" />
-				<parameters>
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>get_Enable_2pass_quant</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_decompress_struct.xml">
+        <text>jpeg_decompress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>get_Enable_2pass_quant</name>
+        <return type="Boolean" />
+      </function>
+    </signature>
+  </file>
 </xml>
