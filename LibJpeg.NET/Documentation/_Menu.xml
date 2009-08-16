@@ -53,14 +53,36 @@
     <ref>J_COLOR_SPACE.xml</ref>
     <ref>J_DCT_METHOD.xml</ref>
     <ref>J_DITHER_MODE.xml</ref>
+    <ref>jpeg_decompress_struct.get_Enable_2pass_quant.xml</ref>
+    <ref>jpeg_decompress_struct.xml</ref>
+    <ref>J_MESSAGE_CODE.xml</ref>
+    <ref>JpegConstants.xml</ref>
+    <ref>JBLOCK.set_Item.xml</ref>
+    <ref>jpeg_compress_struct.xml</ref>
+    <ref>\jpeg_common_struct.Progress.xml</ref>
+    <ref>jpeg_progress_mgr.xml</ref>
+    <ref>jpeg_common_struct.Err.xml</ref>
+    <ref>jpeg_error_mgr.xml</ref>
+    <ref>jpeg_common_struct.AllocJpegSamples.xml</ref>
+    <ref>jpeg_common_struct.Copyright.xml</ref>
+    <ref>jpeg_common_struct.jpeg_abort.xml</ref>
+    <ref>jpeg_common_struct.Version.xml</ref>
+    <ref>jpeg_common_struct.ERREXIT.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
-      <node title="get_Progress" file="jpeg_common_struct.get_Progress.xml" iconindex="23" />
-      <node title="set_Progress" file="jpeg_common_struct.set_Progress.xml" iconindex="23" />
-      <node title="get_Err" file="jpeg_common_struct.get_Err.xml" iconindex="23" />
-      <node title="set_Err" file="jpeg_common_struct.set_Err.xml" iconindex="23" />
+      <ref>\jpeg_common_struct.Progress.xml</ref>
+      <ref>jpeg_common_struct.Err.xml</ref>
+      <ref>jpeg_common_struct.AllocJpegSamples.xml</ref>
+      <ref>jpeg_common_struct.Copyright.xml</ref>
+      <ref>jpeg_common_struct.jpeg_abort.xml</ref>
+      <ref>jpeg_common_struct.Version.xml</ref>
+      <ref>jpeg_common_struct.ERREXIT.xml</ref>
+      <ref>jpeg_compress_struct.xml</ref>
+      <ref>jpeg_decompress_struct.xml</ref>
+      <node title="Copyright" file="jpeg_common_struct.Copyright.xml" iconindex="27" />
+      <node title="Err" file="jpeg_common_struct.Err.xml" iconindex="27" />
+      <node title="Progress" file="\jpeg_common_struct.Progress.xml" iconindex="27" />
+      <node title="Version" file="jpeg_common_struct.Version.xml" iconindex="27" />
       <node title="AllocJpegSamples" file="jpeg_common_struct.AllocJpegSamples.xml" iconindex="23" />
-      <node title="get_Version" file="jpeg_common_struct.get_Version.xml" iconindex="23" />
-      <node title="get_Copyright" file="jpeg_common_struct.get_Copyright.xml" iconindex="23" />
       <node title="jpeg_abort" file="jpeg_common_struct.jpeg_abort.xml" iconindex="23" />
       <node title="jpeg_destroy" file="jpeg_common_struct.jpeg_destroy.xml" iconindex="23" />
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23" />
@@ -77,6 +99,7 @@
       <node title="TRACEMS" file="jpeg_common_struct.TRACEMS.xml" iconindex="23" />
     </node>
     <node title="jpeg_compress_struct" file="jpeg_compress_struct.xml" iconindex="6">
+      <ref>jpeg_common_struct.xml</ref>
       <node title="get_Dest" file="jpeg_compress_struct.get_Dest.xml" iconindex="23" />
       <node title="set_Dest" file="jpeg_compress_struct.set_Dest.xml" iconindex="23" />
       <node title="get_Image_width" file="jpeg_compress_struct.get_Image_width.xml" iconindex="23" />
@@ -146,6 +169,8 @@
     </node>
     <node title="jpeg_decompress_struct" file="jpeg_decompress_struct.xml" iconindex="6">
       <ref>jpeg_decompress_struct.get_Src.xml</ref>
+      <ref>jpeg_decompress_struct.get_Enable_2pass_quant.xml</ref>
+      <ref>jpeg_common_struct.xml</ref>
       <node title="get_Src" file="jpeg_decompress_struct.get_Src.xml" iconindex="23" />
       <node title="set_Src" file="jpeg_decompress_struct.set_Src.xml" iconindex="23" />
       <node title="get_Image_width" file="jpeg_decompress_struct.get_Image_width.xml" iconindex="23" />
@@ -229,6 +254,7 @@
       <node title="emit_byte" file="jpeg_destination_mgr.emit_byte.xml" iconindex="23" />
     </node>
     <node title="jpeg_error_mgr" file="jpeg_error_mgr.xml" iconindex="6">
+      <ref>jpeg_common_struct.Err.xml</ref>
       <node title="get_Trace_level" file="jpeg_error_mgr.get_Trace_level.xml" iconindex="23" />
       <node title="set_Trace_level" file="jpeg_error_mgr.set_Trace_level.xml" iconindex="23" />
       <node title="get_Num_warnings" file="jpeg_error_mgr.get_Num_warnings.xml" iconindex="23" />
@@ -244,6 +270,8 @@
       <node title="EndInvoke" file="jpeg_marker_parser_method.EndInvoke.xml" iconindex="23" />
     </node>
     <node title="jpeg_progress_mgr" file="jpeg_progress_mgr.xml" iconindex="6">
+      <ref>\jpeg_common_struct.Progress.xml</ref>
+      <ref>jpeg_common_struct.AllocJpegSamples.xml</ref>
       <node title="get_Pass_counter" file="jpeg_progress_mgr.get_Pass_counter.xml" iconindex="23" />
       <node title="set_Pass_counter" file="jpeg_progress_mgr.set_Pass_counter.xml" iconindex="23" />
       <node title="get_Pass_limit" file="jpeg_progress_mgr.get_Pass_limit.xml" iconindex="23" />
@@ -275,6 +303,7 @@
     </node>
     <node title="JBLOCK" file="JBLOCK.xml" iconindex="6">
       <ref>JBLOCK.get_Item.xml</ref>
+      <ref>JBLOCK.set_Item.xml</ref>
       <node title="get_Item" file="JBLOCK.get_Item.xml" iconindex="23" />
       <node title="set_Item" file="JBLOCK.set_Item.xml" iconindex="23" />
     </node>

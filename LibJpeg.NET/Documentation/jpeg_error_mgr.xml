@@ -1,12 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_error_mgr</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<class>
-				<name>jpeg_error_mgr</name>
-			</class>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_error_mgr</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <class>
+        <name>jpeg_error_mgr</name>
+      </class>
+    </signature>
+  </file>
 </xml>

@@ -11,6 +11,7 @@
     <mod2>override</mod2>
     <mod2>static</mod2>
     <mod2>virtual</mod2>
+    <mod2>abstract</mod2>
   </mod2s>
   <langs>
     <lang>C#</lang>

@@ -1,20 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>jpeg_decompress_struct</title>
+    <title>Version</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
+      <text> :: </text>
+      <link file="jpeg_common_struct.xml">
+        <text>jpeg_common_struct</text>
+      </link>
     </breadcumbs>
     <descriptionarticle only="false" />
     <signature>
-      <class>
-        <name>jpeg_decompress_struct</name>
-        <bases>
-          <base type="jpeg_common_struct" file="jpeg_common_struct.xml" />
-        </bases>
-      </class>
+      <property access="read">
+        <mod2>static</mod2>
+        <name>Version</name>
+        <return type="string" />
+      </property>
     </signature>
   </file>
 </xml>

@@ -1,12 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_compress_struct</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<class>
-				<name>jpeg_compress_struct</name>
-			</class>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_compress_struct</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <class>
+        <name>jpeg_compress_struct</name>
+        <bases>
+          <base type="jpeg_common_struct" file="jpeg_common_struct.xml" />
+        </bases>
+      </class>
+    </signature>
+  </file>
 </xml>

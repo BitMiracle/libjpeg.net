@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>AllocJpegSamples</title>
+    <title>Err</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -12,17 +12,12 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Creates 2-D sample array.</text> </descriptionarticle>
+      <text>Error handler module.</text> </descriptionarticle>
     <signature>
-      <function>
-        <mod2>static</mod2>
-        <name>AllocJpegSamples</name>
-        <return type="Byte[][]" file="jpeg_progress_mgr.xml" />
-        <parameters>
-          <parameter name="samplesPerRow" type="Int32" />
-          <parameter name="numberOfRows" type="Int32" />
-        </parameters>
-      </function>
+      <property access="full">
+        <name>Err</name>
+        <return type="jpeg_error_mgr" file="jpeg_error_mgr.xml" />
+      </property>
     </signature>
   </file>
 </xml>
