@@ -4,44 +4,119 @@
     <ref>CompressionParameters.xml</ref>
     <ref>SampleRow.xml</ref>
     <ref>Colorspace.xml</ref>
+    <ref>JpegImage.WriteJpeg.xml</ref>
+    <ref>JpegImage.WriteJpeg1.xml</ref>
+    <ref>JpegImage.xml</ref>
+    <ref>Sample.xml</ref>
+    <ref>JpegImage.ToBitmap.xml</ref>
+    <ref>CompressionParameters.Equals.xml</ref>
+    <ref>CompressionParameters.ctor.xml</ref>
+    <ref>JpegImage.ctor.xml</ref>
+    <ref>JpegImage.ctor1.xml</ref>
+    <ref>JpegImage.ctor2.xml</ref>
+    <ref>JpegImage.ctor3.xml</ref>
+    <ref>JpegImage.FromBitmap.xml</ref>
+    <ref>CompressionParameters.Quality.xml</ref>
+    <ref>CompressionParameters.SmoothingFactor.xml</ref>
+    <ref>CompressionParameters.ForceBaseline.xml</ref>
+    <ref>CompressionParameters.SimpleProgressive.xml</ref>
+    <ref>JpegImage.GetRow.xml</ref>
+    <ref>SampleRow.ctor.xml</ref>
+    <ref>SampleRow.ctor1.xml</ref>
+    <ref>SampleRow.get_Length.xml</ref>
+    <ref>SampleRow.GetAt.xml</ref>
+    <ref>SampleRow.get_Item.xml</ref>
+    <ref>SampleRow.ToBytes.xml</ref>
+    <ref>JpegImage.Width.xml</ref>
+    <ref>JpegImage.Height.xml</ref>
+    <ref>JpegImage.BitsPerComponent.xml</ref>
+    <ref>JpegImage.ComponentsPerSample.xml</ref>
+    <ref>JpegImage.Colorspace.xml</ref>
+    <ref>JpegImage.WriteBitmap.xml</ref>
     <node title="CompressionParameters" file="CompressionParameters.xml" iconindex="6">
+      <ref>JpegImage.WriteJpeg1.xml</ref>
+      <ref>CompressionParameters.Equals.xml</ref>
+      <ref>CompressionParameters.ctor.xml</ref>
+      <ref>CompressionParameters.Quality.xml</ref>
+      <ref>CompressionParameters.SmoothingFactor.xml</ref>
+      <ref>CompressionParameters.ForceBaseline.xml</ref>
+      <ref>CompressionParameters.SimpleProgressive.xml</ref>
+      <node title="CompressionParameters constructor" file="CompressionParameters.ctor.xml" iconindex="23" />
       <node title="Equals" file="CompressionParameters.Equals.xml" iconindex="23" />
-      <node title="GetHashCode" file="CompressionParameters.GetHashCode.xml" iconindex="23" />
-      <node title="get_Quality" file="CompressionParameters.get_Quality.xml" iconindex="23" />
-      <node title="set_Quality" file="CompressionParameters.set_Quality.xml" iconindex="23" />
-      <node title="get_SmoothingFactor" file="CompressionParameters.get_SmoothingFactor.xml" iconindex="23" />
-      <node title="set_SmoothingFactor" file="CompressionParameters.set_SmoothingFactor.xml" iconindex="23" />
-      <node title="get_ForceBaseline" file="CompressionParameters.get_ForceBaseline.xml" iconindex="23" />
-      <node title="set_ForceBaseline" file="CompressionParameters.set_ForceBaseline.xml" iconindex="23" />
-      <node title="get_SimpleProgressive" file="CompressionParameters.get_SimpleProgressive.xml" iconindex="23" />
-      <node title="set_SimpleProgressive" file="CompressionParameters.set_SimpleProgressive.xml" iconindex="23" />
+      <node title="Quality" file="CompressionParameters.Quality.xml" iconindex="27" />
+      <node title="SmoothingFactor" file="CompressionParameters.SmoothingFactor.xml" iconindex="27" />
+      <node title="ForceBaseline" file="CompressionParameters.ForceBaseline.xml" iconindex="27" />
+      <node title="SimpleProgressive" file="CompressionParameters.SimpleProgressive.xml" iconindex="27" />
     </node>
     <node title="JpegImage" file="JpegImage.xml" iconindex="6">
+      <ref>JpegImage.WriteJpeg.xml</ref>
+      <ref>JpegImage.ToBitmap.xml</ref>
+      <ref>JpegImage.WriteJpeg1.xml</ref>
+      <ref>JpegImage.ctor.xml</ref>
+      <ref>JpegImage.ctor1.xml</ref>
+      <ref>JpegImage.ctor2.xml</ref>
+      <ref>JpegImage.ctor3.xml</ref>
+      <ref>JpegImage.FromBitmap.xml</ref>
+      <ref>JpegImage.GetRow.xml</ref>
+      <ref>JpegImage.Width.xml</ref>
+      <ref>JpegImage.Height.xml</ref>
+      <ref>JpegImage.BitsPerComponent.xml</ref>
+      <ref>JpegImage.ComponentsPerSample.xml</ref>
+      <ref>JpegImage.Colorspace.xml</ref>
+      <ref>JpegImage.WriteBitmap.xml</ref>
+      <node title="JpegImage constructor" file="JpegImage.ctor.xml" iconindex="23">
+        <ref>JpegImage.FromBitmap.xml</ref>
+      </node>
+      <node title="JpegImage constructor" file="JpegImage.ctor1.xml" iconindex="23" />
+      <node title="JpegImage constructor" file="JpegImage.ctor2.xml" iconindex="23" />
+      <node title="JpegImage constructor" file="JpegImage.ctor3.xml" iconindex="23" />
       <node title="FromBitmap" file="JpegImage.FromBitmap.xml" iconindex="23" />
-      <node title="get_Width" file="JpegImage.get_Width.xml" iconindex="23" />
-      <node title="get_Height" file="JpegImage.get_Height.xml" iconindex="23" />
-      <node title="get_BitsPerComponent" file="JpegImage.get_BitsPerComponent.xml" iconindex="23" />
-      <node title="get_ComponentsPerSample" file="JpegImage.get_ComponentsPerSample.xml" iconindex="23" />
-      <node title="get_Colorspace" file="JpegImage.get_Colorspace.xml" iconindex="23" />
-      <node title="GetRow" file="JpegImage.GetRow.xml" iconindex="23" />
+      <node title="Width" file="JpegImage.Width.xml" iconindex="27" />
+      <node title="Height" file="JpegImage.Height.xml" iconindex="27" />
+      <node title="BitsPerComponent" file="JpegImage.BitsPerComponent.xml" iconindex="27" />
+      <node title="ComponentsPerSample" file="JpegImage.ComponentsPerSample.xml" iconindex="27" />
+      <node title="Colorspace" file="JpegImage.Colorspace.xml" iconindex="27" />
+      <node title="GetRow" file="JpegImage.GetRow.xml" iconindex="23">
+        <ref>Sample.xml</ref>
+      </node>
       <node title="WriteJpeg" file="JpegImage.WriteJpeg.xml" iconindex="23" />
-      <node title="WriteJpeg" file="JpegImage.WriteJpeg.xml" iconindex="23" />
+      <node title="WriteJpeg" file="JpegImage.WriteJpeg1.xml" iconindex="23">
+        <ref>CompressionParameters.xml</ref>
+      </node>
       <node title="WriteBitmap" file="JpegImage.WriteBitmap.xml" iconindex="23" />
       <node title="ToBitmap" file="JpegImage.ToBitmap.xml" iconindex="23" />
     </node>
     <node title="Sample" file="Sample.xml" iconindex="6">
+      <ref>SampleRow.GetAt.xml</ref>
+      <ref>SampleRow.get_Item.xml</ref>
+      <ref>SampleRow.ToBytes.xml</ref>
+      <ref>SampleRow.xml</ref>
       <node title="get_BitsPerComponent" file="Sample.get_BitsPerComponent.xml" iconindex="23" />
       <node title="get_ComponentCount" file="Sample.get_ComponentCount.xml" iconindex="23" />
       <node title="GetComponent" file="Sample.GetComponent.xml" iconindex="23" />
       <node title="get_Item" file="Sample.get_Item.xml" iconindex="23" />
     </node>
     <node title="SampleRow" file="SampleRow.xml" iconindex="6">
+      <ref>Sample.xml</ref>
+      <ref>JpegImage.GetRow.xml</ref>
+      <ref>SampleRow.ctor.xml</ref>
+      <ref>SampleRow.ctor1.xml</ref>
+      <ref>SampleRow.get_Length.xml</ref>
+      <ref>SampleRow.GetAt.xml</ref>
+      <ref>SampleRow.get_Item.xml</ref>
+      <ref>SampleRow.ToBytes.xml</ref>
+      <ref>JpegImage.ctor3.xml</ref>
+      <node title="SampleRow constructor" file="SampleRow.ctor.xml" iconindex="23" />
+      <node title="SampleRow constructor" file="SampleRow.ctor1.xml" iconindex="23" />
       <node title="get_Length" file="SampleRow.get_Length.xml" iconindex="23" />
       <node title="GetAt" file="SampleRow.GetAt.xml" iconindex="23" />
       <node title="get_Item" file="SampleRow.get_Item.xml" iconindex="23" />
       <node title="ToBytes" file="SampleRow.ToBytes.xml" iconindex="23" />
     </node>
-    <node title="Colorspace" file="Colorspace.xml" iconindex="10" />
+    <node title="Colorspace" file="Colorspace.xml" iconindex="10">
+      <ref>JpegImage.ctor3.xml</ref>
+      <ref>JpegImage.Colorspace.xml</ref>
+    </node>
   </node>
   <node title="BitMiracle.LibJpeg.Classic namespace" file="BitMiracle_LibJpeg_Classic.xml" iconindex="0">
     <ref>jpeg_destination_mgr.xml</ref>
@@ -68,6 +143,45 @@
     <ref>jpeg_common_struct.jpeg_abort.xml</ref>
     <ref>jpeg_common_struct.Version.xml</ref>
     <ref>jpeg_common_struct.ERREXIT.xml</ref>
+    <ref>jpeg_common_struct.ERREXIT1.xml</ref>
+    <ref>jpeg_common_struct.ERREXIT2.xml</ref>
+    <ref>jpeg_common_struct.ERREXIT3.xml</ref>
+    <ref>jpeg_error_mgr.Trace_level.xml</ref>
+    <ref>jpeg_marker_parser_method.Invoke.xml</ref>
+    <ref>jpeg_marker_parser_method.xml</ref>
+    <ref>jpeg_decompress_struct.get_Src.xml</ref>
+    <ref>jvirt_barray_control.xml</ref>
+    <ref>jvirt_sarray_control.xml</ref>
+    <ref>jvirt_barray_control.access_virt_barray.xml</ref>
+    <ref>jpeg_common_struct.WARNMS.xml</ref>
+    <ref>jpeg_common_struct.WARNMS1.xml</ref>
+    <ref>jpeg_common_struct.WARNMS2.xml</ref>
+    <ref>jpeg_common_struct.WARNMS3.xml</ref>
+    <ref>jpeg_compress_struct.jpeg_start_compress.xml</ref>
+    <ref>jpeg_compress_struct.jpeg_simple_progression.xml</ref>
+    <ref>jpeg_common_struct.TRACEMS.xml</ref>
+    <ref>jpeg_common_struct.TRACEMS1.xml</ref>
+    <ref>jpeg_common_struct.jpeg_destroy.xml</ref>
+    <ref>jpeg_compress_struct.ctor.xml</ref>
+    <ref>jpeg_compress_struct.ctor1.xml</ref>
+    <ref>jpeg_compress_struct.Image_width.xml</ref>
+    <ref>jpeg_compress_struct.Image_height.xml</ref>
+    <ref>jpeg_compress_struct.Input_components.xml</ref>
+    <ref>jpeg_compress_struct.In_color_space.xml</ref>
+    <ref>jpeg_compress_struct.Next_scanline.xml</ref>
+    <ref>jpeg_decompress_struct.Output_width.xml</ref>
+    <ref>jpeg_decompress_struct.Output_height.xml</ref>
+    <ref>jpeg_decompress_struct.Out_color_components.xml</ref>
+    <ref>jpeg_decompress_struct.Output_components.xml</ref>
+    <ref>jpeg_decompress_struct.get_Rec_outbuf_height.xml</ref>
+    <ref>jpeg_decompress_struct.Actual_number_of_colors.xml</ref>
+    <ref>jpeg_decompress_struct.Colormap.xml</ref>
+    <ref>jpeg_decompress_struct.Output_scanline.xml</ref>
+    <ref>jpeg_decompress_struct.Image_width.xml</ref>
+    <ref>jpeg_decompress_struct.Image_height.xml</ref>
+    <ref>jpeg_compress_struct.jpeg_set_defaults.xml</ref>
+    <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
+    <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -76,46 +190,88 @@
       <ref>jpeg_common_struct.jpeg_abort.xml</ref>
       <ref>jpeg_common_struct.Version.xml</ref>
       <ref>jpeg_common_struct.ERREXIT.xml</ref>
+      <ref>jpeg_common_struct.ERREXIT1.xml</ref>
+      <ref>jpeg_common_struct.ERREXIT2.xml</ref>
+      <ref>jpeg_common_struct.ERREXIT3.xml</ref>
       <ref>jpeg_compress_struct.xml</ref>
       <ref>jpeg_decompress_struct.xml</ref>
+      <ref>jpeg_common_struct.WARNMS.xml</ref>
+      <ref>jpeg_common_struct.WARNMS1.xml</ref>
+      <ref>jpeg_common_struct.WARNMS2.xml</ref>
+      <ref>jpeg_common_struct.WARNMS3.xml</ref>
+      <ref>jpeg_common_struct.TRACEMS.xml</ref>
+      <ref>jpeg_common_struct.TRACEMS1.xml</ref>
+      <ref>jpeg_common_struct.jpeg_destroy.xml</ref>
+      <node title="jpeg_common_struct constructor" file="jpeg_common_struct.ctor.xml" iconindex="23" />
       <node title="Copyright" file="jpeg_common_struct.Copyright.xml" iconindex="27" />
       <node title="Err" file="jpeg_common_struct.Err.xml" iconindex="27" />
       <node title="Progress" file="\jpeg_common_struct.Progress.xml" iconindex="27" />
       <node title="Version" file="jpeg_common_struct.Version.xml" iconindex="27" />
       <node title="AllocJpegSamples" file="jpeg_common_struct.AllocJpegSamples.xml" iconindex="23" />
-      <node title="jpeg_abort" file="jpeg_common_struct.jpeg_abort.xml" iconindex="23" />
-      <node title="jpeg_destroy" file="jpeg_common_struct.jpeg_destroy.xml" iconindex="23" />
+      <node title="jpeg_abort" file="jpeg_common_struct.jpeg_abort.xml" iconindex="23">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="jpeg_destroy" file="jpeg_common_struct.jpeg_destroy.xml" iconindex="23">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23" />
-      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23" />
-      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23" />
-      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23" />
+      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT1.xml" iconindex="23" />
+      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT2.xml" iconindex="23" />
+      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT3.xml" iconindex="23" />
       <node title="WARNMS" file="jpeg_common_struct.WARNMS.xml" iconindex="23" />
-      <node title="WARNMS" file="jpeg_common_struct.WARNMS.xml" iconindex="23" />
-      <node title="WARNMS" file="jpeg_common_struct.WARNMS.xml" iconindex="23" />
-      <node title="WARNMS" file="jpeg_common_struct.WARNMS.xml" iconindex="23" />
+      <node title="WARNMS" file="jpeg_common_struct.WARNMS1.xml" iconindex="23" />
+      <node title="WARNMS" file="jpeg_common_struct.WARNMS2.xml" iconindex="23" />
+      <node title="WARNMS" file="jpeg_common_struct.WARNMS3.xml" iconindex="23" />
       <node title="TRACEMS" file="jpeg_common_struct.TRACEMS.xml" iconindex="23" />
-      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS.xml" iconindex="23" />
-      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS.xml" iconindex="23" />
-      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS.xml" iconindex="23" />
+      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS1.xml" iconindex="23" />
+      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS2.xml" iconindex="23" />
+      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS3.xml" iconindex="23" />
     </node>
     <node title="jpeg_compress_struct" file="jpeg_compress_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.xml</ref>
+      <ref>jpeg_compress_struct.jpeg_start_compress.xml</ref>
+      <ref>jpeg_compress_struct.jpeg_simple_progression.xml</ref>
+      <ref>Classic\Compression_details.xml</ref>
+      <ref>jpeg_compress_struct.ctor.xml</ref>
+      <ref>jpeg_compress_struct.ctor1.xml</ref>
+      <ref>jpeg_compress_struct.Image_width.xml</ref>
+      <ref>jpeg_compress_struct.Image_height.xml</ref>
+      <ref>jpeg_compress_struct.Input_components.xml</ref>
+      <ref>jpeg_compress_struct.In_color_space.xml</ref>
+      <ref>jpeg_compress_struct.Next_scanline.xml</ref>
+      <ref>jpeg_compress_struct.jpeg_set_defaults.xml</ref>
+      <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
+      <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
+      <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor.xml" iconindex="23" />
+      <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor1.xml" iconindex="23" />
       <node title="get_Dest" file="jpeg_compress_struct.get_Dest.xml" iconindex="23" />
       <node title="set_Dest" file="jpeg_compress_struct.set_Dest.xml" iconindex="23" />
-      <node title="get_Image_width" file="jpeg_compress_struct.get_Image_width.xml" iconindex="23" />
-      <node title="set_Image_width" file="jpeg_compress_struct.set_Image_width.xml" iconindex="23" />
-      <node title="get_Image_height" file="jpeg_compress_struct.get_Image_height.xml" iconindex="23" />
-      <node title="set_Image_height" file="jpeg_compress_struct.set_Image_height.xml" iconindex="23" />
-      <node title="get_Input_components" file="jpeg_compress_struct.get_Input_components.xml" iconindex="23" />
-      <node title="set_Input_components" file="jpeg_compress_struct.set_Input_components.xml" iconindex="23" />
-      <node title="get_In_color_space" file="jpeg_compress_struct.get_In_color_space.xml" iconindex="23" />
-      <node title="set_In_color_space" file="jpeg_compress_struct.set_In_color_space.xml" iconindex="23" />
+      <node title="Image_width" file="jpeg_compress_struct.Image_width.xml" iconindex="27">
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
+      <node title="Image_height" file="jpeg_compress_struct.Image_height.xml" iconindex="27">
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Input_components" file="jpeg_compress_struct.Input_components.xml" iconindex="27">
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
+      <node title="In_color_space" file="jpeg_compress_struct.In_color_space.xml" iconindex="27">
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_set_defaults.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
       <node title="get_Data_precision" file="jpeg_compress_struct.get_Data_precision.xml" iconindex="23" />
       <node title="set_Data_precision" file="jpeg_compress_struct.set_Data_precision.xml" iconindex="23" />
       <node title="get_Num_components" file="jpeg_compress_struct.get_Num_components.xml" iconindex="23" />
       <node title="set_Num_components" file="jpeg_compress_struct.set_Num_components.xml" iconindex="23" />
-      <node title="get_Jpeg_color_space" file="jpeg_compress_struct.get_Jpeg_color_space.xml" iconindex="23" />
-      <node title="set_Jpeg_color_space" file="jpeg_compress_struct.set_Jpeg_color_space.xml" iconindex="23" />
+      <node title="Jpeg_color_space" file="jpeg_compress_struct.Jpeg_color_space.xml" iconindex="27">
+        <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
+      </node>
       <node title="get_Raw_data_in" file="jpeg_compress_struct.get_Raw_data_in.xml" iconindex="23" />
       <node title="set_Raw_data_in" file="jpeg_compress_struct.set_Raw_data_in.xml" iconindex="23" />
       <node title="get_Optimize_coding" file="jpeg_compress_struct.get_Optimize_coding.xml" iconindex="23" />
@@ -144,26 +300,47 @@
       <node title="set_Y_density" file="jpeg_compress_struct.set_Y_density.xml" iconindex="23" />
       <node title="get_Write_Adobe_marker" file="jpeg_compress_struct.get_Write_Adobe_marker.xml" iconindex="23" />
       <node title="set_Write_Adobe_marker" file="jpeg_compress_struct.set_Write_Adobe_marker.xml" iconindex="23" />
-      <node title="get_Next_scanline" file="jpeg_compress_struct.get_Next_scanline.xml" iconindex="23" />
-      <node title="SetErrorManager" file="jpeg_compress_struct.SetErrorManager.xml" iconindex="23" />
-      <node title="jpeg_abort_compress" file="jpeg_compress_struct.jpeg_abort_compress.xml" iconindex="23" />
+      <node title="Next_scanline" file="jpeg_compress_struct.Next_scanline.xml" iconindex="27">
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
+      <node title="SetErrorManager" file="jpeg_compress_struct.SetErrorManager.xml" iconindex="23">
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
+      <node title="jpeg_abort_compress" file="jpeg_compress_struct.jpeg_abort_compress.xml" iconindex="23">
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
       <node title="jpeg_suppress_tables" file="jpeg_compress_struct.jpeg_suppress_tables.xml" iconindex="23" />
-      <node title="jpeg_finish_compress" file="jpeg_compress_struct.jpeg_finish_compress.xml" iconindex="23" />
+      <node title="jpeg_finish_compress" file="jpeg_compress_struct.jpeg_finish_compress.xml" iconindex="23">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
       <node title="jpeg_write_marker" file="jpeg_compress_struct.jpeg_write_marker.xml" iconindex="23" />
       <node title="jpeg_write_m_header" file="jpeg_compress_struct.jpeg_write_m_header.xml" iconindex="23" />
       <node title="jpeg_write_m_byte" file="jpeg_compress_struct.jpeg_write_m_byte.xml" iconindex="23" />
       <node title="jpeg_write_tables" file="jpeg_compress_struct.jpeg_write_tables.xml" iconindex="23" />
       <node title="jpeg_stdio_dest" file="jpeg_compress_struct.jpeg_stdio_dest.xml" iconindex="23" />
-      <node title="jpeg_set_defaults" file="jpeg_compress_struct.jpeg_set_defaults.xml" iconindex="23" />
+      <node title="jpeg_set_defaults" file="jpeg_compress_struct.jpeg_set_defaults.xml" iconindex="23">
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
       <node title="jpeg_set_colorspace" file="jpeg_compress_struct.jpeg_set_colorspace.xml" iconindex="23" />
-      <node title="jpeg_default_colorspace" file="jpeg_compress_struct.jpeg_default_colorspace.xml" iconindex="23" />
-      <node title="jpeg_set_quality" file="jpeg_compress_struct.jpeg_set_quality.xml" iconindex="23" />
+      <node title="jpeg_default_colorspace" file="jpeg_compress_struct.jpeg_default_colorspace.xml" iconindex="23">
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="jpeg_set_quality" file="jpeg_compress_struct.jpeg_set_quality.xml" iconindex="23">
+        <ref>jpeg_compress_struct.jpeg_set_defaults.xml</ref>
+      </node>
       <node title="jpeg_set_linear_quality" file="jpeg_compress_struct.jpeg_set_linear_quality.xml" iconindex="23" />
       <node title="jpeg_add_quant_table" file="jpeg_compress_struct.jpeg_add_quant_table.xml" iconindex="23" />
       <node title="jpeg_quality_scaling" file="jpeg_compress_struct.jpeg_quality_scaling.xml" iconindex="23" />
       <node title="jpeg_simple_progression" file="jpeg_compress_struct.jpeg_simple_progression.xml" iconindex="23" />
-      <node title="jpeg_start_compress" file="jpeg_compress_struct.jpeg_start_compress.xml" iconindex="23" />
-      <node title="jpeg_write_scanlines" file="jpeg_compress_struct.jpeg_write_scanlines.xml" iconindex="23" />
+      <node title="jpeg_start_compress" file="jpeg_compress_struct.jpeg_start_compress.xml" iconindex="23">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
+      <node title="jpeg_write_scanlines" file="jpeg_compress_struct.jpeg_write_scanlines.xml" iconindex="23">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
       <node title="jpeg_write_raw_data" file="jpeg_compress_struct.jpeg_write_raw_data.xml" iconindex="23" />
       <node title="jpeg_write_coefficients" file="jpeg_compress_struct.jpeg_write_coefficients.xml" iconindex="23" />
     </node>
@@ -171,10 +348,31 @@
       <ref>jpeg_decompress_struct.get_Src.xml</ref>
       <ref>jpeg_decompress_struct.get_Enable_2pass_quant.xml</ref>
       <ref>jpeg_common_struct.xml</ref>
+      <ref>jpeg_marker_parser_method.Invoke.xml</ref>
+      <ref>jpeg_marker_parser_method.xml</ref>
+      <ref>Classic\Decompression_details.xml</ref>
+      <ref>jpeg_decompress_struct.Output_width.xml</ref>
+      <ref>jpeg_decompress_struct.Output_height.xml</ref>
+      <ref>jpeg_decompress_struct.Out_color_components.xml</ref>
+      <ref>jpeg_decompress_struct.Output_components.xml</ref>
+      <ref>jpeg_decompress_struct.get_Rec_outbuf_height.xml</ref>
+      <ref>jpeg_decompress_struct.Actual_number_of_colors.xml</ref>
+      <ref>jpeg_decompress_struct.Colormap.xml</ref>
+      <ref>jpeg_decompress_struct.Output_scanline.xml</ref>
+      <ref>jpeg_decompress_struct.Image_width.xml</ref>
+      <ref>jpeg_decompress_struct.Image_height.xml</ref>
+      <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="6">
+        <ref>jpeg_marker_parser_method.Invoke.xml</ref>
+        <node title="Invoke" file="jpeg_marker_parser_method.Invoke.xml" iconindex="23" />
+        <node title="BeginInvoke" file="jpeg_marker_parser_method.BeginInvoke.xml" iconindex="23" />
+        <node title="EndInvoke" file="jpeg_marker_parser_method.EndInvoke.xml" iconindex="23" />
+      </node>
+      <node title="jpeg_decompress_struct constructor" file="jpeg_decompress_struct.ctor.xml" iconindex="23" />
+      <node title="jpeg_decompress_struct constructor" file="jpeg_decompress_struct.ctor1.xml" iconindex="23" />
       <node title="get_Src" file="jpeg_decompress_struct.get_Src.xml" iconindex="23" />
       <node title="set_Src" file="jpeg_decompress_struct.set_Src.xml" iconindex="23" />
-      <node title="get_Image_width" file="jpeg_decompress_struct.get_Image_width.xml" iconindex="23" />
-      <node title="get_Image_height" file="jpeg_decompress_struct.get_Image_height.xml" iconindex="23" />
+      <node title="Image_width" file="jpeg_decompress_struct.Image_width.xml" iconindex="27" />
+      <node title="Image_height" file="jpeg_decompress_struct.Image_height.xml" iconindex="27" />
       <node title="get_Num_components" file="jpeg_decompress_struct.get_Num_components.xml" iconindex="23" />
       <node title="get_Jpeg_color_space" file="jpeg_decompress_struct.get_Jpeg_color_space.xml" iconindex="23" />
       <node title="get_Out_color_space" file="jpeg_decompress_struct.get_Out_color_space.xml" iconindex="23" />
@@ -209,16 +407,28 @@
         <ref>J_DITHER_MODE.xml</ref>
       </node>
       <node title="set_Enable_2pass_quant" file="jpeg_decompress_struct.set_Enable_2pass_quant.xml" iconindex="23" />
-      <node title="get_Output_width" file="jpeg_decompress_struct.get_Output_width.xml" iconindex="23" />
-      <node title="get_Output_height" file="jpeg_decompress_struct.get_Output_height.xml" iconindex="23" />
-      <node title="get_Out_color_components" file="jpeg_decompress_struct.get_Out_color_components.xml" iconindex="23" />
-      <node title="get_Output_components" file="jpeg_decompress_struct.get_Output_components.xml" iconindex="23" />
+      <node title="Output_width" file="jpeg_decompress_struct.Output_width.xml" iconindex="27">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Output_height" file="jpeg_decompress_struct.Output_height.xml" iconindex="27">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Out_color_components" file="jpeg_decompress_struct.Out_color_components.xml" iconindex="27">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Output_components" file="jpeg_decompress_struct.Output_components.xml" iconindex="27">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
       <node title="get_Rec_outbuf_height" file="jpeg_decompress_struct.get_Rec_outbuf_height.xml" iconindex="23" />
-      <node title="get_Actual_number_of_colors" file="jpeg_decompress_struct.get_Actual_number_of_colors.xml" iconindex="23" />
-      <node title="set_Actual_number_of_colors" file="jpeg_decompress_struct.set_Actual_number_of_colors.xml" iconindex="23" />
-      <node title="get_Colormap" file="jpeg_decompress_struct.get_Colormap.xml" iconindex="23" />
-      <node title="set_Colormap" file="jpeg_decompress_struct.set_Colormap.xml" iconindex="23" />
-      <node title="get_Output_scanline" file="jpeg_decompress_struct.get_Output_scanline.xml" iconindex="23" />
+      <node title="Actual_number_of_colors" file="jpeg_decompress_struct.Actual_number_of_colors.xml" iconindex="27">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Colormap" file="jpeg_decompress_struct.Colormap.xml" iconindex="27">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Output_scanline" file="jpeg_decompress_struct.Output_scanline.xml" iconindex="27">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
       <node title="get_Input_scan_number" file="jpeg_decompress_struct.get_Input_scan_number.xml" iconindex="23" />
       <node title="get_Input_iMCU_row" file="jpeg_decompress_struct.get_Input_iMCU_row.xml" iconindex="23" />
       <node title="get_Output_scan_number" file="jpeg_decompress_struct.get_Output_scan_number.xml" iconindex="23" />
@@ -230,44 +440,60 @@
       <node title="get_Unread_marker" file="jpeg_decompress_struct.get_Unread_marker.xml" iconindex="23" />
       <node title="SetErrorManager" file="jpeg_decompress_struct.SetErrorManager.xml" iconindex="23" />
       <node title="jpeg_stdio_src" file="jpeg_decompress_struct.jpeg_stdio_src.xml" iconindex="23" />
-      <node title="jpeg_read_header" file="jpeg_decompress_struct.jpeg_read_header.xml" iconindex="23" />
-      <node title="jpeg_start_decompress" file="jpeg_decompress_struct.jpeg_start_decompress.xml" iconindex="23" />
-      <node title="jpeg_read_scanlines" file="jpeg_decompress_struct.jpeg_read_scanlines.xml" iconindex="23" />
-      <node title="jpeg_finish_decompress" file="jpeg_decompress_struct.jpeg_finish_decompress.xml" iconindex="23" />
+      <node title="jpeg_read_header" file="jpeg_decompress_struct.jpeg_read_header.xml" iconindex="23">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="jpeg_start_decompress" file="jpeg_decompress_struct.jpeg_start_decompress.xml" iconindex="23">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="jpeg_read_scanlines" file="jpeg_decompress_struct.jpeg_read_scanlines.xml" iconindex="23">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="jpeg_finish_decompress" file="jpeg_decompress_struct.jpeg_finish_decompress.xml" iconindex="23">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
       <node title="jpeg_read_raw_data" file="jpeg_decompress_struct.jpeg_read_raw_data.xml" iconindex="23" />
       <node title="jpeg_has_multiple_scans" file="jpeg_decompress_struct.jpeg_has_multiple_scans.xml" iconindex="23" />
       <node title="jpeg_start_output" file="jpeg_decompress_struct.jpeg_start_output.xml" iconindex="23" />
       <node title="jpeg_finish_output" file="jpeg_decompress_struct.jpeg_finish_output.xml" iconindex="23" />
       <node title="jpeg_input_complete" file="jpeg_decompress_struct.jpeg_input_complete.xml" iconindex="23" />
       <node title="jpeg_consume_input" file="jpeg_decompress_struct.jpeg_consume_input.xml" iconindex="23" />
-      <node title="jpeg_calc_output_dimensions" file="jpeg_decompress_struct.jpeg_calc_output_dimensions.xml" iconindex="23" />
+      <node title="jpeg_calc_output_dimensions" file="jpeg_decompress_struct.jpeg_calc_output_dimensions.xml" iconindex="23">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
       <node title="jpeg_read_coefficients" file="jpeg_decompress_struct.jpeg_read_coefficients.xml" iconindex="23" />
       <node title="jpeg_copy_critical_parameters" file="jpeg_decompress_struct.jpeg_copy_critical_parameters.xml" iconindex="23" />
-      <node title="jpeg_abort_decompress" file="jpeg_decompress_struct.jpeg_abort_decompress.xml" iconindex="23" />
+      <node title="jpeg_abort_decompress" file="jpeg_decompress_struct.jpeg_abort_decompress.xml" iconindex="23">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
       <node title="jpeg_set_marker_processor" file="jpeg_decompress_struct.jpeg_set_marker_processor.xml" iconindex="23" />
       <node title="jpeg_save_markers" file="jpeg_decompress_struct.jpeg_save_markers.xml" iconindex="23" />
     </node>
     <node title="jpeg_destination_mgr" file="jpeg_destination_mgr.xml" iconindex="6">
       <node title="init_destination" file="jpeg_destination_mgr.init_destination.xml" iconindex="23" />
       <node title="empty_output_buffer" file="jpeg_destination_mgr.empty_output_buffer.xml" iconindex="23" />
-      <node title="term_destination" file="jpeg_destination_mgr.term_destination.xml" iconindex="23" />
+      <node title="term_destination" file="jpeg_destination_mgr.term_destination.xml" iconindex="23">
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
       <node title="emit_byte" file="jpeg_destination_mgr.emit_byte.xml" iconindex="23" />
     </node>
     <node title="jpeg_error_mgr" file="jpeg_error_mgr.xml" iconindex="6">
       <ref>jpeg_common_struct.Err.xml</ref>
-      <node title="get_Trace_level" file="jpeg_error_mgr.get_Trace_level.xml" iconindex="23" />
-      <node title="set_Trace_level" file="jpeg_error_mgr.set_Trace_level.xml" iconindex="23" />
+      <ref>jpeg_error_mgr.Trace_level.xml</ref>
+      <ref>Classic\Compression_details.xml</ref>
+      <ref>jpeg_compress_struct.ctor1.xml</ref>
+      <node title="jpeg_error_mgr constructor" file="jpeg_error_mgr.ctor.xml" iconindex="23" />
+      <node title="Trace_level" file="jpeg_error_mgr.Trace_level.xml" iconindex="27" />
       <node title="get_Num_warnings" file="jpeg_error_mgr.get_Num_warnings.xml" iconindex="23" />
       <node title="error_exit" file="jpeg_error_mgr.error_exit.xml" iconindex="23" />
       <node title="emit_message" file="jpeg_error_mgr.emit_message.xml" iconindex="23" />
       <node title="output_message" file="jpeg_error_mgr.output_message.xml" iconindex="23" />
       <node title="format_message" file="jpeg_error_mgr.format_message.xml" iconindex="23" />
       <node title="reset_error_mgr" file="jpeg_error_mgr.reset_error_mgr.xml" iconindex="23" />
-    </node>
-    <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="6">
-      <node title="Invoke" file="jpeg_marker_parser_method.Invoke.xml" iconindex="23" />
-      <node title="BeginInvoke" file="jpeg_marker_parser_method.BeginInvoke.xml" iconindex="23" />
-      <node title="EndInvoke" file="jpeg_marker_parser_method.EndInvoke.xml" iconindex="23" />
     </node>
     <node title="jpeg_progress_mgr" file="jpeg_progress_mgr.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
@@ -296,7 +522,12 @@
       <node title="MakeByteAvailable" file="jpeg_source_mgr.MakeByteAvailable.xml" iconindex="23" />
     </node>
     <node title="jvirt_barray_control" file="jvirt_barray_control.xml" iconindex="6">
-      <node title="access_virt_barray" file="jvirt_barray_control.access_virt_barray.xml" iconindex="23" />
+      <ref>jvirt_barray_control.access_virt_barray.xml</ref>
+      <node title="jvirt_barray_control constructor" file="jvirt_barray_control.ctor.xml" iconindex="23" />
+      <node title="access_virt_barray" file="jvirt_barray_control.access_virt_barray.xml" iconindex="23">
+        <ref>jvirt_sarray_control.xml</ref>
+        <ref>jvirt_barray_control.xml</ref>
+      </node>
     </node>
     <node title="jvirt_sarray_control" file="jvirt_sarray_control.xml" iconindex="6">
       <node title="access_virt_sarray" file="jvirt_sarray_control.access_virt_sarray.xml" iconindex="23" />
@@ -304,15 +535,88 @@
     <node title="JBLOCK" file="JBLOCK.xml" iconindex="6">
       <ref>JBLOCK.get_Item.xml</ref>
       <ref>JBLOCK.set_Item.xml</ref>
+      <ref>jvirt_barray_control.access_virt_barray.xml</ref>
       <node title="get_Item" file="JBLOCK.get_Item.xml" iconindex="23" />
       <node title="set_Item" file="JBLOCK.set_Item.xml" iconindex="23" />
     </node>
-    <node title="JpegConstants" file="JpegConstants.xml" iconindex="6" />
-    <node title="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" iconindex="10" />
+    <node title="JpegConstants" file="JpegConstants.xml" iconindex="6">
+      <ref>Classic\Data_formats.xml</ref>
+    </node>
+    <node title="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" iconindex="10">
+      <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
+      <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
+    </node>
     <node title="J_DCT_METHOD" file="J_DCT_METHOD.xml" iconindex="10" />
     <node title="J_DITHER_MODE" file="J_DITHER_MODE.xml" iconindex="10" />
     <node title="JPEG_MARKER" file="JPEG_MARKER.xml" iconindex="10" />
-    <node title="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" iconindex="10" />
+    <node title="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" iconindex="10">
+      <ref>jpeg_common_struct.WARNMS.xml</ref>
+      <ref>jpeg_common_struct.WARNMS2.xml</ref>
+      <ref>jpeg_common_struct.ERREXIT2.xml</ref>
+      <ref>jpeg_common_struct.ERREXIT.xml</ref>
+      <ref>jpeg_common_struct.TRACEMS.xml</ref>
+    </node>
     <node title="ReadResult" file="ReadResult.xml" iconindex="10" />
+  </node>
+  <node title="Knowledge base" file="\Knowledge_base.xml" iconindex="0">
+    <ref>Classic_LibJpeg.xml</ref>
+    <node title="Classic LibJpeg" file="Classic_LibJpeg.xml" iconindex="0">
+      <ref>Classic\Outline_of_typical_usage.xml</ref>
+      <ref>Classic\Data_formats.xml</ref>
+      <ref>Classic\I_O_suspension.xml</ref>
+      <ref>Classic\Compression_details.xml</ref>
+      <ref>Classic\Special_color_spaces.xml</ref>
+      <ref>Classic\Decompression_parameter_selection.xml</ref>
+      <ref>Classic\Compression_parameter_selection.xml</ref>
+      <ref>Classic\Compressed_data_handling.xml</ref>
+      <ref>Classic\Error_handling.xml</ref>
+      <ref>Classic\Decompression_details.xml</ref>
+      <ref>Classic\Abbreviated_datastreams_and_multiple_images.xml</ref>
+      <ref>Classic\Mechanics_of_usage.xml</ref>
+      <node title="Outline of typical usage" file="Classic\Outline_of_typical_usage.xml" iconindex="0">
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Data formats" file="Classic\Data_formats.xml" iconindex="0">
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Compression details" file="Classic\Compression_details.xml" iconindex="0">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Decompression details" file="Classic\Decompression_details.xml" iconindex="0">
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
+      <node title="Mechanics of usage" file="Classic\Mechanics_of_usage.xml" iconindex="0" />
+      <node title="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" iconindex="0">
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_set_defaults.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
+      </node>
+      <node title="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" iconindex="0">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Special color spaces" file="Classic\Special_color_spaces.xml" iconindex="0">
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
+        <ref>J_COLOR_SPACE.xml</ref>
+      </node>
+      <node title="Error handling" file="Classic\Error_handling.xml" iconindex="0">
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
+      <node title="Compressed data handling" file="Classic\Compressed_data_handling.xml" iconindex="0">
+        <ref>Classic\Compression_details.xml</ref>
+      </node>
+      <node title="I/O suspension" file="Classic\I_O_suspension.xml" iconindex="0">
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+      <node title="Abbreviated datastreams and multiple images" file="Classic\Abbreviated_datastreams_and_multiple_images.xml" iconindex="0">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
+    </node>
   </node>
 </menu>

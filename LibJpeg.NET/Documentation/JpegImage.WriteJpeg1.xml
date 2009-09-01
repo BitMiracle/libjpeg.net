@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>WriteJpeg</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg.xml">
+        <text>BitMiracle.LibJpeg namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="JpegImage.xml">
+        <text>JpegImage</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>WriteJpeg</name>
+        <return type="void" />
+        <parameters>
+          <parameter name="output" type="Stream" />
+          <parameter name="parameters" type="CompressionParameters" file="CompressionParameters.xml" />
+        </parameters>
+      </function>
+    </signature>
+  </file>
+</xml>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>Colorspace</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg.xml">
+        <text>BitMiracle.LibJpeg namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="JpegImage.xml">
+        <text>JpegImage</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <property access="read">
+        <name>Colorspace</name>
+        <return type="Colorspace" file="Colorspace.xml" />
+      </property>
+    </signature>
+  </file>
+</xml>

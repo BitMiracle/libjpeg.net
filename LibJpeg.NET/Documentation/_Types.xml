@@ -26,5 +26,11 @@
     <type>long</type>
     <type>string</type>
     <type>void</type>
+    <type>Int32</type>
+    <type>JBLOCK[][]</type>
+    <type>Boolean</type>
+    <type>Byte</type>
+    <type>System.Drawing.Bitmap</type>
+    <type>Colorspace</type>
   </types>
 </xml>

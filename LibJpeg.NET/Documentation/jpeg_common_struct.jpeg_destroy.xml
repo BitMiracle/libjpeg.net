@@ -1,16 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_destroy</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>jpeg_destroy</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_destroy</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_common_struct.xml">
+        <text>jpeg_common_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>jpeg_destroy</name>
+        <return type="void" />
+      </function>
+    </signature>
+  </file>
 </xml>

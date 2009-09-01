@@ -1,17 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>Equals</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				<mod2>virtual</mod2>
-				<name>Equals</name>
-				<return type="Boolean" />
-				<parameters>
-					<parameter name="obj" type="Object" file="Object.xml" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>Equals</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg.xml">
+        <text>BitMiracle.LibJpeg namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="CompressionParameters.xml">
+        <text>CompressionParameters</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <mod2>virtual</mod2>
+        <name>Equals</name>
+        <return type="Boolean" />
+        <parameters>
+          <parameter name="obj" type="Object" file="Object.xml" />
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>

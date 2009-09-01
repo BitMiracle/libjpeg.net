@@ -1,17 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_start_compress</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>jpeg_start_compress</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					<parameter name="write_all_tables" type="Boolean" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_start_compress</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_compress_struct.xml">
+        <text>jpeg_compress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>jpeg_start_compress</name>
+        <return type="void" />
+        <parameters>
+          <parameter name="write_all_tables" type="Boolean" />
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>

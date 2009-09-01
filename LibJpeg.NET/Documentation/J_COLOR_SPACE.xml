@@ -9,6 +9,9 @@
     </breadcumbs>
     <descriptionarticle only="false">
       <text>Known color spaces.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Special color spaces" file="Classic\Special_color_spaces.xml" />
+    </seealso>
     <signature>
       <enum>
         <name>J_COLOR_SPACE</name>

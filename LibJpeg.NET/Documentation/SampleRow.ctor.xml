@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>SampleRow</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg.xml">
+        <text>BitMiracle.LibJpeg namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="SampleRow.xml">
+        <text>SampleRow</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>SampleRow</name>
+        <parameters>
+          <parameter name="row" type="Byte[]" file="Byte[].xml" />
+          <parameter name="sampleCount" type="Int32" />
+          <parameter name="bitsPerComponent" type="Byte" />
+          <parameter name="componentsPerSample" type="Byte" />
+        </parameters>
+      </function>
+    </signature>
+  </file>
+</xml>

@@ -17,8 +17,7 @@
         <name>ERREXIT</name>
         <return type="Void" />
         <parameters>
-          <parameter name="code" type="Int32" />
-          <parameter name="args" type="Object[]" file="Object[].xml" />
+          <parameter name="code" type="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" />
         </parameters>
       </function>
     </signature>

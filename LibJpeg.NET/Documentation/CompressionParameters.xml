@@ -7,11 +7,17 @@
         <text>BitMiracle.LibJpeg namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Parameters of compression.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="JpegImage.WriteJpeg" file="JpegImage.WriteJpeg1.xml" />
+    </seealso>
     <signature>
       <class>
         <name>CompressionParameters</name>
       </class>
     </signature>
+    <remarks>
+      <text>Being used in </text> <link file="JpegImage.WriteJpeg1.xml"><text>JpegImage.WriteJpeg</text> </link><text>.</text> </remarks>
   </file>
 </xml>

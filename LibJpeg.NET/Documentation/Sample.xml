@@ -1,12 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>Sample</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<class>
-				<name>Sample</name>
-			</class>
-		</signature>
-	</file>
+  <file>
+    <title>Sample</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg.xml">
+        <text>BitMiracle.LibJpeg namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Represents a "sample" (you can understand it as "pixel") of image.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="SampleRow" file="SampleRow.xml" />
+    </seealso>
+    <signature>
+      <class>
+        <name>Sample</name>
+      </class>
+    </signature>
+    <remarks>
+      <p>
+        <text>It's impossible to create an instance of this class directly, but you can use existing samples through </text> <link file="SampleRow.xml"><text>SampleRow</text> </link><text> collection. Usual scenario is to get row of samples from the </text> <link file="JpegImage.GetRow.xml"><text>JpegImage.GetRow</text> </link><text> method.</text> </p>
+    </remarks>
+  </file>
 </xml>

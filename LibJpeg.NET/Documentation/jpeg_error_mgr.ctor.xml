@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>jpeg_error_mgr</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<function>
+				<name>jpeg_error_mgr</name>
+				<parameters>
+					</parameters>
+				</function>
+		</signature>
+	</file>
+</xml>

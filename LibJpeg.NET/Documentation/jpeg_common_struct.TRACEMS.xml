@@ -1,19 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>TRACEMS</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>TRACEMS</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					<parameter name="lvl" type="Int32" />
-					<parameter name="code" type="Int32" />
-					<parameter name="args" type="Object[]" file="Object[].xml" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>TRACEMS</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_common_struct.xml">
+        <text>jpeg_common_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>TRACEMS</name>
+        <return type="void" />
+        <parameters>
+          <parameter name="lvl" type="Int32" />
+          <parameter name="code" type="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" />
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>

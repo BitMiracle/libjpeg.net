@@ -1,17 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>Invoke</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				<mod2>virtual</mod2>
-				<name>Invoke</name>
-				<return type="Boolean" />
-				<parameters>
-					<parameter name="cinfo" type="jpeg_decompress_struct" file="jpeg_decompress_struct.xml" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>Invoke</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_decompress_struct.xml">
+        <text>jpeg_decompress_struct</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_marker_parser_method.xml">
+        <text>jpeg_marker_parser_method</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <mod2>virtual</mod2>
+        <name>Invoke</name>
+        <return type="Boolean" />
+        <parameters>
+          <parameter name="cinfo" type="jpeg_decompress_struct" file="jpeg_decompress_struct.xml" />
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>

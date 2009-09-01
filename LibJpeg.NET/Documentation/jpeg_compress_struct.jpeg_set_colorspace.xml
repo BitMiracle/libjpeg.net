@@ -1,17 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_set_colorspace</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>jpeg_set_colorspace</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					<parameter name="colorspace" type="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_set_colorspace</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_compress_struct.xml">
+        <text>jpeg_compress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Sets the JPEG file's colorspace (property </text> <link file="jpeg_compress_struct.Jpeg_color_space.xml"><text>Jpeg_color_space</text> </link><text>) as specified, and sets other color-space-dependent parameters appropriately. See "</text> <link file="Classic/Special_color_spaces.xml"><text>Special color spaces</text> </link><text>", below, before using this. A large number of parameters, including all per-component parameters, are set by this routine; if you want to twiddle individual parameters you should call jpeg_set_colorspace() before rather than after.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" />
+    </seealso>
+    <signature>
+      <function>
+        <name>jpeg_set_colorspace</name>
+        <return type="void" />
+        <parameters>
+          <parameter name="colorspace" type="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" />
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>

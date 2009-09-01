@@ -7,7 +7,8 @@
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Contains simple error-reporting and trace-message routines.</text> <br /><text>This routines are used by both the compression and decompression code.</text> </descriptionarticle>
     <signature>
       <class>
         <name>jpeg_error_mgr</name>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>Classic LibJpeg</title>
+    <breadcumbs>
+      <link file="\Knowledge_base.xml">
+        <text>Knowledge base</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="true" />
+  </file>
+</xml>

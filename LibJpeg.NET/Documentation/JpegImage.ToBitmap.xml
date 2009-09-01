@@ -1,16 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>ToBitmap</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>ToBitmap</name>
-				<return type="Bitmap" file="Bitmap.xml" />
-				<parameters>
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>ToBitmap</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg.xml">
+        <text>BitMiracle.LibJpeg namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="JpegImage.xml">
+        <text>JpegImage</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>ToBitmap</name>
+        <return type="System.Drawing.Bitmap" />
+      </function>
+    </signature>
+  </file>
 </xml>

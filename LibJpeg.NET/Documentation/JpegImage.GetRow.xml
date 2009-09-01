@@ -1,17 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>GetRow</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>GetRow</name>
-				<return type="SampleRow" file="SampleRow.xml" />
-				<parameters>
-					<parameter name="rowNumber" type="Int32" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>GetRow</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg.xml">
+        <text>BitMiracle.LibJpeg namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="JpegImage.xml">
+        <text>JpegImage</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>GetRow</name>
+        <return type="SampleRow" file="SampleRow.xml" />
+        <parameters>
+          <parameter name="rowNumber" type="Int32" />
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>

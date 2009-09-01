@@ -8,6 +8,9 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false" />
+    <seealso>
+      <ref caption="Sample" file="Sample.xml" />
+    </seealso>
     <signature>
       <class>
         <name>SampleRow</name>

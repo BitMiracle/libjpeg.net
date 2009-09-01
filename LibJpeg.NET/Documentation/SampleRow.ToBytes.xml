@@ -1,16 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>ToBytes</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>ToBytes</name>
-				<return type="Byte[]" file="Byte[].xml" />
-				<parameters>
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>ToBytes</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg.xml">
+        <text>BitMiracle.LibJpeg namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="SampleRow.xml">
+        <text>SampleRow</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>ToBytes</name>
+        <return type="Byte[]" file="Sample.xml" />
+      </function>
+    </signature>
+  </file>
 </xml>

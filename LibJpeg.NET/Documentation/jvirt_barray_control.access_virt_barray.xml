@@ -1,18 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>access_virt_barray</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>access_virt_barray</name>
-				<return type="JBLOCK[][]" file="JBLOCK[][].xml" />
-				<parameters>
-					<parameter name="start_row" type="Int32" />
-					<parameter name="num_rows" type="Int32" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>access_virt_barray</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jvirt_barray_control.xml">
+        <text>jvirt_barray_control</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Access the part of a virtual block array.</text> </descriptionarticle>
+    <signature>
+      <function>
+        <name>access_virt_barray</name>
+        <return type="JBLOCK[][]" file="JBLOCK.xml">
+          <text>Part of virtual block array started from start_row and containing num_rows rows.</text> </return>
+        <parameters>
+          <parameter name="start_row" type="Int32">First row in required block.</parameter>
+          <parameter name="num_rows" type="Int32">Required number of rows.</parameter>
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>
