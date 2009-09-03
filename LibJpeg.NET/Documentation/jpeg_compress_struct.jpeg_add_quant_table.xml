@@ -1,20 +1,35 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_add_quant_table</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>jpeg_add_quant_table</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					<parameter name="which_tbl" type="Int32" />
-					<parameter name="basic_table" type="Int32[]" file="Int32[].xml" />
-					<parameter name="scale_factor" type="Int32" />
-					<parameter name="force_baseline" type="Boolean" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_add_quant_table</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_compress_struct.xml">
+        <text>jpeg_compress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <p>
+        <text>Allows an arbitrary quantization table to be created.</text> </p>
+    </descriptionarticle>
+    <seealso>
+      <ref caption="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" />
+    </seealso>
+    <signature>
+      <function>
+        <name>jpeg_add_quant_table</name>
+        <return type="void" />
+        <parameters>
+          <parameter name="which_tbl" type="Int32">Indicates which table slot to fill.</parameter>
+          <parameter name="basic_table" type="Int32[]">An array of 64 unsigned integers given in normal array order. These values are multiplied by scale_factor/100 and then clamped to the range 1..65535 (or to 1..255 if force_baseline is true).
+The basic table should be given in JPEG zigzag order.</parameter>
+          <parameter name="scale_factor" type="Int32">Multiplier for values in basic_table.</parameter>
+          <parameter name="force_baseline" type="Boolean">Defines range of values in basic_table. If true - 1..255, otherwise - 1..65535.</parameter>
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>

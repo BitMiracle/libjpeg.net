@@ -184,6 +184,10 @@
     <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
     <ref>jpeg_compress_struct.jpeg_set_quality.xml</ref>
     <ref>jpeg_compress_struct.jpeg_default_colorspace.xml</ref>
+    <ref>jpeg_compress_struct.jpeg_set_linear_quality.xml</ref>
+    <ref>jpeg_compress_struct.jpeg_quality_scaling.xml</ref>
+    <ref>jpeg_compress_struct.jpeg_add_quant_table.xml</ref>
+    <ref>jpeg_compress_struct.Dct_method.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -250,6 +254,11 @@
       <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
       <ref>jpeg_compress_struct.jpeg_set_quality.xml</ref>
       <ref>jpeg_compress_struct.jpeg_default_colorspace.xml</ref>
+      <ref>jpeg_compress_struct.jpeg_set_linear_quality.xml</ref>
+      <ref>jpeg_compress_struct.jpeg_quality_scaling.xml</ref>
+      <ref>Classic\Compression_parameter_selection.xml</ref>
+      <ref>jpeg_compress_struct.jpeg_add_quant_table.xml</ref>
+      <ref>jpeg_compress_struct.Dct_method.xml</ref>
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor.xml" iconindex="23" />
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor1.xml" iconindex="23" />
       <node title="get_Dest" file="jpeg_compress_struct.get_Dest.xml" iconindex="23" />
@@ -285,8 +294,10 @@
       <node title="set_CCIR601_sampling" file="jpeg_compress_struct.set_CCIR601_sampling.xml" iconindex="23" />
       <node title="get_Smoothing_factor" file="jpeg_compress_struct.get_Smoothing_factor.xml" iconindex="23" />
       <node title="set_Smoothing_factor" file="jpeg_compress_struct.set_Smoothing_factor.xml" iconindex="23" />
-      <node title="get_Dct_method" file="jpeg_compress_struct.get_Dct_method.xml" iconindex="23" />
-      <node title="set_Dct_method" file="jpeg_compress_struct.set_Dct_method.xml" iconindex="23" />
+      <node title="Dct_method" file="jpeg_compress_struct.Dct_method.xml" iconindex="27">
+        <ref>J_DCT_METHOD.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
       <node title="get_Restart_interval" file="jpeg_compress_struct.get_Restart_interval.xml" iconindex="23" />
       <node title="set_Restart_interval" file="jpeg_compress_struct.set_Restart_interval.xml" iconindex="23" />
       <node title="get_Restart_in_rows" file="jpeg_compress_struct.get_Restart_in_rows.xml" iconindex="23" />
@@ -337,11 +348,21 @@
       </node>
       <node title="jpeg_set_quality" file="jpeg_compress_struct.jpeg_set_quality.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_set_defaults.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_set_linear_quality.xml</ref>
       </node>
-      <node title="jpeg_set_linear_quality" file="jpeg_compress_struct.jpeg_set_linear_quality.xml" iconindex="23" />
-      <node title="jpeg_add_quant_table" file="jpeg_compress_struct.jpeg_add_quant_table.xml" iconindex="23" />
-      <node title="jpeg_quality_scaling" file="jpeg_compress_struct.jpeg_quality_scaling.xml" iconindex="23" />
-      <node title="jpeg_simple_progression" file="jpeg_compress_struct.jpeg_simple_progression.xml" iconindex="23" />
+      <node title="jpeg_set_linear_quality" file="jpeg_compress_struct.jpeg_set_linear_quality.xml" iconindex="23">
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="jpeg_add_quant_table" file="jpeg_compress_struct.jpeg_add_quant_table.xml" iconindex="23">
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="jpeg_quality_scaling" file="jpeg_compress_struct.jpeg_quality_scaling.xml" iconindex="23">
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="jpeg_simple_progression" file="jpeg_compress_struct.jpeg_simple_progression.xml" iconindex="23">
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
       <node title="jpeg_start_compress" file="jpeg_compress_struct.jpeg_start_compress.xml" iconindex="23">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
         <ref>Classic\Compression_details.xml</ref>
@@ -555,7 +576,9 @@
       <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
       <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
     </node>
-    <node title="J_DCT_METHOD" file="J_DCT_METHOD.xml" iconindex="10" />
+    <node title="J_DCT_METHOD" file="J_DCT_METHOD.xml" iconindex="10">
+      <ref>jpeg_compress_struct.Dct_method.xml</ref>
+    </node>
     <node title="J_DITHER_MODE" file="J_DITHER_MODE.xml" iconindex="10" />
     <node title="JPEG_MARKER" file="JPEG_MARKER.xml" iconindex="10" />
     <node title="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" iconindex="10">
@@ -605,6 +628,11 @@
         <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
         <ref>jpeg_compress_struct.jpeg_default_colorspace.xml</ref>
         <ref>jpeg_compress_struct.jpeg_set_quality.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_set_linear_quality.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_quality_scaling.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_simple_progression.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_add_quant_table.xml</ref>
+        <ref>jpeg_compress_struct.Dct_method.xml</ref>
       </node>
       <node title="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" iconindex="0">
         <ref>Classic\Decompression_details.xml</ref>

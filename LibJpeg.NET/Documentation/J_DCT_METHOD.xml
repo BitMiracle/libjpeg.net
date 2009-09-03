@@ -8,7 +8,10 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Selects the algorithm used for the DCT step.</text> </descriptionarticle>
+      <text>Algorithm used for the DCT step.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Dct_method" file="jpeg_compress_struct.Dct_method.xml" />
+    </seealso>
     <signature>
       <enum>
         <name>J_DCT_METHOD</name>

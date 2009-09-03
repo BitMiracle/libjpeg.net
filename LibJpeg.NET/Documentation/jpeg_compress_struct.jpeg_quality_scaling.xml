@@ -1,17 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_quality_scaling</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				<mod2>static</mod2>
-				<name>jpeg_quality_scaling</name>
-				<return type="Int32" />
-				<parameters>
-					<parameter name="quality" type="Int32" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_quality_scaling</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_compress_struct.xml">
+        <text>jpeg_compress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Converts a value on the IJG-recommended quality scale to a linear scaling percentage.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" />
+    </seealso>
+    <signature>
+      <function>
+        <mod2>static</mod2>
+        <name>jpeg_quality_scaling</name>
+        <return type="Int32">
+          <text>Linear scaling percentage.</text> </return>
+        <parameters>
+          <parameter name="quality" type="Int32">IJG-recommended quality scale.</parameter>
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>
