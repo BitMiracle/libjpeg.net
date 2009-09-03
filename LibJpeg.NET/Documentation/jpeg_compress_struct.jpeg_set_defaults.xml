@@ -12,7 +12,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>This routine sets all JPEG parameters to reasonable defaults, using only the input image's color space (property </text> <link file="jpeg_compress_struct.In_color_space.xml"><text>In_color_space</text> </link><text>, which must already be set in </text> <link file="jpeg_compress_struct.xml"><text>jpeg_compress_struct</text> </link><text>). Many applications will only need to use this routine and perhaps </text> <link file="jpeg_compress_struct.jpeg_set_quality.xml"><text>jpeg_set_quality</text> </link><text>.</text> </descriptionarticle>
+      <text>Sets all JPEG parameters to reasonable defaults.</text> </descriptionarticle>
     <seealso>
       <ref caption="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" />
     </seealso>
@@ -22,5 +22,7 @@
         <return type="void" />
       </function>
     </signature>
+    <remarks>
+      <text>Uses only the input image's color space (property </text> <link file="jpeg_compress_struct.In_color_space.xml"><text>In_color_space</text> </link><text>, which must already be set in </text> <link file="jpeg_compress_struct.xml"><text>jpeg_compress_struct</text> </link><text>). Many applications will only need to use this routine and perhaps </text> <link file="jpeg_compress_struct.jpeg_set_quality.xml"><text>jpeg_set_quality</text> </link><text>.</text> </remarks>
   </file>
 </xml>

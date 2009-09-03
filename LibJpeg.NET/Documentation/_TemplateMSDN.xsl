@@ -15,8 +15,11 @@
  <!-- preload pictures -->
  <img src="_TemplateMSDN_files/plus.gif"/><img src="_TemplateMSDN_files/plus_small.gif"/>
 </div>
-<div class="xsl_file_header"><xsl:if test="file/title[text()]!=''"><div class="xsl_file_title"><xsl:value-of select="file/title"/></div></xsl:if>
- <xsl:if test="file/breadcumbs"><div class="xsl_file_breadcumbs"><xsl:apply-templates select="file/breadcumbs" /></div></xsl:if>
+<div class="xsl_file_header">
+  <xsl:if test="file/title[text()]!=''">
+    <div class="xsl_file_title"><xsl:value-of select="file/title"/></div>
+  </xsl:if>
+  <xsl:if test="file/breadcumbs"><div class="xsl_file_breadcumbs"><xsl:apply-templates select="file/breadcumbs" /></div></xsl:if>
  <br/>
  <xsl:if test="file/seealso/ref"><a class="xsl_file" href="#see">See Also</a></xsl:if>
  <xsl:if test="file/samples/sample"><xsl:text> </xsl:text><a href="#ex" class="xsl_file">Example</a></xsl:if>
@@ -369,35 +372,19 @@
 </xsl:template>
 
 <xsl:template match="return">
-  <xsl:choose>
-    <xsl:when test="name(..) = 'function'">
-      <h5 class="xsl_file">Return value</h5>
-    </xsl:when>
-    <xsl:when test="name(..) = 'property'">
-      <h5 class="xsl_file">Value</h5>
-    </xsl:when>
-  </xsl:choose>
-  <div>
-<!--xsl:choose>
-      <xsl:when test="@file">
-        <a class="xsl_file"><xsl:attribute name="href"><xsl:value-of select="@file" /></xsl:attribute>
-        <xsl:value-of select="@type"/></a>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="@type"/>
-      </xsl:otherwise>
-</xsl:choose-->
+  <xsl:if test="count(./*)>0">
     <xsl:choose>
-      <xsl:when test="count(./*)>0">
-        <div class="xsl_file_margin15"><xsl:apply-templates select="*" /></div>
+      <xsl:when test="name(..) = 'function'">
+        <h5 class="xsl_file">Return value</h5>
       </xsl:when>
-      <xsl:otherwise>
-        <xsl:if test="text()">
-          <div class="xsl_file_margin15"><xsl:value-of select="."/></div>
-        </xsl:if>
-      </xsl:otherwise>
+      <xsl:when test="name(..) = 'property'">
+        <h5 class="xsl_file">Value</h5>
+      </xsl:when>
     </xsl:choose>
-  </div>
+    <div>
+      <div class="xsl_file_margin15"><xsl:apply-templates select="*" /></div>
+    </div>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="parameters">
@@ -532,21 +519,21 @@
     <a class="xsl_file" name="see"/>
     <h4 class="xsl_file"><span class="xsl_file_spanLink" onClick="SwapDisplay('xsl_file_divSeealso','xsl_file_imgSeealso');"><img id="xsl_file_imgSeealso" src="_TemplateMSDN_files/minus.gif" border="0"/> See Also</span></h4>
     <div id="xsl_file_divSeealso" class="xsl_file_container">
-      <b>Reference</b>
-      <div class="xsl_file_container">
-        <xsl:for-each select="ref">
-          <xsl:choose>
-            <xsl:when test="@file">
-              <a class="xsl_file"><xsl:attribute name="href"><xsl:value-of select="@file" /></xsl:attribute>
-              <xsl:value-of select="@caption"/></a>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="@caption"/>
-            </xsl:otherwise>
-          </xsl:choose>
-          <br/>
-        </xsl:for-each>
-      </div>
+    <b>Reference</b>
+    <div class="xsl_file_container">
+    <xsl:for-each select="ref">
+      <xsl:choose>
+        <xsl:when test="@file">
+          <a class="xsl_file"><xsl:attribute name="href"><xsl:value-of select="@file" /></xsl:attribute>
+          <xsl:value-of select="@caption"/></a>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="@caption"/>
+        </xsl:otherwise>
+      </xsl:choose>
+      <br/>
+    </xsl:for-each>
+    </div>
     </div>
   </xsl:if>
 </xsl:template>

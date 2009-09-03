@@ -1,18 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_set_quality</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>jpeg_set_quality</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					<parameter name="quality" type="Int32" />
-					<parameter name="force_baseline" type="Boolean" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_set_quality</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_compress_struct.xml">
+        <text>jpeg_compress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Constructs JPEG quantization tables appropriate for the indicated quality setting.</text> <br /></descriptionarticle>
+    <seealso>
+      <ref caption="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" />
+    </seealso>
+    <signature>
+      <function>
+        <name>jpeg_set_quality</name>
+        <return type="void" />
+        <parameters>
+          <parameter name="quality" type="Int32">The quality value is expressed on the 0..100 scale recommended by IJG.</parameter>
+          <parameter name="force_baseline" type="Boolean">If true, then the quantization table entries are constrained to the range 1..255 for full JPEG baseline compatibility. In the current implementation, this only makes a difference for quality settings below 25, and it effectively prevents very small/low quality files from being generated. The IJG decoder is capable of reading the non-baseline files generated at low quality settings when force_baseline is false, but other decoders may not be.</parameter>
+        </parameters>
+      </function>
+    </signature>
+    <remarks>
+      <text>Note that the exact mapping from quality values to tables may change in future IJG releases as more is learned about DCT quantization.</text> </remarks>
+  </file>
 </xml>
