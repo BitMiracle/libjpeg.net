@@ -188,6 +188,8 @@
     <ref>jpeg_compress_struct.jpeg_quality_scaling.xml</ref>
     <ref>jpeg_compress_struct.jpeg_add_quant_table.xml</ref>
     <ref>jpeg_compress_struct.Dct_method.xml</ref>
+    <ref>jpeg_compress_struct.Num_components.xml</ref>
+    <ref>jpeg_compress_struct.Optimize_coding.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -259,6 +261,8 @@
       <ref>Classic\Compression_parameter_selection.xml</ref>
       <ref>jpeg_compress_struct.jpeg_add_quant_table.xml</ref>
       <ref>jpeg_compress_struct.Dct_method.xml</ref>
+      <ref>jpeg_compress_struct.Num_components.xml</ref>
+      <ref>jpeg_compress_struct.Optimize_coding.xml</ref>
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor.xml" iconindex="23" />
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor1.xml" iconindex="23" />
       <node title="get_Dest" file="jpeg_compress_struct.get_Dest.xml" iconindex="23" />
@@ -280,16 +284,18 @@
       </node>
       <node title="get_Data_precision" file="jpeg_compress_struct.get_Data_precision.xml" iconindex="23" />
       <node title="set_Data_precision" file="jpeg_compress_struct.set_Data_precision.xml" iconindex="23" />
-      <node title="get_Num_components" file="jpeg_compress_struct.get_Num_components.xml" iconindex="23" />
-      <node title="set_Num_components" file="jpeg_compress_struct.set_Num_components.xml" iconindex="23" />
       <node title="Jpeg_color_space" file="jpeg_compress_struct.Jpeg_color_space.xml" iconindex="27">
         <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
+        <ref>jpeg_compress_struct.Num_components.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="Num_components" file="jpeg_compress_struct.Num_components.xml" iconindex="27">
+        <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
       </node>
       <node title="get_Raw_data_in" file="jpeg_compress_struct.get_Raw_data_in.xml" iconindex="23" />
       <node title="set_Raw_data_in" file="jpeg_compress_struct.set_Raw_data_in.xml" iconindex="23" />
-      <node title="get_Optimize_coding" file="jpeg_compress_struct.get_Optimize_coding.xml" iconindex="23" />
-      <node title="set_Optimize_coding" file="jpeg_compress_struct.set_Optimize_coding.xml" iconindex="23" />
+      <node title="Optimize_coding" file="jpeg_compress_struct.Optimize_coding.xml" iconindex="27" />
       <node title="get_CCIR601_sampling" file="jpeg_compress_struct.get_CCIR601_sampling.xml" iconindex="23" />
       <node title="set_CCIR601_sampling" file="jpeg_compress_struct.set_CCIR601_sampling.xml" iconindex="23" />
       <node title="get_Smoothing_factor" file="jpeg_compress_struct.get_Smoothing_factor.xml" iconindex="23" />
@@ -342,6 +348,8 @@
       <node title="jpeg_set_colorspace" file="jpeg_compress_struct.jpeg_set_colorspace.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_default_colorspace.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
+        <ref>jpeg_compress_struct.Num_components.xml</ref>
       </node>
       <node title="jpeg_default_colorspace" file="jpeg_compress_struct.jpeg_default_colorspace.xml" iconindex="23">
         <ref>Classic\Compression_parameter_selection.xml</ref>
@@ -633,6 +641,7 @@
         <ref>jpeg_compress_struct.jpeg_simple_progression.xml</ref>
         <ref>jpeg_compress_struct.jpeg_add_quant_table.xml</ref>
         <ref>jpeg_compress_struct.Dct_method.xml</ref>
+        <ref>jpeg_compress_struct.Optimize_coding.xml</ref>
       </node>
       <node title="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" iconindex="0">
         <ref>Classic\Decompression_details.xml</ref>
@@ -642,6 +651,8 @@
         <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
         <ref>J_COLOR_SPACE.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.Num_components.xml</ref>
+        <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
       </node>
       <node title="Error handling" file="Classic\Error_handling.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>

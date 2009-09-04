@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>Jpeg_color_space</title>
+    <title>Num_components</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -12,16 +12,16 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>The JPEG color space.</text> </descriptionarticle>
+      <text>Number of color components for JPEG color space.</text> </descriptionarticle>
     <seealso>
       <ref caption="jpeg_set_colorspace method" file="jpeg_compress_struct.jpeg_set_colorspace.xml" />
-      <ref caption="Num_components property" file="jpeg_compress_struct.Num_components.xml" />
+      <ref caption="Jpeg_color_space property" file="jpeg_compress_struct.Jpeg_color_space.xml" />
       <ref caption="Special color spaces" file="Classic\Special_color_spaces.xml" />
     </seealso>
     <signature>
       <property access="full">
-        <name>Jpeg_color_space</name>
-        <return type="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" />
+        <name>Num_components</name>
+        <return type="Int32" />
       </property>
     </signature>
     <remarks>
