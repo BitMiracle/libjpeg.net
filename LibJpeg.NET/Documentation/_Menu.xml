@@ -190,6 +190,9 @@
     <ref>jpeg_compress_struct.Dct_method.xml</ref>
     <ref>jpeg_compress_struct.Num_components.xml</ref>
     <ref>jpeg_compress_struct.Optimize_coding.xml</ref>
+    <ref>jpeg_compress_struct.Restart_interval.xml</ref>
+    <ref>jpeg_compress_struct.Restart_in_rows.xml</ref>
+    <ref>jpeg_compress_struct.Smoothing_factor.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -263,6 +266,9 @@
       <ref>jpeg_compress_struct.Dct_method.xml</ref>
       <ref>jpeg_compress_struct.Num_components.xml</ref>
       <ref>jpeg_compress_struct.Optimize_coding.xml</ref>
+      <ref>jpeg_compress_struct.Restart_interval.xml</ref>
+      <ref>jpeg_compress_struct.Restart_in_rows.xml</ref>
+      <ref>jpeg_compress_struct.Smoothing_factor.xml</ref>
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor.xml" iconindex="23" />
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor1.xml" iconindex="23" />
       <node title="get_Dest" file="jpeg_compress_struct.get_Dest.xml" iconindex="23" />
@@ -295,19 +301,26 @@
       </node>
       <node title="get_Raw_data_in" file="jpeg_compress_struct.get_Raw_data_in.xml" iconindex="23" />
       <node title="set_Raw_data_in" file="jpeg_compress_struct.set_Raw_data_in.xml" iconindex="23" />
-      <node title="Optimize_coding" file="jpeg_compress_struct.Optimize_coding.xml" iconindex="27" />
+      <node title="Optimize_coding" file="jpeg_compress_struct.Optimize_coding.xml" iconindex="27">
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
       <node title="get_CCIR601_sampling" file="jpeg_compress_struct.get_CCIR601_sampling.xml" iconindex="23" />
       <node title="set_CCIR601_sampling" file="jpeg_compress_struct.set_CCIR601_sampling.xml" iconindex="23" />
-      <node title="get_Smoothing_factor" file="jpeg_compress_struct.get_Smoothing_factor.xml" iconindex="23" />
-      <node title="set_Smoothing_factor" file="jpeg_compress_struct.set_Smoothing_factor.xml" iconindex="23" />
+      <node title="Smoothing_factor" file="jpeg_compress_struct.Smoothing_factor.xml" iconindex="27">
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
       <node title="Dct_method" file="jpeg_compress_struct.Dct_method.xml" iconindex="27">
         <ref>J_DCT_METHOD.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
       </node>
-      <node title="get_Restart_interval" file="jpeg_compress_struct.get_Restart_interval.xml" iconindex="23" />
-      <node title="set_Restart_interval" file="jpeg_compress_struct.set_Restart_interval.xml" iconindex="23" />
-      <node title="get_Restart_in_rows" file="jpeg_compress_struct.get_Restart_in_rows.xml" iconindex="23" />
-      <node title="set_Restart_in_rows" file="jpeg_compress_struct.set_Restart_in_rows.xml" iconindex="23" />
+      <node title="Restart_interval" file="jpeg_compress_struct.Restart_interval.xml" iconindex="27">
+        <ref>jpeg_compress_struct.Restart_in_rows.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="Restart_in_rows" file="jpeg_compress_struct.Restart_in_rows.xml" iconindex="27">
+        <ref>jpeg_compress_struct.Restart_interval.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
       <node title="get_Write_JFIF_header" file="jpeg_compress_struct.get_Write_JFIF_header.xml" iconindex="23" />
       <node title="set_Write_JFIF_header" file="jpeg_compress_struct.set_Write_JFIF_header.xml" iconindex="23" />
       <node title="get_JFIF_major_version" file="jpeg_compress_struct.get_JFIF_major_version.xml" iconindex="23" />
@@ -642,6 +655,9 @@
         <ref>jpeg_compress_struct.jpeg_add_quant_table.xml</ref>
         <ref>jpeg_compress_struct.Dct_method.xml</ref>
         <ref>jpeg_compress_struct.Optimize_coding.xml</ref>
+        <ref>jpeg_compress_struct.Restart_in_rows.xml</ref>
+        <ref>jpeg_compress_struct.Restart_interval.xml</ref>
+        <ref>jpeg_compress_struct.Smoothing_factor.xml</ref>
       </node>
       <node title="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" iconindex="0">
         <ref>Classic\Decompression_details.xml</ref>

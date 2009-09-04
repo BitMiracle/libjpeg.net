@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>Restart_in_rows</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_compress_struct.xml">
+        <text>jpeg_compress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Specify the interval in MCU rows.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Restart_interval property" file="jpeg_compress_struct.Restart_interval.xml" />
+      <ref caption="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" />
+    </seealso>
+    <signature>
+      <property access="full">
+        <name>Restart_in_rows</name>
+        <return type="Int32">
+          <text>Default value: 0</text> </return>
+      </property>
+    </signature>
+    <remarks>
+      <p>
+        <text>If Restart_in_rows is not 0, then </text> <link file="jpeg_compress_struct.Restart_interval.xml"><text>Restart_interval</text> </link><text> is set after the image width in MCUs is computed.</text> </p>
+      <p>
+        <text>One restart marker per MCU row is often a good choice.</text> <br /><text>The overhead of restart markers is higher in grayscale JPEG files than in color files, and MUCH higher in progressive JPEGs. If you use restarts, you may want to use larger intervals in those cases.</text> </p>
+    </remarks>
+  </file>
+</xml>
