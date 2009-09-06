@@ -32,5 +32,6 @@
     <type>Byte</type>
     <type>System.Drawing.Bitmap</type>
     <type>Colorspace</type>
+    <type>Int16</type>
   </types>
 </xml>
