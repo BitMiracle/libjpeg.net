@@ -11,11 +11,19 @@
         <text>jpeg_compress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>The version number to be written into the JFIF marker.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="JFIF_minor_version" file="jpeg_compress_struct.JFIF_minor_version.xml" />
+      <ref caption="Write_JFIF_header" file="jpeg_compress_struct.Write_JFIF_header.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>JFIF_major_version</name>
-        <return type="Byte" />
+        <return type="Byte">
+          <link file="jpeg_compress_struct.jpeg_set_defaults.xml">
+            <text>jpeg_set_defaults</text> </link>
+          <text>() initializes the version to 1.01 (major=minor=1).</text> <br /><text>You should set it to 1.02 (major=1, minor=2) if you plan to write any JFIF 1.02 extension markers.</text> </return>
       </property>
     </signature>
   </file>

@@ -11,11 +11,70 @@
         <text>jpeg_compress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>The resolution information to be written into the JFIF marker; not used otherwise. </text> </descriptionarticle>
+    <seealso>
+      <ref caption="X_density" file="jpeg_compress_struct.X_density.xml" />
+      <ref caption="Y_density" file="jpeg_compress_struct.Y_density.xml" />
+      <ref caption="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>Density_unit</name>
-        <return type="Byte" />
+        <return type="Byte">
+          <p>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <p align="center">
+                      <b>
+                        <text>Value</text> </b>
+                    </p>
+                  </td>
+                  <td>
+                    <p align="center">
+                      <b>
+                        <text>Description</text> </b>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p align="center">
+                      <text>0</text> </p>
+                  </td>
+                  <td>
+                    <p align="center">
+                      <text>Unknown</text> </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p align="center">
+                      <text>1</text> </p>
+                  </td>
+                  <td>
+                    <p align="center">
+                      <text>Dots/inch</text> </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p align="center">
+                      <text>2</text> </p>
+                  </td>
+                  <td>
+                    <p align="center">
+                      <text>Dots/cm</text> </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </p>
+          <p>
+            <text>Default value: 0</text> </p>
+        </return>
       </property>
     </signature>
   </file>

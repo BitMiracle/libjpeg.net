@@ -12,10 +12,15 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false" />
+    <seealso>
+      <ref caption="Density_unit" file="jpeg_compress_struct.Density_unit.xml" />
+      <ref caption="Y_density" file="jpeg_compress_struct.Y_density.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>X_density</name>
-        <return type="Int16" />
+        <return type="Int16">
+          <text>Default value: 1</text> </return>
       </property>
     </signature>
   </file>

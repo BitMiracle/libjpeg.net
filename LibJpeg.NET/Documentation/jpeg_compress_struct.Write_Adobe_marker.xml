@@ -11,11 +11,22 @@
         <text>jpeg_compress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Emits Adobe APP14 marker.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>Write_Adobe_marker</name>
-        <return type="Boolean" />
+        <return type="Boolean">
+          <p>
+            <text>If </text> <b><text>true</text> </b><text>, an Adobe APP14 marker is emitted.</text> </p>
+          <p>
+            <link file="jpeg_compress_struct.jpeg_set_defaults.xml">
+              <text>jpeg_set_defaults</text> </link>
+            <text>() and </text> <link file="jpeg_compress_struct.jpeg_set_colorspace.xml"><text>jpeg_set_colorspace</text> </link><text>() set this </text> <b><text>true</text> </b><text> if JPEG color space RGB, CMYK, or YCCK is selected, otherwise </text> <b><text>false</text> </b><text>. It is generally a bad idea to set both </text> <link file="jpeg_compress_struct.Write_JFIF_header.xml"><text>Write_JFIF_header</text> </link><text> and Write_Adobe_marker. In fact, you probably shouldn't change the default settings at all - the default behavior ensures that the JPEG file's color space can be recognized by the decoder.</text> </p>
+        </return>
       </property>
     </signature>
   </file>

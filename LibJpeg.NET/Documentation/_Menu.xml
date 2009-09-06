@@ -196,12 +196,10 @@
     <ref>jpeg_compress_struct.Density_unit.xml</ref>
     <ref>jpeg_compress_struct.Y_density.xml</ref>
     <ref>jpeg_compress_struct.X_density.xml</ref>
-    <ref>jpeg_compress_struct.get_Write_Adobe_marker.xml</ref>
     <ref>jpeg_compress_struct.Write_JFIF_header.xml</ref>
     <ref>jpeg_compress_struct.JFIF_major_version.xml</ref>
     <ref>jpeg_compress_struct.JFIF_minor_version.xml</ref>
     <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
-    <ref>jpeg_compress_struct.set_Write_Adobe_marker.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -281,12 +279,10 @@
       <ref>jpeg_compress_struct.Density_unit.xml</ref>
       <ref>jpeg_compress_struct.Y_density.xml</ref>
       <ref>jpeg_compress_struct.X_density.xml</ref>
-      <ref>jpeg_compress_struct.get_Write_Adobe_marker.xml</ref>
       <ref>jpeg_compress_struct.Write_JFIF_header.xml</ref>
       <ref>jpeg_compress_struct.JFIF_major_version.xml</ref>
       <ref>jpeg_compress_struct.JFIF_minor_version.xml</ref>
       <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
-      <ref>jpeg_compress_struct.set_Write_Adobe_marker.xml</ref>
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor.xml" iconindex="23" />
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor1.xml" iconindex="23" />
       <node title="get_Dest" file="jpeg_compress_struct.get_Dest.xml" iconindex="23" />
@@ -339,13 +335,39 @@
         <ref>jpeg_compress_struct.Restart_interval.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
       </node>
-      <node title="Write_JFIF_header" file="jpeg_compress_struct.Write_JFIF_header.xml" iconindex="27" />
-      <node title="JFIF_minor_version" file="jpeg_compress_struct.JFIF_minor_version.xml" iconindex="27" />
-      <node title="JFIF_major_version" file="jpeg_compress_struct.JFIF_major_version.xml" iconindex="27" />
-      <node title="Density_unit" file="jpeg_compress_struct.Density_unit.xml" iconindex="27" />
-      <node title="X_density" file="jpeg_compress_struct.X_density.xml" iconindex="27" />
-      <node title="Y_density" file="jpeg_compress_struct.Y_density.xml" iconindex="27" />
-      <node title="Write_Adobe_marker" file="jpeg_compress_struct.Write_Adobe_marker.xml" iconindex="27" />
+      <node title="Write_JFIF_header" file="jpeg_compress_struct.Write_JFIF_header.xml" iconindex="27">
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.JFIF_major_version.xml</ref>
+        <ref>jpeg_compress_struct.JFIF_minor_version.xml</ref>
+        <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
+      </node>
+      <node title="JFIF_minor_version" file="jpeg_compress_struct.JFIF_minor_version.xml" iconindex="27">
+        <ref>jpeg_compress_struct.JFIF_major_version.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="JFIF_major_version" file="jpeg_compress_struct.JFIF_major_version.xml" iconindex="27">
+        <ref>jpeg_compress_struct.Write_JFIF_header.xml</ref>
+        <ref>jpeg_compress_struct.JFIF_minor_version.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="Density_unit" file="jpeg_compress_struct.Density_unit.xml" iconindex="27">
+        <ref>jpeg_compress_struct.X_density.xml</ref>
+        <ref>jpeg_compress_struct.Y_density.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="X_density" file="jpeg_compress_struct.X_density.xml" iconindex="27">
+        <ref>jpeg_compress_struct.Density_unit.xml</ref>
+        <ref>jpeg_compress_struct.Y_density.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="Y_density" file="jpeg_compress_struct.Y_density.xml" iconindex="27">
+        <ref>jpeg_compress_struct.Density_unit.xml</ref>
+        <ref>jpeg_compress_struct.X_density.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
+      <node title="Write_Adobe_marker" file="jpeg_compress_struct.Write_Adobe_marker.xml" iconindex="27">
+        <ref>Classic\Compression_parameter_selection.xml</ref>
+      </node>
       <node title="Next_scanline" file="jpeg_compress_struct.Next_scanline.xml" iconindex="27">
         <ref>Classic\Compression_details.xml</ref>
       </node>
@@ -368,12 +390,18 @@
       <node title="jpeg_set_defaults" file="jpeg_compress_struct.jpeg_set_defaults.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_default_colorspace.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.Write_JFIF_header.xml</ref>
+        <ref>jpeg_compress_struct.JFIF_major_version.xml</ref>
+        <ref>jpeg_compress_struct.JFIF_minor_version.xml</ref>
+        <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
       </node>
       <node title="jpeg_set_colorspace" file="jpeg_compress_struct.jpeg_set_colorspace.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_default_colorspace.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
         <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
         <ref>jpeg_compress_struct.Num_components.xml</ref>
+        <ref>jpeg_compress_struct.Write_JFIF_header.xml</ref>
+        <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
       </node>
       <node title="jpeg_default_colorspace" file="jpeg_compress_struct.jpeg_default_colorspace.xml" iconindex="23">
         <ref>Classic\Compression_parameter_selection.xml</ref>
@@ -669,6 +697,9 @@
         <ref>jpeg_compress_struct.Restart_in_rows.xml</ref>
         <ref>jpeg_compress_struct.Restart_interval.xml</ref>
         <ref>jpeg_compress_struct.Smoothing_factor.xml</ref>
+        <ref>jpeg_compress_struct.Write_JFIF_header.xml</ref>
+        <ref>jpeg_compress_struct.Density_unit.xml</ref>
+        <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
       </node>
       <node title="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" iconindex="0">
         <ref>Classic\Decompression_details.xml</ref>
