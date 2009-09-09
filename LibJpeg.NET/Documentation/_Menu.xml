@@ -200,6 +200,7 @@
     <ref>jpeg_compress_struct.JFIF_major_version.xml</ref>
     <ref>jpeg_compress_struct.JFIF_minor_version.xml</ref>
     <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
+    <ref>DensityUnit.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -353,7 +354,7 @@
       <node title="Density_unit" file="jpeg_compress_struct.Density_unit.xml" iconindex="27">
         <ref>jpeg_compress_struct.X_density.xml</ref>
         <ref>jpeg_compress_struct.Y_density.xml</ref>
-        <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>DensityUnit.xml</ref>
       </node>
       <node title="X_density" file="jpeg_compress_struct.X_density.xml" iconindex="27">
         <ref>jpeg_compress_struct.Density_unit.xml</ref>
@@ -631,6 +632,9 @@
     </node>
     <node title="JpegConstants" file="JpegConstants.xml" iconindex="6">
       <ref>Classic\Data_formats.xml</ref>
+    </node>
+    <node title="DensityUnit" file="DensityUnit.xml" iconindex="10">
+      <ref>jpeg_compress_struct.Density_unit.xml</ref>
     </node>
     <node title="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" iconindex="10">
       <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>

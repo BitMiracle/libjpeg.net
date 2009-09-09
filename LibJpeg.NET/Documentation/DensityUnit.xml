@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>DensityUnit</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <seealso>
+      <ref caption="jpeg_compress_struct.Density_unit" file="jpeg_compress_struct.Density_unit.xml" />
+    </seealso>
+    <signature>
+      <enum>
+        <name>DensityUnit</name>
+      </enum>
+    </signature>
+    <remarks>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <b>
+                <text>Name</text> </b>
+            </td>
+            <td>
+              <b>
+                <text>Description</text> </b>
+            </td>
+            <td>
+              <b>
+                <text>Value</text> </b>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="left">
+                <text>Unknown</text> </p>
+            </td>
+            <td>
+              <p align="left">
+                <text>Unknown density</text> </p>
+            </td>
+            <td>
+              <p align="center">
+                <text>0</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="left">
+                <text>DotsInch</text> </p>
+            </td>
+            <td>
+              <p align="left">
+                <text>Dots/inch</text> </p>
+            </td>
+            <td>
+              <p align="center">
+                <text>1</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="left">
+                <text>DotsCm</text> </p>
+            </td>
+            <td>
+              <p align="left">
+                <text>Dots/cm</text> </p>
+            </td>
+            <td>
+              <p align="center">
+                <text>2</text> </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </remarks>
+  </file>
+</xml>

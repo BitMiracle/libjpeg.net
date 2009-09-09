@@ -21,59 +21,9 @@
     <signature>
       <property access="full">
         <name>Density_unit</name>
-        <return type="Byte">
+        <return type="DensityUnit" file="DensityUnit.xml">
           <p>
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <p align="center">
-                      <b>
-                        <text>Value</text> </b>
-                    </p>
-                  </td>
-                  <td>
-                    <p align="center">
-                      <b>
-                        <text>Description</text> </b>
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <p align="center">
-                      <text>0</text> </p>
-                  </td>
-                  <td>
-                    <p align="center">
-                      <text>Unknown</text> </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <p align="center">
-                      <text>1</text> </p>
-                  </td>
-                  <td>
-                    <p align="center">
-                      <text>Dots/inch</text> </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <p align="center">
-                      <text>2</text> </p>
-                  </td>
-                  <td>
-                    <p align="center">
-                      <text>Dots/cm</text> </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </p>
-          <p>
-            <text>Default value: 0</text> </p>
+            <text>Default value: DensityUnit.Unknown</text> </p>
         </return>
       </property>
     </signature>
