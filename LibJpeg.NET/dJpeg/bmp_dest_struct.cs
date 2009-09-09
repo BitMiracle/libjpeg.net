@@ -281,7 +281,7 @@ namespace BitMiracle.dJpeg
             /* we leave biCompression = 0, for none */
             /* we leave biSizeImage = 0; this is correct for uncompressed data */
 
-            if (cinfo.Density_unit == 2)
+            if (cinfo.Density_unit == DensityUnit.DotsCm)
             {
                 /* if have density in dots/cm, then */
                 PUT_4B(bmpinfoheader, 24, (int)(cinfo.X_density * 100)); /* XPels/M */

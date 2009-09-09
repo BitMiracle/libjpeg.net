@@ -166,7 +166,7 @@ namespace BitMiracle.Jpeg
                     /* Set JFIF density parameters from the BMP data */
                     cinfo.X_density = (short)(biXPelsPerMeter / 100); /* 100 cm per meter */
                     cinfo.Y_density = (short)(biYPelsPerMeter / 100);
-                    cinfo.Density_unit = 2;  /* dots/cm */
+                    cinfo.Density_unit = DensityUnit.DotsCm;
                 }
                 break;
             default:
