@@ -27,5 +27,7 @@
         </return>
       </property>
     </signature>
+    <remarks>
+      <text>The pixel aspect ratio is defined by </text> <link file="jpeg_compress_struct.X_density.xml"><text>X_density</text> </link><text>/</text> <link file="jpeg_compress_struct.Y_density.xml"><text>Y_density</text> </link><text> even when Density_unit is Unknown.</text> </remarks>
   </file>
 </xml>

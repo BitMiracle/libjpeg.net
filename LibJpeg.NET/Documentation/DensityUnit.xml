@@ -10,6 +10,7 @@
     <descriptionarticle only="false" />
     <seealso>
       <ref caption="jpeg_compress_struct.Density_unit" file="jpeg_compress_struct.Density_unit.xml" />
+      <ref caption="jpeg_decompress_struct.Density_unit" file="jpeg_decompress_struct.Density_unit.xml" />
     </seealso>
     <signature>
       <enum>

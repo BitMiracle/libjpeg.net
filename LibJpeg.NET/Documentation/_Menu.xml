@@ -201,6 +201,13 @@
     <ref>jpeg_compress_struct.JFIF_minor_version.xml</ref>
     <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
     <ref>DensityUnit.xml</ref>
+    <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
+    <ref>jpeg_decompress_struct.Num_components.xml</ref>
+    <ref>jpeg_decompress_struct.Jpeg_color_space.xml</ref>
+    <ref>jpeg_decompress_struct.Density_unit.xml</ref>
+    <ref>jpeg_decompress_struct.X_density.xml</ref>
+    <ref>jpeg_decompress_struct.Y_density.xml</ref>
+    <ref>jpeg_decompress_struct.jpeg_calc_output_dimensions.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -288,18 +295,10 @@
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor1.xml" iconindex="23" />
       <node title="get_Dest" file="jpeg_compress_struct.get_Dest.xml" iconindex="23" />
       <node title="set_Dest" file="jpeg_compress_struct.set_Dest.xml" iconindex="23" />
-      <node title="Image_width" file="jpeg_compress_struct.Image_width.xml" iconindex="27">
-        <ref>Classic\Compression_details.xml</ref>
-      </node>
-      <node title="Image_height" file="jpeg_compress_struct.Image_height.xml" iconindex="27">
-        <ref>Classic\Compression_details.xml</ref>
-        <ref>Classic\Decompression_details.xml</ref>
-      </node>
-      <node title="Input_components" file="jpeg_compress_struct.Input_components.xml" iconindex="27">
-        <ref>Classic\Compression_details.xml</ref>
-      </node>
+      <node title="Image_width" file="jpeg_compress_struct.Image_width.xml" iconindex="27" />
+      <node title="Image_height" file="jpeg_compress_struct.Image_height.xml" iconindex="27" />
+      <node title="Input_components" file="jpeg_compress_struct.Input_components.xml" iconindex="27" />
       <node title="In_color_space" file="jpeg_compress_struct.In_color_space.xml" iconindex="27">
-        <ref>Classic\Compression_details.xml</ref>
         <ref>jpeg_compress_struct.jpeg_set_defaults.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
       </node>
@@ -313,6 +312,7 @@
       <node title="Num_components" file="jpeg_compress_struct.Num_components.xml" iconindex="27">
         <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
       <node title="get_Raw_data_in" file="jpeg_compress_struct.get_Raw_data_in.xml" iconindex="23" />
       <node title="set_Raw_data_in" file="jpeg_compress_struct.set_Raw_data_in.xml" iconindex="23" />
@@ -355,16 +355,27 @@
         <ref>jpeg_compress_struct.X_density.xml</ref>
         <ref>jpeg_compress_struct.Y_density.xml</ref>
         <ref>DensityUnit.xml</ref>
+        <ref>jpeg_decompress_struct.Y_density.xml</ref>
+        <ref>jpeg_decompress_struct.X_density.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+        <ref>Classic\Compression_parameter_selection.xml</ref>
       </node>
       <node title="X_density" file="jpeg_compress_struct.X_density.xml" iconindex="27">
         <ref>jpeg_compress_struct.Density_unit.xml</ref>
         <ref>jpeg_compress_struct.Y_density.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_decompress_struct.Density_unit.xml</ref>
+        <ref>jpeg_decompress_struct.Y_density.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
       <node title="Y_density" file="jpeg_compress_struct.Y_density.xml" iconindex="27">
         <ref>jpeg_compress_struct.Density_unit.xml</ref>
         <ref>jpeg_compress_struct.X_density.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_decompress_struct.Density_unit.xml</ref>
+        <ref>DensityUnit.xml</ref>
+        <ref>jpeg_decompress_struct.X_density.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
       <node title="Write_Adobe_marker" file="jpeg_compress_struct.Write_Adobe_marker.xml" iconindex="27">
         <ref>Classic\Compression_parameter_selection.xml</ref>
@@ -452,6 +463,13 @@
       <ref>jpeg_decompress_struct.Output_scanline.xml</ref>
       <ref>jpeg_decompress_struct.Image_width.xml</ref>
       <ref>jpeg_decompress_struct.Image_height.xml</ref>
+      <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
+      <ref>jpeg_decompress_struct.Num_components.xml</ref>
+      <ref>jpeg_decompress_struct.Jpeg_color_space.xml</ref>
+      <ref>jpeg_decompress_struct.Density_unit.xml</ref>
+      <ref>jpeg_decompress_struct.X_density.xml</ref>
+      <ref>jpeg_decompress_struct.Y_density.xml</ref>
+      <ref>jpeg_decompress_struct.jpeg_calc_output_dimensions.xml</ref>
       <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="6">
         <ref>jpeg_marker_parser_method.Invoke.xml</ref>
         <node title="Invoke" file="jpeg_marker_parser_method.Invoke.xml" iconindex="23" />
@@ -462,10 +480,18 @@
       <node title="jpeg_decompress_struct constructor" file="jpeg_decompress_struct.ctor1.xml" iconindex="23" />
       <node title="get_Src" file="jpeg_decompress_struct.get_Src.xml" iconindex="23" />
       <node title="set_Src" file="jpeg_decompress_struct.set_Src.xml" iconindex="23" />
-      <node title="Image_width" file="jpeg_decompress_struct.Image_width.xml" iconindex="27" />
-      <node title="Image_height" file="jpeg_decompress_struct.Image_height.xml" iconindex="27" />
-      <node title="get_Num_components" file="jpeg_decompress_struct.get_Num_components.xml" iconindex="23" />
-      <node title="get_Jpeg_color_space" file="jpeg_decompress_struct.get_Jpeg_color_space.xml" iconindex="23" />
+      <node title="Image_width" file="jpeg_decompress_struct.Image_width.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="Image_height" file="jpeg_decompress_struct.Image_height.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="Num_components" file="jpeg_decompress_struct.Num_components.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="Jpeg_color_space" file="jpeg_decompress_struct.Jpeg_color_space.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
       <node title="get_Out_color_space" file="jpeg_decompress_struct.get_Out_color_space.xml" iconindex="23" />
       <node title="set_Out_color_space" file="jpeg_decompress_struct.set_Out_color_space.xml" iconindex="23" />
       <node title="get_Scale_num" file="jpeg_decompress_struct.get_Scale_num.xml" iconindex="23" />
@@ -525,15 +551,24 @@
       <node title="get_Output_scan_number" file="jpeg_decompress_struct.get_Output_scan_number.xml" iconindex="23" />
       <node title="get_Output_iMCU_row" file="jpeg_decompress_struct.get_Output_iMCU_row.xml" iconindex="23" />
       <node title="get_Coef_bits" file="jpeg_decompress_struct.get_Coef_bits.xml" iconindex="23" />
-      <node title="get_Density_unit" file="jpeg_decompress_struct.get_Density_unit.xml" iconindex="23" />
-      <node title="get_X_density" file="jpeg_decompress_struct.get_X_density.xml" iconindex="23" />
-      <node title="get_Y_density" file="jpeg_decompress_struct.get_Y_density.xml" iconindex="23" />
+      <node title="Density_unit" file="jpeg_decompress_struct.Density_unit.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="X_density" file="jpeg_decompress_struct.X_density.xml" iconindex="27">
+        <ref>jpeg_decompress_struct.Density_unit.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="Y_density" file="jpeg_decompress_struct.Y_density.xml" iconindex="27">
+        <ref>jpeg_decompress_struct.Density_unit.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
       <node title="get_Unread_marker" file="jpeg_decompress_struct.get_Unread_marker.xml" iconindex="23" />
       <node title="SetErrorManager" file="jpeg_decompress_struct.SetErrorManager.xml" iconindex="23" />
       <node title="jpeg_stdio_src" file="jpeg_decompress_struct.jpeg_stdio_src.xml" iconindex="23" />
       <node title="jpeg_read_header" file="jpeg_decompress_struct.jpeg_read_header.xml" iconindex="23">
-        <ref>Classic\Outline_of_typical_usage.xml</ref>
-        <ref>Classic\Decompression_details.xml</ref>
+        <ref>jpeg_decompress_struct.Image_width.xml</ref>
+        <ref>jpeg_decompress_struct.Image_height.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
       <node title="jpeg_start_decompress" file="jpeg_decompress_struct.jpeg_start_decompress.xml" iconindex="23">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
@@ -553,9 +588,7 @@
       <node title="jpeg_finish_output" file="jpeg_decompress_struct.jpeg_finish_output.xml" iconindex="23" />
       <node title="jpeg_input_complete" file="jpeg_decompress_struct.jpeg_input_complete.xml" iconindex="23" />
       <node title="jpeg_consume_input" file="jpeg_decompress_struct.jpeg_consume_input.xml" iconindex="23" />
-      <node title="jpeg_calc_output_dimensions" file="jpeg_decompress_struct.jpeg_calc_output_dimensions.xml" iconindex="23">
-        <ref>Classic\Decompression_details.xml</ref>
-      </node>
+      <node title="jpeg_calc_output_dimensions" file="jpeg_decompress_struct.jpeg_calc_output_dimensions.xml" iconindex="23" />
       <node title="jpeg_read_coefficients" file="jpeg_decompress_struct.jpeg_read_coefficients.xml" iconindex="23" />
       <node title="jpeg_copy_critical_parameters" file="jpeg_decompress_struct.jpeg_copy_critical_parameters.xml" iconindex="23" />
       <node title="jpeg_abort_decompress" file="jpeg_decompress_struct.jpeg_abort_decompress.xml" iconindex="23">
@@ -635,10 +668,13 @@
     </node>
     <node title="DensityUnit" file="DensityUnit.xml" iconindex="10">
       <ref>jpeg_compress_struct.Density_unit.xml</ref>
+      <ref>jpeg_decompress_struct.Density_unit.xml</ref>
     </node>
     <node title="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" iconindex="10">
       <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
       <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
+      <ref>jpeg_compress_struct.In_color_space.xml</ref>
+      <ref>jpeg_decompress_struct.Jpeg_color_space.xml</ref>
     </node>
     <node title="J_DCT_METHOD" file="J_DCT_METHOD.xml" iconindex="10">
       <ref>jpeg_compress_struct.Dct_method.xml</ref>
@@ -652,7 +688,9 @@
       <ref>jpeg_common_struct.ERREXIT.xml</ref>
       <ref>jpeg_common_struct.TRACEMS.xml</ref>
     </node>
-    <node title="ReadResult" file="ReadResult.xml" iconindex="10" />
+    <node title="ReadResult" file="ReadResult.xml" iconindex="10">
+      <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
+    </node>
   </node>
   <node title="Knowledge base" file="\Knowledge_base.xml" iconindex="0">
     <ref>Classic_LibJpeg.xml</ref>
@@ -680,6 +718,10 @@
       <node title="Compression details" file="Classic\Compression_details.xml" iconindex="0">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
         <ref>Classic\Decompression_details.xml</ref>
+        <ref>jpeg_compress_struct.Image_width.xml</ref>
+        <ref>jpeg_compress_struct.Image_height.xml</ref>
+        <ref>jpeg_compress_struct.Input_components.xml</ref>
+        <ref>jpeg_compress_struct.In_color_space.xml</ref>
       </node>
       <node title="Decompression details" file="Classic\Decompression_details.xml" iconindex="0">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
@@ -704,9 +746,15 @@
         <ref>jpeg_compress_struct.Write_JFIF_header.xml</ref>
         <ref>jpeg_compress_struct.Density_unit.xml</ref>
         <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
       <node title="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" iconindex="0">
         <ref>Classic\Decompression_details.xml</ref>
+        <ref>jpeg_decompress_struct.Image_width.xml</ref>
+        <ref>jpeg_decompress_struct.Image_height.xml</ref>
+        <ref>jpeg_decompress_struct.Num_components.xml</ref>
+        <ref>jpeg_decompress_struct.Jpeg_color_space.xml</ref>
+        <ref>jpeg_decompress_struct.Density_unit.xml</ref>
       </node>
       <node title="Special color spaces" file="Classic\Special_color_spaces.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>
@@ -729,6 +777,7 @@
       </node>
       <node title="Abbreviated datastreams and multiple images" file="Classic\Abbreviated_datastreams_and_multiple_images.xml" iconindex="0">
         <ref>Classic\Decompression_details.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
     </node>
   </node>

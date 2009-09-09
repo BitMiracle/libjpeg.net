@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>jpeg_read_header</title>
+    <title>Num_components</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -11,15 +11,16 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Number of color components.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
+    </seealso>
     <signature>
-      <function>
-        <name>jpeg_read_header</name>
-        <return type="ReadResult" file="ReadResult.xml" />
-        <parameters>
-          <parameter name="require_image" type="Boolean" />
-        </parameters>
-      </function>
+      <property access="read">
+        <name>Num_components</name>
+        <return type="Int32" />
+      </property>
     </signature>
   </file>
 </xml>

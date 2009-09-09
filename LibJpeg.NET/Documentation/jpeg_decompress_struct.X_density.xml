@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>jpeg_read_header</title>
+    <title>X_density</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -12,14 +12,15 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false" />
+    <seealso>
+      <ref caption="Density_unit" file="jpeg_decompress_struct.Density_unit.xml" />
+      <ref caption="Y_density" file="jpeg_decompress_struct.Y_density.xml" />
+    </seealso>
     <signature>
-      <function>
-        <name>jpeg_read_header</name>
-        <return type="ReadResult" file="ReadResult.xml" />
-        <parameters>
-          <parameter name="require_image" type="Boolean" />
-        </parameters>
-      </function>
+      <property access="read">
+        <name>X_density</name>
+        <return type="Int16" />
+      </property>
     </signature>
   </file>
 </xml>

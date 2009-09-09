@@ -11,7 +11,11 @@
         <text>jpeg_compress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Height of image, in pixels.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Compression details" file="Classic\Compression_details.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>Image_height</name>

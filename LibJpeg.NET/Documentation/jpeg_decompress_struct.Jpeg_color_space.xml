@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>Image_width</title>
+    <title>Jpeg_color_space</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -12,14 +12,14 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Width of image, set by </text> <link file="jpeg_decompress_struct.jpeg_read_header.xml"><text>jpeg_read_header</text> </link><text>()</text> </descriptionarticle>
+      <text>Colorspace of image.</text> </descriptionarticle>
     <seealso>
       <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
     </seealso>
     <signature>
       <property access="read">
-        <name>Image_width</name>
-        <return type="Int32" />
+        <name>Jpeg_color_space</name>
+        <return type="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" />
       </property>
     </signature>
   </file>
