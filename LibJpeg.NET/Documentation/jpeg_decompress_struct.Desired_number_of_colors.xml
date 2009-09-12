@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>Desired_number_of_colors</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_decompress_struct.xml">
+        <text>jpeg_decompress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Maximum number of colors to use in generating a library-supplied color map.</text> <br /></descriptionarticle>
+    <seealso>
+      <ref caption="Quantize_colors" file="jpeg_decompress_struct.Quantize_colors.xml" />
+      <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
+    </seealso>
+    <signature>
+      <property access="full">
+        <name>Desired_number_of_colors</name>
+        <return type="Int32">
+          <p>
+            <text>Default value: 256.</text> </p>
+          <p>
+            <text>Ignored when the application supplies its own color map.</text> </p>
+        </return>
+      </property>
+    </signature>
+    <remarks>
+      <p>
+        <text>The actual number of colors is returned in a </text> <link file="jpeg_decompress_struct.Actual_number_of_colors.xml"><text>different field</text> </link><text>.</text> </p>
+      <p>
+        <text>Relevants only if </text> <link file="jpeg_decompress_struct.Quantize_colors.xml"><text>Quantize_colors</text> </link><text> is true.</text> </p>
+    </remarks>
+  </file>
+</xml>

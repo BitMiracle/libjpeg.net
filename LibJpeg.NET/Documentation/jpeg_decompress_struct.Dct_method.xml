@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>get_Dct_method</title>
+    <title>Dct_method</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -11,12 +11,16 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Gets or sets the algorithm used for the DCT step.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
+    </seealso>
     <signature>
-      <function>
-        <name>get_Dct_method</name>
+      <property access="full">
+        <name>Dct_method</name>
         <return type="J_DCT_METHOD" file="J_DCT_METHOD.xml" />
-      </function>
+      </property>
     </signature>
   </file>
 </xml>

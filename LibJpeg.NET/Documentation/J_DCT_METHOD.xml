@@ -10,7 +10,8 @@
     <descriptionarticle only="false">
       <text>Algorithm used for the DCT step.</text> </descriptionarticle>
     <seealso>
-      <ref caption="Dct_method" file="jpeg_compress_struct.Dct_method.xml" />
+      <ref caption="jpeg_compress_struct.Dct_method" file="jpeg_compress_struct.Dct_method.xml" />
+      <ref caption="jpeg_decompress_struct.Dct_method" file="jpeg_decompress_struct.Dct_method.xml" />
     </seealso>
     <signature>
       <enum>

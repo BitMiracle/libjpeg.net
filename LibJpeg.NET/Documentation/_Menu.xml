@@ -128,7 +128,6 @@
     <ref>J_COLOR_SPACE.xml</ref>
     <ref>J_DCT_METHOD.xml</ref>
     <ref>J_DITHER_MODE.xml</ref>
-    <ref>jpeg_decompress_struct.get_Enable_2pass_quant.xml</ref>
     <ref>jpeg_decompress_struct.xml</ref>
     <ref>J_MESSAGE_CODE.xml</ref>
     <ref>JpegConstants.xml</ref>
@@ -212,7 +211,16 @@
     <ref>jpeg_decompress_struct.Scale_num.xml</ref>
     <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
     <ref>jpeg_decompress_struct.Quantize_colors.xml</ref>
-    <ref>jpeg_decompress_struct.get_Dct_method.xml</ref>
+    <ref>jpeg_decompress_struct.Desired_number_of_colors.xml</ref>
+    <ref>jpeg_decompress_struct.Two_pass_quantize.xml</ref>
+    <ref>jpeg_decompress_struct.Dither_mode.xml</ref>
+    <ref>jpeg_decompress_struct.get_Input_scan_number.xml</ref>
+    <ref>jpeg_decompress_struct.Dct_method.xml</ref>
+    <ref>jpeg_decompress_struct.Do_block_smoothing.xml</ref>
+    <ref>jpeg_decompress_struct.Do_fancy_upsampling.xml</ref>
+    <ref>jpeg_decompress_struct.Enable_2pass_quant.xml</ref>
+    <ref>jpeg_decompress_struct.Enable_1pass_quant.xml</ref>
+    <ref>jpeg_decompress_struct.Enable_external_quant.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -332,6 +340,7 @@
       <node title="Dct_method" file="jpeg_compress_struct.Dct_method.xml" iconindex="27">
         <ref>J_DCT_METHOD.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
       <node title="Restart_interval" file="jpeg_compress_struct.Restart_interval.xml" iconindex="27">
         <ref>jpeg_compress_struct.Restart_in_rows.xml</ref>
@@ -453,7 +462,6 @@
     </node>
     <node title="jpeg_decompress_struct" file="jpeg_decompress_struct.xml" iconindex="6">
       <ref>jpeg_decompress_struct.get_Src.xml</ref>
-      <ref>jpeg_decompress_struct.get_Enable_2pass_quant.xml</ref>
       <ref>jpeg_common_struct.xml</ref>
       <ref>jpeg_marker_parser_method.Invoke.xml</ref>
       <ref>jpeg_marker_parser_method.xml</ref>
@@ -479,7 +487,16 @@
       <ref>jpeg_decompress_struct.Scale_num.xml</ref>
       <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
       <ref>jpeg_decompress_struct.Quantize_colors.xml</ref>
-      <ref>jpeg_decompress_struct.get_Dct_method.xml</ref>
+      <ref>jpeg_decompress_struct.Desired_number_of_colors.xml</ref>
+      <ref>jpeg_decompress_struct.Two_pass_quantize.xml</ref>
+      <ref>jpeg_decompress_struct.Dither_mode.xml</ref>
+      <ref>jpeg_decompress_struct.get_Input_scan_number.xml</ref>
+      <ref>jpeg_decompress_struct.Dct_method.xml</ref>
+      <ref>jpeg_decompress_struct.Do_block_smoothing.xml</ref>
+      <ref>jpeg_decompress_struct.Do_fancy_upsampling.xml</ref>
+      <ref>jpeg_decompress_struct.Enable_2pass_quant.xml</ref>
+      <ref>jpeg_decompress_struct.Enable_1pass_quant.xml</ref>
+      <ref>jpeg_decompress_struct.Enable_external_quant.xml</ref>
       <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="6">
         <ref>jpeg_marker_parser_method.Invoke.xml</ref>
         <node title="Invoke" file="jpeg_marker_parser_method.Invoke.xml" iconindex="23" />
@@ -518,29 +535,36 @@
       <node title="set_Buffered_image" file="jpeg_decompress_struct.set_Buffered_image.xml" iconindex="23" />
       <node title="get_Raw_data_out" file="jpeg_decompress_struct.get_Raw_data_out.xml" iconindex="23" />
       <node title="set_Raw_data_out" file="jpeg_decompress_struct.set_Raw_data_out.xml" iconindex="23" />
-      <node title="get_Dct_method" file="jpeg_decompress_struct.get_Dct_method.xml" iconindex="23" />
-      <node title="set_Dct_method" file="jpeg_decompress_struct.set_Dct_method.xml" iconindex="23" />
-      <node title="get_Do_fancy_upsampling" file="jpeg_decompress_struct.get_Do_fancy_upsampling.xml" iconindex="23" />
-      <node title="set_Do_fancy_upsampling" file="jpeg_decompress_struct.set_Do_fancy_upsampling.xml" iconindex="23" />
-      <node title="get_Do_block_smoothing" file="jpeg_decompress_struct.get_Do_block_smoothing.xml" iconindex="23" />
-      <node title="set_Do_block_smoothing" file="jpeg_decompress_struct.set_Do_block_smoothing.xml" iconindex="23" />
-      <node title="Quantize_colors" file="jpeg_decompress_struct.Quantize_colors.xml" iconindex="27">
+      <node title="Dct_method" file="jpeg_decompress_struct.Dct_method.xml" iconindex="27">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
-      <node title="get_Dither_mode" file="jpeg_decompress_struct.get_Dither_mode.xml" iconindex="23" />
-      <node title="set_Dither_mode" file="jpeg_decompress_struct.set_Dither_mode.xml" iconindex="23" />
-      <node title="get_Two_pass_quantize" file="jpeg_decompress_struct.get_Two_pass_quantize.xml" iconindex="23" />
-      <node title="set_Two_pass_quantize" file="jpeg_decompress_struct.set_Two_pass_quantize.xml" iconindex="23" />
-      <node title="get_Desired_number_of_colors" file="jpeg_decompress_struct.get_Desired_number_of_colors.xml" iconindex="23" />
-      <node title="set_Desired_number_of_colors" file="jpeg_decompress_struct.set_Desired_number_of_colors.xml" iconindex="23" />
-      <node title="get_Enable_1pass_quant" file="jpeg_decompress_struct.get_Enable_1pass_quant.xml" iconindex="23" />
-      <node title="set_Enable_1pass_quant" file="jpeg_decompress_struct.set_Enable_1pass_quant.xml" iconindex="23" />
-      <node title="get_Enable_external_quant" file="jpeg_decompress_struct.get_Enable_external_quant.xml" iconindex="23" />
-      <node title="set_Enable_external_quant" file="jpeg_decompress_struct.set_Enable_external_quant.xml" iconindex="23" />
-      <node title="get_Enable_2pass_quant" file="jpeg_decompress_struct.get_Enable_2pass_quant.xml" iconindex="23">
-        <ref>J_DITHER_MODE.xml</ref>
+      <node title="Do_fancy_upsampling" file="jpeg_decompress_struct.Do_fancy_upsampling.xml" iconindex="27" />
+      <node title="Do_block_smoothing" file="jpeg_decompress_struct.Do_block_smoothing.xml" iconindex="27" />
+      <node title="Quantize_colors" file="jpeg_decompress_struct.Quantize_colors.xml" iconindex="27">
+        <ref>jpeg_decompress_struct.Desired_number_of_colors.xml</ref>
+        <ref>jpeg_decompress_struct.Two_pass_quantize.xml</ref>
+        <ref>jpeg_decompress_struct.Dither_mode.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
-      <node title="set_Enable_2pass_quant" file="jpeg_decompress_struct.set_Enable_2pass_quant.xml" iconindex="23" />
+      <node title="Dither_mode" file="jpeg_decompress_struct.Dither_mode.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="Two_pass_quantize" file="jpeg_decompress_struct.Two_pass_quantize.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+        <ref>jpeg_decompress_struct.Dither_mode.xml</ref>
+      </node>
+      <node title="Desired_number_of_colors" file="jpeg_decompress_struct.Desired_number_of_colors.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="Enable_1pass_quant" file="jpeg_decompress_struct.Enable_1pass_quant.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="Enable_external_quant" file="jpeg_decompress_struct.Enable_external_quant.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="Enable_2pass_quant" file="jpeg_decompress_struct.Enable_2pass_quant.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
       <node title="Output_width" file="jpeg_decompress_struct.Output_width.xml" iconindex="27">
         <ref>Classic\Decompression_details.xml</ref>
       </node>
@@ -556,6 +580,7 @@
       <node title="get_Rec_outbuf_height" file="jpeg_decompress_struct.get_Rec_outbuf_height.xml" iconindex="23" />
       <node title="Actual_number_of_colors" file="jpeg_decompress_struct.Actual_number_of_colors.xml" iconindex="27">
         <ref>Classic\Decompression_details.xml</ref>
+        <ref>jpeg_decompress_struct.Desired_number_of_colors.xml</ref>
       </node>
       <node title="Colormap" file="jpeg_decompress_struct.Colormap.xml" iconindex="27">
         <ref>Classic\Decompression_details.xml</ref>
@@ -697,11 +722,13 @@
     </node>
     <node title="J_DCT_METHOD" file="J_DCT_METHOD.xml" iconindex="10">
       <ref>jpeg_compress_struct.Dct_method.xml</ref>
-      <ref>jpeg_decompress_struct.get_Dct_method.xml</ref>
       <ref>jpeg_decompress_struct.Scale_num.xml</ref>
       <ref>jpeg_decompress_struct.Scale_denom.xml</ref>
+      <ref>jpeg_decompress_struct.Dct_method.xml</ref>
     </node>
-    <node title="J_DITHER_MODE" file="J_DITHER_MODE.xml" iconindex="10" />
+    <node title="J_DITHER_MODE" file="J_DITHER_MODE.xml" iconindex="10">
+      <ref>jpeg_decompress_struct.Dither_mode.xml</ref>
+    </node>
     <node title="JPEG_MARKER" file="JPEG_MARKER.xml" iconindex="10" />
     <node title="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" iconindex="10">
       <ref>jpeg_common_struct.WARNMS.xml</ref>
@@ -781,6 +808,10 @@
         <ref>jpeg_decompress_struct.Scale_num.xml</ref>
         <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
         <ref>jpeg_decompress_struct.Quantize_colors.xml</ref>
+        <ref>jpeg_decompress_struct.Desired_number_of_colors.xml</ref>
+        <ref>jpeg_decompress_struct.Two_pass_quantize.xml</ref>
+        <ref>jpeg_decompress_struct.Dither_mode.xml</ref>
+        <ref>jpeg_decompress_struct.Dct_method.xml</ref>
       </node>
       <node title="Special color spaces" file="Classic\Special_color_spaces.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>Quantize_colors</title>
+    <title>Two_pass_quantize</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -13,16 +13,17 @@
     </breadcumbs>
     <descriptionarticle only="false" />
     <seealso>
+      <ref caption="Quantize_colors" file="jpeg_decompress_struct.Quantize_colors.xml" />
       <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
     </seealso>
     <signature>
       <property access="full">
-        <name>Quantize_colors</name>
+        <name>Two_pass_quantize</name>
         <return type="Boolean">
           <p>
-            <text>If set </text> <b><text>true</text> </b><text>, colormapped output will be delivered. </text> </p>
+            <text>If </text> <b><text>true</text> </b><text>, an extra pass over the image is made to select a custom color map for the image. This usually looks a lot better than the one-size-fits-all colormap that is used otherwise. Ignored when the application supplies its own color map.</text> </p>
           <p>
-            <text>Default value: </text> <b><text>false</text> </b><text>, meaning that full-color output will be delivered.</text> </p>
+            <text>Default value: </text> <b><text>true</text> </b></p>
         </return>
       </property>
     </signature>

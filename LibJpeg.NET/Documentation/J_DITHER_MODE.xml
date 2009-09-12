@@ -76,7 +76,7 @@
         </tbody>
       </table>
       <p>
-        <text>Default is JDITHER_FS. (At present, ordered dither is implemented only in the single-pass, standard-colormap case. If you ask for ordered dither when </text> <link file="jpeg_decompress_struct.get_Enable_2pass_quant.xml"><text>two_pass_quantize</text> </link><text> is TRUE or when you supply an external color map, you'll get F-S dithering.)</text> <br /></p>
+        <text> </text> </p>
     </remarks>
   </file>
 </xml>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>get_Input_scan_number</title>
+    <title>Enable_external_quant</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -13,10 +13,10 @@
     </breadcumbs>
     <descriptionarticle only="false" />
     <signature>
-      <function>
-        <name>get_Input_scan_number</name>
-        <return type="Int32" />
-      </function>
+      <property access="full">
+        <name>Enable_external_quant</name>
+        <return type="Boolean" />
+      </property>
     </signature>
   </file>
 </xml>
