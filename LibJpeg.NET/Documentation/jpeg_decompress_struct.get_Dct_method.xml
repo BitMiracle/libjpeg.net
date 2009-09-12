@@ -1,16 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>get_Dct_method</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>get_Dct_method</name>
-				<return type="J_DCT_METHOD" file="J_DCT_METHOD.xml" />
-				<parameters>
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>get_Dct_method</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_decompress_struct.xml">
+        <text>jpeg_decompress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>get_Dct_method</name>
+        <return type="J_DCT_METHOD" file="J_DCT_METHOD.xml" />
+      </function>
+    </signature>
+  </file>
 </xml>

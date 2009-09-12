@@ -208,6 +208,11 @@
     <ref>jpeg_decompress_struct.X_density.xml</ref>
     <ref>jpeg_decompress_struct.Y_density.xml</ref>
     <ref>jpeg_decompress_struct.jpeg_calc_output_dimensions.xml</ref>
+    <ref>jpeg_decompress_struct.Scale_denom.xml</ref>
+    <ref>jpeg_decompress_struct.Scale_num.xml</ref>
+    <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
+    <ref>jpeg_decompress_struct.Quantize_colors.xml</ref>
+    <ref>jpeg_decompress_struct.get_Dct_method.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -307,7 +312,7 @@
       <node title="Jpeg_color_space" file="jpeg_compress_struct.Jpeg_color_space.xml" iconindex="27">
         <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
         <ref>jpeg_compress_struct.Num_components.xml</ref>
-        <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
       </node>
       <node title="Num_components" file="jpeg_compress_struct.Num_components.xml" iconindex="27">
         <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
@@ -470,6 +475,11 @@
       <ref>jpeg_decompress_struct.X_density.xml</ref>
       <ref>jpeg_decompress_struct.Y_density.xml</ref>
       <ref>jpeg_decompress_struct.jpeg_calc_output_dimensions.xml</ref>
+      <ref>jpeg_decompress_struct.Scale_denom.xml</ref>
+      <ref>jpeg_decompress_struct.Scale_num.xml</ref>
+      <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
+      <ref>jpeg_decompress_struct.Quantize_colors.xml</ref>
+      <ref>jpeg_decompress_struct.get_Dct_method.xml</ref>
       <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="6">
         <ref>jpeg_marker_parser_method.Invoke.xml</ref>
         <node title="Invoke" file="jpeg_marker_parser_method.Invoke.xml" iconindex="23" />
@@ -491,13 +501,19 @@
       </node>
       <node title="Jpeg_color_space" file="jpeg_decompress_struct.Jpeg_color_space.xml" iconindex="27">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
+        <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
       </node>
-      <node title="get_Out_color_space" file="jpeg_decompress_struct.get_Out_color_space.xml" iconindex="23" />
-      <node title="set_Out_color_space" file="jpeg_decompress_struct.set_Out_color_space.xml" iconindex="23" />
-      <node title="get_Scale_num" file="jpeg_decompress_struct.get_Scale_num.xml" iconindex="23" />
-      <node title="set_Scale_num" file="jpeg_decompress_struct.set_Scale_num.xml" iconindex="23" />
-      <node title="get_Scale_denom" file="jpeg_decompress_struct.get_Scale_denom.xml" iconindex="23" />
-      <node title="set_Scale_denom" file="jpeg_decompress_struct.set_Scale_denom.xml" iconindex="23" />
+      <node title="Out_color_space" file="jpeg_decompress_struct.Out_color_space.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="Scale_num" file="jpeg_decompress_struct.Scale_num.xml" iconindex="27">
+        <ref>jpeg_decompress_struct.Scale_denom.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
+      <node title="Scale_denom" file="jpeg_decompress_struct.Scale_denom.xml" iconindex="27">
+        <ref>jpeg_decompress_struct.Scale_num.xml</ref>
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
       <node title="get_Buffered_image" file="jpeg_decompress_struct.get_Buffered_image.xml" iconindex="23" />
       <node title="set_Buffered_image" file="jpeg_decompress_struct.set_Buffered_image.xml" iconindex="23" />
       <node title="get_Raw_data_out" file="jpeg_decompress_struct.get_Raw_data_out.xml" iconindex="23" />
@@ -508,8 +524,9 @@
       <node title="set_Do_fancy_upsampling" file="jpeg_decompress_struct.set_Do_fancy_upsampling.xml" iconindex="23" />
       <node title="get_Do_block_smoothing" file="jpeg_decompress_struct.get_Do_block_smoothing.xml" iconindex="23" />
       <node title="set_Do_block_smoothing" file="jpeg_decompress_struct.set_Do_block_smoothing.xml" iconindex="23" />
-      <node title="get_Quantize_colors" file="jpeg_decompress_struct.get_Quantize_colors.xml" iconindex="23" />
-      <node title="set_Quantize_colors" file="jpeg_decompress_struct.set_Quantize_colors.xml" iconindex="23" />
+      <node title="Quantize_colors" file="jpeg_decompress_struct.Quantize_colors.xml" iconindex="27">
+        <ref>Classic\Decompression_parameter_selection.xml</ref>
+      </node>
       <node title="get_Dither_mode" file="jpeg_decompress_struct.get_Dither_mode.xml" iconindex="23" />
       <node title="set_Dither_mode" file="jpeg_decompress_struct.set_Dither_mode.xml" iconindex="23" />
       <node title="get_Two_pass_quantize" file="jpeg_decompress_struct.get_Two_pass_quantize.xml" iconindex="23" />
@@ -569,6 +586,7 @@
         <ref>jpeg_decompress_struct.Image_width.xml</ref>
         <ref>jpeg_decompress_struct.Image_height.xml</ref>
         <ref>Classic\Decompression_parameter_selection.xml</ref>
+        <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
       </node>
       <node title="jpeg_start_decompress" file="jpeg_decompress_struct.jpeg_start_decompress.xml" iconindex="23">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
@@ -675,9 +693,13 @@
       <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
       <ref>jpeg_compress_struct.In_color_space.xml</ref>
       <ref>jpeg_decompress_struct.Jpeg_color_space.xml</ref>
+      <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
     </node>
     <node title="J_DCT_METHOD" file="J_DCT_METHOD.xml" iconindex="10">
       <ref>jpeg_compress_struct.Dct_method.xml</ref>
+      <ref>jpeg_decompress_struct.get_Dct_method.xml</ref>
+      <ref>jpeg_decompress_struct.Scale_num.xml</ref>
+      <ref>jpeg_decompress_struct.Scale_denom.xml</ref>
     </node>
     <node title="J_DITHER_MODE" file="J_DITHER_MODE.xml" iconindex="10" />
     <node title="JPEG_MARKER" file="JPEG_MARKER.xml" iconindex="10" />
@@ -755,6 +777,10 @@
         <ref>jpeg_decompress_struct.Num_components.xml</ref>
         <ref>jpeg_decompress_struct.Jpeg_color_space.xml</ref>
         <ref>jpeg_decompress_struct.Density_unit.xml</ref>
+        <ref>jpeg_decompress_struct.Scale_denom.xml</ref>
+        <ref>jpeg_decompress_struct.Scale_num.xml</ref>
+        <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
+        <ref>jpeg_decompress_struct.Quantize_colors.xml</ref>
       </node>
       <node title="Special color spaces" file="Classic\Special_color_spaces.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>

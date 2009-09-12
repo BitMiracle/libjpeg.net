@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>Scale_num</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_decompress_struct.xml">
+        <text>jpeg_decompress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <p>
+        <text>Numerator of the fraction of image scaling.</text> </p>
+    </descriptionarticle>
+    <seealso>
+      <ref caption="Scale_denom" file="jpeg_decompress_struct.Scale_denom.xml" />
+      <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
+    </seealso>
+    <signature>
+      <property access="full">
+        <name>Scale_num</name>
+        <return type="Int32">
+          <text>Scale the image by the fraction Scale_num/</text> <link file="jpeg_decompress_struct.Scale_denom.xml"><text>Scale_denom</text> </link><text>. Default is 1/1, or no scaling. Currently, the only supported scaling ratios are 1/1, 1/2, 1/4, and 1/8. (The library design allows for arbitrary scaling ratios but this is not likely to be implemented any time soon.)</text> </return>
+      </property>
+    </signature>
+    <remarks>
+      <text>Smaller scaling ratios permit significantly faster decoding since fewer pixels need be processed and a simpler </text> <link file="J_DCT_METHOD.xml"><text>DCT method</text> </link><text> can be used.</text> </remarks>
+  </file>
+</xml>
