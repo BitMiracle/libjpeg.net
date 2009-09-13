@@ -9,6 +9,9 @@
     </breadcumbs>
     <descriptionarticle only="false">
       <text>Dithering method for decompression.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_decompress_struct.Dither_mode" file="jpeg_decompress_struct.Dither_mode.xml" />
+    </seealso>
     <signature>
       <enum>
         <name>J_DITHER_MODE</name>

@@ -11,7 +11,11 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Actual height of output image.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Output_width" file="jpeg_decompress_struct.Output_width.xml" />
+    </seealso>
     <signature>
       <property access="read">
         <name>Output_height</name>

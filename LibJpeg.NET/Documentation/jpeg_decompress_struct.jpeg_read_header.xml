@@ -11,7 +11,12 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>This will read the source datastream header markers, up to the beginning of the compressed data proper. On return, the image dimensions and other info have been stored in the JPEG object. The application may wish to consult this information before selecting decompression parameters.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Decompression details" file="Classic\Decompression_details.xml" />
+      <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
+    </seealso>
     <signature>
       <function>
         <name>jpeg_read_header</name>
@@ -21,5 +26,7 @@
         </parameters>
       </function>
     </signature>
+    <remarks>
+      <text>If a suspending data source is used jpeg_read_header() may return before it has read all the header data. See "</text> <link file="Classic/I_O_suspension.xml"><text>I/O suspension</text> </link><text>" below. The normal stdio source manager will NOT cause this to happen.</text> </remarks>
   </file>
 </xml>

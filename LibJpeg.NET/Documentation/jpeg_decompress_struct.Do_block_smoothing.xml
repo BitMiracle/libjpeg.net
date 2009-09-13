@@ -11,12 +11,23 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Apply interblock smoothing in early stages of decoding progressive JPEG files.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>Do_block_smoothing</name>
-        <return type="Boolean" />
+        <return type="Boolean">
+          <p>
+            <text>If </text> <b><text>true</text> </b><text>, interblock smoothing is applied in early stages of decoding progressive JPEG files; if </text> <b><text>false</text> </b><text>, not. Early progression stages look "fuzzy" with smoothing, "blocky" without.</text> </p>
+          <p>
+            <text>Default value: </text> <b><text>true</text> </b></p>
+        </return>
       </property>
     </signature>
+    <remarks>
+      <text>In any case, block smoothing ceases to be applied after the first few AC coefficients are known to full accuracy, so it is relevant only when using </text> <link file="Classic/Buffered_image_mode.xml"><text>buffered-image mode</text> </link><text> for progressive images.</text> </remarks>
   </file>
 </xml>

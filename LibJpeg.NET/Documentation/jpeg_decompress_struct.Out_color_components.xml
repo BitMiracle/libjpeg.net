@@ -11,11 +11,17 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Number of color components in </text> <link file="jpeg_decompress_struct.Out_color_space.xml"><text>Out_color_space</text> </link><text>.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Out_color_space" file="jpeg_decompress_struct.Out_color_space.xml" />
+      <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
+    </seealso>
     <signature>
       <property access="read">
         <name>Out_color_components</name>
-        <return type="Int32" />
+        <return type="Int32">
+          <text>When </text> <link file="jpeg_decompress_struct.Quantize_colors.xml"><text>quantizing colors</text> </link><text>, Output_components is 1, indicating a single color map index per pixel. Otherwise it equals </text> <link file="jpeg_decompress_struct.Out_color_components.xml"><text>Out_color_components</text> </link><text>.</text> </return>
       </property>
     </signature>
   </file>
