@@ -15,6 +15,7 @@
       <text>Color space of source image.</text> </descriptionarticle>
     <seealso>
       <ref caption="Compression details" file="Classic\Compression_details.xml" />
+      <ref caption="Special color spaces" file="Classic\Special_color_spaces.xml" />
     </seealso>
     <signature>
       <property access="full">

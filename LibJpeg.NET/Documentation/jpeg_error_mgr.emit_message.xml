@@ -1,17 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>emit_message</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				<mod2>virtual</mod2>
-				<name>emit_message</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					<parameter name="msg_level" type="Int32" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>emit_message</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_error_mgr.xml">
+        <text>jpeg_error_mgr</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Decide whether or not to emit a warning or trace message; if so, calls </text> <link file="jpeg_error_mgr.output_message.xml"><text>output_message</text> </link><text>.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Error handling" file="Classic\Error_handling.xml" />
+    </seealso>
+    <signature>
+      <function>
+        <mod2>virtual</mod2>
+        <name>emit_message</name>
+        <return type="void" />
+        <parameters>
+          <parameter name="msg_level" type="Int32">-1 for warnings, 0 and up for trace messages.</parameter>
+        </parameters>
+      </function>
+    </signature>
+    <remarks>
+      <text>The main reason for overriding this method would be to abort on warnings.</text> </remarks>
+  </file>
 </xml>

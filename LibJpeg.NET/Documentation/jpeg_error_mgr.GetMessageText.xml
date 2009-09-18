@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>reset_error_mgr</title>
+    <title>GetMessageText</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -11,13 +11,18 @@
         <text>jpeg_error_mgr</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false">
-      <text>Resets error manager to initial state.</text> </descriptionarticle>
+    <descriptionarticle only="false" />
+    <seealso>
+      <ref caption="Error handling" file="Classic\Error_handling.xml" />
+    </seealso>
     <signature>
       <function>
-        <mod2>virtual</mod2>
-        <name>reset_error_mgr</name>
-        <return type="void" />
+        <mod1>protected</mod1>
+        <name>GetMessageText</name>
+        <return type="string" />
+        <parameters>
+          <parameter name="code" type="Int32" />
+        </parameters>
       </function>
     </signature>
   </file>

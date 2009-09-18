@@ -15,6 +15,7 @@
       <text>Colorspace of image.</text> </descriptionarticle>
     <seealso>
       <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
+      <ref caption="Special color spaces" file="Classic\Special_color_spaces.xml" />
     </seealso>
     <signature>
       <property access="read">

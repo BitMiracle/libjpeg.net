@@ -1,16 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>output_message</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				<mod2>virtual</mod2>
-				<name>output_message</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>output_message</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_error_mgr.xml">
+        <text>jpeg_error_mgr</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Actual output of any JPEG message.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Error handling" file="Classic\Error_handling.xml" />
+    </seealso>
+    <signature>
+      <function>
+        <mod2>virtual</mod2>
+        <name>output_message</name>
+        <return type="void" />
+      </function>
+    </signature>
+    <remarks>
+      <text>Override this to send messages somewhere other than Console. Note that this method does not know how to generate a message, only where to send it. For extending a generation of messages see </text> <link file="jpeg_error_mgr.format_message.xml"><text>format_message</text> </link><text>.</text> </remarks>
+  </file>
 </xml>

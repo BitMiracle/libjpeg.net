@@ -13,6 +13,9 @@
     </breadcumbs>
     <descriptionarticle only="false">
       <text>Error handler module.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Error handling" file="Classic\Error_handling.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>Err</name>

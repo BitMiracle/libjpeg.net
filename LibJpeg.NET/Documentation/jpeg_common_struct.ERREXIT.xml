@@ -15,7 +15,7 @@
     <signature>
       <function>
         <name>ERREXIT</name>
-        <return type="Void" />
+        <return type="void" />
         <parameters>
           <parameter name="code" type="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" />
         </parameters>
