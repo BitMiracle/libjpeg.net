@@ -229,6 +229,11 @@
     <ref>jpeg_error_mgr.GetMessageText.xml</ref>
     <ref>jpeg_error_mgr.reset_error_mgr.xml</ref>
     <ref>jpeg_error_mgr.get_Num_warnings.xml</ref>
+    <ref>jpeg_source_mgr.xml</ref>
+    <ref>jpeg_destination_mgr.empty_output_buffer.xml</ref>
+    <ref>jpeg_destination_mgr.emit_byte.xml</ref>
+    <ref>jpeg_destination_mgr.term_destination.xml</ref>
+    <ref>jpeg_destination_mgr.init_destination.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -262,11 +267,13 @@
         <ref>Classic\Outline_of_typical_usage.xml</ref>
         <ref>Classic\Compression_details.xml</ref>
         <ref>Classic\Decompression_details.xml</ref>
+        <ref>jpeg_destination_mgr.term_destination.xml</ref>
       </node>
       <node title="jpeg_destroy" file="jpeg_common_struct.jpeg_destroy.xml" iconindex="23">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
         <ref>Classic\Compression_details.xml</ref>
         <ref>Classic\Decompression_details.xml</ref>
+        <ref>jpeg_destination_mgr.term_destination.xml</ref>
       </node>
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23">
         <ref>Classic\Error_handling.xml</ref>
@@ -426,6 +433,7 @@
       <node title="jpeg_finish_compress" file="jpeg_compress_struct.jpeg_finish_compress.xml" iconindex="23">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
         <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_destination_mgr.term_destination.xml</ref>
       </node>
       <node title="jpeg_write_marker" file="jpeg_compress_struct.jpeg_write_marker.xml" iconindex="23" />
       <node title="jpeg_write_m_header" file="jpeg_compress_struct.jpeg_write_m_header.xml" iconindex="23" />
@@ -473,6 +481,7 @@
       <node title="jpeg_start_compress" file="jpeg_compress_struct.jpeg_start_compress.xml" iconindex="23">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
         <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_destination_mgr.init_destination.xml</ref>
       </node>
       <node title="jpeg_write_scanlines" file="jpeg_compress_struct.jpeg_write_scanlines.xml" iconindex="23">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
@@ -684,10 +693,18 @@
     </node>
     <node title="jpeg_destination_mgr" file="jpeg_destination_mgr.xml" iconindex="6">
       <ref>Classic\Compressed_data_handling.xml</ref>
-      <node title="init_destination" file="jpeg_destination_mgr.init_destination.xml" iconindex="23" />
-      <node title="empty_output_buffer" file="jpeg_destination_mgr.empty_output_buffer.xml" iconindex="23" />
+      <ref>jpeg_destination_mgr.empty_output_buffer.xml</ref>
+      <ref>jpeg_destination_mgr.emit_byte.xml</ref>
+      <ref>jpeg_destination_mgr.term_destination.xml</ref>
+      <ref>jpeg_destination_mgr.init_destination.xml</ref>
+      <node title="init_destination" file="jpeg_destination_mgr.init_destination.xml" iconindex="23">
+        <ref>Classic\Compressed_data_handling.xml</ref>
+      </node>
+      <node title="empty_output_buffer" file="jpeg_destination_mgr.empty_output_buffer.xml" iconindex="23">
+        <ref>Classic\Compressed_data_handling.xml</ref>
+      </node>
       <node title="term_destination" file="jpeg_destination_mgr.term_destination.xml" iconindex="23">
-        <ref>Classic\Compression_details.xml</ref>
+        <ref>Classic\Compressed_data_handling.xml</ref>
       </node>
       <node title="emit_byte" file="jpeg_destination_mgr.emit_byte.xml" iconindex="23" />
     </node>
@@ -911,12 +928,13 @@
       </node>
       <node title="Compressed data handling" file="Classic\Compressed_data_handling.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_destination_mgr.xml</ref>
+        <ref>jpeg_source_mgr.xml</ref>
       </node>
       <node title="I/O suspension" file="Classic\I_O_suspension.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>
         <ref>Classic\Outline_of_typical_usage.xml</ref>
         <ref>Classic\Decompression_details.xml</ref>
-        <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
       </node>
       <node title="Progressive JPEG support" file="Classic\Progressive_JPEG_support.xml" iconindex="0" />
       <node title="Buffered-image mode" file="Classic\Buffered_image_mode.xml" iconindex="0">

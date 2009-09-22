@@ -8,6 +8,9 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false" />
+    <seealso>
+      <ref caption="Compressed data handling" file="Classic\Compressed_data_handling.xml" />
+    </seealso>
     <signature>
       <class>
         <mod2>abstract</mod2>

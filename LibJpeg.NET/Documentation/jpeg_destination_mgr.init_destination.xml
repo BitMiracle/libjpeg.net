@@ -1,16 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>init_destination</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				<mod2>abstract</mod2>
-				<name>init_destination</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>init_destination</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_destination_mgr.xml">
+        <text>jpeg_destination_mgr</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Initialize destination - called by </text> <link file="jpeg_compress_struct.jpeg_start_compress.xml"><text>jpeg_start_compress</text> </link><text> before any data is actually written.</text> </descriptionarticle>
+    <signature>
+      <function>
+        <mod2>abstract</mod2>
+        <name>init_destination</name>
+        <return type="void" />
+      </function>
+    </signature>
+  </file>
 </xml>

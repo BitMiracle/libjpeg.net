@@ -1,16 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>term_destination</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				<mod2>abstract</mod2>
-				<name>term_destination</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>term_destination</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_destination_mgr.xml">
+        <text>jpeg_destination_mgr</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Terminate destination - called by </text> <link file="jpeg_compress_struct.jpeg_finish_compress.xml"><text>jpeg_finish_compress</text> </link><text> after all data has been written.</text> </descriptionarticle>
+    <signature>
+      <function>
+        <mod2>abstract</mod2>
+        <name>term_destination</name>
+        <return type="void" />
+      </function>
+    </signature>
+    <remarks>
+      <text>Note that this method is not called by </text> <link file="jpeg_common_struct.jpeg_abort.xml"><text>jpeg_abort</text> </link><text> or </text> <link file="jpeg_common_struct.jpeg_destroy.xml"><text>jpeg_destroy</text> </link><text>; surrounding application must deal with any cleanup that should happen even for error exit.</text> </remarks>
+  </file>
 </xml>

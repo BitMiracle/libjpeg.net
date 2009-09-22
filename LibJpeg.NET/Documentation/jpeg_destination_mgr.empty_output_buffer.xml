@@ -1,16 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>empty_output_buffer</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				<mod2>abstract</mod2>
-				<name>empty_output_buffer</name>
-				<return type="Boolean" />
-				<parameters>
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>empty_output_buffer</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_destination_mgr.xml">
+        <text>jpeg_destination_mgr</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Empty the output buffer - called whenever buffer fills up.</text> </descriptionarticle>
+    <signature>
+      <function>
+        <mod2>abstract</mod2>
+        <name>empty_output_buffer</name>
+        <return type="Boolean" />
+      </function>
+    </signature>
+    <remarks>
+      <text>In typical applications, this should write the entire output buffer (ignoring the current state of next_output_byte &amp; free_in_buffer), reset the pointer &amp; count to the start of the buffer, and return true indicating that the buffer has been dumped.</text> <br /><br /><text>In applications that need to be able to suspend compression due to output overrun, a false return indicates that the buffer cannot be emptied now. In this situation, the compressor will return to its caller (possibly with an indication that it has not accepted all the supplied scanlines). The application should resume compression after it has made more room in the output buffer. Note that there are substantial restrictions on the use of suspension - see the documentation.</text> <br /><br /><text>When suspending, the compressor will back up to a convenient restart point (typically the start of the current MCU). next_output_byte &amp; free_in_buffer indicate where the restart point will be if the current call returns false. Data beyond this point will be regenerated after resumption, so do not write it out when emptying the buffer externally.</text> </remarks>
+  </file>
 </xml>
