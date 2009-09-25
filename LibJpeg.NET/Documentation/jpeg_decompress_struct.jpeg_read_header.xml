@@ -26,7 +26,5 @@
         </parameters>
       </function>
     </signature>
-    <remarks>
-      <text>If a suspending data source is used jpeg_read_header() may return before it has read all the header data. See "</text> <link file="Classic/I_O_suspension.xml"><text>I/O suspension</text> </link><text>" below. The normal stdio source manager will NOT cause this to happen.</text> </remarks>
   </file>
 </xml>

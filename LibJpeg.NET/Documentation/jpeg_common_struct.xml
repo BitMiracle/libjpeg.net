@@ -8,7 +8,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Common fields between JPEG compression and decompression master structures.</text> </descriptionarticle>
+      <text>Base class for both JPEG compressor and decompresor.</text> </descriptionarticle>
     <signature>
       <class>
         <mod2>abstract</mod2>
@@ -16,6 +16,6 @@
       </class>
     </signature>
     <remarks>
-      <text>Routines that are to be used by both halves of the library are declared to receive an instance of this structure. There are no actual instances of jpeg_common_struct, only of </text> <link file="jpeg_compress_struct.xml"><text>jpeg_compress_struct</text> </link><text> and </text> <link file="jpeg_decompress_struct.xml"><text>jpeg_decompress_struct</text> </link><text>.</text> </remarks>
+      <text>Routines that are to be used by both halves of the library are declared to receive an instance of this class. There are no actual instances of jpeg_common_struct, only of </text> <link file="jpeg_compress_struct.xml"><text>jpeg_compress_struct</text> </link><text> and </text> <link file="jpeg_decompress_struct.xml"><text>jpeg_decompress_struct</text> </link><text>.</text> </remarks>
   </file>
 </xml>
