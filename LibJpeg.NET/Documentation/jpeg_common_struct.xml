@@ -16,6 +16,136 @@
       </class>
     </signature>
     <remarks>
-      <text>Routines that are to be used by both halves of the library are declared to receive an instance of this class. There are no actual instances of jpeg_common_struct, only of </text> <link file="jpeg_compress_struct.xml"><text>jpeg_compress_struct</text> </link><text> and </text> <link file="jpeg_decompress_struct.xml"><text>jpeg_decompress_struct</text> </link><text>.</text> </remarks>
+      <p>
+        <text>Routines that are to be used by both halves of the library are declared to receive an instance of this class. There are no actual instances of jpeg_common_struct, only of </text> <link file="jpeg_compress_struct.xml"><text>jpeg_compress_struct</text> </link><text> and </text> <link file="jpeg_decompress_struct.xml"><text>jpeg_decompress_struct</text> </link><text>.</text> </p>
+      <p>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <text> </text> </td>
+              <td>
+                <b>
+                  <text>Member</text> </b>
+              </td>
+              <td>
+                <b>
+                  <text>Description</text> </b>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src="_TemplateMSDN_files/icons/23.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.ctor.xml">
+                  <text>jpeg_common_struct</text> </link>
+              </td>
+              <td>
+                <text>Constructor. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.Err.xml">
+                  <text>Err</text> </link>
+              </td>
+              <td>
+                <text>Error handler module. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              </td>
+              <td>
+                <link file="/jpeg_common_struct.Progress.xml">
+                  <text>Progress</text> </link>
+              </td>
+              <td>
+                <text>Progress monitor. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.Version.xml">
+                  <text>Version</text> </link>
+              </td>
+              <td>
+                <text>Version of LibJpeg.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.Copyright.xml">
+                  <text>Copyright</text> </link>
+              </td>
+              <td>
+                <text>Copyright of LibJpeg.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.AllocJpegSamples.xml">
+                  <text>AllocJpegSamples</text> </link>
+              </td>
+              <td>
+                <text>Creates 2-D sample array. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.jpeg_abort.xml">
+                  <text>jpeg_abort</text> </link>
+              </td>
+              <td>
+                <text>Aborts processing of a JPEG compression or decompression operation.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.ERREXIT3.xml">
+                  <text>ERREXIT</text> </link>
+              </td>
+              <td>
+                <text>Used for fatal errors. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.WARNMS3.xml">
+                  <text>WARNMS</text> </link>
+              </td>
+              <td>
+                <text>Used for non-fatal errors.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.TRACEMS3.xml">
+                  <text>TRACEMS</text> </link>
+              </td>
+              <td>
+                <text>Shows informational and debugging messages.</text> </td>
+            </tr>
+          </tbody>
+        </table>
+      </p>
+    </remarks>
   </file>
 </xml>

@@ -1,19 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>TRACEMS</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>TRACEMS</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					<parameter name="lvl" type="Int32" />
-					<parameter name="code" type="Int32" />
-					<parameter name="args" type="Object[]" file="Object[].xml" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>TRACEMS</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_common_struct.xml">
+        <text>jpeg_common_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Shows informational and debugging messages.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="emit_message" file="jpeg_error_mgr.emit_message.xml" />
+    </seealso>
+    <signature>
+      <function>
+        <name>TRACEMS</name>
+        <return type="void" />
+        <parameters>
+          <parameter name="lvl" type="Int32">See jpeg_error_mgr.emit_message for description.</parameter>
+          <parameter name="code" type="Int32">Message code.</parameter>
+          <parameter name="args" type="params Object[]">Parameters of message.</parameter>
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>

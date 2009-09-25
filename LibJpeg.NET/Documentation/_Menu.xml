@@ -141,7 +141,6 @@
     <ref>jpeg_common_struct.jpeg_abort.xml</ref>
     <ref>jpeg_common_struct.Version.xml</ref>
     <ref>jpeg_common_struct.ERREXIT.xml</ref>
-    <ref>jpeg_common_struct.ERREXIT1.xml</ref>
     <ref>jpeg_common_struct.ERREXIT2.xml</ref>
     <ref>jpeg_common_struct.ERREXIT3.xml</ref>
     <ref>jpeg_error_mgr.Trace_level.xml</ref>
@@ -152,14 +151,11 @@
     <ref>jvirt_sarray_control.xml</ref>
     <ref>jvirt_barray_control.access_virt_barray.xml</ref>
     <ref>jpeg_common_struct.WARNMS.xml</ref>
-    <ref>jpeg_common_struct.WARNMS1.xml</ref>
     <ref>jpeg_common_struct.WARNMS2.xml</ref>
     <ref>jpeg_common_struct.WARNMS3.xml</ref>
     <ref>jpeg_compress_struct.jpeg_start_compress.xml</ref>
     <ref>jpeg_compress_struct.jpeg_simple_progression.xml</ref>
     <ref>jpeg_common_struct.TRACEMS.xml</ref>
-    <ref>jpeg_common_struct.TRACEMS1.xml</ref>
-    <ref>jpeg_common_struct.jpeg_destroy.xml</ref>
     <ref>jpeg_compress_struct.ctor.xml</ref>
     <ref>jpeg_compress_struct.ctor1.xml</ref>
     <ref>jpeg_compress_struct.Image_width.xml</ref>
@@ -230,6 +226,8 @@
     <ref>jpeg_error_mgr.get_Num_warnings.xml</ref>
     <ref>jpeg_source_mgr.xml</ref>
     <ref>jpeg_common_struct.ctor.xml</ref>
+    <ref>jpeg_common_struct.TRACEMS3.xml</ref>
+    <ref>jpeg_common_struct.TRACEMS2.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -238,55 +236,60 @@
       <ref>jpeg_common_struct.jpeg_abort.xml</ref>
       <ref>jpeg_common_struct.Version.xml</ref>
       <ref>jpeg_common_struct.ERREXIT.xml</ref>
-      <ref>jpeg_common_struct.ERREXIT1.xml</ref>
       <ref>jpeg_common_struct.ERREXIT2.xml</ref>
       <ref>jpeg_common_struct.ERREXIT3.xml</ref>
       <ref>jpeg_compress_struct.xml</ref>
       <ref>jpeg_decompress_struct.xml</ref>
       <ref>jpeg_common_struct.WARNMS.xml</ref>
-      <ref>jpeg_common_struct.WARNMS1.xml</ref>
       <ref>jpeg_common_struct.WARNMS2.xml</ref>
       <ref>jpeg_common_struct.WARNMS3.xml</ref>
       <ref>jpeg_common_struct.TRACEMS.xml</ref>
-      <ref>jpeg_common_struct.TRACEMS1.xml</ref>
-      <ref>jpeg_common_struct.jpeg_destroy.xml</ref>
       <ref>jpeg_common_struct.ctor.xml</ref>
-      <node title="jpeg_common_struct constructor" file="jpeg_common_struct.ctor.xml" iconindex="23" />
-      <node title="Copyright" file="jpeg_common_struct.Copyright.xml" iconindex="27" />
+      <ref>jpeg_common_struct.TRACEMS3.xml</ref>
+      <ref>jpeg_common_struct.TRACEMS2.xml</ref>
+      <node title="jpeg_common_struct constructor" file="jpeg_common_struct.ctor.xml" iconindex="23">
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
       <node title="Err" file="jpeg_common_struct.Err.xml" iconindex="27">
         <ref>Classic\Error_handling.xml</ref>
+        <ref>jpeg_common_struct.xml</ref>
       </node>
-      <node title="Progress" file="\jpeg_common_struct.Progress.xml" iconindex="27" />
-      <node title="Version" file="jpeg_common_struct.Version.xml" iconindex="27" />
-      <node title="AllocJpegSamples" file="jpeg_common_struct.AllocJpegSamples.xml" iconindex="23" />
+      <node title="Progress" file="\jpeg_common_struct.Progress.xml" iconindex="27">
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
+      <node title="Version" file="jpeg_common_struct.Version.xml" iconindex="27">
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
+      <node title="Copyright" file="jpeg_common_struct.Copyright.xml" iconindex="27">
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
+      <node title="AllocJpegSamples" file="jpeg_common_struct.AllocJpegSamples.xml" iconindex="23">
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
       <node title="jpeg_abort" file="jpeg_common_struct.jpeg_abort.xml" iconindex="23">
-        <ref>Classic\Outline_of_typical_usage.xml</ref>
-        <ref>Classic\Compression_details.xml</ref>
-        <ref>Classic\Decompression_details.xml</ref>
+        <ref>jpeg_common_struct.xml</ref>
       </node>
-      <node title="jpeg_destroy" file="jpeg_common_struct.jpeg_destroy.xml" iconindex="23">
-        <ref>Classic\Outline_of_typical_usage.xml</ref>
-        <ref>Classic\Compression_details.xml</ref>
-        <ref>Classic\Decompression_details.xml</ref>
-      </node>
-      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23">
-        <ref>Classic\Error_handling.xml</ref>
-      </node>
-      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT1.xml" iconindex="23" />
+      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23" />
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT2.xml" iconindex="23" />
-      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT3.xml" iconindex="23" />
+      <node title="ERREXIT" file="jpeg_common_struct.ERREXIT3.xml" iconindex="23">
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
       <node title="WARNMS" file="jpeg_common_struct.WARNMS.xml" iconindex="23">
-        <ref>Classic\Error_handling.xml</ref>
+        <ref>jpeg_common_struct.xml</ref>
       </node>
-      <node title="WARNMS" file="jpeg_common_struct.WARNMS1.xml" iconindex="23" />
-      <node title="WARNMS" file="jpeg_common_struct.WARNMS2.xml" iconindex="23" />
-      <node title="WARNMS" file="jpeg_common_struct.WARNMS3.xml" iconindex="23" />
-      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS.xml" iconindex="23">
-        <ref>Classic\Error_handling.xml</ref>
+      <node title="WARNMS" file="jpeg_common_struct.WARNMS2.xml" iconindex="23">
+        <ref>jpeg_common_struct.xml</ref>
       </node>
-      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS1.xml" iconindex="23" />
-      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS2.xml" iconindex="23" />
-      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS3.xml" iconindex="23" />
+      <node title="WARNMS" file="jpeg_common_struct.WARNMS3.xml" iconindex="23">
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
+      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS.xml" iconindex="23" />
+      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS2.xml" iconindex="23">
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
+      <node title="TRACEMS" file="jpeg_common_struct.TRACEMS3.xml" iconindex="23">
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
     </node>
     <node title="jpeg_compress_struct" file="jpeg_compress_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.xml</ref>
@@ -669,6 +672,7 @@
         <ref>jpeg_decompress_struct.Image_height.xml</ref>
         <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
         <ref>jpeg_decompress_struct.Colormap.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
       </node>
       <node title="jpeg_start_decompress" file="jpeg_decompress_struct.jpeg_start_decompress.xml" iconindex="23">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
@@ -713,14 +717,21 @@
       <ref>jpeg_error_mgr.GetMessageText.xml</ref>
       <ref>jpeg_error_mgr.reset_error_mgr.xml</ref>
       <ref>jpeg_error_mgr.get_Num_warnings.xml</ref>
+      <ref>Classic\Compression_details.xml</ref>
       <node title="jpeg_error_mgr constructor" file="jpeg_error_mgr.ctor.xml" iconindex="23" />
       <node title="Trace_level" file="jpeg_error_mgr.Trace_level.xml" iconindex="27" />
       <node title="get_Num_warnings" file="jpeg_error_mgr.get_Num_warnings.xml" iconindex="23" />
       <node title="error_exit" file="jpeg_error_mgr.error_exit.xml" iconindex="23">
         <ref>Classic\Error_handling.xml</ref>
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_common_struct.ERREXIT.xml</ref>
+        <ref>jpeg_common_struct.ERREXIT2.xml</ref>
+        <ref>jpeg_common_struct.ERREXIT3.xml</ref>
       </node>
       <node title="emit_message" file="jpeg_error_mgr.emit_message.xml" iconindex="23">
-        <ref>Classic\Error_handling.xml</ref>
+        <ref>jpeg_common_struct.TRACEMS3.xml</ref>
+        <ref>jpeg_common_struct.TRACEMS2.xml</ref>
+        <ref>jpeg_common_struct.TRACEMS.xml</ref>
       </node>
       <node title="output_message" file="jpeg_error_mgr.output_message.xml" iconindex="23">
         <ref>jpeg_error_mgr.error_exit.xml</ref>
@@ -813,6 +824,7 @@
       <ref>jpeg_common_struct.ERREXIT2.xml</ref>
       <ref>jpeg_common_struct.ERREXIT.xml</ref>
       <ref>jpeg_common_struct.TRACEMS.xml</ref>
+      <ref>jpeg_common_struct.TRACEMS2.xml</ref>
     </node>
     <node title="ReadResult" file="ReadResult.xml" iconindex="10">
       <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>

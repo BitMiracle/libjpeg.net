@@ -11,14 +11,18 @@
         <text>jpeg_common_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Shows informational and debugging messages.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="emit_message" file="jpeg_error_mgr.emit_message.xml" />
+    </seealso>
     <signature>
       <function>
         <name>TRACEMS</name>
         <return type="void" />
         <parameters>
-          <parameter name="lvl" type="Int32" />
-          <parameter name="code" type="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" />
+          <parameter name="lvl" type="Int32">See jpeg_error_mgr.emit_message for description.</parameter>
+          <parameter name="code" type="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml">Message code.</parameter>
         </parameters>
       </function>
     </signature>

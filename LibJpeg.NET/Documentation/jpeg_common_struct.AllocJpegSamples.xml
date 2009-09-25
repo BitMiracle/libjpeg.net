@@ -17,10 +17,10 @@
       <function>
         <mod2>static</mod2>
         <name>AllocJpegSamples</name>
-        <return type="Byte[][]" file="jpeg_progress_mgr.xml" />
+        <return type="Byte[][]" />
         <parameters>
-          <parameter name="samplesPerRow" type="Int32" />
-          <parameter name="numberOfRows" type="Int32" />
+          <parameter name="samplesPerRow" type="Int32">Number of samples per row.</parameter>
+          <parameter name="numberOfRows" type="Int32">Number of rows.</parameter>
         </parameters>
       </function>
     </signature>

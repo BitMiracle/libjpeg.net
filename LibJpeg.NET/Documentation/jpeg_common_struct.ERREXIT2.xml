@@ -11,14 +11,18 @@
         <text>jpeg_common_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Used for fatal errors (print message and exit).</text> </descriptionarticle>
+    <seealso>
+      <ref caption="error_exit" file="jpeg_error_mgr.error_exit.xml" />
+    </seealso>
     <signature>
       <function>
         <name>ERREXIT</name>
         <return type="Void" />
         <parameters>
-          <parameter name="code" type="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" />
-          <parameter name="args" type="Object[]" file="Object[].xml" />
+          <parameter name="code" type="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml">Message code.</parameter>
+          <parameter name="args" type="params Object[]">Parameters of message.</parameter>
         </parameters>
       </function>
     </signature>

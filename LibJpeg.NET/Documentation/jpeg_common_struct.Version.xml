@@ -11,7 +11,8 @@
         <text>jpeg_common_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Retrieves version of LibJpeg.</text> </descriptionarticle>
     <signature>
       <property access="read">
         <mod2>static</mod2>

@@ -11,7 +11,8 @@
         <text>jpeg_common_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Aborts processing of a JPEG compression or decompression operation,</text> <br /><text>but don't destroy the object itself.</text> </descriptionarticle>
     <signature>
       <function>
         <name>jpeg_abort</name>

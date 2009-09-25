@@ -22,7 +22,14 @@
         <name>emit_message</name>
         <return type="void" />
         <parameters>
-          <parameter name="msg_level" type="Int32">-1 for warnings, 0 and up for trace messages.</parameter>
+          <parameter name="msg_level" type="Int32">-1 for warnings, 0 and up for trace messages.
+
+The message severity level. 
+Values are:
+-1: recoverable corrupt-data warning, may want to abort.
+0: important advisory messages (always display to user).
+1: first level of tracing detail.
+2, 3, ...: successively more detailed tracing messages.</parameter>
         </parameters>
       </function>
     </signature>
