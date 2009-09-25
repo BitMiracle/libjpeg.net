@@ -132,7 +132,7 @@
     <ref>JpegConstants.xml</ref>
     <ref>JBLOCK.set_Item.xml</ref>
     <ref>jpeg_compress_struct.xml</ref>
-    <ref>\jpeg_common_struct.Progress.xml</ref>
+    <ref>jpeg_common_struct.Progress.xml</ref>
     <ref>jpeg_progress_mgr.xml</ref>
     <ref>jpeg_common_struct.Err.xml</ref>
     <ref>jpeg_error_mgr.xml</ref>
@@ -229,7 +229,7 @@
     <ref>jpeg_common_struct.TRACEMS3.xml</ref>
     <ref>jpeg_common_struct.TRACEMS2.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
-      <ref>\jpeg_common_struct.Progress.xml</ref>
+      <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
       <ref>jpeg_common_struct.AllocJpegSamples.xml</ref>
       <ref>jpeg_common_struct.Copyright.xml</ref>
@@ -254,7 +254,7 @@
         <ref>Classic\Error_handling.xml</ref>
         <ref>jpeg_common_struct.xml</ref>
       </node>
-      <node title="Progress" file="\jpeg_common_struct.Progress.xml" iconindex="27">
+      <node title="Progress" file="jpeg_common_struct.Progress.xml" iconindex="27">
         <ref>jpeg_common_struct.xml</ref>
       </node>
       <node title="Version" file="jpeg_common_struct.Version.xml" iconindex="27">
@@ -830,7 +830,7 @@
       <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
     </node>
   </node>
-  <node title="Knowledge base" file="\Knowledge_base.xml" iconindex="0">
+  <node title="Knowledge base" file="Knowledge_base.xml" iconindex="0">
     <ref>Classic_LibJpeg.xml</ref>
     <node title="Classic LibJpeg" file="Classic_LibJpeg.xml" iconindex="0">
       <ref>Classic\Outline_of_typical_usage.xml</ref>
