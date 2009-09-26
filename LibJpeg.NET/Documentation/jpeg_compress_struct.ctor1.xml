@@ -11,12 +11,13 @@
         <text>jpeg_compress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Constructor.</text> </descriptionarticle>
     <signature>
       <function>
         <name>jpeg_compress_struct</name>
         <parameters>
-          <parameter name="errorManager" type="jpeg_error_mgr" file="jpeg_error_mgr.xml" />
+          <parameter name="errorManager" type="jpeg_error_mgr" file="jpeg_error_mgr.xml">Error manager.</parameter>
         </parameters>
       </function>
     </signature>

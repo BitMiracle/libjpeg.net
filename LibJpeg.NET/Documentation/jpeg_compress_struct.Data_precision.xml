@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>jpeg_compress_struct</title>
+    <title>Data_precision</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -12,11 +12,17 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Constructor.</text> </descriptionarticle>
+      <text>Bits of precision in image data.</text> </descriptionarticle>
     <signature>
-      <function>
-        <name>jpeg_compress_struct</name>
-      </function>
+      <property access="full">
+        <name>Data_precision</name>
+        <return type="Int32">
+          <p>
+            <text>Default value: 8</text> </p>
+          <p>
+            <text>Number of bits.</text> </p>
+        </return>
+      </property>
     </signature>
   </file>
 </xml>

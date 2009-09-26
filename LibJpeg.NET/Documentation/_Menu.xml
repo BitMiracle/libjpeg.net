@@ -228,6 +228,7 @@
     <ref>jpeg_common_struct.ctor.xml</ref>
     <ref>jpeg_common_struct.TRACEMS3.xml</ref>
     <ref>jpeg_common_struct.TRACEMS2.xml</ref>
+    <ref>jpeg_compress_struct.Data_precision.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -295,7 +296,6 @@
       <ref>jpeg_common_struct.xml</ref>
       <ref>jpeg_compress_struct.jpeg_start_compress.xml</ref>
       <ref>jpeg_compress_struct.jpeg_simple_progression.xml</ref>
-      <ref>Classic\Compression_details.xml</ref>
       <ref>jpeg_compress_struct.ctor.xml</ref>
       <ref>jpeg_compress_struct.ctor1.xml</ref>
       <ref>jpeg_compress_struct.Image_width.xml</ref>
@@ -310,7 +310,6 @@
       <ref>jpeg_compress_struct.jpeg_default_colorspace.xml</ref>
       <ref>jpeg_compress_struct.jpeg_set_linear_quality.xml</ref>
       <ref>jpeg_compress_struct.jpeg_quality_scaling.xml</ref>
-      <ref>Classic\Compression_parameter_selection.xml</ref>
       <ref>jpeg_compress_struct.jpeg_add_quant_table.xml</ref>
       <ref>jpeg_compress_struct.Dct_method.xml</ref>
       <ref>jpeg_compress_struct.Num_components.xml</ref>
@@ -325,8 +324,8 @@
       <ref>jpeg_compress_struct.JFIF_major_version.xml</ref>
       <ref>jpeg_compress_struct.JFIF_minor_version.xml</ref>
       <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
-      <ref>Classic\Error_handling.xml</ref>
       <ref>jpeg_common_struct.ctor.xml</ref>
+      <ref>jpeg_compress_struct.Data_precision.xml</ref>
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor.xml" iconindex="23" />
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor1.xml" iconindex="23" />
       <node title="Image_width" file="jpeg_compress_struct.Image_width.xml" iconindex="27">
@@ -344,8 +343,7 @@
         <ref>Classic\Special_color_spaces.xml</ref>
         <ref>Classic\Compression_details.xml</ref>
       </node>
-      <node title="get_Data_precision" file="jpeg_compress_struct.get_Data_precision.xml" iconindex="23" />
-      <node title="set_Data_precision" file="jpeg_compress_struct.set_Data_precision.xml" iconindex="23" />
+      <node title="Data_precision" file="jpeg_compress_struct.Data_precision.xml" iconindex="27" />
       <node title="Jpeg_color_space" file="jpeg_compress_struct.Jpeg_color_space.xml" iconindex="27">
         <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
         <ref>jpeg_compress_struct.Num_components.xml</ref>
@@ -533,6 +531,7 @@
       <ref>jpeg_decompress_struct.jpeg_start_decompress.xml</ref>
       <ref>Classic\Error_handling.xml</ref>
       <ref>jpeg_common_struct.ctor.xml</ref>
+      <ref>jpeg_compress_struct.xml</ref>
       <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="6">
         <ref>jpeg_marker_parser_method.Invoke.xml</ref>
         <node title="Invoke" file="jpeg_marker_parser_method.Invoke.xml" iconindex="23" />

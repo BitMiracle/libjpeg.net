@@ -7,7 +7,11 @@
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>JPEG compression routine.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_decompress_struct" file="jpeg_decompress_struct.xml" />
+    </seealso>
     <signature>
       <class>
         <name>jpeg_compress_struct</name>

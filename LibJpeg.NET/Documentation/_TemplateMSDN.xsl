@@ -402,7 +402,9 @@
           </xsl:otherwise>
 </xsl:choose-->
       <xsl:text> </xsl:text><i><xsl:value-of select="@name"/></i><br/>
-      <div class="xsl_file_margin15"><xsl:value-of select="."/></div>
+       <div class="xsl_file_margin15">
+        <xsl:call-template name="replace"><xsl:with-param name="string" select="."/></xsl:call-template>
+       </div>
       </div>
       <br/>
     </xsl:for-each>
