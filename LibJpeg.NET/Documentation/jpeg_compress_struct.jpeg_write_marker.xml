@@ -13,12 +13,16 @@
     </breadcumbs>
     <descriptionarticle only="false">
       <text>Write a special marker.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Special markers" file="Classic\Special_markers.xml" />
+      <ref caption="JPEG_MARKER" file="JPEG_MARKER.xml" />
+    </seealso>
     <signature>
       <function>
         <name>jpeg_write_marker</name>
         <return type="void" />
         <parameters>
-          <parameter name="marker" type="Int32" />
+          <parameter name="marker" type="Int32">Specify the marker type parameter as JPEG_MARKER.COM for COM or JPEG_MARKER.APP0 + n for APPn. (Actually, jpeg_write_marker will let you write any marker type, but we don't recommend writing any other kinds of marker)</parameter>
           <parameter name="data" type="Byte[]" />
         </parameters>
       </function>
