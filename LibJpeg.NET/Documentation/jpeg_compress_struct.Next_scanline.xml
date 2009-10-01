@@ -11,12 +11,19 @@
         <text>jpeg_compress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Index of next scanline to be written to </text> <link file="jpeg_compress_struct.jpeg_write_scanlines.xml"><text>jpeg_write_scanlines</text> </link><text>()</text> </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_write_scanlines" file="jpeg_compress_struct.jpeg_write_scanlines.xml" />
+    </seealso>
     <signature>
       <property access="read">
         <name>Next_scanline</name>
-        <return type="Int32" />
+        <return type="Int32">
+          <text>Range: from 0 to (</text> <link file="jpeg_compress_struct.Image_height.xml"><text>Image_height</text> </link><text> - 1)</text> </return>
       </property>
     </signature>
+    <remarks>
+      <text>Application may use this to control its processing loop, e.g., "while (Next_scanline &lt; Image_height)"</text> </remarks>
   </file>
 </xml>
