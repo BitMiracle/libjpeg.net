@@ -47,8 +47,8 @@ namespace BitMiracle.Jpeg
              * If you like, additional APPn marker types can be selected for display,
              * but don't try to override APP0 or APP14 this way (see libjpeg.doc).
              */
-            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_COM, new jpeg_decompress_struct.jpeg_marker_parser_method(printTextMarker));
-            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.M_APP0 + 12, printTextMarker);
+            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.COM, new jpeg_decompress_struct.jpeg_marker_parser_method(printTextMarker));
+            cinfo.jpeg_set_marker_processor((int)JPEG_MARKER.APP0 + 12, printTextMarker);
 
             /* Specify data source for decompression */
             cinfo.jpeg_stdio_src(input);
@@ -352,14 +352,14 @@ namespace BitMiracle.Jpeg
 
             if (traceit)
             {
-                if (cinfo.Unread_marker == (int)JPEG_MARKER.M_COM)
+                if (cinfo.Unread_marker == (int)JPEG_MARKER.COM)
                 {
                     Console.WriteLine("Comment, length {0}:", length);
                 }
                 else
                 {
                     /* assume it is an APPn otherwise */
-                    Console.WriteLine("APP{0}, length {1}:", cinfo.Unread_marker - JPEG_MARKER.M_APP0, length);
+                    Console.WriteLine("APP{0}, length {1}:", cinfo.Unread_marker - JPEG_MARKER.APP0, length);
                 }
             }
 
