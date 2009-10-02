@@ -5,6 +5,8 @@ using System.IO;
 
 using NUnit.Framework;
 
+using BitMiracle.LibJpeg.Classic;
+
 namespace UnitTests
 {
     [TestFixture]
@@ -154,6 +156,34 @@ namespace UnitTests
         public void TestXING_slow()
         {
             m_tester.Run(new string[] { "-colors", "256", "-bmp" }, "XING.JPG", "XING_slow.bmp");
+        }
+
+        [Test]
+        public void TestMarkerList()
+        {
+            jpeg_decompress_struct cinfo = new jpeg_decompress_struct();
+            using (FileStream input = new FileStream(@"..\..\..\..\TestCase\jpeg_decompression_data\PARROTS.JPG", FileMode.Open))
+            {
+                /* Specify data source for decompression */
+                cinfo.jpeg_stdio_src(input);
+                cinfo.jpeg_save_markers((int)JPEG_MARKER.COM, 0xFFFF);
+                cinfo.jpeg_save_markers((int)JPEG_MARKER.APP0, 0xFFFF);
+
+                /* Read file header, set default decompression parameters */
+                cinfo.jpeg_read_header(true);
+
+                jpeg_marker_struct firstAPP0 = cinfo.Marker_list;
+                Assert.IsNotNull(firstAPP0);
+                Assert.AreEqual(firstAPP0.marker, (int)JPEG_MARKER.APP0);
+
+                jpeg_marker_struct secondAPP0 = firstAPP0.next;
+                Assert.IsNotNull(secondAPP0);
+                Assert.AreEqual(secondAPP0.marker, (int)JPEG_MARKER.APP0);
+
+                jpeg_marker_struct COM = secondAPP0.next;
+                Assert.IsNotNull(COM);
+                Assert.AreEqual(COM.marker, (int)JPEG_MARKER.COM);
+            }
         }
     }
 }
