@@ -12,12 +12,17 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>The list of loaded special markers</text> </descriptionarticle>
+      <text>The list of loaded special markers.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Special markers" file="Classic\Special_markers.xml" />
+    </seealso>
     <signature>
       <property access="read">
         <name>Marker_list</name>
         <return type="ReadOnlyCollection&lt;jpeg_marker_struct&gt;" file="jpeg_marker_struct.xml" />
       </property>
     </signature>
+    <remarks>
+      <text>All the special markers in the file appear in this list, in order of their occurrence in the file (but omitting any markers of types you didn't ask for).</text> <br /></remarks>
   </file>
 </xml>

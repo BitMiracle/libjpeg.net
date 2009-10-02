@@ -11,7 +11,8 @@
         <text>jpeg_marker_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Special marker.</text> </descriptionarticle>
     <signature>
       <property access="read">
         <name>Marker</name>

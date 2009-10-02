@@ -11,12 +11,17 @@
         <text>jpeg_marker_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Data associated with marker.</text> </descriptionarticle>
     <signature>
       <property access="read">
         <name>Data</name>
         <return type="Byte[]" />
       </property>
     </signature>
+    <remarks>
+      <p>
+        <text>The length of this array doesn't exceed </text> <link file="jpeg_decompress_struct.jpeg_save_markers.xml"><text>length_limit</text> </link><text> for the particular marker type. Note that this length excludes the marker length word, whereas the stored representation within the JPEG file includes it. (Hence the maximum data length is really only 65533.)</text> </p>
+    </remarks>
   </file>
 </xml>

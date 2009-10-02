@@ -5,6 +5,7 @@
     <mod1>protected</mod1>
     <mod1>private</mod1>
     <mod1>internal</mod1>
+    <mod1>delegate</mod1>
   </mod1s>
   <mod2s>
     <mod2>delegate</mod2>

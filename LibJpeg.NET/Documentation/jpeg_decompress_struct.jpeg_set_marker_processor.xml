@@ -11,16 +11,22 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Sets processor for special marker.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Special markers" file="Classic\Special_markers.xml" />
+    </seealso>
     <signature>
       <function>
         <name>jpeg_set_marker_processor</name>
         <return type="void" />
         <parameters>
-          <parameter name="marker_code" type="Int32" />
-          <parameter name="routine" type="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" />
+          <parameter name="marker_code" type="Int32">Marker code.</parameter>
+          <parameter name="routine" type="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml">Processor.</parameter>
         </parameters>
       </function>
     </signature>
+    <remarks>
+      <text>Allows you to supply your own routine to process COM and/or APPn markers on-the-fly as they are read.</text> </remarks>
   </file>
 </xml>

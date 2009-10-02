@@ -11,12 +11,15 @@
         <text>jpeg_marker_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Full length of original data associated with marker.</text> </descriptionarticle>
     <signature>
       <property access="read">
         <name>OriginalLength</name>
         <return type="Int32" />
       </property>
     </signature>
+    <remarks>
+      <text>This length excludes the marker length word, whereas the stored representation within the JPEG file includes it. (Hence the maximum data length is really only 65533.)</text> </remarks>
   </file>
 </xml>
