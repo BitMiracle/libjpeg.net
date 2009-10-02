@@ -166,23 +166,26 @@ namespace UnitTests
             {
                 /* Specify data source for decompression */
                 cinfo.jpeg_stdio_src(input);
-                cinfo.jpeg_save_markers((int)JPEG_MARKER.COM, 0xFFFF);
-                cinfo.jpeg_save_markers((int)JPEG_MARKER.APP0, 0xFFFF);
+
+                const int markerDataLengthLimit = 1000;
+                cinfo.jpeg_save_markers((int)JPEG_MARKER.COM, markerDataLengthLimit);
+                cinfo.jpeg_save_markers((int)JPEG_MARKER.APP0, markerDataLengthLimit);
 
                 /* Read file header, set default decompression parameters */
                 cinfo.jpeg_read_header(true);
 
-                jpeg_marker_struct firstAPP0 = cinfo.Marker_list;
-                Assert.IsNotNull(firstAPP0);
-                Assert.AreEqual(firstAPP0.marker, (int)JPEG_MARKER.APP0);
+                Assert.AreEqual(cinfo.Marker_list.Count, 3);
 
-                jpeg_marker_struct secondAPP0 = firstAPP0.next;
-                Assert.IsNotNull(secondAPP0);
-                Assert.AreEqual(secondAPP0.marker, (int)JPEG_MARKER.APP0);
-
-                jpeg_marker_struct COM = secondAPP0.next;
-                Assert.IsNotNull(COM);
-                Assert.AreEqual(COM.marker, (int)JPEG_MARKER.COM);
+                int[] expectedMarkerType = { (int)JPEG_MARKER.APP0, (int)JPEG_MARKER.APP0, (int)JPEG_MARKER.COM };
+                int[] expectedMarkerOriginalLength = { 14, 3072, 10 };
+                for (int i = 0; i < cinfo.Marker_list.Count; ++i)
+                {
+                    jpeg_marker_struct marker = cinfo.Marker_list[i];
+                    Assert.IsNotNull(marker);
+                    Assert.AreEqual(marker.Marker, expectedMarkerType[i]);
+                    Assert.AreEqual(marker.OriginalLength, expectedMarkerOriginalLength[i]);
+                    Assert.LessOrEqual(marker.Data.Length, markerDataLengthLimit);
+                }
             }
         }
     }
