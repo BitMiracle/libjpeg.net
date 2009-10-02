@@ -1,18 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_save_markers</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>jpeg_save_markers</name>
-				<return type="Void" file="Void.xml" />
-				<parameters>
-					<parameter name="marker_code" type="Int32" />
-					<parameter name="length_limit" type="Int32" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_save_markers</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_decompress_struct.xml">
+        <text>jpeg_decompress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>jpeg_save_markers</name>
+        <return type="void" />
+        <parameters>
+          <parameter name="marker_code" type="Int32">The marker type to save (see JPEG_MARKER enumeration)
+To arrange to save all the special marker types, you need to call this routine 17 times, for COM and APP0-APP15.</parameter>
+          <parameter name="length_limit" type="Int32">If the incoming marker is longer than length_limit data bytes, only length_limit bytes will be saved; this parameter allows you to avoid chewing up memory when you only need to see the first few bytes of a potentially large marker. If you want to save all the data, set length_limit to 0xFFFF; that is enough since marker lengths are only 16 bits. As a special case, setting length_limit to 0 prevents that marker type from being saved at all. (That is the default behavior, in fact.)</parameter>
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>

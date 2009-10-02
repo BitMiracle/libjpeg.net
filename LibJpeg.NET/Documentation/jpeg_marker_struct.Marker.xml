@@ -1,25 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>jpeg_stdio_src</title>
+    <title>Marker</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
       <text> :: </text>
-      <link file="jpeg_decompress_struct.xml">
-        <text>jpeg_decompress_struct</text>
+      <link file="jpeg_marker_struct.xml">
+        <text>jpeg_marker_struct</text>
       </link>
     </breadcumbs>
     <descriptionarticle only="false" />
     <signature>
-      <function>
-        <name>jpeg_stdio_src</name>
-        <return type="void" />
-        <parameters>
-          <parameter name="infile" type="Stream" file="Stream.xml" />
-        </parameters>
-      </function>
+      <property access="read">
+        <name>Marker</name>
+        <return type="Byte" />
+      </property>
     </signature>
   </file>
 </xml>

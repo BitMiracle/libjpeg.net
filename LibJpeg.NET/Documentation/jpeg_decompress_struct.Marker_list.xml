@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>jpeg_stdio_src</title>
+    <title>Marker_list</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -11,15 +11,13 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>The list of loaded special markers</text> </descriptionarticle>
     <signature>
-      <function>
-        <name>jpeg_stdio_src</name>
-        <return type="void" />
-        <parameters>
-          <parameter name="infile" type="Stream" file="Stream.xml" />
-        </parameters>
-      </function>
+      <property access="read">
+        <name>Marker_list</name>
+        <return type="ReadOnlyCollection&lt;jpeg_marker_struct&gt;" file="jpeg_marker_struct.xml" />
+      </property>
     </signature>
   </file>
 </xml>
