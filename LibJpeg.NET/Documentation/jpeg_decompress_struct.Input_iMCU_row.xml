@@ -11,12 +11,15 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Number of iMCU rows completed.</text> </descriptionarticle>
     <signature>
       <property access="read">
         <name>Input_iMCU_row</name>
         <return type="Int32" />
       </property>
     </signature>
+    <remarks>
+      <text>Indicates the progress of the decompressor input side.</text> </remarks>
   </file>
 </xml>

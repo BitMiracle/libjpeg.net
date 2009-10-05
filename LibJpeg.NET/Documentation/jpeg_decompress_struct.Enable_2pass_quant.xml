@@ -11,11 +11,16 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Enable future use of 2-pass quantizer.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Buffered-image mode" file="Classic\Buffered_image_mode.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>Enable_2pass_quant</name>
-        <return type="Boolean" />
+        <return type="Boolean">
+          <text>Default value: </text> <b><text>false</text> </b></return>
       </property>
     </signature>
   </file>

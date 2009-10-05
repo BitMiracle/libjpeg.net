@@ -11,11 +11,17 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Last read and unprocessed JPEG marker.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_set_marker_processor" file="jpeg_decompress_struct.jpeg_set_marker_processor.xml" />
+      <ref caption="Special markers" file="Classic\Special_markers.xml" />
+    </seealso>
     <signature>
       <property access="read">
         <name>Unread_marker</name>
-        <return type="Int32" />
+        <return type="Int32">
+          <text>It is either zero or the code of a JPEG marker that has been read from the data source, but has not yet been processed.</text> </return>
       </property>
     </signature>
   </file>

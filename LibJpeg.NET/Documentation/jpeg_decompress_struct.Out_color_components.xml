@@ -20,8 +20,7 @@
     <signature>
       <property access="read">
         <name>Out_color_components</name>
-        <return type="Int32">
-          <text>When </text> <link file="jpeg_decompress_struct.Quantize_colors.xml"><text>quantizing colors</text> </link><text>, Output_components is 1, indicating a single color map index per pixel. Otherwise it equals </text> <link file="jpeg_decompress_struct.Out_color_components.xml"><text>Out_color_components</text> </link><text>.</text> </return>
+        <return type="Int32" />
       </property>
     </signature>
   </file>

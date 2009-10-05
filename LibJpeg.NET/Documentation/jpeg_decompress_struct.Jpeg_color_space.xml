@@ -12,7 +12,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Colorspace of image.</text> </descriptionarticle>
+      <text>Colorspace of JPEG image.</text> </descriptionarticle>
     <seealso>
       <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
       <ref caption="Special color spaces" file="Classic\Special_color_spaces.xml" />

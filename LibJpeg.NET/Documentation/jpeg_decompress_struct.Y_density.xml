@@ -11,7 +11,8 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Vertical component of pixel ratio.</text> </descriptionarticle>
     <seealso>
       <ref caption="Density_unit" file="jpeg_decompress_struct.Density_unit.xml" />
       <ref caption="X_density" file="jpeg_decompress_struct.X_density.xml" />

@@ -11,12 +11,18 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>The number of scanlines returned so far.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Decompression details" file="Classic\Decompression_details.xml" />
+    </seealso>
     <signature>
       <property access="read">
         <name>Output_scanline</name>
         <return type="Int32" />
       </property>
     </signature>
+    <remarks>
+      <text>Usually you can just use this variable as the loop counter, so that the loop test looks like "</text> <i><text>while (cinfo.Output_scanline &lt; cinfo.Output_height)</text> </i><text>"</text> </remarks>
   </file>
 </xml>

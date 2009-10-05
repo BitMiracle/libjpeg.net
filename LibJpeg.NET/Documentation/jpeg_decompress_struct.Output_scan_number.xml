@@ -11,7 +11,8 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Nominal scan number being displayed.</text> </descriptionarticle>
     <signature>
       <property access="read">
         <name>Output_scan_number</name>
