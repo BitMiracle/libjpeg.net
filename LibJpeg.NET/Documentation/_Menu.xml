@@ -426,7 +426,6 @@
         <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Smoothing_factor" file="jpeg_compress_struct.Smoothing_factor.xml" iconindex="27">
-        <ref>Classic\Compression_parameter_selection.xml</ref>
         <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Dct_method" file="jpeg_compress_struct.Dct_method.xml" iconindex="27">
@@ -477,20 +476,11 @@
       <node title="X_density" file="jpeg_compress_struct.X_density.xml" iconindex="27">
         <ref>jpeg_compress_struct.Density_unit.xml</ref>
         <ref>jpeg_compress_struct.Y_density.xml</ref>
-        <ref>Classic\Compression_parameter_selection.xml</ref>
-        <ref>jpeg_decompress_struct.Density_unit.xml</ref>
-        <ref>jpeg_decompress_struct.Y_density.xml</ref>
-        <ref>Classic\Decompression_parameter_selection.xml</ref>
         <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Y_density" file="jpeg_compress_struct.Y_density.xml" iconindex="27">
         <ref>jpeg_compress_struct.Density_unit.xml</ref>
         <ref>jpeg_compress_struct.X_density.xml</ref>
-        <ref>Classic\Compression_parameter_selection.xml</ref>
-        <ref>jpeg_decompress_struct.Density_unit.xml</ref>
-        <ref>DensityUnit.xml</ref>
-        <ref>jpeg_decompress_struct.X_density.xml</ref>
-        <ref>Classic\Decompression_parameter_selection.xml</ref>
         <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Write_Adobe_marker" file="jpeg_compress_struct.Write_Adobe_marker.xml" iconindex="27">

@@ -11,7 +11,8 @@
         <text>jpeg_compress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Coefficient of image smoothing.</text> </descriptionarticle>
     <seealso>
       <ref caption="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" />
     </seealso>

@@ -11,7 +11,10 @@
         <text>jpeg_compress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <p>
+        <text>Horizontal component of pixel ratio.</text> </p>
+    </descriptionarticle>
     <seealso>
       <ref caption="Density_unit" file="jpeg_compress_struct.Density_unit.xml" />
       <ref caption="Y_density" file="jpeg_compress_struct.Y_density.xml" />

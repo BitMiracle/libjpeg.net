@@ -165,7 +165,7 @@
                 <text>Smoothing_factor</text> </link>
             </td>
             <td>
-            </td>
+              <text>Coefficient of image smoothing.</text> </td>
           </tr>
           <tr>
             <td>
@@ -242,30 +242,33 @@
                 <text>Density_unit</text> </link>
             </td>
             <td>
-              <text>The resolution information to be written into the JFIF marker; not used otherwise. </text> </td>
+              <text>The resolution information to be written into the JFIF marker. </text> </td>
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.X_density.xml">
                 <text>X_density</text> </link>
             </td>
             <td>
-            </td>
+              <text>Horizontal component of pixel ratio.</text> </td>
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.Y_density.xml">
                 <text>Y_density</text> </link>
             </td>
             <td>
-            </td>
+              <text>Vertical component of pixel ratio.</text> </td>
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.Write_Adobe_marker.xml">
@@ -276,6 +279,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.Next_scanline.xml">
@@ -286,6 +290,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_abort_compress.xml">
@@ -296,6 +301,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_suppress_tables.xml">
@@ -306,6 +312,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_finish_compress.xml">
@@ -316,6 +323,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_write_marker.xml">
@@ -326,6 +334,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_write_m_header.xml">
@@ -336,6 +345,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_write_m_byte.xml">
@@ -346,6 +356,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_write_tables.xml">
@@ -356,6 +367,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_stdio_dest.xml">
@@ -366,6 +378,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_set_defaults.xml">
@@ -376,6 +389,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_set_colorspace.xml">
@@ -386,16 +400,18 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_default_colorspace.xml">
                 <text>jpeg_default_colorspace</text> </link>
             </td>
             <td>
-              <text>Selects an appropriate JPEG colorspace based on In_color_space and calls jpeg_set_colorspace ().</text> </td>
+              <text>Selects an appropriate JPEG colorspace based on </text> <link file="jpeg_compress_struct.In_color_space.xml"><text>In_color_space</text> </link><text>.</text> </td>
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_set_quality.xml">
@@ -406,6 +422,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_set_linear_quality.xml">
@@ -416,6 +433,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_add_quant_table.xml">
@@ -426,6 +444,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_quality_scaling.xml">
@@ -436,6 +455,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_simple_progression.xml">
@@ -446,6 +466,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_start_compress.xml">
@@ -456,6 +477,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_write_scanlines.xml">
@@ -466,6 +488,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_write_raw_data.xml">
@@ -476,6 +499,7 @@
           </tr>
           <tr>
             <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
             </td>
             <td>
               <link file="jpeg_compress_struct.jpeg_write_coefficients.xml">
