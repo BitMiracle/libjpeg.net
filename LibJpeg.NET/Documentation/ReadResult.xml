@@ -7,7 +7,11 @@
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Describes a result of read operation.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_consume_input" file="jpeg_decompress_struct.jpeg_consume_input.xml" />
+    </seealso>
     <signature>
       <enum>
         <name>ReadResult</name>
@@ -42,7 +46,7 @@
                 <text>JPEG_SUSPENDED</text> </p>
             </td>
             <td>
-            </td>
+              <text>Suspended due to lack of input data. Can occur only if a suspending data source is used.</text> </td>
             <td>
               <p align="center">
                 <text>0</text> </p>
@@ -54,7 +58,7 @@
                 <text>JPEG_HEADER_OK</text> </p>
             </td>
             <td>
-            </td>
+              <text>Found valid image datastream.</text> </td>
             <td>
               <p align="center">
                 <text>1</text> </p>
@@ -66,7 +70,7 @@
                 <text>JPEG_HEADER_TABLES_ONLY</text> </p>
             </td>
             <td>
-            </td>
+              <text>Found valid table-specs-only datastream.</text> </td>
             <td>
               <p align="center">
                 <text>2</text> </p>
@@ -78,7 +82,7 @@
                 <text>JPEG_REACHED_SOS</text> </p>
             </td>
             <td>
-            </td>
+              <text>Reached an SOS marker (the start of a new scan)</text> </td>
             <td>
               <p align="center">
                 <text>3</text> </p>
@@ -90,7 +94,7 @@
                 <text>JPEG_REACHED_EOI</text> </p>
             </td>
             <td>
-            </td>
+              <text>Reached the EOI marker (end of image)</text> </td>
             <td>
               <p align="center">
                 <text>4</text> </p>
@@ -102,7 +106,7 @@
                 <text>JPEG_ROW_COMPLETED</text> </p>
             </td>
             <td>
-            </td>
+              <text>Completed reading one MCU row of compressed data.</text> </td>
             <td>
               <p align="center">
                 <text>5</text> </p>
@@ -114,7 +118,7 @@
                 <text>JPEG_SCAN_COMPLETED</text> </p>
             </td>
             <td>
-            </td>
+              <text>Completed reading last MCU row of current scan.</text> </td>
             <td>
               <p align="center">
                 <text>6</text> </p>

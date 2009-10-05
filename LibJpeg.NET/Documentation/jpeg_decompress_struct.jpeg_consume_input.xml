@@ -1,16 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_consume_input</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>jpeg_consume_input</name>
-				<return type="ReadResult" file="ReadResult.xml" />
-				<parameters>
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_consume_input</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_decompress_struct.xml">
+        <text>jpeg_decompress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <seealso>
+      <ref caption="Buffered-image mode" file="Classic\Buffered_image_mode.xml" />
+    </seealso>
+    <signature>
+      <function>
+        <name>jpeg_consume_input</name>
+        <return type="ReadResult" file="ReadResult.xml" />
+      </function>
+    </signature>
+    <remarks>
+      <text>This routine can be called at any time after initializing the JPEG object. It reads some additional data and returns when one of the indicated significant events occurs. If called after the EOI marker is reached, it will immediately return ReadResult.</text> <link file="ReadResult.xml"><text>JPEG_REACHED_EOI</text> </link><text> without attempting to read more data.</text> </remarks>
+  </file>
 </xml>

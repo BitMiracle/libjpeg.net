@@ -23,11 +23,11 @@
         <return type="Boolean">
           <text>Return </text> <b><text>true</text> </b><text> to indicate success. </text> <b><text>false</text> </b><text> should be returned only if you are using a suspending data source and it tells you to suspend.</text> </return>
         <parameters>
-          <parameter name="cinfo" type="jpeg_decompress_struct" file="jpeg_decompress_struct.xml" />
+          <parameter name="cinfo" type="jpeg_decompress_struct" file="jpeg_decompress_struct.xml">Decompressor.</parameter>
         </parameters>
       </function>
     </signature>
     <remarks>
-      <text>Although the marker code is not explicitly passed, the routine can find it in the </text> <link file="jpeg_decompress_struct.Unread_marker.xml"><text>Unread_marker</text> </link><text>. At the time of call, the marker proper has been read from the data source module. The processor routine is responsible for reading the marker length word and the remaining parameter bytes, if any.</text> </remarks>
+      <text>Although the marker code is not explicitly passed, the routine can find it in the cinfo.</text> <link file="jpeg_decompress_struct.Unread_marker.xml"><text>Unread_marker</text> </link><text>. At the time of call, the marker proper has been read from the data source module. The processor routine is responsible for reading the marker length word and the remaining parameter bytes, if any.</text> </remarks>
   </file>
 </xml>

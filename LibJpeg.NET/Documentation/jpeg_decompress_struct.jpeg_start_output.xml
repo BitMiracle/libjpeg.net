@@ -1,17 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_start_output</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>jpeg_start_output</name>
-				<return type="Boolean" />
-				<parameters>
-					<parameter name="scan_number" type="Int32" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_start_output</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_decompress_struct.xml">
+        <text>jpeg_decompress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <function>
+        <name>jpeg_start_output</name>
+        <return type="Boolean" />
+        <parameters>
+          <parameter name="scan_number" type="Int32">Indicates which scan of the input file is to be displayed; the scans are numbered starting at 1 for this purpose.</parameter>
+        </parameters>
+      </function>
+    </signature>
+  </file>
 </xml>
