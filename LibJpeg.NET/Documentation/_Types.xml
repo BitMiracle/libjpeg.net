@@ -38,5 +38,6 @@
     <type>Byte[]</type>
     <type>params Object[]</type>
     <type>ReadOnlyCollection&lt;jpeg_marker_struct&gt;</type>
+    <type>Int32[][]</type>
   </types>
 </xml>

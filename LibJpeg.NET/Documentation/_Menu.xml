@@ -253,6 +253,13 @@
     <ref>jpeg_decompress_struct.Unread_marker.xml</ref>
     <ref>jpeg_compress_struct.jpeg_stdio_dest.xml</ref>
     <ref>jpeg_compress_struct.jpeg_write_coefficients.xml</ref>
+    <ref>jpeg_decompress_struct.Buffered_image.xml</ref>
+    <ref>jpeg_decompress_struct.Raw_data_out.xml</ref>
+    <ref>jpeg_decompress_struct.Input_scan_number.xml</ref>
+    <ref>jpeg_decompress_struct.Input_iMCU_row.xml</ref>
+    <ref>jpeg_decompress_struct.Output_scan_number.xml</ref>
+    <ref>jpeg_decompress_struct.Output_iMCU_row.xml</ref>
+    <ref>jpeg_decompress_struct.Coef_bits.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -643,6 +650,13 @@
       <ref>jpeg_decompress_struct.jpeg_set_marker_processor.xml</ref>
       <ref>jpeg_decompress_struct.jpeg_finish_output.xml</ref>
       <ref>jpeg_decompress_struct.Unread_marker.xml</ref>
+      <ref>jpeg_decompress_struct.Buffered_image.xml</ref>
+      <ref>jpeg_decompress_struct.Raw_data_out.xml</ref>
+      <ref>jpeg_decompress_struct.Input_scan_number.xml</ref>
+      <ref>jpeg_decompress_struct.Input_iMCU_row.xml</ref>
+      <ref>jpeg_decompress_struct.Output_scan_number.xml</ref>
+      <ref>jpeg_decompress_struct.Output_iMCU_row.xml</ref>
+      <ref>jpeg_decompress_struct.Coef_bits.xml</ref>
       <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="23">
         <ref>jpeg_decompress_struct.jpeg_set_marker_processor.xml</ref>
         <ref>Classic\Special_markers.xml</ref>
@@ -678,10 +692,8 @@
         <ref>jpeg_decompress_struct.Scale_num.xml</ref>
         <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
-      <node title="get_Buffered_image" file="jpeg_decompress_struct.get_Buffered_image.xml" iconindex="23" />
-      <node title="set_Buffered_image" file="jpeg_decompress_struct.set_Buffered_image.xml" iconindex="23" />
-      <node title="get_Raw_data_out" file="jpeg_decompress_struct.get_Raw_data_out.xml" iconindex="23" />
-      <node title="set_Raw_data_out" file="jpeg_decompress_struct.set_Raw_data_out.xml" iconindex="23" />
+      <node title="Buffered_image" file="jpeg_decompress_struct.Buffered_image.xml" iconindex="27" />
+      <node title="Raw_data_out" file="jpeg_decompress_struct.Raw_data_out.xml" iconindex="27" />
       <node title="Dct_method" file="jpeg_decompress_struct.Dct_method.xml" iconindex="27">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
@@ -756,11 +768,11 @@
       <node title="Output_scanline" file="jpeg_decompress_struct.Output_scanline.xml" iconindex="27">
         <ref>Classic\Decompression_details.xml</ref>
       </node>
-      <node title="get_Input_scan_number" file="jpeg_decompress_struct.get_Input_scan_number.xml" iconindex="23" />
-      <node title="get_Input_iMCU_row" file="jpeg_decompress_struct.get_Input_iMCU_row.xml" iconindex="23" />
-      <node title="get_Output_scan_number" file="jpeg_decompress_struct.get_Output_scan_number.xml" iconindex="23" />
-      <node title="get_Output_iMCU_row" file="jpeg_decompress_struct.get_Output_iMCU_row.xml" iconindex="23" />
-      <node title="get_Coef_bits" file="jpeg_decompress_struct.get_Coef_bits.xml" iconindex="23" />
+      <node title="Input_scan_number" file="jpeg_decompress_struct.Input_scan_number.xml" iconindex="27" />
+      <node title="Input_iMCU_row" file="jpeg_decompress_struct.Input_iMCU_row.xml" iconindex="27" />
+      <node title="Output_scan_number" file="jpeg_decompress_struct.Output_scan_number.xml" iconindex="27" />
+      <node title="Output_iMCU_row" file="jpeg_decompress_struct.Output_iMCU_row.xml" iconindex="27" />
+      <node title="Coef_bits" file="jpeg_decompress_struct.Coef_bits.xml" iconindex="27" />
       <node title="Density_unit" file="jpeg_decompress_struct.Density_unit.xml" iconindex="27">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
       </node>
@@ -790,6 +802,7 @@
         <ref>Classic\Special_markers.xml</ref>
         <ref>Classic\Special_color_spaces.xml</ref>
         <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="jpeg_start_decompress" file="jpeg_decompress_struct.jpeg_start_decompress.xml" iconindex="23">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
