@@ -11,12 +11,33 @@
         <text>jpeg_compress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <p>
+        <text>Alternate compression function: just write an abbreviated table file.</text> </p>
+    </descriptionarticle>
     <signature>
       <function>
         <name>jpeg_write_tables</name>
         <return type="void" />
       </function>
     </signature>
+    <remarks>
+      <p>
+        <text>Before calling this, all parameters and a data destination must be set up.</text> <br /><br /><text>To produce a pair of files containing abbreviated tables and abbreviated image data, one would proceed as follows:</text> </p>
+      <p>
+        <i>
+          <text>Initialize JPEG object</text> </i>
+        <br />
+        <i>
+          <text>Set JPEG parameters</text> </i>
+        <br />
+        <i>
+          <text>Set destination to table file</text> <br /><text>jpeg_write_tables();</text> </i>
+        <br />
+        <i>
+          <text>set destination to image file</text> <br /><link file="jpeg_compress_struct.jpeg_start_compress.xml"><text>jpeg_start_compress</text> </link><text>(false);</text> <br /><text>Write data...</text> <br /><link file="jpeg_compress_struct.jpeg_finish_compress.xml"><text>jpeg_finish_compress</text> </link><text>();</text> <br /></i>
+        <br />
+        <text>jpeg_write_tables has the side effect of marking all tables written (same as </text> <link file="jpeg_compress_struct.jpeg_suppress_tables.xml"><text>jpeg_suppress_tables</text> </link><text>(true)). Thus a subsequent start_compress will not re-emit the tables unless it is passed write_all_tables=true.</text> <br /></p>
+    </remarks>
   </file>
 </xml>

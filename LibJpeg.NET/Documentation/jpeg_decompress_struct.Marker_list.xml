@@ -19,7 +19,7 @@
     <signature>
       <property access="read">
         <name>Marker_list</name>
-        <return type="ReadOnlyCollection&lt;jpeg_marker_struct&gt;" file="jpeg_marker_struct.xml" />
+        <return type="jpeg_marker_struct" file="jpeg_marker_struct.xml" />
       </property>
     </signature>
     <remarks>

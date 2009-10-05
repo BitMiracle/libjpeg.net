@@ -23,8 +23,8 @@
         <name>jpeg_write_m_header</name>
         <return type="void" />
         <parameters>
-          <parameter name="marker" type="Int32" />
-          <parameter name="dataLength" type="Int32" />
+          <parameter name="marker" type="Int32">Special marker.</parameter>
+          <parameter name="dataLength" type="Int32">Length of data associated with the marker.</parameter>
         </parameters>
       </function>
     </signature>
