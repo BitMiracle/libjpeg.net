@@ -12,7 +12,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Finish JPEG compression.</text> </descriptionarticle>
+      <text>Finishes JPEG compression.</text> </descriptionarticle>
     <seealso>
       <ref caption="Compression details" file="Classic\Compression_details.xml" />
     </seealso>

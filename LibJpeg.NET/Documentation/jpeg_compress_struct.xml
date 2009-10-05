@@ -20,5 +20,472 @@
         </bases>
       </class>
     </signature>
+    <remarks>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <text> </text> </td>
+            <td>
+              <b>
+                <text>Member</text> </b>
+            </td>
+            <td>
+              <b>
+                <text>Description</text> </b>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.ctor.xml">
+                <text>Constructor</text> </link>
+            </td>
+            <td>
+              <text>Default constructor.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.ctor1.xml">
+                <text>Constructor</text> </link>
+            </td>
+            <td>
+              <text>Overloaded constructor.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Image_width.xml">
+                <text>Image_width</text> </link>
+            </td>
+            <td>
+              <text>Width of image, in pixels.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Image_height.xml">
+                <text>Image_height</text> </link>
+            </td>
+            <td>
+              <text>Height of image, in pixels. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Input_components.xml">
+                <text>Input_components</text> </link>
+            </td>
+            <td>
+              <text>Number of color channels (components per pixel)</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.In_color_space.xml">
+                <text>In_color_space</text> </link>
+            </td>
+            <td>
+              <text>Color space of source image. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Data_precision.xml">
+                <text>Data_precision</text> </link>
+            </td>
+            <td>
+              <text>Bits of precision in image data. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Jpeg_color_space.xml">
+                <text>Jpeg_color_space</text> </link>
+            </td>
+            <td>
+              <text>The JPEG color space.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Num_components.xml">
+                <text>Num_components</text> </link>
+            </td>
+            <td>
+              <text>Number of color components for JPEG color space. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Raw_data_in.xml">
+                <text>Raw_data_in</text> </link>
+            </td>
+            <td>
+              <text>Notifies the library that you will be supplying raw data.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Optimize_coding.xml">
+                <text>Optimize_coding</text> </link>
+            </td>
+            <td>
+              <text>Way of using Huffman coding tables. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Smoothing_factor.xml">
+                <text>Smoothing_factor</text> </link>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Dct_method.xml">
+                <text>Dct_method</text> </link>
+            </td>
+            <td>
+              <text>Gets or sets the algorithm used for the DCT step. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Restart_interval.xml">
+                <text>Restart_interval</text> </link>
+            </td>
+            <td>
+              <text>Specify the exact interval in MCU blocks. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Restart_in_rows.xml">
+                <text>Restart_in_rows</text> </link>
+            </td>
+            <td>
+              <text>Specify the interval in MCU rows. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Write_JFIF_header.xml">
+                <text>Write_JFIF_header</text> </link>
+            </td>
+            <td>
+              <text>Emits JFIF APP0 marker. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.JFIF_minor_version.xml">
+                <text>JFIF_minor_version</text> </link>
+            </td>
+            <td>
+              <text>The version number to be written into the JFIF marker.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.JFIF_major_version.xml">
+                <text>JFIF_major_version</text> </link>
+            </td>
+            <td>
+              <text>The version number to be written into the JFIF marker. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Density_unit.xml">
+                <text>Density_unit</text> </link>
+            </td>
+            <td>
+              <text>The resolution information to be written into the JFIF marker; not used otherwise. </text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.X_density.xml">
+                <text>X_density</text> </link>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Y_density.xml">
+                <text>Y_density</text> </link>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Write_Adobe_marker.xml">
+                <text>Write_Adobe_marker</text> </link>
+            </td>
+            <td>
+              <text>Emits Adobe APP14 marker.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.Next_scanline.xml">
+                <text>Next_scanline</text> </link>
+            </td>
+            <td>
+              <text>Index of next scanline for writing. </text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_abort_compress.xml">
+                <text>jpeg_abort_compress</text> </link>
+            </td>
+            <td>
+              <text>Aborts compression.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_suppress_tables.xml">
+                <text>jpeg_suppress_tables</text> </link>
+            </td>
+            <td>
+              <text>Forcibly suppress or un-suppress all quantization and Huffman tables. </text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_finish_compress.xml">
+                <text>jpeg_finish_compress</text> </link>
+            </td>
+            <td>
+              <text>Finishes JPEG compression.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_write_marker.xml">
+                <text>jpeg_write_marker</text> </link>
+            </td>
+            <td>
+              <text>Write a special marker.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_write_m_header.xml">
+                <text>jpeg_write_m_header</text> </link>
+            </td>
+            <td>
+              <text>Writes special marker's header.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_write_m_byte.xml">
+                <text>jpeg_write_m_byte</text> </link>
+            </td>
+            <td>
+              <text>Writes a byte of special marker's data.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_write_tables.xml">
+                <text>jpeg_write_tables</text> </link>
+            </td>
+            <td>
+              <text>Alternate compression function: just write an abbreviated table file.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_stdio_dest.xml">
+                <text>jpeg_stdio_dest</text> </link>
+            </td>
+            <td>
+              <text>Sets output stream.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_set_defaults.xml">
+                <text>jpeg_set_defaults</text> </link>
+            </td>
+            <td>
+              <text>Sets all JPEG parameters to reasonable defaults.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_set_colorspace.xml">
+                <text>jpeg_set_colorspace</text> </link>
+            </td>
+            <td>
+              <text>Sets the JPEG file's colorspace and sets other colorspace-dependent parameters appropriately.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_default_colorspace.xml">
+                <text>jpeg_default_colorspace</text> </link>
+            </td>
+            <td>
+              <text>Selects an appropriate JPEG colorspace based on In_color_space and calls jpeg_set_colorspace ().</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_set_quality.xml">
+                <text>jpeg_set_quality</text> </link>
+            </td>
+            <td>
+              <text>Constructs JPEG quantization tables appropriate for the indicated quality setting.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_set_linear_quality.xml">
+                <text>jpeg_set_linear_quality</text> </link>
+            </td>
+            <td>
+              <text>Same as jpeg_set_quality () except that the generated tables are the sample tables given in the JPEG specification section K.1, multiplied by the specified scale factor.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_add_quant_table.xml">
+                <text>jpeg_add_quant_table</text> </link>
+            </td>
+            <td>
+              <text>Allows an arbitrary quantization table to be created.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_quality_scaling.xml">
+                <text>jpeg_quality_scaling</text> </link>
+            </td>
+            <td>
+              <text>Converts a value on the IJG-recommended quality scale to a linear scaling percentage.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_simple_progression.xml">
+                <text>jpeg_simple_progression</text> </link>
+            </td>
+            <td>
+              <text>Generates a default scan script for writing a progressive-JPEG file.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_start_compress.xml">
+                <text>jpeg_start_compress</text> </link>
+            </td>
+            <td>
+              <text>Starts JPEG compression.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_write_scanlines.xml">
+                <text>jpeg_write_scanlines</text> </link>
+            </td>
+            <td>
+              <text>Writes some scanlines of data to the JPEG compressor.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_write_raw_data.xml">
+                <text>jpeg_write_raw_data</text> </link>
+            </td>
+            <td>
+              <text>Alternate entry point to write raw data.</text> </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td>
+              <link file="jpeg_compress_struct.jpeg_write_coefficients.xml">
+                <text>jpeg_write_coefficients</text> </link>
+            </td>
+            <td>
+              <text>Compression initialization for writing raw-coefficient data.</text> </td>
+          </tr>
+        </tbody>
+      </table>
+    </remarks>
   </file>
 </xml>

@@ -11,11 +11,18 @@
         <text>jpeg_compress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Notifies the library that you will be supplying raw data.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_write_raw_data" file="jpeg_compress_struct.jpeg_write_raw_data.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>Raw_data_in</name>
-        <return type="Boolean" />
+        <return type="Boolean">
+          <p>
+            <text>Default value: </text> <b><text>false</text> </b></p>
+        </return>
       </property>
     </signature>
   </file>

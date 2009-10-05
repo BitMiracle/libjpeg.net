@@ -252,6 +252,7 @@
     <ref>jpeg_decompress_struct.jpeg_finish_output.xml</ref>
     <ref>jpeg_decompress_struct.Unread_marker.xml</ref>
     <ref>jpeg_compress_struct.jpeg_stdio_dest.xml</ref>
+    <ref>jpeg_compress_struct.jpeg_write_coefficients.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -298,6 +299,7 @@
         <ref>jpeg_decompress_struct.jpeg_abort_decompress.xml</ref>
         <ref>Classic\Special_markers.xml</ref>
         <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>Classic\Decompression_details.xml</ref>
       </node>
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23">
         <ref>Classic\Error_handling.xml</ref>
@@ -363,84 +365,104 @@
       <ref>jpeg_compress_struct.Raw_data_in.xml</ref>
       <ref>jpeg_compress_struct.jpeg_abort_compress.xml</ref>
       <ref>jpeg_compress_struct.jpeg_write_scanlines.xml</ref>
-      <ref>Classic\Compression_parameter_selection.xml</ref>
-      <ref>Classic\Compression_details.xml</ref>
       <ref>jpeg_compress_struct.jpeg_suppress_tables.xml</ref>
       <ref>jpeg_compress_struct.jpeg_finish_compress.xml</ref>
       <ref>jpeg_compress_struct.jpeg_write_marker.xml</ref>
       <ref>jpeg_compress_struct.jpeg_write_raw_data.xml</ref>
       <ref>jpeg_compress_struct.jpeg_write_tables.xml</ref>
       <ref>jpeg_compress_struct.jpeg_write_m_header.xml</ref>
-      <ref>Classic\Error_handling.xml</ref>
       <ref>jpeg_compress_struct.jpeg_write_m_byte.xml</ref>
       <ref>jpeg_compress_struct.jpeg_stdio_dest.xml</ref>
-      <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor.xml" iconindex="23" />
-      <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor1.xml" iconindex="23" />
+      <ref>jpeg_compress_struct.jpeg_write_coefficients.xml</ref>
+      <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor.xml" iconindex="23">
+        <ref>jpeg_compress_struct.xml</ref>
+      </node>
+      <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor1.xml" iconindex="23">
+        <ref>jpeg_compress_struct.xml</ref>
+      </node>
       <node title="Image_width" file="jpeg_compress_struct.Image_width.xml" iconindex="27">
         <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Image_height" file="jpeg_compress_struct.Image_height.xml" iconindex="27">
         <ref>Classic\Decompression_details.xml</ref>
         <ref>Classic\Compression_details.xml</ref>
         <ref>jpeg_compress_struct.Next_scanline.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Input_components" file="jpeg_compress_struct.Input_components.xml" iconindex="27">
         <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="In_color_space" file="jpeg_compress_struct.In_color_space.xml" iconindex="27">
         <ref>jpeg_compress_struct.jpeg_set_defaults.xml</ref>
         <ref>Classic\Special_color_spaces.xml</ref>
         <ref>Classic\Compression_details.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
-      <node title="Data_precision" file="jpeg_compress_struct.Data_precision.xml" iconindex="27" />
+      <node title="Data_precision" file="jpeg_compress_struct.Data_precision.xml" iconindex="27">
+        <ref>jpeg_compress_struct.xml</ref>
+      </node>
       <node title="Jpeg_color_space" file="jpeg_compress_struct.Jpeg_color_space.xml" iconindex="27">
         <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
         <ref>jpeg_compress_struct.Num_components.xml</ref>
         <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
         <ref>Classic\Special_color_spaces.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Num_components" file="jpeg_compress_struct.Num_components.xml" iconindex="27">
         <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
         <ref>Classic\Decompression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
-      <node title="Raw_data_in" file="jpeg_compress_struct.Raw_data_in.xml" iconindex="27" />
+      <node title="Raw_data_in" file="jpeg_compress_struct.Raw_data_in.xml" iconindex="27">
+        <ref>jpeg_compress_struct.xml</ref>
+      </node>
       <node title="Optimize_coding" file="jpeg_compress_struct.Optimize_coding.xml" iconindex="27">
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Smoothing_factor" file="jpeg_compress_struct.Smoothing_factor.xml" iconindex="27">
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Dct_method" file="jpeg_compress_struct.Dct_method.xml" iconindex="27">
         <ref>J_DCT_METHOD.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
         <ref>Classic\Decompression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Restart_interval" file="jpeg_compress_struct.Restart_interval.xml" iconindex="27">
         <ref>jpeg_compress_struct.Restart_in_rows.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Restart_in_rows" file="jpeg_compress_struct.Restart_in_rows.xml" iconindex="27">
         <ref>jpeg_compress_struct.Restart_interval.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Write_JFIF_header" file="jpeg_compress_struct.Write_JFIF_header.xml" iconindex="27">
         <ref>Classic\Compression_parameter_selection.xml</ref>
         <ref>jpeg_compress_struct.JFIF_major_version.xml</ref>
         <ref>jpeg_compress_struct.JFIF_minor_version.xml</ref>
         <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="JFIF_minor_version" file="jpeg_compress_struct.JFIF_minor_version.xml" iconindex="27">
         <ref>jpeg_compress_struct.JFIF_major_version.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
         <ref>Classic\Special_markers.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="JFIF_major_version" file="jpeg_compress_struct.JFIF_major_version.xml" iconindex="27">
         <ref>jpeg_compress_struct.Write_JFIF_header.xml</ref>
         <ref>jpeg_compress_struct.JFIF_minor_version.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Density_unit" file="jpeg_compress_struct.Density_unit.xml" iconindex="27">
         <ref>jpeg_compress_struct.X_density.xml</ref>
@@ -450,6 +472,7 @@
         <ref>jpeg_decompress_struct.X_density.xml</ref>
         <ref>Classic\Decompression_parameter_selection.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="X_density" file="jpeg_compress_struct.X_density.xml" iconindex="27">
         <ref>jpeg_compress_struct.Density_unit.xml</ref>
@@ -458,6 +481,7 @@
         <ref>jpeg_decompress_struct.Density_unit.xml</ref>
         <ref>jpeg_decompress_struct.Y_density.xml</ref>
         <ref>Classic\Decompression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Y_density" file="jpeg_compress_struct.Y_density.xml" iconindex="27">
         <ref>jpeg_compress_struct.Density_unit.xml</ref>
@@ -467,33 +491,52 @@
         <ref>DensityUnit.xml</ref>
         <ref>jpeg_decompress_struct.X_density.xml</ref>
         <ref>Classic\Decompression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Write_Adobe_marker" file="jpeg_compress_struct.Write_Adobe_marker.xml" iconindex="27">
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="Next_scanline" file="jpeg_compress_struct.Next_scanline.xml" iconindex="27">
         <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
-      <node title="jpeg_abort_compress" file="jpeg_compress_struct.jpeg_abort_compress.xml" iconindex="23" />
+      <node title="jpeg_abort_compress" file="jpeg_compress_struct.jpeg_abort_compress.xml" iconindex="23">
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
+      </node>
       <node title="jpeg_suppress_tables" file="jpeg_compress_struct.jpeg_suppress_tables.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_write_tables.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_start_compress.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_finish_compress" file="jpeg_compress_struct.jpeg_finish_compress.xml" iconindex="23">
-        <ref>Classic\Outline_of_typical_usage.xml</ref>
         <ref>jpeg_compress_struct.jpeg_write_tables.xml</ref>
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_write_coefficients.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_write_marker" file="jpeg_compress_struct.jpeg_write_marker.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_write_m_header.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_write_m_header" file="jpeg_compress_struct.jpeg_write_m_header.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_write_m_byte.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_write_m_byte" file="jpeg_compress_struct.jpeg_write_m_byte.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_write_m_header.xml</ref>
         <ref>Classic\Special_markers.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
-      <node title="jpeg_write_tables" file="jpeg_compress_struct.jpeg_write_tables.xml" iconindex="23" />
-      <node title="jpeg_stdio_dest" file="jpeg_compress_struct.jpeg_stdio_dest.xml" iconindex="23" />
+      <node title="jpeg_write_tables" file="jpeg_compress_struct.jpeg_write_tables.xml" iconindex="23">
+        <ref>jpeg_compress_struct.jpeg_start_compress.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
+      </node>
+      <node title="jpeg_stdio_dest" file="jpeg_compress_struct.jpeg_stdio_dest.xml" iconindex="23">
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
+      </node>
       <node title="jpeg_set_defaults" file="jpeg_compress_struct.jpeg_set_defaults.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_default_colorspace.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
@@ -503,53 +546,63 @@
         <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
         <ref>Classic\Special_color_spaces.xml</ref>
         <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_set_colorspace" file="jpeg_compress_struct.jpeg_set_colorspace.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_default_colorspace.xml</ref>
-        <ref>Classic\Compression_parameter_selection.xml</ref>
         <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
         <ref>jpeg_compress_struct.Num_components.xml</ref>
         <ref>jpeg_compress_struct.Write_JFIF_header.xml</ref>
         <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
-        <ref>Classic\Special_color_spaces.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_default_colorspace" file="jpeg_compress_struct.jpeg_default_colorspace.xml" iconindex="23">
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_set_quality" file="jpeg_compress_struct.jpeg_set_quality.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_set_defaults.xml</ref>
         <ref>Classic\Compression_parameter_selection.xml</ref>
         <ref>jpeg_compress_struct.jpeg_set_linear_quality.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_set_linear_quality" file="jpeg_compress_struct.jpeg_set_linear_quality.xml" iconindex="23">
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_add_quant_table" file="jpeg_compress_struct.jpeg_add_quant_table.xml" iconindex="23">
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_quality_scaling" file="jpeg_compress_struct.jpeg_quality_scaling.xml" iconindex="23">
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_simple_progression" file="jpeg_compress_struct.jpeg_simple_progression.xml" iconindex="23">
         <ref>Classic\Compression_parameter_selection.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_start_compress" file="jpeg_compress_struct.jpeg_start_compress.xml" iconindex="23">
-        <ref>Classic\Outline_of_typical_usage.xml</ref>
-        <ref>Classic\Compression_details.xml</ref>
         <ref>jpeg_compress_struct.jpeg_suppress_tables.xml</ref>
         <ref>jpeg_compress_struct.jpeg_write_marker.xml</ref>
         <ref>jpeg_compress_struct.jpeg_write_tables.xml</ref>
+        <ref>Classic\Compression_details.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_write_scanlines" file="jpeg_compress_struct.jpeg_write_scanlines.xml" iconindex="23">
         <ref>jpeg_compress_struct.Next_scanline.xml</ref>
-        <ref>Classic\Compression_details.xml</ref>
         <ref>jpeg_compress_struct.jpeg_write_marker.xml</ref>
-        <ref>Classic\Outline_of_typical_usage.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_write_raw_data.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
       <node title="jpeg_write_raw_data" file="jpeg_compress_struct.jpeg_write_raw_data.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_write_marker.xml</ref>
+        <ref>jpeg_compress_struct.Raw_data_in.xml</ref>
+        <ref>jpeg_compress_struct.xml</ref>
       </node>
-      <node title="jpeg_write_coefficients" file="jpeg_compress_struct.jpeg_write_coefficients.xml" iconindex="23" />
+      <node title="jpeg_write_coefficients" file="jpeg_compress_struct.jpeg_write_coefficients.xml" iconindex="23">
+        <ref>jpeg_compress_struct.xml</ref>
+      </node>
     </node>
     <node title="jpeg_decompress_struct" file="jpeg_decompress_struct.xml" iconindex="6">
       <ref>jpeg_decompress_struct.get_Src.xml</ref>
@@ -735,7 +788,9 @@
       <node title="Marker_list" file="jpeg_decompress_struct.Marker_list.xml" iconindex="27">
         <ref>jpeg_marker_struct.xml</ref>
       </node>
-      <node title="jpeg_stdio_src" file="jpeg_decompress_struct.jpeg_stdio_src.xml" iconindex="23" />
+      <node title="jpeg_stdio_src" file="jpeg_decompress_struct.jpeg_stdio_src.xml" iconindex="23">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
       <node title="jpeg_read_header" file="jpeg_decompress_struct.jpeg_read_header.xml" iconindex="23">
         <ref>jpeg_decompress_struct.Image_width.xml</ref>
         <ref>jpeg_decompress_struct.Image_height.xml</ref>
@@ -773,7 +828,9 @@
       </node>
       <node title="jpeg_read_coefficients" file="jpeg_decompress_struct.jpeg_read_coefficients.xml" iconindex="23" />
       <node title="jpeg_copy_critical_parameters" file="jpeg_decompress_struct.jpeg_copy_critical_parameters.xml" iconindex="23" />
-      <node title="jpeg_abort_decompress" file="jpeg_decompress_struct.jpeg_abort_decompress.xml" iconindex="23" />
+      <node title="jpeg_abort_decompress" file="jpeg_decompress_struct.jpeg_abort_decompress.xml" iconindex="23">
+        <ref>Classic\Decompression_details.xml</ref>
+      </node>
       <node title="jpeg_set_marker_processor" file="jpeg_decompress_struct.jpeg_set_marker_processor.xml" iconindex="23">
         <ref>jpeg_marker_parser_method.xml</ref>
       </node>
@@ -870,6 +927,7 @@
     </node>
     <node title="jvirt_barray_control" file="jvirt_barray_control.xml" iconindex="6">
       <ref>jvirt_barray_control.access_virt_barray.xml</ref>
+      <ref>jpeg_compress_struct.jpeg_write_coefficients.xml</ref>
       <node title="jvirt_barray_control constructor" file="jvirt_barray_control.ctor.xml" iconindex="23" />
       <node title="access_virt_barray" file="jvirt_barray_control.access_virt_barray.xml" iconindex="23">
         <ref>jvirt_sarray_control.xml</ref>
@@ -937,6 +995,7 @@
     <ref>Classic\Special_color_spaces.xml</ref>
     <ref>Classic\Compressed_data_handling.xml</ref>
     <ref>Classic\Outline_of_typical_usage.xml</ref>
+    <ref>Classic\Decompression_details.xml</ref>
     <node title="Classic LibJpeg" file="Classic_LibJpeg.xml" iconindex="0">
       <ref>Classic\Outline_of_typical_usage.xml</ref>
       <ref>Classic\Data_formats.xml</ref>
@@ -967,6 +1026,9 @@
         <ref>jpeg_compress_struct.Input_components.xml</ref>
         <ref>jpeg_compress_struct.In_color_space.xml</ref>
         <ref>jpeg_compress_struct.jpeg_finish_compress.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_stdio_dest.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_start_compress.xml</ref>
+        <ref>jpeg_compress_struct.jpeg_write_scanlines.xml</ref>
       </node>
       <node title="Decompression details" file="Classic\Decompression_details.xml" iconindex="0">
         <ref>Classic\Outline_of_typical_usage.xml</ref>

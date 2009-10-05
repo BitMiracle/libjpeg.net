@@ -13,10 +13,13 @@
     </breadcumbs>
     <descriptionarticle only="false">
       <text>Sets output stream.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Compression details" file="Classic\Compression_details.xml" />
+    </seealso>
     <signature>
       <function>
         <name>jpeg_stdio_dest</name>
-        <return type="Void" />
+        <return type="void" />
         <parameters>
           <parameter name="outfile" type="Stream">Output stream.</parameter>
         </parameters>

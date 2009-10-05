@@ -22,7 +22,7 @@
         <name>jpeg_set_colorspace</name>
         <return type="void" />
         <parameters>
-          <parameter name="colorspace" type="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" />
+          <parameter name="colorspace" type="J_COLOR_SPACE" file="J_COLOR_SPACE.xml">Required colorspace.</parameter>
         </parameters>
       </function>
     </signature>
