@@ -261,6 +261,10 @@
     <ref>jpeg_decompress_struct.Coef_bits.xml</ref>
     <ref>jpeg_decompress_struct.jpeg_start_output.xml</ref>
     <ref>jpeg_decompress_struct.jpeg_consume_input.xml</ref>
+    <ref>jpeg_decompress_struct.jpeg_read_scanlines.xml</ref>
+    <ref>jpeg_decompress_struct.jpeg_finish_decompress.xml</ref>
+    <ref>jpeg_decompress_struct.jpeg_read_raw_data.xml</ref>
+    <ref>jpeg_decompress_struct.jpeg_has_multiple_scans.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -659,6 +663,10 @@
       <ref>jpeg_decompress_struct.jpeg_start_output.xml</ref>
       <ref>jpeg_decompress_struct.jpeg_consume_input.xml</ref>
       <ref>Classic\Decompression_details.xml</ref>
+      <ref>jpeg_decompress_struct.jpeg_read_scanlines.xml</ref>
+      <ref>jpeg_decompress_struct.jpeg_finish_decompress.xml</ref>
+      <ref>jpeg_decompress_struct.jpeg_read_raw_data.xml</ref>
+      <ref>jpeg_decompress_struct.jpeg_has_multiple_scans.xml</ref>
       <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="23">
         <ref>jpeg_decompress_struct.jpeg_set_marker_processor.xml</ref>
       </node>
@@ -801,30 +809,21 @@
         <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
         <ref>jpeg_decompress_struct.Colormap.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_start_decompress.xml</ref>
       </node>
       <node title="jpeg_start_decompress" file="jpeg_decompress_struct.jpeg_start_decompress.xml" iconindex="23">
-        <ref>Classic\Decompression_parameter_selection.xml</ref>
-        <ref>Classic\Decompression_details.xml</ref>
-        <ref>Classic\Outline_of_typical_usage.xml</ref>
-        <ref>Classic\Buffered_image_mode.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_finish_decompress.xml</ref>
       </node>
       <node title="jpeg_read_scanlines" file="jpeg_decompress_struct.jpeg_read_scanlines.xml" iconindex="23">
-        <ref>Classic\Outline_of_typical_usage.xml</ref>
-        <ref>Classic\Decompression_details.xml</ref>
         <ref>jpeg_decompress_struct.Rec_outbuf_height.xml</ref>
-        <ref>Classic\Buffered_image_mode.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_read_raw_data.xml</ref>
       </node>
       <node title="jpeg_finish_decompress" file="jpeg_decompress_struct.jpeg_finish_decompress.xml" iconindex="23">
-        <ref>Classic\Outline_of_typical_usage.xml</ref>
-        <ref>Classic\Decompression_details.xml</ref>
-        <ref>Classic\Special_markers.xml</ref>
-        <ref>Classic\Buffered_image_mode.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_start_decompress.xml</ref>
       </node>
       <node title="jpeg_read_raw_data" file="jpeg_decompress_struct.jpeg_read_raw_data.xml" iconindex="23" />
       <node title="jpeg_has_multiple_scans" file="jpeg_decompress_struct.jpeg_has_multiple_scans.xml" iconindex="23" />
-      <node title="jpeg_start_output" file="jpeg_decompress_struct.jpeg_start_output.xml" iconindex="23">
-        <ref>Classic\Buffered_image_mode.xml</ref>
-      </node>
+      <node title="jpeg_start_output" file="jpeg_decompress_struct.jpeg_start_output.xml" iconindex="23" />
       <node title="jpeg_finish_output" file="jpeg_decompress_struct.jpeg_finish_output.xml" iconindex="23">
         <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
@@ -1052,6 +1051,9 @@
         <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
         <ref>jpeg_decompress_struct.Output_scanline.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_stdio_src.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_start_decompress.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_read_scanlines.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_finish_decompress.xml</ref>
       </node>
       <node title="Mechanics of usage" file="Classic\Mechanics_of_usage.xml" iconindex="0" />
       <node title="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" iconindex="0">
@@ -1128,6 +1130,7 @@
         <ref>jpeg_decompress_struct.Enable_1pass_quant.xml</ref>
         <ref>jpeg_decompress_struct.Enable_2pass_quant.xml</ref>
         <ref>jpeg_decompress_struct.Enable_external_quant.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_has_multiple_scans.xml</ref>
       </node>
       <node title="Special markers" file="Classic\Special_markers.xml" iconindex="0">
         <ref>Classic\Special_color_spaces.xml</ref>

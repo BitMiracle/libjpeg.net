@@ -11,12 +11,22 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Decompression initialization.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_finish_decompress" file="jpeg_decompress_struct.jpeg_finish_decompress.xml" />
+      <ref caption="Decompression details" file="Classic\Decompression_details.xml" />
+    </seealso>
     <signature>
       <function>
         <name>jpeg_start_decompress</name>
-        <return type="Boolean" />
+        <return type="Boolean">
+          <text>Returns </text> <b><text>false</text> </b><text> if suspended. The return value need be inspected only if a suspending data source is used.</text> </return>
       </function>
     </signature>
+    <remarks>
+      <link file="jpeg_decompress_struct.jpeg_read_header.xml">
+        <text>jpeg_read_header</text> </link>
+      <text> must be completed before calling this.</text> <br /><br /><text>If a multipass operating mode was selected, this will do all but the last pass, and thus may take a great deal of time.</text> </remarks>
   </file>
 </xml>

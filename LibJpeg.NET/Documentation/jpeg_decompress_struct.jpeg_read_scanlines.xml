@@ -1,18 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>jpeg_read_scanlines</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<function>
-				
-				<name>jpeg_read_scanlines</name>
-				<return type="Int32" />
-				<parameters>
-					<parameter name="scanlines" type="Byte[][]" file="Byte[][].xml" />
-					<parameter name="max_lines" type="Int32" />
-					</parameters>
-				</function>
-		</signature>
-	</file>
+  <file>
+    <title>jpeg_read_scanlines</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_decompress_struct.xml">
+        <text>jpeg_decompress_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Read some scanlines of data from the JPEG decompressor.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Decompression details" file="Classic\Decompression_details.xml" />
+    </seealso>
+    <signature>
+      <function>
+        <name>jpeg_read_scanlines</name>
+        <return type="Int32">
+          <text>The return value will be the number of lines actually read. This may be less than the number requested in several cases, including bottom of image, data source suspension, and operating modes that emit multiple scanlines at a time.</text> </return>
+        <parameters>
+          <parameter name="scanlines" type="Byte[][]">Buffer for filling.</parameter>
+          <parameter name="max_lines" type="Int32">Required number of lines.</parameter>
+        </parameters>
+      </function>
+    </signature>
+    <remarks>
+      <text>We warn about excess calls to jpeg_read_scanlines() since this likely signals an application programmer error. However, an oversize buffer (max_lines &gt; scanlines remaining) is not an error.</text> </remarks>
+  </file>
 </xml>
