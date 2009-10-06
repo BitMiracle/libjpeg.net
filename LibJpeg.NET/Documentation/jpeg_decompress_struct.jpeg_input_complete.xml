@@ -13,6 +13,9 @@
     </breadcumbs>
     <descriptionarticle only="false">
       <text>Indicates if we have finished reading the input file.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Buffered-image mode" file="Classic\Buffered_image_mode.xml" />
+    </seealso>
     <signature>
       <function>
         <name>jpeg_input_complete</name>

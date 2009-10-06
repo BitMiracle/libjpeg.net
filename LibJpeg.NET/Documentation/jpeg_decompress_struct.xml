@@ -492,7 +492,7 @@
                 <text>jpeg_read_header</text> </link>
             </td>
             <td>
-              <text>Decompression startup: this will read the source datastream header markers, up to the beginning of the compressed data proper.</text> </td>
+              <text>Decompression startup - reads header markers.</text> </td>
           </tr>
           <tr>
             <td>
