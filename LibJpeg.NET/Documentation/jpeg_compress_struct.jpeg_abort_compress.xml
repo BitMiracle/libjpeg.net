@@ -12,7 +12,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Aborts compression.</text> </descriptionarticle>
+      <text>Abort processing of a JPEG compression operation</text> </descriptionarticle>
     <seealso>
       <ref caption="jpeg_abort" file="jpeg_common_struct.jpeg_abort.xml" />
     </seealso>

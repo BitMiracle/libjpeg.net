@@ -12,14 +12,14 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Aborts compression.</text> </descriptionarticle>
+      <text>Abort processing of a JPEG decompression operation.</text> </descriptionarticle>
     <seealso>
       <ref caption="jpeg_abort" file="jpeg_common_struct.jpeg_abort.xml" />
     </seealso>
     <signature>
       <function>
         <name>jpeg_abort_decompress</name>
-        <return type="Void" />
+        <return type="void" />
       </function>
     </signature>
   </file>

@@ -11,7 +11,12 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Control saving of COM and APPn markers into </text> <link file="jpeg_decompress_struct.Marker_list.xml"><text>Marker_list</text> </link><text>.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Marker_list" file="jpeg_decompress_struct.Marker_list.xml" />
+      <ref caption="Special markers" file="Classic\Special_markers.xml" />
+    </seealso>
     <signature>
       <function>
         <name>jpeg_save_markers</name>

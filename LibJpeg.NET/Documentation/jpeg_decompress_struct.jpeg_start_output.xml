@@ -11,7 +11,12 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Initialize for an output pass in </text> <link file="Classic/Buffered_image_mode.xml"><text>buffered-image mode</text> </link><text>.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_finish_output" file="jpeg_decompress_struct.jpeg_finish_output.xml" />
+      <ref caption="Buffered-image mode" file="Classic\Buffered_image_mode.xml" />
+    </seealso>
     <signature>
       <function>
         <name>jpeg_start_output</name>

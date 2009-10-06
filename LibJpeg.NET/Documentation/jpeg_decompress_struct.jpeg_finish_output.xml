@@ -11,11 +11,17 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Finish up after an output pass in </text> <link file="Classic/Buffered_image_mode.xml"><text>buffered-image mode</text> </link><text>.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_start_output" file="jpeg_decompress_struct.jpeg_start_output.xml" />
+      <ref caption="Buffered-image mode" file="Classic\Buffered_image_mode.xml" />
+    </seealso>
     <signature>
       <function>
         <name>jpeg_finish_output</name>
-        <return type="Boolean" />
+        <return type="Boolean">
+          <text>Returns false if suspended. The return value need be inspected only if a suspending data source is used.</text> </return>
       </function>
     </signature>
   </file>

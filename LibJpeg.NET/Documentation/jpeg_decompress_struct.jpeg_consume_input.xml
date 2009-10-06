@@ -11,7 +11,8 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Consume data in advance of what the decompressor requires.</text> </descriptionarticle>
     <seealso>
       <ref caption="Buffered-image mode" file="Classic\Buffered_image_mode.xml" />
     </seealso>

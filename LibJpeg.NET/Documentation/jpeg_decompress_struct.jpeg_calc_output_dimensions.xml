@@ -11,12 +11,15 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Precalculate output image dimensions and related values for current decompression parameters.</text> </descriptionarticle>
     <signature>
       <function>
         <name>jpeg_calc_output_dimensions</name>
         <return type="void" />
       </function>
     </signature>
+    <remarks>
+      <text>This is allowed for possible use by application. Hence it mustn't do anything that can't be done twice. Also note that it may be called before the master module is initialized!</text> </remarks>
   </file>
 </xml>
