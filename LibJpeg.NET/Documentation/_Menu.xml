@@ -314,6 +314,7 @@
         <ref>Classic\Outline_of_typical_usage.xml</ref>
         <ref>Classic\Decompression_details.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23">
         <ref>Classic\Error_handling.xml</ref>
@@ -449,6 +450,7 @@
         <ref>Classic\Compression_parameter_selection.xml</ref>
         <ref>Classic\Decompression_parameter_selection.xml</ref>
         <ref>jpeg_compress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="Restart_interval" file="jpeg_compress_struct.Restart_interval.xml" iconindex="27">
         <ref>jpeg_compress_struct.Restart_in_rows.xml</ref>
@@ -520,14 +522,17 @@
         <ref>Classic\Compression_details.xml</ref>
         <ref>jpeg_compress_struct.jpeg_write_coefficients.xml</ref>
         <ref>jpeg_compress_struct.xml</ref>
+        <ref>Classic\Progressive_JPEG_support.xml</ref>
       </node>
       <node title="jpeg_write_marker" file="jpeg_compress_struct.jpeg_write_marker.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_write_m_header.xml</ref>
         <ref>jpeg_compress_struct.xml</ref>
+        <ref>Classic\Special_markers.xml</ref>
       </node>
       <node title="jpeg_write_m_header" file="jpeg_compress_struct.jpeg_write_m_header.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_write_m_byte.xml</ref>
         <ref>jpeg_compress_struct.xml</ref>
+        <ref>Classic\Special_markers.xml</ref>
       </node>
       <node title="jpeg_write_m_byte" file="jpeg_compress_struct.jpeg_write_m_byte.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_write_m_header.xml</ref>
@@ -586,6 +591,7 @@
       <node title="jpeg_simple_progression" file="jpeg_compress_struct.jpeg_simple_progression.xml" iconindex="23">
         <ref>Classic\Compression_parameter_selection.xml</ref>
         <ref>jpeg_compress_struct.xml</ref>
+        <ref>Classic\Progressive_JPEG_support.xml</ref>
       </node>
       <node title="jpeg_start_compress" file="jpeg_compress_struct.jpeg_start_compress.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_suppress_tables.xml</ref>
@@ -599,6 +605,7 @@
         <ref>jpeg_compress_struct.jpeg_write_marker.xml</ref>
         <ref>jpeg_compress_struct.jpeg_write_raw_data.xml</ref>
         <ref>jpeg_compress_struct.xml</ref>
+        <ref>Classic\Progressive_JPEG_support.xml</ref>
       </node>
       <node title="jpeg_write_raw_data" file="jpeg_compress_struct.jpeg_write_raw_data.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_write_marker.xml</ref>
@@ -673,6 +680,7 @@
       <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="23">
         <ref>jpeg_decompress_struct.jpeg_set_marker_processor.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Special_markers.xml</ref>
       </node>
       <node title="jpeg_decompress_struct constructor" file="jpeg_decompress_struct.ctor.xml" iconindex="23">
         <ref>jpeg_decompress_struct.xml</ref>
@@ -731,6 +739,7 @@
       <node title="Do_block_smoothing" file="jpeg_decompress_struct.Do_block_smoothing.xml" iconindex="27">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="Quantize_colors" file="jpeg_decompress_struct.Quantize_colors.xml" iconindex="27">
         <ref>jpeg_decompress_struct.Desired_number_of_colors.xml</ref>
@@ -741,11 +750,13 @@
         <ref>jpeg_decompress_struct.Out_color_components.xml</ref>
         <ref>jpeg_decompress_struct.Output_components.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="Dither_mode" file="jpeg_decompress_struct.Dither_mode.xml" iconindex="27">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
         <ref>J_DITHER_MODE.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="Two_pass_quantize" file="jpeg_decompress_struct.Two_pass_quantize.xml" iconindex="27">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
@@ -802,6 +813,7 @@
         <ref>Classic\Decompression_parameter_selection.xml</ref>
         <ref>Classic\Decompression_details.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="Colormap" file="jpeg_decompress_struct.Colormap.xml" iconindex="27">
         <ref>jpeg_decompress_struct.Actual_number_of_colors.xml</ref>
@@ -815,12 +827,14 @@
       </node>
       <node title="Input_scan_number" file="jpeg_decompress_struct.Input_scan_number.xml" iconindex="27">
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="Input_iMCU_row" file="jpeg_decompress_struct.Input_iMCU_row.xml" iconindex="27">
         <ref>jpeg_decompress_struct.xml</ref>
       </node>
       <node title="Output_scan_number" file="jpeg_decompress_struct.Output_scan_number.xml" iconindex="27">
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="Output_iMCU_row" file="jpeg_decompress_struct.Output_iMCU_row.xml" iconindex="27">
         <ref>jpeg_decompress_struct.xml</ref>
@@ -852,6 +866,7 @@
         <ref>jpeg_marker_struct.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_save_markers.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Special_markers.xml</ref>
       </node>
       <node title="jpeg_stdio_src" file="jpeg_decompress_struct.jpeg_stdio_src.xml" iconindex="23">
         <ref>jpeg_decompress_struct.xml</ref>
@@ -865,43 +880,55 @@
         <ref>jpeg_decompress_struct.jpeg_start_decompress.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Special_markers.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="jpeg_start_decompress" file="jpeg_decompress_struct.jpeg_start_decompress.xml" iconindex="23">
         <ref>jpeg_decompress_struct.jpeg_finish_decompress.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Progressive_JPEG_support.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="jpeg_read_scanlines" file="jpeg_decompress_struct.jpeg_read_scanlines.xml" iconindex="23">
         <ref>jpeg_decompress_struct.Rec_outbuf_height.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_read_raw_data.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="jpeg_finish_decompress" file="jpeg_decompress_struct.jpeg_finish_decompress.xml" iconindex="23">
         <ref>jpeg_decompress_struct.jpeg_start_decompress.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Special_markers.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="jpeg_read_raw_data" file="jpeg_decompress_struct.jpeg_read_raw_data.xml" iconindex="23">
         <ref>jpeg_decompress_struct.xml</ref>
       </node>
       <node title="jpeg_has_multiple_scans" file="jpeg_decompress_struct.jpeg_has_multiple_scans.xml" iconindex="23">
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="jpeg_start_output" file="jpeg_decompress_struct.jpeg_start_output.xml" iconindex="23">
         <ref>jpeg_decompress_struct.jpeg_finish_output.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="jpeg_finish_output" file="jpeg_decompress_struct.jpeg_finish_output.xml" iconindex="23">
         <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_start_output.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="jpeg_input_complete" file="jpeg_decompress_struct.jpeg_input_complete.xml" iconindex="23">
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="jpeg_consume_input" file="jpeg_decompress_struct.jpeg_consume_input.xml" iconindex="23">
         <ref>ReadResult.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="jpeg_calc_output_dimensions" file="jpeg_decompress_struct.jpeg_calc_output_dimensions.xml" iconindex="23">
         <ref>jpeg_decompress_struct.xml</ref>
@@ -919,10 +946,12 @@
         <ref>jpeg_marker_parser_method.xml</ref>
         <ref>jpeg_decompress_struct.Unread_marker.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Special_markers.xml</ref>
       </node>
       <node title="jpeg_save_markers" file="jpeg_decompress_struct.jpeg_save_markers.xml" iconindex="23">
         <ref>jpeg_marker_struct.Data.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>Classic\Special_markers.xml</ref>
       </node>
     </node>
     <node title="jpeg_error_mgr" file="jpeg_error_mgr.xml" iconindex="6">
@@ -1057,6 +1086,7 @@
     <node title="ReadResult" file="ReadResult.xml" iconindex="10">
       <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
       <ref>jpeg_decompress_struct.jpeg_consume_input.xml</ref>
+      <ref>Classic\Buffered_image_mode.xml</ref>
     </node>
   </node>
   <node title="Knowledge base" file="Knowledge_base.xml" iconindex="0">
@@ -1186,11 +1216,10 @@
         <ref>jpeg_decompress_struct.Enable_1pass_quant.xml</ref>
         <ref>jpeg_decompress_struct.Enable_2pass_quant.xml</ref>
         <ref>jpeg_decompress_struct.Enable_external_quant.xml</ref>
-        <ref>jpeg_decompress_struct.jpeg_has_multiple_scans.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_start_output.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_finish_output.xml</ref>
-        <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
         <ref>Classic\Progressive_JPEG_support.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_input_complete.xml</ref>
       </node>
       <node title="Special markers" file="Classic\Special_markers.xml" iconindex="0">
         <ref>Classic\Special_color_spaces.xml</ref>

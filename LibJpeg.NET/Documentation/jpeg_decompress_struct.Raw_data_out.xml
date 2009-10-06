@@ -11,12 +11,21 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <p>
+        <text>Enable or disable raw data output.</text> </p>
+    </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_read_raw_data" file="jpeg_decompress_struct.jpeg_read_raw_data.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>Raw_data_out</name>
-        <return type="Boolean" />
+        <return type="Boolean">
+          <text>Default value: </text> <b><text>false</text> </b></return>
       </property>
     </signature>
+    <remarks>
+      <text>Set this to </text> <b><text>true</text> </b><text> before </text> <link file="jpeg_decompress_struct.jpeg_start_decompress.xml"><text>jpeg_start_decompress</text> </link><text>() if you need to obtain raw data output.</text> </remarks>
   </file>
 </xml>

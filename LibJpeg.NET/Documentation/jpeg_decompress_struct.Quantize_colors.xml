@@ -11,7 +11,8 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Colors quantization.</text> </descriptionarticle>
     <seealso>
       <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />
     </seealso>

@@ -11,7 +11,8 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Use two-pass color quantization.</text> </descriptionarticle>
     <seealso>
       <ref caption="Quantize_colors" file="jpeg_decompress_struct.Quantize_colors.xml" />
       <ref caption="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" />

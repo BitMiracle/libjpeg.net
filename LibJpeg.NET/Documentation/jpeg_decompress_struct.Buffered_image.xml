@@ -11,7 +11,11 @@
         <text>jpeg_decompress_struct</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Selects buffered-image mode.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Buffered-image mode" file="Classic\Buffered_image_mode.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>Buffered_image</name>

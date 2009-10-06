@@ -49,7 +49,7 @@
             </td>
             <td>
               <link file="jpeg_decompress_struct.ctor.xml">
-                <text>jpeg_decompress_struct constructor</text> </link>
+                <text>Constructor</text> </link>
             </td>
             <td>
               <text>Default constructor.</text> </td>
@@ -60,7 +60,7 @@
             </td>
             <td>
               <link file="jpeg_decompress_struct.ctor1.xml">
-                <text>jpeg_decompress_struct constructor</text> </link>
+                <text>Constructor</text> </link>
             </td>
             <td>
               <text>Constructor.</text> </td>
@@ -151,7 +151,7 @@
                 <text>Buffered_image</text> </link>
             </td>
             <td>
-            </td>
+              <text>Selects buffered-image mode.</text> </td>
           </tr>
           <tr>
             <td>
@@ -162,7 +162,7 @@
                 <text>Raw_data_out</text> </link>
             </td>
             <td>
-            </td>
+              <text>Enable or disable raw data output.</text> </td>
           </tr>
           <tr>
             <td>
@@ -184,7 +184,7 @@
                 <text>Do_fancy_upsampling</text> </link>
             </td>
             <td>
-            </td>
+              <text>Enable or disable upsampling of chroma components.</text> </td>
           </tr>
           <tr>
             <td>
@@ -206,7 +206,7 @@
                 <text>Quantize_colors</text> </link>
             </td>
             <td>
-            </td>
+              <text>Colors quantization.</text> </td>
           </tr>
           <tr>
             <td>
@@ -228,7 +228,7 @@
                 <text>Two_pass_quantize</text> </link>
             </td>
             <td>
-            </td>
+              <text>Use two-pass color quantization.</text> </td>
           </tr>
           <tr>
             <td>
