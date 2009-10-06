@@ -17,5 +17,650 @@
         </bases>
       </class>
     </signature>
+    <remarks>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <text> </text> </td>
+            <td>
+              <b>
+                <text>Member</text> </b>
+            </td>
+            <td>
+              <b>
+                <text>Description</text> </b>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/14.png" />
+            </td>
+            <td>
+              <link file="jpeg_marker_parser_method.xml">
+                <text>jpeg_marker_parser_method</text> </link>
+            </td>
+            <td>
+              <text>Processor of special markers.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.ctor.xml">
+                <text>jpeg_decompress_struct constructor</text> </link>
+            </td>
+            <td>
+              <text>Default constructor.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.ctor1.xml">
+                <text>jpeg_decompress_struct constructor</text> </link>
+            </td>
+            <td>
+              <text>Constructor.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Image_width.xml">
+                <text>Image_width</text> </link>
+            </td>
+            <td>
+              <text>Width of image.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Image_height.xml">
+                <text>Image_height</text> </link>
+            </td>
+            <td>
+              <text>Height of image.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Num_components.xml">
+                <text>Num_components</text> </link>
+            </td>
+            <td>
+              <text>Number of color components.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Jpeg_color_space.xml">
+                <text>Jpeg_color_space</text> </link>
+            </td>
+            <td>
+              <text>Colorspace of JPEG image.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Out_color_space.xml">
+                <text>Out_color_space</text> </link>
+            </td>
+            <td>
+              <text>Output color space.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Scale_num.xml">
+                <text>Scale_num</text> </link>
+            </td>
+            <td>
+              <text>Numerator of the fraction of image scaling.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Scale_denom.xml">
+                <text>Scale_denom</text> </link>
+            </td>
+            <td>
+              <text>Denominator of the fraction of image scaling.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Buffered_image.xml">
+                <text>Buffered_image</text> </link>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Raw_data_out.xml">
+                <text>Raw_data_out</text> </link>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Dct_method.xml">
+                <text>Dct_method</text> </link>
+            </td>
+            <td>
+              <text>Gets or sets the algorithm used for the DCT step.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Do_fancy_upsampling.xml">
+                <text>Do_fancy_upsampling</text> </link>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Do_block_smoothing.xml">
+                <text>Do_block_smoothing</text> </link>
+            </td>
+            <td>
+              <text>Apply interblock smoothing in early stages of decoding progressive JPEG files.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Quantize_colors.xml">
+                <text>Quantize_colors</text> </link>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Dither_mode.xml">
+                <text>Dither_mode</text> </link>
+            </td>
+            <td>
+              <text>Selects color dithering method.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Two_pass_quantize.xml">
+                <text>Two_pass_quantize</text> </link>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Desired_number_of_colors.xml">
+                <text>Desired_number_of_colors</text> </link>
+            </td>
+            <td>
+              <text>Maximum number of colors to use in generating a library-supplied color map.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Enable_1pass_quant.xml">
+                <text>Enable_1pass_quant</text> </link>
+            </td>
+            <td>
+              <text>Enable future use of 1-pass quantizer.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Enable_external_quant.xml">
+                <text>Enable_external_quant</text> </link>
+            </td>
+            <td>
+              <text>Enable future use of external colormap.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Enable_2pass_quant.xml">
+                <text>Enable_2pass_quant</text> </link>
+            </td>
+            <td>
+              <text>Enable future use of 2-pass quantizer.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Output_width.xml">
+                <text>Output_width</text> </link>
+            </td>
+            <td>
+              <text>Actual width of output image.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Output_height.xml">
+                <text>Output_height</text> </link>
+            </td>
+            <td>
+              <text>Actual height of output image.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Out_color_components.xml">
+                <text>Out_color_components</text> </link>
+            </td>
+            <td>
+              <text>Number of color components in </text> <link file="jpeg_decompress_struct.Out_color_space.xml"><text>Out_color_space</text> </link><text>.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Output_components.xml">
+                <text>Output_components</text> </link>
+            </td>
+            <td>
+              <text>Number of color components returned.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Rec_outbuf_height.xml">
+                <text>Rec_outbuf_height</text> </link>
+            </td>
+            <td>
+              <text>Recommended height of scanline buffer.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Actual_number_of_colors.xml">
+                <text>Actual_number_of_colors</text> </link>
+            </td>
+            <td>
+              <text>The number of colors in the color map.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Colormap.xml">
+                <text>Colormap</text> </link>
+            </td>
+            <td>
+              <text>The color map.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Output_scanline.xml">
+                <text>Output_scanline</text> </link>
+            </td>
+            <td>
+              <text>The number of scanlines returned so far.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Input_scan_number.xml">
+                <text>Input_scan_number</text> </link>
+            </td>
+            <td>
+              <text>Number of SOS markers seen so far.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Input_iMCU_row.xml">
+                <text>Input_iMCU_row</text> </link>
+            </td>
+            <td>
+              <text>Number of iMCU rows completed.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Output_scan_number.xml">
+                <text>Output_scan_number</text> </link>
+            </td>
+            <td>
+              <text>Nominal scan number being displayed.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Output_iMCU_row.xml">
+                <text>Output_iMCU_row</text> </link>
+            </td>
+            <td>
+              <text>Number of iMCU rows read.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Coef_bits.xml">
+                <text>Coef_bits</text> </link>
+            </td>
+            <td>
+              <text>Current progression status.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Density_unit.xml">
+                <text>Density_unit</text> </link>
+            </td>
+            <td>
+              <text>The resolution information from JFIF marker.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.X_density.xml">
+                <text>X_density</text> </link>
+            </td>
+            <td>
+              <text>Horizontal component of pixel ratio.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Y_density.xml">
+                <text>Y_density</text> </link>
+            </td>
+            <td>
+              <text>Vertical component of pixel ratio.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Unread_marker.xml">
+                <text>Unread_marker</text> </link>
+            </td>
+            <td>
+              <text>Last read and unprocessed JPEG marker.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Marker_list.xml">
+                <text>Marker_list</text> </link>
+            </td>
+            <td>
+              <text>The list of loaded special markers.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_stdio_src.xml">
+                <text>jpeg_stdio_src</text> </link>
+            </td>
+            <td>
+              <text>Sets input stream.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_read_header.xml">
+                <text>jpeg_read_header</text> </link>
+            </td>
+            <td>
+              <text>Decompression startup: this will read the source datastream header markers, up to the beginning of the compressed data proper.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_start_decompress.xml">
+                <text>jpeg_start_decompress</text> </link>
+            </td>
+            <td>
+              <text>Decompression initialization.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_read_scanlines.xml">
+                <text>jpeg_read_scanlines</text> </link>
+            </td>
+            <td>
+              <text>Read some scanlines of data from the JPEG decompressor.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_finish_decompress.xml">
+                <text>jpeg_finish_decompress</text> </link>
+            </td>
+            <td>
+              <text>Finish JPEG decompression.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_read_raw_data.xml">
+                <text>jpeg_read_raw_data</text> </link>
+            </td>
+            <td>
+              <text>Alternate entry point to read raw data.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_has_multiple_scans.xml">
+                <text>jpeg_has_multiple_scans</text> </link>
+            </td>
+            <td>
+              <text>Is there more than one scan?</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_start_output.xml">
+                <text>jpeg_start_output</text> </link>
+            </td>
+            <td>
+              <text>Initialize for an output pass in buffered-image mode.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_finish_output.xml">
+                <text>jpeg_finish_output</text> </link>
+            </td>
+            <td>
+              <text>Finish up after an output pass in buffered-image mode.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_input_complete.xml">
+                <text>jpeg_input_complete</text> </link>
+            </td>
+            <td>
+              <text>Indicates if we have finished reading the input file.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_consume_input.xml">
+                <text>jpeg_consume_input</text> </link>
+            </td>
+            <td>
+              <text>Consume data in advance of what the decompressor requires.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_calc_output_dimensions.xml">
+                <text>jpeg_calc_output_dimensions</text> </link>
+            </td>
+            <td>
+              <text>Precalculate output image dimensions and related values for current decompression parameters.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_read_coefficients.xml">
+                <text>jpeg_read_coefficients</text> </link>
+            </td>
+            <td>
+              <text>Read or write the raw DCT coefficient arrays from a JPEG file.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_copy_critical_parameters.xml">
+                <text>jpeg_copy_critical_parameters</text> </link>
+            </td>
+            <td>
+              <text>Initialize the compression object with all parameters needed for lossless transcoding.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_abort_decompress.xml">
+                <text>jpeg_abort_decompress</text> </link>
+            </td>
+            <td>
+              <text>Abort processing of a JPEG decompression operation.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_set_marker_processor.xml">
+                <text>jpeg_set_marker_processor</text> </link>
+            </td>
+            <td>
+              <text>Sets processor for special marker.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.jpeg_save_markers.xml">
+                <text>jpeg_save_markers</text> </link>
+            </td>
+            <td>
+              <text>Control saving of COM and APPn markers into </text> <link file="jpeg_decompress_struct.Marker_list.xml"><text>Marker_list</text> </link><text>.</text> </td>
+          </tr>
+        </tbody>
+      </table>
+    </remarks>
   </file>
 </xml>
