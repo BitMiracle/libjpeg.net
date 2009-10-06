@@ -12,7 +12,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Decide whether or not to emit a warning or trace message; if so, calls </text> <link file="jpeg_error_mgr.output_message.xml"><text>output_message</text> </link><text>.</text> </descriptionarticle>
+      <text>Decide whether or not to emit a warning or trace message.</text> </descriptionarticle>
     <seealso>
       <ref caption="Error handling" file="Classic\Error_handling.xml" />
     </seealso>
@@ -22,9 +22,8 @@
         <name>emit_message</name>
         <return type="void" />
         <parameters>
-          <parameter name="msg_level" type="Int32">-1 for warnings, 0 and up for trace messages.
+          <parameter name="msg_level" type="Int32">The message severity level.
 
-The message severity level. 
 Values are:
 -1: recoverable corrupt-data warning, may want to abort.
 0: important advisory messages (always display to user).
@@ -34,6 +33,6 @@ Values are:
       </function>
     </signature>
     <remarks>
-      <text>The main reason for overriding this method would be to abort on warnings.</text> </remarks>
+      <text>The main reason for overriding this method would be to abort on warnings. This method calls </text> <link file="jpeg_error_mgr.output_message.xml"><text>output_message</text> </link><text> for message showing.</text> </remarks>
   </file>
 </xml>

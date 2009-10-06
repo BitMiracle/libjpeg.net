@@ -11,9 +11,11 @@
         <text>jpeg_error_mgr</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Gets the actual message texts.</text> </descriptionarticle>
     <seealso>
       <ref caption="Error handling" file="Classic\Error_handling.xml" />
+      <ref caption="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" />
     </seealso>
     <signature>
       <function>
@@ -21,9 +23,11 @@
         <name>GetMessageText</name>
         <return type="string" />
         <parameters>
-          <parameter name="code" type="Int32" />
+          <parameter name="code" type="Int32">Message code. See J_MESSAGE_CODE for details.</parameter>
         </parameters>
       </function>
     </signature>
+    <remarks>
+      <text>It may be useful for an application to add its own message texts that are handled by the same mechanism. You can override GetMessageText for this purpose. If you number the addon messages beginning at 1000 or so, you won't have to worry about conflicts with the library's built-in messages.</text> </remarks>
   </file>
 </xml>

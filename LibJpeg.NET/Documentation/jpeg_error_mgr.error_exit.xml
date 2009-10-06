@@ -12,7 +12,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Receives control for a fatal error. This routine calls </text> <link file="jpeg_error_mgr.output_message.xml"><text>output_message</text> </link><text> and then throws exception.</text> </descriptionarticle>
+      <text>Receives control for a fatal error.</text> </descriptionarticle>
     <seealso>
       <ref caption="Error handling" file="Classic\Error_handling.xml" />
     </seealso>
@@ -23,5 +23,7 @@
         <return type="void" />
       </function>
     </signature>
+    <remarks>
+      <text>This routine calls </text> <link file="jpeg_error_mgr.output_message.xml"><text>output_message</text> </link><text> and then throws exception.</text> </remarks>
   </file>
 </xml>

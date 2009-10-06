@@ -220,7 +220,6 @@
     <ref>jpeg_error_mgr.emit_message.xml</ref>
     <ref>jpeg_error_mgr.GetMessageText.xml</ref>
     <ref>jpeg_error_mgr.reset_error_mgr.xml</ref>
-    <ref>jpeg_error_mgr.get_Num_warnings.xml</ref>
     <ref>jpeg_common_struct.ctor.xml</ref>
     <ref>jpeg_common_struct.TRACEMS3.xml</ref>
     <ref>jpeg_common_struct.TRACEMS2.xml</ref>
@@ -266,6 +265,8 @@
     <ref>jpeg_decompress_struct.jpeg_input_complete.xml</ref>
     <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
     <ref>jpeg_decompress_struct.jpeg_copy_critical_parameters.xml</ref>
+    <ref>jpeg_error_mgr.ctor.xml</ref>
+    <ref>jpeg_error_mgr.Num_warnings.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -722,7 +723,6 @@
         <ref>jpeg_decompress_struct.xml</ref>
       </node>
       <node title="Buffered_image" file="jpeg_decompress_struct.Buffered_image.xml" iconindex="27">
-        <ref>Classic\Buffered_image_mode.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
       </node>
       <node title="Raw_data_out" file="jpeg_decompress_struct.Raw_data_out.xml" iconindex="27">
@@ -733,7 +733,6 @@
         <ref>jpeg_decompress_struct.xml</ref>
       </node>
       <node title="Do_fancy_upsampling" file="jpeg_decompress_struct.Do_fancy_upsampling.xml" iconindex="27">
-        <ref>Classic\Decompression_parameter_selection.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
       </node>
       <node title="Do_block_smoothing" file="jpeg_decompress_struct.Do_block_smoothing.xml" iconindex="27">
@@ -745,12 +744,9 @@
         <ref>jpeg_decompress_struct.Desired_number_of_colors.xml</ref>
         <ref>jpeg_decompress_struct.Two_pass_quantize.xml</ref>
         <ref>jpeg_decompress_struct.Dither_mode.xml</ref>
-        <ref>Classic\Decompression_parameter_selection.xml</ref>
         <ref>jpeg_decompress_struct.Colormap.xml</ref>
-        <ref>jpeg_decompress_struct.Out_color_components.xml</ref>
         <ref>jpeg_decompress_struct.Output_components.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
-        <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="Dither_mode" file="jpeg_decompress_struct.Dither_mode.xml" iconindex="27">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
@@ -759,9 +755,7 @@
         <ref>Classic\Buffered_image_mode.xml</ref>
       </node>
       <node title="Two_pass_quantize" file="jpeg_decompress_struct.Two_pass_quantize.xml" iconindex="27">
-        <ref>Classic\Decompression_parameter_selection.xml</ref>
         <ref>jpeg_decompress_struct.Dither_mode.xml</ref>
-        <ref>Classic\Buffered_image_mode.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
       </node>
       <node title="Desired_number_of_colors" file="jpeg_decompress_struct.Desired_number_of_colors.xml" iconindex="27">
@@ -888,6 +882,7 @@
         <ref>jpeg_decompress_struct.xml</ref>
         <ref>Classic\Progressive_JPEG_support.xml</ref>
         <ref>Classic\Buffered_image_mode.xml</ref>
+        <ref>jpeg_decompress_struct.Raw_data_out.xml</ref>
       </node>
       <node title="jpeg_read_scanlines" file="jpeg_decompress_struct.jpeg_read_scanlines.xml" iconindex="23">
         <ref>jpeg_decompress_struct.Rec_outbuf_height.xml</ref>
@@ -904,6 +899,7 @@
       </node>
       <node title="jpeg_read_raw_data" file="jpeg_decompress_struct.jpeg_read_raw_data.xml" iconindex="23">
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>jpeg_decompress_struct.Raw_data_out.xml</ref>
       </node>
       <node title="jpeg_has_multiple_scans" file="jpeg_decompress_struct.jpeg_has_multiple_scans.xml" iconindex="23">
         <ref>jpeg_decompress_struct.xml</ref>
@@ -964,38 +960,49 @@
       <ref>jpeg_error_mgr.emit_message.xml</ref>
       <ref>jpeg_error_mgr.GetMessageText.xml</ref>
       <ref>jpeg_error_mgr.reset_error_mgr.xml</ref>
-      <ref>jpeg_error_mgr.get_Num_warnings.xml</ref>
-      <ref>Classic\Compression_details.xml</ref>
       <ref>jpeg_decompress_struct.ctor1.xml</ref>
-      <node title="jpeg_error_mgr constructor" file="jpeg_error_mgr.ctor.xml" iconindex="23" />
-      <node title="Trace_level" file="jpeg_error_mgr.Trace_level.xml" iconindex="27" />
-      <node title="get_Num_warnings" file="jpeg_error_mgr.get_Num_warnings.xml" iconindex="23" />
+      <ref>jpeg_error_mgr.ctor.xml</ref>
+      <ref>jpeg_error_mgr.Num_warnings.xml</ref>
+      <node title="jpeg_error_mgr constructor" file="jpeg_error_mgr.ctor.xml" iconindex="23">
+        <ref>jpeg_error_mgr.xml</ref>
+      </node>
+      <node title="Trace_level" file="jpeg_error_mgr.Trace_level.xml" iconindex="27">
+        <ref>jpeg_error_mgr.xml</ref>
+      </node>
+      <node title="Num_warnings" file="jpeg_error_mgr.Num_warnings.xml" iconindex="27">
+        <ref>jpeg_error_mgr.xml</ref>
+      </node>
       <node title="error_exit" file="jpeg_error_mgr.error_exit.xml" iconindex="23">
-        <ref>Classic\Error_handling.xml</ref>
-        <ref>Classic\Compression_details.xml</ref>
         <ref>jpeg_common_struct.ERREXIT.xml</ref>
         <ref>jpeg_common_struct.ERREXIT2.xml</ref>
         <ref>jpeg_common_struct.ERREXIT3.xml</ref>
+        <ref>jpeg_error_mgr.xml</ref>
       </node>
       <node title="emit_message" file="jpeg_error_mgr.emit_message.xml" iconindex="23">
         <ref>jpeg_common_struct.TRACEMS3.xml</ref>
         <ref>jpeg_common_struct.TRACEMS2.xml</ref>
         <ref>jpeg_common_struct.TRACEMS.xml</ref>
-        <ref>Classic\Error_handling.xml</ref>
+        <ref>jpeg_error_mgr.Num_warnings.xml</ref>
+        <ref>jpeg_error_mgr.Trace_level.xml</ref>
+        <ref>jpeg_error_mgr.xml</ref>
       </node>
       <node title="output_message" file="jpeg_error_mgr.output_message.xml" iconindex="23">
         <ref>jpeg_error_mgr.error_exit.xml</ref>
         <ref>jpeg_error_mgr.format_message.xml</ref>
         <ref>Classic\Error_handling.xml</ref>
         <ref>jpeg_error_mgr.emit_message.xml</ref>
+        <ref>jpeg_error_mgr.xml</ref>
       </node>
       <node title="format_message" file="jpeg_error_mgr.format_message.xml" iconindex="23">
         <ref>jpeg_error_mgr.output_message.xml</ref>
         <ref>Classic\Error_handling.xml</ref>
+        <ref>jpeg_error_mgr.xml</ref>
       </node>
-      <node title="reset_error_mgr" file="jpeg_error_mgr.reset_error_mgr.xml" iconindex="23" />
+      <node title="reset_error_mgr" file="jpeg_error_mgr.reset_error_mgr.xml" iconindex="23">
+        <ref>jpeg_error_mgr.xml</ref>
+      </node>
       <node title="GetMessageText" file="jpeg_error_mgr.GetMessageText.xml" iconindex="24">
-        <ref>Classic\Error_handling.xml</ref>
+        <ref>jpeg_error_mgr.xml</ref>
       </node>
     </node>
     <node title="jpeg_marker_struct" file="jpeg_marker_struct.xml" iconindex="6">
@@ -1082,6 +1089,7 @@
       <ref>jpeg_common_struct.ERREXIT.xml</ref>
       <ref>jpeg_common_struct.TRACEMS.xml</ref>
       <ref>jpeg_common_struct.TRACEMS2.xml</ref>
+      <ref>jpeg_error_mgr.GetMessageText.xml</ref>
     </node>
     <node title="ReadResult" file="ReadResult.xml" iconindex="10">
       <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
@@ -1206,6 +1214,7 @@
         <ref>jpeg_error_mgr.format_message.xml</ref>
         <ref>jpeg_error_mgr.emit_message.xml</ref>
         <ref>jpeg_error_mgr.GetMessageText.xml</ref>
+        <ref>jpeg_error_mgr.xml</ref>
       </node>
       <node title="Progressive JPEG support" file="Classic\Progressive_JPEG_support.xml" iconindex="0">
         <ref>jpeg_decompress_struct.Coef_bits.xml</ref>
@@ -1220,6 +1229,7 @@
         <ref>jpeg_decompress_struct.jpeg_finish_output.xml</ref>
         <ref>Classic\Progressive_JPEG_support.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_input_complete.xml</ref>
+        <ref>jpeg_decompress_struct.Buffered_image.xml</ref>
       </node>
       <node title="Special markers" file="Classic\Special_markers.xml" iconindex="0">
         <ref>Classic\Special_color_spaces.xml</ref>
