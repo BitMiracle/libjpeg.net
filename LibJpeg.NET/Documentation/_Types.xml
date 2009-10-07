@@ -39,5 +39,14 @@
     <type>params Object[]</type>
     <type>ReadOnlyCollection&lt;jpeg_marker_struct&gt;</type>
     <type>Int32[][]</type>
+    <type>jvirt_array&lt;T&gt;</type>
+    <type>jpeg_</type>
+    <type>jpeg_common_struct</type>
+    <type>T[][]</type>
+    <type>jvirt_array&lt;byte&gt;</type>
+    <type>jvirt_array&lt;JBLOCK&gt;</type>
+    <type>jvirt_array[T&gt;</type>
+    <type>jvirt_arrayT</type>
+    <type>jvirt_array&lt;BLOCK&gt;</type>
   </types>
 </xml>

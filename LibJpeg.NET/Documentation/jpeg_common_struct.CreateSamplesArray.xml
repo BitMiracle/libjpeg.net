@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>CreateSamplesArray</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_common_struct.xml">
+        <text>jpeg_common_struct</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Creates an array of samples.</text> </descriptionarticle>
+    <signature>
+      <function>
+        <mod2>static</mod2>
+        <name>CreateSamplesArray</name>
+        <return type="jvirt_array&lt;byte&gt;" file="jvirt_array.xml">
+          <text>Retrieves </text> <b><text>jvirt_array&lt;byte&gt;.</text> </b></return>
+        <parameters>
+          <parameter name="samplesPerRow" type="Int32">The number of samples in row.</parameter>
+          <parameter name="numberOfRows" type="Int32">The number of rows.</parameter>
+        </parameters>
+      </function>
+    </signature>
+  </file>
+</xml>

@@ -145,9 +145,6 @@
     <ref>jpeg_common_struct.ERREXIT3.xml</ref>
     <ref>jpeg_error_mgr.Trace_level.xml</ref>
     <ref>jpeg_marker_parser_method.xml</ref>
-    <ref>jvirt_barray_control.xml</ref>
-    <ref>jvirt_sarray_control.xml</ref>
-    <ref>jvirt_barray_control.access_virt_barray.xml</ref>
     <ref>jpeg_common_struct.WARNMS.xml</ref>
     <ref>jpeg_common_struct.WARNMS2.xml</ref>
     <ref>jpeg_common_struct.WARNMS3.xml</ref>
@@ -274,6 +271,11 @@
     <ref>jpeg_progress_mgr.Updated.xml</ref>
     <ref>jpeg_progress_mgr.OnProgress.xml</ref>
     <ref>jpeg_progress_mgr.ctor.xml</ref>
+    <ref>jvirt_array.xml</ref>
+    <ref>jvirt_array.ErrorProcessor.xml</ref>
+    <ref>jvirt_array.Access.xml</ref>
+    <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
+    <ref>jpeg_common_struct.CreateSamplesArray.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -293,7 +295,9 @@
       <ref>jpeg_common_struct.ctor.xml</ref>
       <ref>jpeg_common_struct.TRACEMS3.xml</ref>
       <ref>jpeg_common_struct.TRACEMS2.xml</ref>
-      <ref>Classic\Error_handling.xml</ref>
+      <ref>jvirt_array.ErrorProcessor.xml</ref>
+      <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
+      <ref>jpeg_common_struct.CreateSamplesArray.xml</ref>
       <node title="jpeg_common_struct constructor" file="jpeg_common_struct.ctor.xml" iconindex="23">
         <ref>jpeg_common_struct.xml</ref>
       </node>
@@ -309,6 +313,14 @@
         <ref>jpeg_common_struct.xml</ref>
       </node>
       <node title="Copyright" file="jpeg_common_struct.Copyright.xml" iconindex="27">
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
+      <node title="CreateBlocksArray" file="jpeg_common_struct.CreateBlocksArray.xml" iconindex="23">
+        <ref>jvirt_array.xml</ref>
+        <ref>jpeg_common_struct.xml</ref>
+      </node>
+      <node title="CreateSamplesArray" file="jpeg_common_struct.CreateSamplesArray.xml" iconindex="23">
+        <ref>jvirt_array.xml</ref>
         <ref>jpeg_common_struct.xml</ref>
       </node>
       <node title="AllocJpegSamples" file="jpeg_common_struct.AllocJpegSamples.xml" iconindex="23">
@@ -327,6 +339,7 @@
       </node>
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23">
         <ref>Classic\Error_handling.xml</ref>
+        <ref>jvirt_array.ErrorProcessor.xml</ref>
       </node>
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT2.xml" iconindex="23" />
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT3.xml" iconindex="23">
@@ -336,9 +349,7 @@
         <ref>jpeg_common_struct.xml</ref>
         <ref>Classic\Error_handling.xml</ref>
       </node>
-      <node title="WARNMS" file="jpeg_common_struct.WARNMS2.xml" iconindex="23">
-        <ref>jpeg_common_struct.xml</ref>
-      </node>
+      <node title="WARNMS" file="jpeg_common_struct.WARNMS2.xml" iconindex="23" />
       <node title="WARNMS" file="jpeg_common_struct.WARNMS3.xml" iconindex="23">
         <ref>jpeg_common_struct.xml</ref>
       </node>
@@ -1071,25 +1082,19 @@
         <ref>jpeg_progress_mgr.xml</ref>
       </node>
     </node>
-    <node title="jvirt_barray_control" file="jvirt_barray_control.xml" iconindex="6">
-      <ref>jvirt_barray_control.access_virt_barray.xml</ref>
-      <ref>jpeg_compress_struct.jpeg_write_coefficients.xml</ref>
-      <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
-      <ref>jpeg_decompress_struct.jpeg_copy_critical_parameters.xml</ref>
-      <node title="jvirt_barray_control constructor" file="jvirt_barray_control.ctor.xml" iconindex="23" />
-      <node title="access_virt_barray" file="jvirt_barray_control.access_virt_barray.xml" iconindex="23">
-        <ref>jvirt_sarray_control.xml</ref>
-        <ref>jvirt_barray_control.xml</ref>
-        <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
-      </node>
-    </node>
-    <node title="jvirt_sarray_control" file="jvirt_sarray_control.xml" iconindex="6">
-      <node title="access_virt_sarray" file="jvirt_sarray_control.access_virt_sarray.xml" iconindex="23" />
+    <node title="jvirt_array" file="jvirt_array.xml" iconindex="6">
+      <ref>jvirt_array.ErrorProcessor.xml</ref>
+      <ref>jvirt_array.Access.xml</ref>
+      <ref>jpeg_common_struct.CreateSamplesArray.xml</ref>
+      <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
+      <node title="ErrorProcessor" file="jvirt_array.ErrorProcessor.xml" iconindex="27" />
+      <node title="Access" file="jvirt_array.Access.xml" iconindex="23" />
     </node>
     <node title="JBLOCK" file="JBLOCK.xml" iconindex="6">
       <ref>JBLOCK.get_Item.xml</ref>
       <ref>JBLOCK.set_Item.xml</ref>
-      <ref>jvirt_barray_control.access_virt_barray.xml</ref>
+      <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
+      <ref>jpeg_common_struct.CreateSamplesArray.xml</ref>
       <node title="get_Item" file="JBLOCK.get_Item.xml" iconindex="23" />
       <node title="set_Item" file="JBLOCK.set_Item.xml" iconindex="23" />
     </node>

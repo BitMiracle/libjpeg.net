@@ -93,6 +93,28 @@
                 <img alt="" src="_TemplateMSDN_files/icons/23.png" />
               </td>
               <td>
+                <link file="jpeg_common_struct.CreateSamplesArray.xml">
+                  <text>CreateSamplesArray</text> </link>
+              </td>
+              <td>
+                <text>Creates an array of samples.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.CreateBlocksArray.xml">
+                  <text>CreateBlocksArray</text> </link>
+              </td>
+              <td>
+                <text>Creates an array of blocks.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              </td>
+              <td>
                 <link file="jpeg_common_struct.AllocJpegSamples.xml">
                   <text>AllocJpegSamples</text> </link>
               </td>

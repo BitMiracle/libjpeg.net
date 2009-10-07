@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>jvirt_array</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>JPEG virtual array.</text> </descriptionarticle>
+    <signature>
+      <class>
+        <name>jvirt_array&lt;T&gt;</name>
+      </class>
+    </signature>
+    <remarks>
+      <text>You can't create virtual array manually. For creation use methods </text> <link file="jpeg_common_struct.CreateSamplesArray.xml"><text>CreateSamplesArray</text> </link><text> and </text> <link file="jpeg_common_struct.CreateBlocksArray.xml"><text>CreateBlocksArray</text> </link><text>.</text> </remarks>
+  </file>
+</xml>

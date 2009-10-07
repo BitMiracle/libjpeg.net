@@ -12,17 +12,19 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Initialize the compression object with default parameters, then copy from the source object all parameters needed for lossless transcoding.</text> </descriptionarticle>
+      <text>Initialize the compression object with default parameters, then copy from the source object all parameters needed for lossless transcoding.</text>
+    </descriptionarticle>
     <signature>
       <function>
         <name>jpeg_copy_critical_parameters</name>
-        <return type="void" file="jvirt_barray_control.xml" />
+        <return type="void" />
         <parameters>
           <parameter name="dstinfo" type="jpeg_compress_struct" file="jpeg_compress_struct.xml">Target JPEG compression object.</parameter>
         </parameters>
       </function>
     </signature>
     <remarks>
-      <text>Parameters that can be varied without loss (such as scan script and Huffman optimization) are left in their default states.</text> </remarks>
+      <text>Parameters that can be varied without loss (such as scan script and Huffman optimization) are left in their default states.</text>
+    </remarks>
   </file>
 </xml>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>ErrorProcessor</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jvirt_array.xml">
+        <text>jvirt_array</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <p>
+        <text>Uses only for calling </text> <link file="jpeg_common_struct.ERREXIT.xml"><text>ERREXIT</text> </link><text> on error.</text> </p>
+    </descriptionarticle>
+    <signature>
+      <property access="full">
+        <name>ErrorProcessor</name>
+        <return type="jpeg_common_struct" file="jpeg_common_struct.xml">
+          <text>Default value: </text> <b><text>null</text> </b></return>
+      </property>
+    </signature>
+  </file>
+</xml>
