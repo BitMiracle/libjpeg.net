@@ -267,11 +267,12 @@
     <ref>jpeg_decompress_struct.jpeg_copy_critical_parameters.xml</ref>
     <ref>jpeg_error_mgr.ctor.xml</ref>
     <ref>jpeg_error_mgr.Num_warnings.xml</ref>
-    <ref>jpeg_progress_mgr.progress_monitor.xml</ref>
     <ref>jpeg_progress_mgr.Pass_counter.xml</ref>
     <ref>jpeg_progress_mgr.Pass_limit.xml</ref>
     <ref>jpeg_progress_mgr.Completed_passes.xml</ref>
     <ref>jpeg_progress_mgr.Total_passes.xml</ref>
+    <ref>jpeg_progress_mgr.Updated.xml</ref>
+    <ref>jpeg_progress_mgr.OnProgress.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -1027,17 +1028,18 @@
     </node>
     <node title="jpeg_progress_mgr" file="jpeg_progress_mgr.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
-      <ref>jpeg_common_struct.AllocJpegSamples.xml</ref>
-      <ref>jpeg_progress_mgr.progress_monitor.xml</ref>
       <ref>jpeg_progress_mgr.Pass_counter.xml</ref>
       <ref>jpeg_progress_mgr.Pass_limit.xml</ref>
       <ref>jpeg_progress_mgr.Completed_passes.xml</ref>
       <ref>jpeg_progress_mgr.Total_passes.xml</ref>
+      <ref>jpeg_progress_mgr.Updated.xml</ref>
+      <ref>jpeg_progress_mgr.OnProgress.xml</ref>
       <node title="Pass_counter" file="jpeg_progress_mgr.Pass_counter.xml" iconindex="27" />
       <node title="Pass_limit" file="jpeg_progress_mgr.Pass_limit.xml" iconindex="27" />
       <node title="Completed_passes" file="jpeg_progress_mgr.Completed_passes.xml" iconindex="27" />
       <node title="Total_passes" file="jpeg_progress_mgr.Total_passes.xml" iconindex="27" />
-      <node title="progress_monitor" file="jpeg_progress_mgr.progress_monitor.xml" iconindex="23" />
+      <node title="Updated" file="jpeg_progress_mgr.Updated.xml" iconindex="23" />
+      <node title="OnProgress" file="jpeg_progress_mgr.OnProgress.xml" iconindex="35" />
     </node>
     <node title="jvirt_barray_control" file="jvirt_barray_control.xml" iconindex="6">
       <ref>jvirt_barray_control.access_virt_barray.xml</ref>
@@ -1250,7 +1252,9 @@
         <ref>jpeg_decompress_struct.Unread_marker.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_save_markers.xml</ref>
       </node>
-      <node title="Progress monitoring" file="Classic\Progress_monitoring.xml" iconindex="0" />
+      <node title="Progress monitoring" file="Classic\Progress_monitoring.xml" iconindex="0">
+        <ref>jpeg_progress_mgr.xml</ref>
+      </node>
     </node>
   </node>
 </menu>

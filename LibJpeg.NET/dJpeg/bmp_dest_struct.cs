@@ -141,7 +141,7 @@ namespace BitMiracle.dJpeg
                 {
                     progress.Pass_counter = cinfo.Output_height - row;
                     progress.Pass_limit = cinfo.Output_height;
-                    progress.progress_monitor();
+                    progress.Updated();
                 }
 
                 byte[][] image_ptr = whole_image.access_virt_sarray(row - 1, 1);

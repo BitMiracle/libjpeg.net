@@ -11,7 +11,8 @@
         <text>jpeg_progress_mgr</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Passes completed so far.</text> </descriptionarticle>
     <signature>
       <property access="full">
         <name>Completed_passes</name>

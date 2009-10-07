@@ -7,10 +7,13 @@
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Progress monitor object.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Progress monitoring" file="Classic\Progress_monitoring.xml" />
+    </seealso>
     <signature>
       <class>
-        <mod2>abstract</mod2>
         <name>jpeg_progress_mgr</name>
       </class>
     </signature>

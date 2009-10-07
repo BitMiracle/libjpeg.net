@@ -24,9 +24,5 @@ namespace BitMiracle.cdJpeg
         public int total_extra_passes; /* total extra */
         /* last printed percentage stored here to avoid multiple printouts */
         //public int percent_done;
-
-        public override void progress_monitor()
-        {
-        }
     }
 }

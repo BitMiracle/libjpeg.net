@@ -11,7 +11,8 @@
         <text>jpeg_progress_mgr</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Total number of passes expected.</text> </descriptionarticle>
     <signature>
       <property access="full">
         <name>Total_passes</name>

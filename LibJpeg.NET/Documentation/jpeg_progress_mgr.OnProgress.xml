@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>Pass_counter</title>
+    <title>OnProgress</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -11,13 +11,11 @@
         <text>jpeg_progress_mgr</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false">
-      <text>Work units completed in this pass.</text> </descriptionarticle>
+    <descriptionarticle only="false" />
     <signature>
-      <property access="full">
-        <name>Pass_counter</name>
-        <return type="Int32" />
-      </property>
+      <event>
+        <name>OnProgress</name>
+      </event>
     </signature>
   </file>
 </xml>
