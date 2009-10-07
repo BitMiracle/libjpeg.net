@@ -16,10 +16,9 @@
     <signature>
       <property access="full">
         <name>Progress</name>
-        <return type="jpeg_progress_mgr" file="jpeg_progress_mgr.xml" />
+        <return type="jpeg_progress_mgr" file="jpeg_progress_mgr.xml">
+          <text>Default value: </text> <b><text>null</text> </b></return>
       </property>
     </signature>
-    <remarks>
-      <text>Can be null.</text> </remarks>
   </file>
 </xml>

@@ -11,12 +11,17 @@
         <text>jpeg_progress_mgr</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <p>
+        <text>Indicates that progress was changed.</text> </p>
+    </descriptionarticle>
     <signature>
       <function>
         <name>Updated</name>
         <return type="void" />
       </function>
     </signature>
+    <remarks>
+      <text>Call this method if you change some progress parameters manually. This method ensures happening of the </text> <link file="jpeg_progress_mgr.OnProgress.xml"><text>OnProgress</text> </link><text> event.</text> </remarks>
   </file>
 </xml>

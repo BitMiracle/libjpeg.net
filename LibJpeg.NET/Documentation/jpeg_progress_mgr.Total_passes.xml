@@ -13,6 +13,9 @@
     </breadcumbs>
     <descriptionarticle only="false">
       <text>Total number of passes expected.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Progress monitoring" file="Classic\Progress_monitoring.xml" />
+    </seealso>
     <signature>
       <property access="full">
         <name>Total_passes</name>

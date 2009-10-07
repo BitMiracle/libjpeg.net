@@ -11,10 +11,15 @@
         <text>jpeg_progress_mgr</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Occurred when progress is changed.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="Progress monitoring" file="Classic\Progress_monitoring.xml" />
+    </seealso>
     <signature>
       <event>
         <name>OnProgress</name>
+        <type>EventHandler</type>
       </event>
     </signature>
   </file>
