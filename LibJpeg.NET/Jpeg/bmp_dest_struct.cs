@@ -48,7 +48,7 @@ namespace BitMiracle.Jpeg
         private bool m_putGrayRows;
         private bool is_os2;        /* saves the OS2 format request flag */
 
-        private jvirt_sarray_control whole_image;  /* needed to reverse row order */
+        private jvirt_array<byte> whole_image;  /* needed to reverse row order */
         private int data_width;  /* bytes per row */
         private int row_width;       /* physical width of one row in the BMP file */
         private int pad_bytes;      /* number of padding bytes needed per row */
@@ -87,7 +87,9 @@ namespace BitMiracle.Jpeg
             pad_bytes = row_width - data_width;
 
             /* Allocate space for inversion array, prepare for write pass */
-            whole_image = new jvirt_sarray_control(cinfo, row_width, cinfo.Output_height);
+            whole_image = jpeg_common_struct.CreateSamplesArray(row_width, cinfo.Output_height);
+            whole_image.ErrorProcessor = cinfo;
+
             cur_output_row = 0;
             if (cinfo.Progress != null)
             {
@@ -144,7 +146,7 @@ namespace BitMiracle.Jpeg
                     progress.Updated();
                 }
 
-                byte[][] image_ptr = whole_image.access_virt_sarray(row - 1, 1);
+                byte[][] image_ptr = whole_image.Access(row - 1, 1);
                 int imageIndex = 0;
                 for (int col = row_width; col > 0; col--)
                 {
@@ -169,7 +171,7 @@ namespace BitMiracle.Jpeg
         private void put_24bit_rows(int rows_supplied)
         {
             /* Access next row in virtual array */
-            byte[][] image_ptr = whole_image.access_virt_sarray(cur_output_row, 1);
+            byte[][] image_ptr = whole_image.Access(cur_output_row, 1);
             cur_output_row++;
 
             /* Transfer data.  Note destination values must be in BGR order
@@ -206,7 +208,7 @@ namespace BitMiracle.Jpeg
         private void put_gray_rows(int rows_supplied)
         {
             /* Access next row in virtual array */
-            byte[][] image_ptr = whole_image.access_virt_sarray(cur_output_row, 1);
+            byte[][] image_ptr = whole_image.Access(cur_output_row, 1);
             cur_output_row++;
 
             /* Transfer data. */

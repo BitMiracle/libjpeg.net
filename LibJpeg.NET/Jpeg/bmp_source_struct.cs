@@ -46,7 +46,7 @@ namespace BitMiracle.Jpeg
         private byte[][] colormap;
 
         // Needed to reverse row order
-        private jvirt_sarray_control whole_image;
+        private jvirt_array<byte> whole_image;
 
         // Current source row number
         private int source_row;
@@ -211,7 +211,8 @@ namespace BitMiracle.Jpeg
                 row_width++;
 
             /* Allocate space for inversion array, prepare for preload pass */
-            whole_image = new jvirt_sarray_control(cinfo, row_width, biHeight);
+            whole_image = jpeg_common_struct.CreateSamplesArray(row_width, biHeight);
+            whole_image.ErrorProcessor = cinfo;
             m_pixelRowsMethod = PixelRowsMethod.preload;
             if (cinfo.Progress != null)
             {
@@ -258,7 +259,7 @@ namespace BitMiracle.Jpeg
             /* Fetch next row from virtual array */
             source_row--;
 
-            byte[][] image_ptr = whole_image.access_virt_sarray(source_row, 1);
+            byte[][] image_ptr = whole_image.Access(source_row, 1);
 
             /* Expand the colormap indexes to real data */
             int imageIndex = 0;
@@ -290,7 +291,7 @@ namespace BitMiracle.Jpeg
         {
             /* Fetch next row from virtual array */
             source_row--;
-            byte[][] image_ptr = whole_image.access_virt_sarray(source_row, 1);
+            byte[][] image_ptr = whole_image.Access(source_row, 1);
 
             /* Transfer data.  Note source values are in BGR order
              * (even though Microsoft's own documents say the opposite).
@@ -330,7 +331,7 @@ namespace BitMiracle.Jpeg
                     progress.Updated();
                 }
 
-                byte[][] image_ptr = whole_image.access_virt_sarray(row, 1);
+                byte[][] image_ptr = whole_image.Access(row, 1);
                 int imageIndex = 0;
                 for (int col = row_width; col > 0; col--)
                 {
