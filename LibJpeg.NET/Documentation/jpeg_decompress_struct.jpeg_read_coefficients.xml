@@ -12,47 +12,17 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Read or write the raw DCT coefficient arrays from a JPEG file (useful for lossless transcoding).</text>
-    </descriptionarticle>
+      <text>Read or write the raw DCT coefficient arrays from a JPEG file (useful for lossless transcoding).</text> </descriptionarticle>
     <signature>
       <function>
         <name>jpeg_read_coefficients</name>
-        <return type="jvirt_barray_control">
-          <text>Returns </text>
-          <b>
-            <text>null</text>
-          </b>
-          <text> if suspended. This case need be checked only if a suspending data source is used.</text>
-        </return>
+        <return type="jvirt_array&lt;JBLOCK&gt;" file="jvirt_array.xml">
+          <text>Returns </text> <b><text>null</text> </b><text> if suspended. This case need be checked only if a suspending data source is used.</text> </return>
       </function>
     </signature>
     <remarks>
       <link file="jpeg_decompress_struct.jpeg_read_header.xml">
-        <text>jpeg_read_header</text>
-      </link>
-      <text> must be completed before calling this.</text>
-      <br />
-      <br />
-      <text>The entire image is read into a set of virtual coefficient-block arrays, one per component. The return value is an array of virtual-array descriptors.</text>
-      <br />
-      <br />
-      <text>An alternative usage is to simply obtain access to the coefficient arrays during a </text>
-      <link file="Classic/Buffered_image_mode.xml">
-        <text>buffered-image-mode</text>
-      </link>
-      <text> decompression operation. This is allowed after any </text>
-      <link file="jpeg_decompress_struct.jpeg_finish_output.xml">
-        <text>jpeg_finish_output</text>
-      </link>
-      <text>() call. The arrays can be accessed until </text>
-      <link file="jpeg_decompress_struct.jpeg_finish_decompress.xml">
-        <text>jpeg_finish_decompress</text>
-      </link>
-      <text>() is called. Note that any call to the library may reposition the arrays, so don't rely on </text>
-      <link file="jvirt_barray_control.access_virt_barray.xml">
-        <text>access_virt_barray</text>
-      </link>
-      <text>() results to stay valid across library calls.</text>
-    </remarks>
+        <text>jpeg_read_header</text> </link>
+      <text> must be completed before calling this.</text> <br /><br /><text>The entire image is read into a set of virtual coefficient-block arrays, one per component. The return value is an array of virtual-array descriptors.</text> <br /><br /><text>An alternative usage is to simply obtain access to the coefficient arrays during a </text> <link file="Classic/Buffered_image_mode.xml"><text>buffered-image-mode</text> </link><text> decompression operation. This is allowed after any </text> <link file="jpeg_decompress_struct.jpeg_finish_output.xml"><text>jpeg_finish_output</text> </link><text>() call. The arrays can be accessed until </text> <link file="jpeg_decompress_struct.jpeg_finish_decompress.xml"><text>jpeg_finish_decompress</text> </link><text>() is called. Note that any call to the library may reposition the arrays, so don't rely on </text> <link file="jvirt_array.Access.xml"><text>Access</text> </link><text>() results to stay valid across library calls.</text> </remarks>
   </file>
 </xml>

@@ -15,6 +15,48 @@
       </class>
     </signature>
     <remarks>
-      <text>You can't create virtual array manually. For creation use methods </text> <link file="jpeg_common_struct.CreateSamplesArray.xml"><text>CreateSamplesArray</text> </link><text> and </text> <link file="jpeg_common_struct.CreateBlocksArray.xml"><text>CreateBlocksArray</text> </link><text>.</text> </remarks>
+      <p>
+        <text>You can't create virtual array manually. For creation use methods </text> <link file="jpeg_common_struct.CreateSamplesArray.xml"><text>CreateSamplesArray</text> </link><text> and </text> <link file="jpeg_common_struct.CreateBlocksArray.xml"><text>CreateBlocksArray</text> </link><text>.</text> </p>
+      <p>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <text> </text> </td>
+              <td>
+                <b>
+                  <text>Member</text> </b>
+              </td>
+              <td>
+                <b>
+                  <text>Description</text> </b>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              </td>
+              <td>
+                <link file="jvirt_array.ErrorProcessor.xml">
+                  <text>ErrorProcessor</text> </link>
+              </td>
+              <td>
+                <text>Uses only for calling </text> <link file="jpeg_common_struct.ERREXIT.xml"><text>ERREXIT</text> </link><text> on error.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              </td>
+              <td>
+                <link file="jvirt_array.Access.xml">
+                  <text>Access</text> </link>
+              </td>
+              <td>
+                <text>Access the part of a virtual array.</text> </td>
+            </tr>
+          </tbody>
+        </table>
+      </p>
+    </remarks>
   </file>
 </xml>

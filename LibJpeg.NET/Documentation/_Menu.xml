@@ -340,6 +340,7 @@
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT.xml" iconindex="23">
         <ref>Classic\Error_handling.xml</ref>
         <ref>jvirt_array.ErrorProcessor.xml</ref>
+        <ref>jvirt_array.xml</ref>
       </node>
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT2.xml" iconindex="23" />
       <node title="ERREXIT" file="jpeg_common_struct.ERREXIT3.xml" iconindex="23">
@@ -1087,8 +1088,15 @@
       <ref>jvirt_array.Access.xml</ref>
       <ref>jpeg_common_struct.CreateSamplesArray.xml</ref>
       <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
-      <node title="ErrorProcessor" file="jvirt_array.ErrorProcessor.xml" iconindex="27" />
-      <node title="Access" file="jvirt_array.Access.xml" iconindex="23" />
+      <ref>jpeg_compress_struct.jpeg_write_coefficients.xml</ref>
+      <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
+      <node title="ErrorProcessor" file="jvirt_array.ErrorProcessor.xml" iconindex="27">
+        <ref>jvirt_array.xml</ref>
+      </node>
+      <node title="Access" file="jvirt_array.Access.xml" iconindex="23">
+        <ref>jvirt_array.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
+      </node>
     </node>
     <node title="JBLOCK" file="JBLOCK.xml" iconindex="6">
       <ref>JBLOCK.get_Item.xml</ref>
@@ -1276,6 +1284,7 @@
         <ref>jpeg_decompress_struct.jpeg_input_complete.xml</ref>
         <ref>jpeg_decompress_struct.Buffered_image.xml</ref>
         <ref>Classic\Progress_monitoring.xml</ref>
+        <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
       </node>
       <node title="Special markers" file="Classic\Special_markers.xml" iconindex="0">
         <ref>Classic\Special_color_spaces.xml</ref>

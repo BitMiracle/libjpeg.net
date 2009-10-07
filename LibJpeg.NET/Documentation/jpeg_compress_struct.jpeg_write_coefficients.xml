@@ -12,23 +12,17 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Compression initialization for writing raw-coefficient data. Useful for lossless transcoding.</text>
-    </descriptionarticle>
+      <text>Compression initialization for writing raw-coefficient data. Useful for lossless transcoding.</text> </descriptionarticle>
     <signature>
       <function>
         <name>jpeg_write_coefficients</name>
         <return type="void" />
         <parameters>
-          <parameter name="coef_arrays" type="jvirt_barray_control[]">The virtual arrays need not be filled or even realized at the time write_coefficients is called; indeed, the virtual arrays typically will be realized during this routine and filled afterwards.</parameter>
+          <parameter name="coef_arrays" type="jvirt_array&lt;JBLOCK&gt;[]" file="jvirt_array.xml">The virtual arrays need not be filled or even realized at the time write_coefficients is called; indeed, the virtual arrays typically will be realized during this routine and filled afterwards.</parameter>
         </parameters>
       </function>
     </signature>
     <remarks>
-      <text>Before calling this, all parameters and a data destination must be set up. Call </text>
-      <link file="jpeg_compress_struct.jpeg_finish_compress.xml">
-        <text>jpeg_finish_compress</text>
-      </link>
-      <text>() to actually write the data.</text>
-    </remarks>
+      <text>Before calling this, all parameters and a data destination must be set up. Call </text> <link file="jpeg_compress_struct.jpeg_finish_compress.xml"><text>jpeg_finish_compress</text> </link><text>() to actually write the data.</text> </remarks>
   </file>
 </xml>
