@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>progress_monitor</title>
+    <title>Total_passes</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
@@ -13,11 +13,10 @@
     </breadcumbs>
     <descriptionarticle only="false" />
     <signature>
-      <function>
-        <mod2>abstract</mod2>
-        <name>progress_monitor</name>
-        <return type="void" />
-      </function>
+      <property access="full">
+        <name>Total_passes</name>
+        <return type="Int32" />
+      </property>
     </signature>
   </file>
 </xml>

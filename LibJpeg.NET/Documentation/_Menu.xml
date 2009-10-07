@@ -267,6 +267,11 @@
     <ref>jpeg_decompress_struct.jpeg_copy_critical_parameters.xml</ref>
     <ref>jpeg_error_mgr.ctor.xml</ref>
     <ref>jpeg_error_mgr.Num_warnings.xml</ref>
+    <ref>jpeg_progress_mgr.progress_monitor.xml</ref>
+    <ref>jpeg_progress_mgr.Pass_counter.xml</ref>
+    <ref>jpeg_progress_mgr.Pass_limit.xml</ref>
+    <ref>jpeg_progress_mgr.Completed_passes.xml</ref>
+    <ref>jpeg_progress_mgr.Total_passes.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -1023,14 +1028,15 @@
     <node title="jpeg_progress_mgr" file="jpeg_progress_mgr.xml" iconindex="6">
       <ref>\jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.AllocJpegSamples.xml</ref>
-      <node title="get_Pass_counter" file="jpeg_progress_mgr.get_Pass_counter.xml" iconindex="23" />
-      <node title="set_Pass_counter" file="jpeg_progress_mgr.set_Pass_counter.xml" iconindex="23" />
-      <node title="get_Pass_limit" file="jpeg_progress_mgr.get_Pass_limit.xml" iconindex="23" />
-      <node title="set_Pass_limit" file="jpeg_progress_mgr.set_Pass_limit.xml" iconindex="23" />
-      <node title="get_Completed_passes" file="jpeg_progress_mgr.get_Completed_passes.xml" iconindex="23" />
-      <node title="set_Completed_passes" file="jpeg_progress_mgr.set_Completed_passes.xml" iconindex="23" />
-      <node title="get_Total_passes" file="jpeg_progress_mgr.get_Total_passes.xml" iconindex="23" />
-      <node title="set_Total_passes" file="jpeg_progress_mgr.set_Total_passes.xml" iconindex="23" />
+      <ref>jpeg_progress_mgr.progress_monitor.xml</ref>
+      <ref>jpeg_progress_mgr.Pass_counter.xml</ref>
+      <ref>jpeg_progress_mgr.Pass_limit.xml</ref>
+      <ref>jpeg_progress_mgr.Completed_passes.xml</ref>
+      <ref>jpeg_progress_mgr.Total_passes.xml</ref>
+      <node title="Pass_counter" file="jpeg_progress_mgr.Pass_counter.xml" iconindex="27" />
+      <node title="Pass_limit" file="jpeg_progress_mgr.Pass_limit.xml" iconindex="27" />
+      <node title="Completed_passes" file="jpeg_progress_mgr.Completed_passes.xml" iconindex="27" />
+      <node title="Total_passes" file="jpeg_progress_mgr.Total_passes.xml" iconindex="27" />
       <node title="progress_monitor" file="jpeg_progress_mgr.progress_monitor.xml" iconindex="23" />
     </node>
     <node title="jvirt_barray_control" file="jvirt_barray_control.xml" iconindex="6">
@@ -1109,6 +1115,7 @@
     <ref>Classic\Special_color_spaces.xml</ref>
     <ref>Classic\Outline_of_typical_usage.xml</ref>
     <ref>Classic\Decompression_details.xml</ref>
+    <ref>Classic\Progress_monitoring.xml</ref>
     <node title="Classic LibJpeg" file="Classic_LibJpeg.xml" iconindex="0">
       <ref>Classic\Outline_of_typical_usage.xml</ref>
       <ref>Classic\Data_formats.xml</ref>
@@ -1122,6 +1129,7 @@
       <ref>Classic\Buffered_image_mode.xml</ref>
       <ref>Classic\Progressive_JPEG_support.xml</ref>
       <ref>Classic\Special_markers.xml</ref>
+      <ref>Classic\Progress_monitoring.xml</ref>
       <node title="Outline of typical usage" file="Classic\Outline_of_typical_usage.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>
         <ref>Classic\Decompression_details.xml</ref>
@@ -1242,6 +1250,7 @@
         <ref>jpeg_decompress_struct.Unread_marker.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_save_markers.xml</ref>
       </node>
+      <node title="Progress monitoring" file="Classic\Progress_monitoring.xml" iconindex="0" />
     </node>
   </node>
 </menu>
