@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>NUM_QUANT_TBLS</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="JpegConstants.xml">
+        <text>JpegConstants</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false" />
+    <signature>
+      <variable>
+        <mod2>const</mod2>
+        <name>NUM_QUANT_TBLS</name>
+        <type>Int32</type>
+      </variable>
+    </signature>
+  </file>
+</xml>

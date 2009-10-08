@@ -121,7 +121,6 @@
   <node title="BitMiracle.LibJpeg.Classic namespace" file="BitMiracle_LibJpeg_Classic.xml" iconindex="0">
     <ref>ReadResult.xml</ref>
     <ref>JBLOCK.xml</ref>
-    <ref>JBLOCK.get_Item.xml</ref>
     <ref>JPEG_MARKER.xml</ref>
     <ref>jpeg_common_struct.xml</ref>
     <ref>J_COLOR_SPACE.xml</ref>
@@ -130,7 +129,6 @@
     <ref>jpeg_decompress_struct.xml</ref>
     <ref>J_MESSAGE_CODE.xml</ref>
     <ref>JpegConstants.xml</ref>
-    <ref>JBLOCK.set_Item.xml</ref>
     <ref>jpeg_compress_struct.xml</ref>
     <ref>jpeg_common_struct.Progress.xml</ref>
     <ref>jpeg_progress_mgr.xml</ref>
@@ -276,6 +274,7 @@
     <ref>jvirt_array.Access.xml</ref>
     <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
     <ref>jpeg_common_struct.CreateSamplesArray.xml</ref>
+    <ref>JBLOCK.Item.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -1099,15 +1098,34 @@
       </node>
     </node>
     <node title="JBLOCK" file="JBLOCK.xml" iconindex="6">
-      <ref>JBLOCK.get_Item.xml</ref>
-      <ref>JBLOCK.set_Item.xml</ref>
       <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
-      <ref>jpeg_common_struct.CreateSamplesArray.xml</ref>
-      <node title="get_Item" file="JBLOCK.get_Item.xml" iconindex="23" />
-      <node title="set_Item" file="JBLOCK.set_Item.xml" iconindex="23" />
+      <ref>JBLOCK.Item.xml</ref>
+      <node title="Item" file="JBLOCK.Item.xml" iconindex="27">
+        <ref>JBLOCK.xml</ref>
+      </node>
     </node>
     <node title="JpegConstants" file="JpegConstants.xml" iconindex="6">
       <ref>Classic\Data_formats.xml</ref>
+	  <node title="DCTSIZE" file="JpegConstants.DCTSIZE.xml" />
+		<node title="DCTSIZE2" file="JpegConstants.DCTSIZE2.xml" />
+		<node title="NUM_QUANT_TBLS" file="JpegConstants.NUM_QUANT_TBLS.xml" />
+		<node title="NUM_HUFF_TBLS" file="JpegConstants.NUM_HUFF_TBLS.xml" />
+		<node title="MAX_COMPS_IN_SCAN" file="JpegConstants.MAX_COMPS_IN_SCAN.xml" />
+		<node title="C_MAX_BLOCKS_IN_MCU" file="JpegConstants.C_MAX_BLOCKS_IN_MCU.xml" />
+		<node title="D_MAX_BLOCKS_IN_MCU" file="JpegConstants.D_MAX_BLOCKS_IN_MCU.xml" />
+		<node title="MAX_SAMP_FACTOR" file="JpegConstants.MAX_SAMP_FACTOR.xml" />
+		<node title="MAX_COMPONENTS" file="JpegConstants.MAX_COMPONENTS.xml" />
+		<node title="BITS_IN_JSAMPLE" file="JpegConstants.BITS_IN_JSAMPLE.xml" />
+		<node title="JDCT_DEFAULT" file="JpegConstants.JDCT_DEFAULT.xml" />
+		<node title="JDCT_FASTEST" file="JpegConstants.JDCT_FASTEST.xml" />
+		<node title="JPEG_MAX_DIMENSION" file="JpegConstants.JPEG_MAX_DIMENSION.xml" />
+		<node title="MAXJSAMPLE" file="JpegConstants.MAXJSAMPLE.xml" />
+		<node title="CENTERJSAMPLE" file="JpegConstants.CENTERJSAMPLE.xml" />
+		<node title="RGB_RED" file="JpegConstants.RGB_RED.xml" />
+		<node title="RGB_GREEN" file="JpegConstants.RGB_GREEN.xml" />
+		<node title="RGB_BLUE" file="JpegConstants.RGB_BLUE.xml" />
+		<node title="RGB_PIXELSIZE" file="JpegConstants.RGB_PIXELSIZE.xml" />
+		<node title="HUFF_LOOKAHEAD" file="JpegConstants.HUFF_LOOKAHEAD.xml" />
     </node>
     <node title="DensityUnit" file="DensityUnit.xml" iconindex="10">
       <ref>jpeg_compress_struct.Density_unit.xml</ref>

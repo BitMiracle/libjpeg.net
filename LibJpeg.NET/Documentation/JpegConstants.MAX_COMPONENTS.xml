@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>MAX_COMPONENTS</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<variable>
+				<mod2>const</mod2>
+				<name>MAX_COMPONENTS</name>
+				<type>Int32</type>
+				</variable>
+		</signature>
+	</file>
+</xml>

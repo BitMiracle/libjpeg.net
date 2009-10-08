@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<file>
+		<title>JDCT_DEFAULT</title>
+		<descriptionArticle only="false" />
+		<signature>
+			<variable>
+				<mod2>const</mod2>
+				<name>JDCT_DEFAULT</name>
+				<type file="J_DCT_METHOD.xml">J_DCT_METHOD</type>
+				</variable>
+		</signature>
+	</file>
+</xml>
