@@ -1,14 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>MAX_COMPONENTS</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<variable>
-				<mod2>const</mod2>
-				<name>MAX_COMPONENTS</name>
-				<type>Int32</type>
-				</variable>
-		</signature>
-	</file>
+  <file>
+    <title>MAX_COMPONENTS</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="JpegConstants.xml">
+        <text>JpegConstants</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Maximum number of components (color channels) allowed in JPEG image.</text> </descriptionarticle>
+    <signature>
+      <variable>
+        <mod2>const</mod2>
+        <name>MAX_COMPONENTS</name>
+        <type>Int32</type>
+      </variable>
+    </signature>
+    <remarks>
+      <p>
+        <text>Original value: </text> <b><text>10</text> </b></p>
+      <p>
+        <text>You can change it if you need.</text> </p>
+    </remarks>
+  </file>
 </xml>

@@ -13,6 +13,7 @@
     <mod2>static</mod2>
     <mod2>virtual</mod2>
     <mod2>abstract</mod2>
+    <mod2>const</mod2>
   </mod2s>
   <langs>
     <lang>C#</lang>

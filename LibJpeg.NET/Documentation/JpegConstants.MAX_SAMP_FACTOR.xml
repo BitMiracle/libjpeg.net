@@ -1,14 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
-	<file>
-		<title>MAX_SAMP_FACTOR</title>
-		<descriptionArticle only="false" />
-		<signature>
-			<variable>
-				<mod2>const</mod2>
-				<name>MAX_SAMP_FACTOR</name>
-				<type>Int32</type>
-				</variable>
-		</signature>
-	</file>
+  <file>
+    <title>MAX_SAMP_FACTOR</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="JpegConstants.xml">
+        <text>JpegConstants</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>JPEG limit on sampling factors.</text> </descriptionarticle>
+    <signature>
+      <variable>
+        <mod2>const</mod2>
+        <name>MAX_SAMP_FACTOR = 4;</name>
+        <type>Int32</type>
+      </variable>
+    </signature>
+    <remarks>
+      <text>This value is specified by the JPEG standard, so don't change it if you want to be compatible.</text> </remarks>
+  </file>
 </xml>
