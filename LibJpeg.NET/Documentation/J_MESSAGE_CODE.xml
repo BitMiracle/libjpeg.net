@@ -9,6 +9,9 @@
     </breadcumbs>
     <descriptionarticle only="false">
       <text>Message codes used in code to signal errors, warning and trace messages.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="jpeg_error_mgr" file="jpeg_error_mgr.xml" />
+    </seealso>
     <signature>
       <enum>
         <name>J_MESSAGE_CODE</name>
@@ -43,7 +46,7 @@
                 <text>JMSG_NOMESSAGE</text> </p>
             </td>
             <td>
-            </td>
+              <text>Must be first entry!</text> </td>
             <td>
               <p align="center">
                 <text>0</text> </p>
@@ -55,7 +58,7 @@
                 <text>JERR_ARITH_NOTIMPL</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>1</text> </p>
@@ -67,7 +70,7 @@
                 <text>JERR_BAD_BUFFER_MODE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>2</text> </p>
@@ -79,7 +82,7 @@
                 <text>JERR_BAD_COMPONENT_ID</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>3</text> </p>
@@ -91,7 +94,7 @@
                 <text>JERR_BAD_DCT_COEF</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>4</text> </p>
@@ -103,7 +106,7 @@
                 <text>JERR_BAD_DCTSIZE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>5</text> </p>
@@ -115,7 +118,7 @@
                 <text>JERR_BAD_HUFF_TABLE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>6</text> </p>
@@ -127,7 +130,7 @@
                 <text>JERR_BAD_IN_COLORSPACE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>7</text> </p>
@@ -139,7 +142,7 @@
                 <text>JERR_BAD_J_COLORSPACE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>8</text> </p>
@@ -151,7 +154,7 @@
                 <text>JERR_BAD_LENGTH</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>9</text> </p>
@@ -163,7 +166,7 @@
                 <text>JERR_BAD_MCU_SIZE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>10</text> </p>
@@ -175,7 +178,7 @@
                 <text>JERR_BAD_PRECISION</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>11</text> </p>
@@ -187,7 +190,7 @@
                 <text>JERR_BAD_PROGRESSION</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>12</text> </p>
@@ -199,7 +202,7 @@
                 <text>JERR_BAD_PROG_SCRIPT</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>13</text> </p>
@@ -211,7 +214,7 @@
                 <text>JERR_BAD_SAMPLING</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>14</text> </p>
@@ -223,7 +226,7 @@
                 <text>JERR_BAD_SCAN_SCRIPT</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>15</text> </p>
@@ -235,7 +238,7 @@
                 <text>JERR_BAD_STATE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>16</text> </p>
@@ -247,7 +250,7 @@
                 <text>JERR_BAD_VIRTUAL_ACCESS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>17</text> </p>
@@ -259,7 +262,7 @@
                 <text>JERR_BUFFER_SIZE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>18</text> </p>
@@ -271,7 +274,7 @@
                 <text>JERR_CANT_SUSPEND</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>19</text> </p>
@@ -283,7 +286,7 @@
                 <text>JERR_CCIR601_NOTIMPL</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>20</text> </p>
@@ -295,7 +298,7 @@
                 <text>JERR_COMPONENT_COUNT</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>21</text> </p>
@@ -307,7 +310,7 @@
                 <text>JERR_CONVERSION_NOTIMPL</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>22</text> </p>
@@ -319,7 +322,7 @@
                 <text>JERR_DHT_INDEX</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>23</text> </p>
@@ -331,7 +334,7 @@
                 <text>JERR_DQT_INDEX</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>24</text> </p>
@@ -343,7 +346,7 @@
                 <text>JERR_EMPTY_IMAGE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>25</text> </p>
@@ -355,7 +358,7 @@
                 <text>JERR_EOI_EXPECTED</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>26</text> </p>
@@ -367,7 +370,7 @@
                 <text>JERR_FILE_WRITE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>27</text> </p>
@@ -379,7 +382,7 @@
                 <text>JERR_FRACT_SAMPLE_NOTIMPL</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>28</text> </p>
@@ -391,7 +394,7 @@
                 <text>JERR_HUFF_CLEN_OVERFLOW</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>29</text> </p>
@@ -403,7 +406,7 @@
                 <text>JERR_HUFF_MISSING_CODE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>30</text> </p>
@@ -415,7 +418,7 @@
                 <text>JERR_IMAGE_TOO_BIG</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>31</text> </p>
@@ -427,7 +430,7 @@
                 <text>JERR_INPUT_EMPTY</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>32</text> </p>
@@ -439,7 +442,7 @@
                 <text>JERR_INPUT_EOF</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>33</text> </p>
@@ -451,7 +454,7 @@
                 <text>JERR_MISMATCHED_QUANT_TABLE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>34</text> </p>
@@ -463,7 +466,7 @@
                 <text>JERR_MISSING_DATA</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>35</text> </p>
@@ -475,7 +478,7 @@
                 <text>JERR_MODE_CHANGE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>36</text> </p>
@@ -487,7 +490,7 @@
                 <text>JERR_NOTIMPL</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>37</text> </p>
@@ -499,7 +502,7 @@
                 <text>JERR_NOT_COMPILED</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>38</text> </p>
@@ -511,7 +514,7 @@
                 <text>JERR_NO_HUFF_TABLE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>39</text> </p>
@@ -523,7 +526,7 @@
                 <text>JERR_NO_IMAGE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>40</text> </p>
@@ -535,7 +538,7 @@
                 <text>JERR_NO_QUANT_TABLE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>41</text> </p>
@@ -547,7 +550,7 @@
                 <text>JERR_NO_SOI</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>42</text> </p>
@@ -559,7 +562,7 @@
                 <text>JERR_OUT_OF_MEMORY</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>43</text> </p>
@@ -571,7 +574,7 @@
                 <text>JERR_QUANT_COMPONENTS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>44</text> </p>
@@ -583,7 +586,7 @@
                 <text>JERR_QUANT_FEW_COLORS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>45</text> </p>
@@ -595,7 +598,7 @@
                 <text>JERR_QUANT_MANY_COLORS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>46</text> </p>
@@ -607,7 +610,7 @@
                 <text>JERR_SOF_DUPLICATE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>47</text> </p>
@@ -619,7 +622,7 @@
                 <text>JERR_SOF_NO_SOS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>48</text> </p>
@@ -631,7 +634,7 @@
                 <text>JERR_SOF_UNSUPPORTED</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>49</text> </p>
@@ -643,7 +646,7 @@
                 <text>JERR_SOI_DUPLICATE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>50</text> </p>
@@ -655,7 +658,7 @@
                 <text>JERR_SOS_NO_SOF</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>51</text> </p>
@@ -667,7 +670,7 @@
                 <text>JERR_TOO_LITTLE_DATA</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>52</text> </p>
@@ -679,7 +682,7 @@
                 <text>JERR_UNKNOWN_MARKER</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>53</text> </p>
@@ -691,7 +694,7 @@
                 <text>JERR_WIDTH_OVERFLOW</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>54</text> </p>
@@ -703,7 +706,7 @@
                 <text>JTRC_16BIT_TABLES</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>55</text> </p>
@@ -715,7 +718,7 @@
                 <text>JTRC_ADOBE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>56</text> </p>
@@ -727,7 +730,7 @@
                 <text>JTRC_APP0</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>57</text> </p>
@@ -739,7 +742,7 @@
                 <text>JTRC_APP14</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>58</text> </p>
@@ -751,7 +754,7 @@
                 <text>JTRC_DHT</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>59</text> </p>
@@ -763,7 +766,7 @@
                 <text>JTRC_DQT</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>60</text> </p>
@@ -775,7 +778,7 @@
                 <text>JTRC_DRI</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>61</text> </p>
@@ -787,7 +790,7 @@
                 <text>JTRC_EOI</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>62</text> </p>
@@ -799,7 +802,7 @@
                 <text>JTRC_HUFFBITS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>63</text> </p>
@@ -811,7 +814,7 @@
                 <text>JTRC_JFIF</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>64</text> </p>
@@ -823,7 +826,7 @@
                 <text>JTRC_JFIF_BADTHUMBNAILSIZE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>65</text> </p>
@@ -835,7 +838,7 @@
                 <text>JTRC_JFIF_EXTENSION</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>66</text> </p>
@@ -847,7 +850,7 @@
                 <text>JTRC_JFIF_THUMBNAIL</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>67</text> </p>
@@ -859,7 +862,7 @@
                 <text>JTRC_MISC_MARKER</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>68</text> </p>
@@ -871,7 +874,7 @@
                 <text>JTRC_PARMLESS_MARKER</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>69</text> </p>
@@ -883,7 +886,7 @@
                 <text>JTRC_QUANTVALS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>70</text> </p>
@@ -895,7 +898,7 @@
                 <text>JTRC_QUANT_3_NCOLORS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>71</text> </p>
@@ -907,7 +910,7 @@
                 <text>JTRC_QUANT_NCOLORS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>72</text> </p>
@@ -919,7 +922,7 @@
                 <text>JTRC_QUANT_SELECTED</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>73</text> </p>
@@ -931,7 +934,7 @@
                 <text>JTRC_RECOVERY_ACTION</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>74</text> </p>
@@ -943,7 +946,7 @@
                 <text>JTRC_RST</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>75</text> </p>
@@ -955,7 +958,7 @@
                 <text>JTRC_SMOOTH_NOTIMPL</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>76</text> </p>
@@ -967,7 +970,7 @@
                 <text>JTRC_SOF</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>77</text> </p>
@@ -979,7 +982,7 @@
                 <text>JTRC_SOF_COMPONENT</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>78</text> </p>
@@ -991,7 +994,7 @@
                 <text>JTRC_SOI</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>79</text> </p>
@@ -1003,7 +1006,7 @@
                 <text>JTRC_SOS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>80</text> </p>
@@ -1015,7 +1018,7 @@
                 <text>JTRC_SOS_COMPONENT</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>81</text> </p>
@@ -1027,7 +1030,7 @@
                 <text>JTRC_SOS_PARAMS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>82</text> </p>
@@ -1039,7 +1042,7 @@
                 <text>JTRC_THUMB_JPEG</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>83</text> </p>
@@ -1051,7 +1054,7 @@
                 <text>JTRC_THUMB_PALETTE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>84</text> </p>
@@ -1063,7 +1066,7 @@
                 <text>JTRC_THUMB_RGB</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>85</text> </p>
@@ -1075,7 +1078,7 @@
                 <text>JTRC_UNKNOWN_IDS</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>86</text> </p>
@@ -1087,7 +1090,7 @@
                 <text>JWRN_ADOBE_XFORM</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>87</text> </p>
@@ -1099,7 +1102,7 @@
                 <text>JWRN_BOGUS_PROGRESSION</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>88</text> </p>
@@ -1111,7 +1114,7 @@
                 <text>JWRN_EXTRANEOUS_DATA</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>89</text> </p>
@@ -1123,7 +1126,7 @@
                 <text>JWRN_HIT_MARKER</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>90</text> </p>
@@ -1135,7 +1138,7 @@
                 <text>JWRN_HUFF_BAD_CODE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>91</text> </p>
@@ -1147,7 +1150,7 @@
                 <text>JWRN_JFIF_MAJOR</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>92</text> </p>
@@ -1159,7 +1162,7 @@
                 <text>JWRN_JPEG_EOF</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>93</text> </p>
@@ -1171,7 +1174,7 @@
                 <text>JWRN_MUST_RESYNC</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>94</text> </p>
@@ -1183,7 +1186,7 @@
                 <text>JWRN_NOT_SEQUENTIAL</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>95</text> </p>
@@ -1195,7 +1198,7 @@
                 <text>JWRN_TOO_MUCH_DATA</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>96</text> </p>
@@ -1207,7 +1210,7 @@
                 <text>JMSG_UNKNOWNMSGCODE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>97</text> </p>
@@ -1219,7 +1222,7 @@
                 <text>JMSG_LASTMSGCODE</text> </p>
             </td>
             <td>
-            </td>
+              <text> </text> </td>
             <td>
               <p align="center">
                 <text>98</text> </p>
