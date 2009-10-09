@@ -11,11 +11,13 @@
         <text>CompressionParameters</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Coefficient of image smoothing.</text> </descriptionarticle>
     <signature>
       <property access="full">
         <name>SmoothingFactor</name>
-        <return type="Int32" />
+        <return type="Int32">
+          <text>Default value: </text> <b><text>0</text> </b><br /><br /><text>If non-zero, the input image is smoothed; the value should be 1 for</text> <br /><text>minimal smoothing to 100 for maximum smoothing.</text> </return>
       </property>
     </signature>
   </file>

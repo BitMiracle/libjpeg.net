@@ -11,11 +11,17 @@
         <text>CompressionParameters</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Quality of JPEG image.</text> </descriptionarticle>
     <signature>
       <property access="full">
         <name>Quality</name>
-        <return type="Int32" />
+        <return type="Int32">
+          <p>
+            <text>Default value: </text> <b><text>75</text> </b></p>
+          <p>
+            <text>The quality value is expressed on the 0..100 scale.</text> </p>
+        </return>
       </property>
     </signature>
   </file>

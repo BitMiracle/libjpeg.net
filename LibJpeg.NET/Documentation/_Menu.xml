@@ -18,7 +18,6 @@
     <ref>JpegImage.FromBitmap.xml</ref>
     <ref>CompressionParameters.Quality.xml</ref>
     <ref>CompressionParameters.SmoothingFactor.xml</ref>
-    <ref>CompressionParameters.ForceBaseline.xml</ref>
     <ref>CompressionParameters.SimpleProgressive.xml</ref>
     <ref>JpegImage.GetRow.xml</ref>
     <ref>SampleRow.ctor.xml</ref>
@@ -39,14 +38,22 @@
       <ref>CompressionParameters.ctor.xml</ref>
       <ref>CompressionParameters.Quality.xml</ref>
       <ref>CompressionParameters.SmoothingFactor.xml</ref>
-      <ref>CompressionParameters.ForceBaseline.xml</ref>
       <ref>CompressionParameters.SimpleProgressive.xml</ref>
-      <node title="CompressionParameters constructor" file="CompressionParameters.ctor.xml" iconindex="23" />
-      <node title="Equals" file="CompressionParameters.Equals.xml" iconindex="23" />
-      <node title="Quality" file="CompressionParameters.Quality.xml" iconindex="27" />
-      <node title="SmoothingFactor" file="CompressionParameters.SmoothingFactor.xml" iconindex="27" />
-      <node title="ForceBaseline" file="CompressionParameters.ForceBaseline.xml" iconindex="27" />
-      <node title="SimpleProgressive" file="CompressionParameters.SimpleProgressive.xml" iconindex="27" />
+      <node title="CompressionParameters constructor" file="CompressionParameters.ctor.xml" iconindex="23">
+        <ref>CompressionParameters.xml</ref>
+      </node>
+      <node title="Equals" file="CompressionParameters.Equals.xml" iconindex="23">
+        <ref>CompressionParameters.xml</ref>
+      </node>
+      <node title="Quality" file="CompressionParameters.Quality.xml" iconindex="27">
+        <ref>CompressionParameters.xml</ref>
+      </node>
+      <node title="SmoothingFactor" file="CompressionParameters.SmoothingFactor.xml" iconindex="27">
+        <ref>CompressionParameters.xml</ref>
+      </node>
+      <node title="SimpleProgressive" file="CompressionParameters.SimpleProgressive.xml" iconindex="27">
+        <ref>CompressionParameters.xml</ref>
+      </node>
     </node>
     <node title="JpegImage" file="JpegImage.xml" iconindex="6">
       <ref>JpegImage.WriteJpeg.xml</ref>
@@ -1007,6 +1014,7 @@
       <ref>jpeg_decompress_struct.ctor1.xml</ref>
       <ref>jpeg_error_mgr.ctor.xml</ref>
       <ref>jpeg_error_mgr.Num_warnings.xml</ref>
+      <ref>J_MESSAGE_CODE.xml</ref>
       <node title="jpeg_error_mgr constructor" file="jpeg_error_mgr.ctor.xml" iconindex="23">
         <ref>jpeg_error_mgr.xml</ref>
       </node>

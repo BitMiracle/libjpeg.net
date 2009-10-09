@@ -11,7 +11,8 @@
         <text>CompressionParameters</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Default constructor.</text> </descriptionarticle>
     <signature>
       <function>
         <name>CompressionParameters</name>

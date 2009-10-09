@@ -11,14 +11,17 @@
         <text>CompressionParameters</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <p>
+        <text>Overloaded comparison of CompressionParameter objects.</text> </p>
+    </descriptionarticle>
     <signature>
       <function>
         <mod2>virtual</mod2>
         <name>Equals</name>
         <return type="Boolean" />
         <parameters>
-          <parameter name="obj" type="Object" file="Object.xml" />
+          <parameter name="obj" type="Object">The  object to compare with this.</parameter>
         </parameters>
       </function>
     </signature>

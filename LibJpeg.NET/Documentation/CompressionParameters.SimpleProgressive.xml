@@ -11,7 +11,8 @@
         <text>CompressionParameters</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>For writing a progressive-JPEG file.</text> </descriptionarticle>
     <signature>
       <property access="full">
         <name>SimpleProgressive</name>

@@ -21,7 +21,7 @@
         <name>Smoothing_factor</name>
         <return type="Int32">
           <p>
-            <text>Default value: 0</text> </p>
+            <text>Default value: </text> <b><text>0</text> </b></p>
           <p>
             <text>If non-zero, the input image is smoothed; the value should be 1 for</text> <br /><text>minimal smoothing to 100 for maximum smoothing.</text> </p>
         </return>
