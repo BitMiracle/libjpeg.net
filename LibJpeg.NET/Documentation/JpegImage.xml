@@ -95,7 +95,7 @@
                 <text>Width</text> </link>
             </td>
             <td>
-              <text>Gets the width of image in samples (pixels). </text> </td>
+              <text>Gets the width of image in samples. </text> </td>
           </tr>
           <tr>
             <td>
@@ -106,7 +106,7 @@
                 <text>Height</text> </link>
             </td>
             <td>
-              <text>Gets the height of image in samples (pixels). </text> </td>
+              <text>Gets the height of image in samples.</text> </td>
           </tr>
           <tr>
             <td>

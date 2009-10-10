@@ -12,7 +12,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Gets the number of bits per color component of sample.</text> </descriptionarticle>
+      <text>Gets the number of bits per color component of </text> <link file="Sample.xml"><text>sample</text> </link><text>.</text> </descriptionarticle>
     <signature>
       <property access="read">
         <name>BitsPerComponent</name>

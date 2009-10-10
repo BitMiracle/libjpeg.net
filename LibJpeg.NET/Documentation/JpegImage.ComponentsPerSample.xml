@@ -12,7 +12,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Gets the number of color components per sample.</text> </descriptionarticle>
+      <text>Gets the number of color components per </text> <link file="Sample.xml"><text>sample</text> </link><text>.</text> </descriptionarticle>
     <signature>
       <property access="read">
         <name>ComponentsPerSample</name>

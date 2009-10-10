@@ -12,7 +12,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Gets the width of image in samples (pixels).</text> </descriptionarticle>
+      <text>Gets the width of image in </text> <link file="Sample.xml"><text>samples</text> </link><text>.</text> </descriptionarticle>
     <signature>
       <property access="read">
         <name>Width</name>
