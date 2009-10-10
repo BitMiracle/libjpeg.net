@@ -11,7 +11,8 @@
         <text>JpegImage</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Gets the height of image in samples (pixels).</text> </descriptionarticle>
     <signature>
       <property access="read">
         <name>Height</name>

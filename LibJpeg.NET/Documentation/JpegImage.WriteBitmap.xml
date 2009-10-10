@@ -11,13 +11,14 @@
         <text>JpegImage</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Writes decompressed image data as bitmap to stream.</text> </descriptionarticle>
     <signature>
       <function>
         <name>WriteBitmap</name>
         <return type="void" />
         <parameters>
-          <parameter name="output" type="Stream" />
+          <parameter name="output" type="Stream">Output stream.</parameter>
         </parameters>
       </function>
     </signature>

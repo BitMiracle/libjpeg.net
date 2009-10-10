@@ -20,7 +20,7 @@
       <function>
         <name>JpegImage</name>
         <parameters>
-          <parameter name="imageData" type="Stream">Stream contained bytes of image in arbitrary format (BMP, Jpeg, GIF, PNG, TIFF, e.t.c)</parameter>
+          <parameter name="imageData" type="Stream">Stream containing bytes of image in arbitrary format (BMP, Jpeg, GIF, PNG, TIFF, e.t.c)</parameter>
         </parameters>
       </function>
     </signature>

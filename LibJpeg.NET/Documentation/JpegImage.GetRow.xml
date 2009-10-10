@@ -11,13 +11,14 @@
         <text>JpegImage</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Retrieves the required row of image.</text> </descriptionarticle>
     <signature>
       <function>
         <name>GetRow</name>
         <return type="SampleRow" file="SampleRow.xml" />
         <parameters>
-          <parameter name="rowNumber" type="Int32" />
+          <parameter name="rowNumber" type="Int32">The number of row.</parameter>
         </parameters>
       </function>
     </signature>

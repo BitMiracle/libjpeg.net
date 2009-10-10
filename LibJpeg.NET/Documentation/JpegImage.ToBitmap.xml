@@ -11,7 +11,8 @@
         <text>JpegImage</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Retrieves image as .NET Bitmap.</text> </descriptionarticle>
     <signature>
       <function>
         <name>ToBitmap</name>

@@ -11,7 +11,8 @@
         <text>JpegImage</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Gets the colorspace of image.</text> </descriptionarticle>
     <signature>
       <property access="read">
         <name>Colorspace</name>

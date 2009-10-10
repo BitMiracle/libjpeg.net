@@ -12,7 +12,7 @@
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Factory method that creates </text> <link file="JpegImage.xml"><text>JpegImage</text> </link><text> from a .NET bitmap (System.Drawing.Bitmap)</text> </descriptionarticle>
+      <text>Creates </text> <link file="JpegImage.xml"><text>JpegImage</text> </link><text> from a .NET bitmap (System.Drawing.Bitmap)</text> </descriptionarticle>
     <seealso>
       <ref caption="JpegImage" file="JpegImage.xml" />
       <ref caption="JpegImage constructor" file="JpegImage.ctor.xml" />
@@ -27,5 +27,7 @@
         </parameters>
       </function>
     </signature>
+    <remarks>
+      <text>Same as corresponding </text> <link file="JpegImage.ctor.xml"><text>constructor</text> </link><text>.</text> </remarks>
   </file>
 </xml>

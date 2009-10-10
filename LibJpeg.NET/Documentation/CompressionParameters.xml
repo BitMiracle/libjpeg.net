@@ -41,7 +41,7 @@
               </td>
               <td>
                 <link file="CompressionParameters.ctor.xml">
-                  <text>Constructor</text> </link>
+                  <text>CompressionParameters</text> </link>
               </td>
               <td>
                 <text>Default constructor.</text> </td>
@@ -55,7 +55,7 @@
                   <text>Equals</text> </link>
               </td>
               <td>
-                <text>Overloaded comparison of CompressionParameter objects.</text> </td>
+                <text>Overloaded comparison of CompressionParameters objects.</text> </td>
             </tr>
             <tr>
               <td>

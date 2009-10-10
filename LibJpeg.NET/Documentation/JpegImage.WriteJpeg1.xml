@@ -11,14 +11,15 @@
         <text>JpegImage</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Compresses image to JPEG with given parameters and writes it to stream.</text> </descriptionarticle>
     <signature>
       <function>
         <name>WriteJpeg</name>
         <return type="void" />
         <parameters>
-          <parameter name="output" type="Stream" />
-          <parameter name="parameters" type="CompressionParameters" file="CompressionParameters.xml" />
+          <parameter name="output" type="Stream">Output stream.</parameter>
+          <parameter name="parameters" type="CompressionParameters" file="CompressionParameters.xml">The parameters of compression.</parameter>
         </parameters>
       </function>
     </signature>

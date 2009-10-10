@@ -13,7 +13,7 @@
     </breadcumbs>
     <descriptionarticle only="false">
       <p>
-        <text>Overloaded comparison of CompressionParameter objects.</text> </p>
+        <text>Overloaded comparison of CompressionParameters objects.</text> </p>
     </descriptionarticle>
     <signature>
       <function>

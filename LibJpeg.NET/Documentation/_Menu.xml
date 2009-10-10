@@ -73,25 +73,52 @@
       <ref>JpegImage.WriteBitmap.xml</ref>
       <node title="JpegImage constructor" file="JpegImage.ctor.xml" iconindex="23">
         <ref>JpegImage.FromBitmap.xml</ref>
+        <ref>JpegImage.xml</ref>
       </node>
-      <node title="JpegImage constructor" file="JpegImage.ctor1.xml" iconindex="23" />
-      <node title="JpegImage constructor" file="JpegImage.ctor2.xml" iconindex="23" />
-      <node title="JpegImage constructor" file="JpegImage.ctor3.xml" iconindex="23" />
-      <node title="FromBitmap" file="JpegImage.FromBitmap.xml" iconindex="23" />
-      <node title="Width" file="JpegImage.Width.xml" iconindex="27" />
-      <node title="Height" file="JpegImage.Height.xml" iconindex="27" />
-      <node title="BitsPerComponent" file="JpegImage.BitsPerComponent.xml" iconindex="27" />
-      <node title="ComponentsPerSample" file="JpegImage.ComponentsPerSample.xml" iconindex="27" />
-      <node title="Colorspace" file="JpegImage.Colorspace.xml" iconindex="27" />
+      <node title="JpegImage constructor" file="JpegImage.ctor1.xml" iconindex="23">
+        <ref>JpegImage.xml</ref>
+      </node>
+      <node title="JpegImage constructor" file="JpegImage.ctor2.xml" iconindex="23">
+        <ref>JpegImage.xml</ref>
+      </node>
+      <node title="JpegImage constructor" file="JpegImage.ctor3.xml" iconindex="23">
+        <ref>JpegImage.xml</ref>
+      </node>
+      <node title="FromBitmap" file="JpegImage.FromBitmap.xml" iconindex="23">
+        <ref>JpegImage.xml</ref>
+      </node>
+      <node title="Width" file="JpegImage.Width.xml" iconindex="27">
+        <ref>JpegImage.xml</ref>
+      </node>
+      <node title="Height" file="JpegImage.Height.xml" iconindex="27">
+        <ref>JpegImage.xml</ref>
+      </node>
+      <node title="ComponentsPerSample" file="JpegImage.ComponentsPerSample.xml" iconindex="27">
+        <ref>JpegImage.xml</ref>
+      </node>
+      <node title="BitsPerComponent" file="JpegImage.BitsPerComponent.xml" iconindex="27">
+        <ref>JpegImage.xml</ref>
+      </node>
+      <node title="Colorspace" file="JpegImage.Colorspace.xml" iconindex="27">
+        <ref>JpegImage.xml</ref>
+      </node>
       <node title="GetRow" file="JpegImage.GetRow.xml" iconindex="23">
         <ref>Sample.xml</ref>
+        <ref>JpegImage.xml</ref>
       </node>
-      <node title="WriteJpeg" file="JpegImage.WriteJpeg.xml" iconindex="23" />
+      <node title="WriteJpeg" file="JpegImage.WriteJpeg.xml" iconindex="23">
+        <ref>JpegImage.xml</ref>
+      </node>
       <node title="WriteJpeg" file="JpegImage.WriteJpeg1.xml" iconindex="23">
         <ref>CompressionParameters.xml</ref>
+        <ref>JpegImage.xml</ref>
       </node>
-      <node title="WriteBitmap" file="JpegImage.WriteBitmap.xml" iconindex="23" />
-      <node title="ToBitmap" file="JpegImage.ToBitmap.xml" iconindex="23" />
+      <node title="WriteBitmap" file="JpegImage.WriteBitmap.xml" iconindex="23">
+        <ref>JpegImage.xml</ref>
+      </node>
+      <node title="ToBitmap" file="JpegImage.ToBitmap.xml" iconindex="23">
+        <ref>JpegImage.xml</ref>
+      </node>
     </node>
     <node title="Sample" file="Sample.xml" iconindex="6">
       <ref>SampleRow.GetAt.xml</ref>
