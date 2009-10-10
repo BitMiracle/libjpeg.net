@@ -32,6 +32,10 @@
     <ref>JpegImage.ComponentsPerSample.xml</ref>
     <ref>JpegImage.Colorspace.xml</ref>
     <ref>JpegImage.WriteBitmap.xml</ref>
+    <ref>Sample.BitsPerComponent.xml</ref>
+    <ref>Sample.ComponentCount.xml</ref>
+    <ref>Sample.GetComponent.xml</ref>
+    <ref>Sample.Item.xml</ref>
     <node title="CompressionParameters" file="CompressionParameters.xml" iconindex="6">
       <ref>JpegImage.WriteJpeg1.xml</ref>
       <ref>CompressionParameters.Equals.xml</ref>
@@ -125,10 +129,27 @@
       <ref>SampleRow.get_Item.xml</ref>
       <ref>SampleRow.ToBytes.xml</ref>
       <ref>SampleRow.xml</ref>
-      <node title="get_BitsPerComponent" file="Sample.get_BitsPerComponent.xml" iconindex="23" />
-      <node title="get_ComponentCount" file="Sample.get_ComponentCount.xml" iconindex="23" />
-      <node title="GetComponent" file="Sample.GetComponent.xml" iconindex="23" />
-      <node title="get_Item" file="Sample.get_Item.xml" iconindex="23" />
+      <ref>JpegImage.Width.xml</ref>
+      <ref>JpegImage.Height.xml</ref>
+      <ref>JpegImage.ComponentsPerSample.xml</ref>
+      <ref>JpegImage.BitsPerComponent.xml</ref>
+      <ref>Sample.BitsPerComponent.xml</ref>
+      <ref>Sample.ComponentCount.xml</ref>
+      <ref>Sample.GetComponent.xml</ref>
+      <ref>Sample.Item.xml</ref>
+      <node title="BitsPerComponent" file="Sample.BitsPerComponent.xml" iconindex="27">
+        <ref>Sample.xml</ref>
+      </node>
+      <node title="ComponentCount" file="Sample.ComponentCount.xml" iconindex="27">
+        <ref>Sample.xml</ref>
+      </node>
+      <node title="Item" file="Sample.Item.xml" iconindex="27">
+        <ref>Sample.xml</ref>
+      </node>
+      <node title="GetComponent" file="Sample.GetComponent.xml" iconindex="23">
+        <ref>Sample.Item.xml</ref>
+        <ref>Sample.xml</ref>
+      </node>
     </node>
     <node title="SampleRow" file="SampleRow.xml" iconindex="6">
       <ref>Sample.xml</ref>
@@ -1155,7 +1176,9 @@
     <node title="JBLOCK" file="JBLOCK.xml" iconindex="6">
       <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
       <ref>JBLOCK.Item.xml</ref>
-      <node title="Item" file="JBLOCK.Item.xml" iconindex="27" />
+      <node title="Item" file="JBLOCK.Item.xml" iconindex="27">
+        <ref>JBLOCK.xml</ref>
+      </node>
     </node>
     <node title="JpegConstants" file="JpegConstants.xml" iconindex="6">
       <ref>JpegConstants.DCTSIZE.xml</ref>

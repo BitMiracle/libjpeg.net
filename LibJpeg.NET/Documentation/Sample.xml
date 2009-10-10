@@ -20,6 +20,68 @@
     <remarks>
       <p>
         <text>It's impossible to create an instance of this class directly, but you can use existing samples through </text> <link file="SampleRow.xml"><text>SampleRow</text> </link><text> collection. Usual scenario is to get row of samples from the </text> <link file="JpegImage.GetRow.xml"><text>JpegImage.GetRow</text> </link><text> method.</text> </p>
+      <p>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <text> </text> </td>
+              <td>
+                <b>
+                  <text>Member</text> </b>
+              </td>
+              <td>
+                <b>
+                  <text>Description</text> </b>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              </td>
+              <td>
+                <link file="Sample.BitsPerComponent.xml">
+                  <text>BitsPerComponent</text> </link>
+              </td>
+              <td>
+                <text>Gets the number of bits per color component.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              </td>
+              <td>
+                <link file="Sample.ComponentCount.xml">
+                  <text>ComponentCount</text> </link>
+              </td>
+              <td>
+                <text>Gets the number of color components.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              </td>
+              <td>
+                <link file="Sample.Item.xml">
+                  <text>Item</text> </link>
+              </td>
+              <td>
+                <text>Indexer, gets the color component at the specified index.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              </td>
+              <td>
+                <link file="Sample.GetComponent.xml">
+                  <text>GetComponent</text> </link>
+              </td>
+              <td>
+                <text>Retrieves the required color component. </text> </td>
+            </tr>
+          </tbody>
+        </table>
+      </p>
     </remarks>
   </file>
 </xml>

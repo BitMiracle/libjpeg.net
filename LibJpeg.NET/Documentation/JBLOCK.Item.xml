@@ -15,7 +15,7 @@
       <text>Indexer, gets or sets the element at the specified index.</text> </descriptionarticle>
     <signature>
       <property access="full">
-        <name>this[int index]</name>
+        <name>this[Int32 index]</name>
         <return type="Int16" />
       </property>
     </signature>
