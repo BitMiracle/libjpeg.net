@@ -49,14 +49,14 @@ In plain English:
 2. You can use this software for whatever you want.  You don't have to pay us.
 3. You may not pretend that you wrote this software.  If you use it in a
    program, you must acknowledge somewhere in your documentation that
-   you've used the Bit Miracle code.
+   you've used the Bit Miracle's code.
 
 In legalese:
 
 The authors make NO WARRANTY or representation, either express or implied,
 with respect to this software, its quality, accuracy, merchantability, or
 fitness for a particular purpose.  This software is provided "AS IS", and you,
-its user, assume the entire risk as to its quality and accuracy.
+it's user, assume the entire risk as to its quality and accuracy.
 
 This software is copyright (C) 2008-2009, Bit Miracle
 http://www.bitmiracle.com
@@ -83,9 +83,9 @@ These conditions apply to any software derived from or based on the Bit Miracle
 code, not just to the unmodified library.  If you use our work, you ought to
 acknowledge us.
 
-Permission is NOT granted for the use of any Bit Miracle author's name or company
+Permission is NOT granted for the use of any Bit Miracle authors names or company
 name in advertising or publicity relating to this software or products derived 
-from it. This software may be referred to only as "the Bit Miracle's software".
+from it. This software may be referred to only as "a Bit Miracle's software".
 
 We specifically permit and encourage the use of this software as the basis of
 commercial products, provided that all warranty or liability claims are
