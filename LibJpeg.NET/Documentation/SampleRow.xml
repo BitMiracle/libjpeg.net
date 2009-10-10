@@ -7,7 +7,8 @@
         <text>BitMiracle.LibJpeg namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Represents a row of image - collection of samples.</text> </descriptionarticle>
     <seealso>
       <ref caption="Sample" file="Sample.xml" />
     </seealso>
@@ -16,5 +17,89 @@
         <name>SampleRow</name>
       </class>
     </signature>
+    <remarks>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <text> </text> </td>
+            <td>
+              <b>
+                <text>Member</text> </b>
+            </td>
+            <td>
+              <b>
+                <text>Description</text> </b>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="SampleRow.ctor.xml">
+                <text>SampleRow</text> </link>
+            </td>
+            <td>
+              <text>Creates row from raw samples data.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="SampleRow.ctor1.xml">
+                <text>SampleRow</text> </link>
+            </td>
+            <td>
+              <text>Creates row from an array of components. </text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="SampleRow.Length.xml">
+                <text>Length</text> </link>
+            </td>
+            <td>
+              <text>The number of samples in row.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+            </td>
+            <td>
+              <link file="SampleRow.Item.xml">
+                <text>Item</text> </link>
+            </td>
+            <td>
+              <text>Indexer, gets the sample at the specified index.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="SampleRow.GetAt.xml">
+                <text>GetAt</text> </link>
+            </td>
+            <td>
+              <text>Retrieves the required sample.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+            </td>
+            <td>
+              <link file="SampleRow.ToBytes.xml">
+                <text>ToBytes</text> </link>
+            </td>
+            <td>
+              <text>Serializes row to raw bytes.</text> </td>
+          </tr>
+        </tbody>
+      </table>
+    </remarks>
   </file>
 </xml>

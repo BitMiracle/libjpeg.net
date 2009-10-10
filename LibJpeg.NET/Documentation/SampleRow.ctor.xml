@@ -11,15 +11,17 @@
         <text>SampleRow</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Creates row from raw samples data.</text> </descriptionarticle>
     <signature>
       <function>
         <name>SampleRow</name>
         <parameters>
-          <parameter name="row" type="Byte[]" file="Byte[].xml" />
-          <parameter name="sampleCount" type="Int32" />
-          <parameter name="bitsPerComponent" type="Byte" />
-          <parameter name="componentsPerSample" type="Byte" />
+          <parameter name="row" type="Byte[]">Raw description of samples.
+You can pass collection with more than sampleCount samples - when sampleCount samples will be parsed all remaining bytes will be ignored..</parameter>
+          <parameter name="sampleCount" type="Int32">The number of samples in row.</parameter>
+          <parameter name="bitsPerComponent" type="Byte">The number of bits per color component of sample.</parameter>
+          <parameter name="componentsPerSample" type="Byte">The number of color components per sample.</parameter>
         </parameters>
       </function>
     </signature>

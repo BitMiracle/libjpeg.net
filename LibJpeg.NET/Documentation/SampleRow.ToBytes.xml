@@ -11,11 +11,12 @@
         <text>SampleRow</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Serializes row to raw bytes.</text> </descriptionarticle>
     <signature>
       <function>
         <name>ToBytes</name>
-        <return type="Byte[]" file="Sample.xml" />
+        <return type="Byte[]" />
       </function>
     </signature>
   </file>

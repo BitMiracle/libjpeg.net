@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>get_Length</title>
+    <title>Length</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg.xml">
         <text>BitMiracle.LibJpeg namespace</text>
@@ -11,12 +11,13 @@
         <text>SampleRow</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>The number of samples in row.</text> </descriptionarticle>
     <signature>
-      <function>
-        <name>get_Length</name>
+      <property access="read">
+        <name>Length</name>
         <return type="Int32" />
-      </function>
+      </property>
     </signature>
   </file>
 </xml>

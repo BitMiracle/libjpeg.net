@@ -22,9 +22,7 @@
     <ref>JpegImage.GetRow.xml</ref>
     <ref>SampleRow.ctor.xml</ref>
     <ref>SampleRow.ctor1.xml</ref>
-    <ref>SampleRow.get_Length.xml</ref>
     <ref>SampleRow.GetAt.xml</ref>
-    <ref>SampleRow.get_Item.xml</ref>
     <ref>SampleRow.ToBytes.xml</ref>
     <ref>JpegImage.Width.xml</ref>
     <ref>JpegImage.Height.xml</ref>
@@ -36,6 +34,8 @@
     <ref>Sample.ComponentCount.xml</ref>
     <ref>Sample.GetComponent.xml</ref>
     <ref>Sample.Item.xml</ref>
+    <ref>SampleRow.Length.xml</ref>
+    <ref>SampleRow.Item.xml</ref>
     <node title="CompressionParameters" file="CompressionParameters.xml" iconindex="6">
       <ref>JpegImage.WriteJpeg1.xml</ref>
       <ref>CompressionParameters.Equals.xml</ref>
@@ -126,7 +126,6 @@
     </node>
     <node title="Sample" file="Sample.xml" iconindex="6">
       <ref>SampleRow.GetAt.xml</ref>
-      <ref>SampleRow.get_Item.xml</ref>
       <ref>SampleRow.ToBytes.xml</ref>
       <ref>SampleRow.xml</ref>
       <ref>JpegImage.Width.xml</ref>
@@ -137,6 +136,7 @@
       <ref>Sample.ComponentCount.xml</ref>
       <ref>Sample.GetComponent.xml</ref>
       <ref>Sample.Item.xml</ref>
+      <ref>SampleRow.Item.xml</ref>
       <node title="BitsPerComponent" file="Sample.BitsPerComponent.xml" iconindex="27">
         <ref>Sample.xml</ref>
       </node>
@@ -156,17 +156,31 @@
       <ref>JpegImage.GetRow.xml</ref>
       <ref>SampleRow.ctor.xml</ref>
       <ref>SampleRow.ctor1.xml</ref>
-      <ref>SampleRow.get_Length.xml</ref>
       <ref>SampleRow.GetAt.xml</ref>
-      <ref>SampleRow.get_Item.xml</ref>
       <ref>SampleRow.ToBytes.xml</ref>
       <ref>JpegImage.ctor3.xml</ref>
-      <node title="SampleRow constructor" file="SampleRow.ctor.xml" iconindex="23" />
-      <node title="SampleRow constructor" file="SampleRow.ctor1.xml" iconindex="23" />
-      <node title="get_Length" file="SampleRow.get_Length.xml" iconindex="23" />
-      <node title="GetAt" file="SampleRow.GetAt.xml" iconindex="23" />
-      <node title="get_Item" file="SampleRow.get_Item.xml" iconindex="23" />
-      <node title="ToBytes" file="SampleRow.ToBytes.xml" iconindex="23" />
+      <ref>SampleRow.Length.xml</ref>
+      <ref>SampleRow.Item.xml</ref>
+      <node title="SampleRow constructor" file="SampleRow.ctor.xml" iconindex="23">
+        <ref>SampleRow.ctor1.xml</ref>
+        <ref>SampleRow.xml</ref>
+      </node>
+      <node title="SampleRow constructor" file="SampleRow.ctor1.xml" iconindex="23">
+        <ref>SampleRow.xml</ref>
+      </node>
+      <node title="Length" file="SampleRow.Length.xml" iconindex="27">
+        <ref>SampleRow.xml</ref>
+      </node>
+      <node title="Item" file="SampleRow.Item.xml" iconindex="27">
+        <ref>SampleRow.xml</ref>
+      </node>
+      <node title="GetAt" file="SampleRow.GetAt.xml" iconindex="23">
+        <ref>SampleRow.Item.xml</ref>
+        <ref>SampleRow.xml</ref>
+      </node>
+      <node title="ToBytes" file="SampleRow.ToBytes.xml" iconindex="23">
+        <ref>SampleRow.xml</ref>
+      </node>
     </node>
     <node title="Colorspace" file="Colorspace.xml" iconindex="10">
       <ref>JpegImage.ctor3.xml</ref>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>get_Item</title>
+    <title>Item</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg.xml">
         <text>BitMiracle.LibJpeg namespace</text>
@@ -11,15 +11,16 @@
         <text>SampleRow</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Indexer, gets the sample at the specified index.</text> </descriptionarticle>
+    <seealso>
+      <ref caption="GetAt" file="SampleRow.GetAt.xml" />
+    </seealso>
     <signature>
-      <function>
-        <name>get_Item</name>
+      <property access="read">
+        <name>this[Int32 sampleNumber]</name>
         <return type="Sample" file="Sample.xml" />
-        <parameters>
-          <parameter name="sampleNumber" type="Int32" />
-        </parameters>
-      </function>
+      </property>
     </signature>
   </file>
 </xml>

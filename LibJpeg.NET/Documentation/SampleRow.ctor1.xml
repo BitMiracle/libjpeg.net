@@ -11,16 +11,21 @@
         <text>SampleRow</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Creates row from an array of components.</text> </descriptionarticle>
     <signature>
       <function>
         <name>SampleRow</name>
         <parameters>
-          <parameter name="row" type="Int16[]" file="Int16[].xml" />
-          <parameter name="bitsPerComponent" type="Byte" />
-          <parameter name="componentsPerSample" type="Byte" />
+          <parameter name="sampleComponents" type="Int16[]">Array of color components.</parameter>
+          <parameter name="bitsPerComponent" type="Byte">The number of bits per color component of sample.</parameter>
+          <parameter name="componentsPerSample" type="Byte">The number of color components per sample.</parameter>
         </parameters>
       </function>
     </signature>
+    <remarks>
+      <p>
+        <text>The difference between this constructor and </text> <link file="SampleRow.ctor.xml"><text>another one</text> </link><text> - this constructor accept an array of prepared color components whereas another constructor accept raw bytes and parse them.</text> </p>
+    </remarks>
   </file>
 </xml>
