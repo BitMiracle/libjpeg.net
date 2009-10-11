@@ -7,7 +7,8 @@
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>The unit of density.</text> </descriptionarticle>
     <seealso>
       <ref caption="jpeg_compress_struct.Density_unit" file="jpeg_compress_struct.Density_unit.xml" />
       <ref caption="jpeg_decompress_struct.Density_unit" file="jpeg_decompress_struct.Density_unit.xml" />

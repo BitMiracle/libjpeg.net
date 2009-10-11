@@ -2,6 +2,206 @@
 <xml>
   <file>
     <title>BitMiracle.LibJpeg.Classic namespace</title>
-    <descriptionarticle only="true" />
+    <descriptionarticle only="true">
+      <p>
+        <text>The .NET port of original libjpeg.</text> </p>
+      <p>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <text> </text> </td>
+              <td>
+                <b>
+                  <text>Type</text> </b>
+              </td>
+              <td>
+                <b>
+                  <text>Description</text> </b>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+              </td>
+              <td>
+                <link file="jpeg_common_struct.xml">
+                  <text>jpeg_common_struct</text> </link>
+              </td>
+              <td>
+                <text>Base class for both JPEG compressor and decompresor.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+              </td>
+              <td>
+                <link file="jpeg_compress_struct.xml">
+                  <text>jpeg_compress_struct</text> </link>
+              </td>
+              <td>
+                <text>JPEG compression routine. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+              </td>
+              <td>
+                <link file="jpeg_decompress_struct.xml">
+                  <text>jpeg_decompress_struct</text> </link>
+              </td>
+              <td>
+                <text>JPEG decompression routine.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+              </td>
+              <td>
+                <link file="jpeg_error_mgr.xml">
+                  <text>jpeg_error_mgr</text> </link>
+              </td>
+              <td>
+                <text>Contains simple error-reporting and trace-message routines.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+              </td>
+              <td>
+                <link file="jpeg_marker_struct.xml">
+                  <text>jpeg_marker_struct</text> </link>
+              </td>
+              <td>
+                <text>Representation of special JPEG marker.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+              </td>
+              <td>
+                <link file="jpeg_progress_mgr.xml">
+                  <text>jpeg_progress_mgr</text> </link>
+              </td>
+              <td>
+                <text>Progress monitor object. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+              </td>
+              <td>
+                <link file="jvirt_array.xml">
+                  <text>jvirt_array</text> </link>
+              </td>
+              <td>
+                <text>JPEG virtual array. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+              </td>
+              <td>
+                <link file="JBLOCK.xml">
+                  <text>JBLOCK</text> </link>
+              </td>
+              <td>
+                <text>One block of coefficients.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+              </td>
+              <td>
+                <link file="JpegConstants.xml">
+                  <text>JpegConstants</text> </link>
+              </td>
+              <td>
+                <text>Defines some JPEG constants.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/10.png" />
+              </td>
+              <td>
+                <link file="DensityUnit.xml">
+                  <text>DensityUnit</text> </link>
+              </td>
+              <td>
+                <text>The unit of density.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/10.png" />
+              </td>
+              <td>
+                <link file="J_COLOR_SPACE.xml">
+                  <text>J_COLOR_SPACE</text> </link>
+              </td>
+              <td>
+                <text>Known color spaces. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/10.png" />
+              </td>
+              <td>
+                <link file="J_DCT_METHOD.xml">
+                  <text>J_DCT_METHOD</text> </link>
+              </td>
+              <td>
+                <text>Algorithm used for the DCT step.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/10.png" />
+              </td>
+              <td>
+                <link file="J_DITHER_MODE.xml">
+                  <text>J_DITHER_MODE</text> </link>
+              </td>
+              <td>
+                <text>Dithering method for decompression. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/10.png" />
+              </td>
+              <td>
+                <link file="JPEG_MARKER.xml">
+                  <text>JPEG_MARKER</text> </link>
+              </td>
+              <td>
+                <text>JPEG marker codes. </text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/10.png" />
+              </td>
+              <td>
+                <link file="J_MESSAGE_CODE.xml">
+                  <text>J_MESSAGE_CODE</text> </link>
+              </td>
+              <td>
+                <text>Message codes used in code to signal errors, warning and trace messages.</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files/icons/10.png" />
+              </td>
+              <td>
+                <link file="ReadResult.xml">
+                  <text>ReadResult</text> </link>
+              </td>
+              <td>
+                <text>Describes a result of read operation. </text> </td>
+            </tr>
+          </tbody>
+        </table>
+      </p>
+    </descriptionarticle>
+    <seealso>
+      <ref caption="Classic LibJpeg" file="Classic_LibJpeg.xml" />
+    </seealso>
   </file>
 </xml>

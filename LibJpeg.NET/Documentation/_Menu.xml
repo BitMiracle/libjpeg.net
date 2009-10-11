@@ -43,6 +43,7 @@
       <ref>CompressionParameters.Quality.xml</ref>
       <ref>CompressionParameters.SmoothingFactor.xml</ref>
       <ref>CompressionParameters.SimpleProgressive.xml</ref>
+      <ref>BitMiracle_LibJpeg.xml</ref>
       <node title="CompressionParameters constructor" file="CompressionParameters.ctor.xml" iconindex="23">
         <ref>CompressionParameters.xml</ref>
       </node>
@@ -75,6 +76,7 @@
       <ref>JpegImage.ComponentsPerSample.xml</ref>
       <ref>JpegImage.Colorspace.xml</ref>
       <ref>JpegImage.WriteBitmap.xml</ref>
+      <ref>BitMiracle_LibJpeg.xml</ref>
       <node title="JpegImage constructor" file="JpegImage.ctor.xml" iconindex="23">
         <ref>JpegImage.FromBitmap.xml</ref>
         <ref>JpegImage.xml</ref>
@@ -137,6 +139,7 @@
       <ref>Sample.GetComponent.xml</ref>
       <ref>Sample.Item.xml</ref>
       <ref>SampleRow.Item.xml</ref>
+      <ref>BitMiracle_LibJpeg.xml</ref>
       <node title="BitsPerComponent" file="Sample.BitsPerComponent.xml" iconindex="27">
         <ref>Sample.xml</ref>
       </node>
@@ -161,6 +164,7 @@
       <ref>JpegImage.ctor3.xml</ref>
       <ref>SampleRow.Length.xml</ref>
       <ref>SampleRow.Item.xml</ref>
+      <ref>BitMiracle_LibJpeg.xml</ref>
       <node title="SampleRow constructor" file="SampleRow.ctor.xml" iconindex="23">
         <ref>SampleRow.ctor1.xml</ref>
         <ref>SampleRow.xml</ref>
@@ -185,6 +189,7 @@
     <node title="Colorspace" file="Colorspace.xml" iconindex="10">
       <ref>JpegImage.ctor3.xml</ref>
       <ref>JpegImage.Colorspace.xml</ref>
+      <ref>BitMiracle_LibJpeg.xml</ref>
     </node>
   </node>
   <node title="BitMiracle.LibJpeg.Classic namespace" file="BitMiracle_LibJpeg_Classic.xml" iconindex="0">
@@ -364,6 +369,7 @@
     <ref>JpegConstants.RGB_GREEN.xml</ref>
     <ref>JpegConstants.RGB_BLUE.xml</ref>
     <ref>JpegConstants.RGB_PIXELSIZE.xml</ref>
+    <ref>BitMiracle_LibJpeg.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -386,6 +392,7 @@
       <ref>jvirt_array.ErrorProcessor.xml</ref>
       <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
       <ref>jpeg_common_struct.CreateSamplesArray.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
       <node title="jpeg_common_struct constructor" file="jpeg_common_struct.ctor.xml" iconindex="23">
         <ref>jpeg_common_struct.xml</ref>
       </node>
@@ -500,6 +507,7 @@
       <ref>jpeg_compress_struct.jpeg_write_coefficients.xml</ref>
       <ref>jpeg_decompress_struct.jpeg_copy_critical_parameters.xml</ref>
       <ref>Classic\Error_handling.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
       <node title="jpeg_compress_struct constructor" file="jpeg_compress_struct.ctor.xml" iconindex="23">
         <ref>jpeg_compress_struct.xml</ref>
       </node>
@@ -788,6 +796,7 @@
       <ref>jpeg_decompress_struct.jpeg_input_complete.xml</ref>
       <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
       <ref>jpeg_decompress_struct.jpeg_copy_critical_parameters.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
       <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="23">
         <ref>jpeg_decompress_struct.jpeg_set_marker_processor.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
@@ -951,6 +960,7 @@
         <ref>jpeg_decompress_struct.X_density.xml</ref>
         <ref>jpeg_decompress_struct.Y_density.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
+        <ref>DensityUnit.xml</ref>
       </node>
       <node title="X_density" file="jpeg_decompress_struct.X_density.xml" iconindex="27">
         <ref>jpeg_decompress_struct.Density_unit.xml</ref>
@@ -1077,6 +1087,7 @@
       <ref>jpeg_error_mgr.ctor.xml</ref>
       <ref>jpeg_error_mgr.Num_warnings.xml</ref>
       <ref>J_MESSAGE_CODE.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
       <node title="jpeg_error_mgr constructor" file="jpeg_error_mgr.ctor.xml" iconindex="23">
         <ref>jpeg_error_mgr.xml</ref>
       </node>
@@ -1124,6 +1135,7 @@
       <ref>jpeg_marker_struct.Data.xml</ref>
       <ref>jpeg_marker_struct.OriginalLength.xml</ref>
       <ref>jpeg_marker_struct.Marker.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
       <node title="Marker" file="jpeg_marker_struct.Marker.xml" iconindex="27">
         <ref>jpeg_marker_struct.xml</ref>
       </node>
@@ -1144,6 +1156,7 @@
       <ref>jpeg_progress_mgr.OnProgress.xml</ref>
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_progress_mgr.ctor.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
       <node title="jpeg_progress_mgr constructor" file="jpeg_progress_mgr.ctor.xml" iconindex="23">
         <ref>jpeg_progress_mgr.xml</ref>
       </node>
@@ -1179,6 +1192,7 @@
       <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
       <ref>jpeg_compress_struct.jpeg_write_coefficients.xml</ref>
       <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
       <node title="ErrorProcessor" file="jvirt_array.ErrorProcessor.xml" iconindex="27">
         <ref>jvirt_array.xml</ref>
       </node>
@@ -1190,6 +1204,7 @@
     <node title="JBLOCK" file="JBLOCK.xml" iconindex="6">
       <ref>jpeg_common_struct.CreateBlocksArray.xml</ref>
       <ref>JBLOCK.Item.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
       <node title="Item" file="JBLOCK.Item.xml" iconindex="27">
         <ref>JBLOCK.xml</ref>
       </node>
@@ -1215,6 +1230,8 @@
       <ref>JpegConstants.RGB_GREEN.xml</ref>
       <ref>JpegConstants.RGB_BLUE.xml</ref>
       <ref>JpegConstants.RGB_PIXELSIZE.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
+      <ref>Classic\Data_formats.xml</ref>
       <node title="DCTSIZE" file="JpegConstants.DCTSIZE.xml" iconindex="31">
         <ref>JpegConstants.xml</ref>
       </node>
@@ -1279,6 +1296,7 @@
     <node title="DensityUnit" file="DensityUnit.xml" iconindex="10">
       <ref>jpeg_compress_struct.Density_unit.xml</ref>
       <ref>jpeg_decompress_struct.Density_unit.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
     </node>
     <node title="J_COLOR_SPACE" file="J_COLOR_SPACE.xml" iconindex="10">
       <ref>jpeg_compress_struct.jpeg_set_colorspace.xml</ref>
@@ -1287,6 +1305,7 @@
       <ref>jpeg_decompress_struct.Jpeg_color_space.xml</ref>
       <ref>jpeg_decompress_struct.Out_color_space.xml</ref>
       <ref>Classic\Compression_details.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
     </node>
     <node title="J_DCT_METHOD" file="J_DCT_METHOD.xml" iconindex="10">
       <ref>jpeg_compress_struct.Dct_method.xml</ref>
@@ -1296,12 +1315,15 @@
       <ref>JpegConstants.JDCT_DEFAULT.xml</ref>
       <ref>JpegConstants.JDCT_FASTEST.xml</ref>
       <ref>JpegConstants.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
     </node>
     <node title="J_DITHER_MODE" file="J_DITHER_MODE.xml" iconindex="10">
       <ref>jpeg_decompress_struct.Dither_mode.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
     </node>
     <node title="JPEG_MARKER" file="JPEG_MARKER.xml" iconindex="10">
       <ref>jpeg_compress_struct.jpeg_write_marker.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
     </node>
     <node title="J_MESSAGE_CODE" file="J_MESSAGE_CODE.xml" iconindex="10">
       <ref>jpeg_common_struct.WARNMS.xml</ref>
@@ -1311,11 +1333,13 @@
       <ref>jpeg_common_struct.TRACEMS.xml</ref>
       <ref>jpeg_common_struct.TRACEMS2.xml</ref>
       <ref>jpeg_error_mgr.GetMessageText.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
     </node>
     <node title="ReadResult" file="ReadResult.xml" iconindex="10">
       <ref>jpeg_decompress_struct.jpeg_read_header.xml</ref>
       <ref>jpeg_decompress_struct.jpeg_consume_input.xml</ref>
       <ref>Classic\Buffered_image_mode.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
     </node>
   </node>
   <node title="Knowledge base" file="Knowledge_base.xml" iconindex="0">
@@ -1331,6 +1355,7 @@
     <ref>Classic\Outline_of_typical_usage.xml</ref>
     <ref>Classic\Decompression_details.xml</ref>
     <ref>Classic\Progress_monitoring.xml</ref>
+    <ref>Classic\Data_formats.xml</ref>
     <node title="Classic LibJpeg" file="Classic_LibJpeg.xml" iconindex="0">
       <ref>Classic\Outline_of_typical_usage.xml</ref>
       <ref>Classic\Data_formats.xml</ref>
@@ -1345,13 +1370,17 @@
       <ref>Classic\Progressive_JPEG_support.xml</ref>
       <ref>Classic\Special_markers.xml</ref>
       <ref>Classic\Progress_monitoring.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
+      <ref>Knowledge_base.xml</ref>
       <node title="Outline of typical usage" file="Classic\Outline_of_typical_usage.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>
         <ref>Classic\Decompression_details.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
       <node title="Data formats" file="Classic\Data_formats.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>
         <ref>Classic\Decompression_details.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
       <node title="Compression details" file="Classic\Compression_details.xml" iconindex="0">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
@@ -1364,6 +1393,7 @@
         <ref>jpeg_compress_struct.jpeg_stdio_dest.xml</ref>
         <ref>jpeg_compress_struct.jpeg_start_compress.xml</ref>
         <ref>jpeg_compress_struct.jpeg_write_scanlines.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
       <node title="Decompression details" file="Classic\Decompression_details.xml" iconindex="0">
         <ref>Classic\Outline_of_typical_usage.xml</ref>
@@ -1374,8 +1404,11 @@
         <ref>jpeg_decompress_struct.jpeg_start_decompress.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_read_scanlines.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_finish_decompress.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
-      <node title="Mechanics of usage" file="Classic\Mechanics_of_usage.xml" iconindex="0" />
+      <node title="Mechanics of usage" file="Classic\Mechanics_of_usage.xml" iconindex="0">
+        <ref>Classic_LibJpeg.xml</ref>
+      </node>
       <node title="Compression parameter selection" file="Classic\Compression_parameter_selection.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>
         <ref>jpeg_compress_struct.jpeg_set_defaults.xml</ref>
@@ -1395,6 +1428,7 @@
         <ref>jpeg_compress_struct.Density_unit.xml</ref>
         <ref>jpeg_compress_struct.Write_Adobe_marker.xml</ref>
         <ref>Classic\Decompression_parameter_selection.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
       <node title="Decompression parameter selection" file="Classic\Decompression_parameter_selection.xml" iconindex="0">
         <ref>Classic\Decompression_details.xml</ref>
@@ -1419,6 +1453,7 @@
         <ref>jpeg_decompress_struct.Out_color_components.xml</ref>
         <ref>jpeg_decompress_struct.Rec_outbuf_height.xml</ref>
         <ref>jpeg_decompress_struct.Output_components.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
       <node title="Special color spaces" file="Classic\Special_color_spaces.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>
@@ -1428,6 +1463,7 @@
         <ref>jpeg_compress_struct.Jpeg_color_space.xml</ref>
         <ref>jpeg_compress_struct.In_color_space.xml</ref>
         <ref>jpeg_decompress_struct.Jpeg_color_space.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
       <node title="Error handling" file="Classic\Error_handling.xml" iconindex="0">
         <ref>Classic\Compression_details.xml</ref>
@@ -1438,9 +1474,11 @@
         <ref>jpeg_error_mgr.emit_message.xml</ref>
         <ref>jpeg_error_mgr.GetMessageText.xml</ref>
         <ref>jpeg_error_mgr.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
       <node title="Progressive JPEG support" file="Classic\Progressive_JPEG_support.xml" iconindex="0">
         <ref>jpeg_decompress_struct.Coef_bits.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
       <node title="Buffered-image mode" file="Classic\Buffered_image_mode.xml" iconindex="0">
         <ref>Classic\Decompression_parameter_selection.xml</ref>
@@ -1455,6 +1493,7 @@
         <ref>jpeg_decompress_struct.Buffered_image.xml</ref>
         <ref>Classic\Progress_monitoring.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_read_coefficients.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
       <node title="Special markers" file="Classic\Special_markers.xml" iconindex="0">
         <ref>Classic\Special_color_spaces.xml</ref>
@@ -1466,6 +1505,7 @@
         <ref>jpeg_marker_struct.xml</ref>
         <ref>jpeg_decompress_struct.Unread_marker.xml</ref>
         <ref>jpeg_decompress_struct.jpeg_save_markers.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
       <node title="Progress monitoring" file="Classic\Progress_monitoring.xml" iconindex="0">
         <ref>jpeg_progress_mgr.xml</ref>
@@ -1474,6 +1514,7 @@
         <ref>jpeg_progress_mgr.Completed_passes.xml</ref>
         <ref>jpeg_progress_mgr.Total_passes.xml</ref>
         <ref>jpeg_progress_mgr.OnProgress.xml</ref>
+        <ref>Classic_LibJpeg.xml</ref>
       </node>
     </node>
   </node>

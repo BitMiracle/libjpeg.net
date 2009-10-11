@@ -7,7 +7,8 @@
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Defines some JPEG constants.</text> </descriptionarticle>
     <signature>
       <class>
         <mod2>static</mod2>

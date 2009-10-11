@@ -2,6 +2,29 @@
 <xml>
   <file>
     <title>Knowledge base</title>
-    <descriptionarticle only="true" />
+    <descriptionarticle only="true">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <b>
+                <text>Section</text> </b>
+            </td>
+            <td>
+              <b>
+                <text>Description</text> </b>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <link file="Classic_LibJpeg.xml">
+                <text>Classic LibJpeg</text> </link>
+            </td>
+            <td>
+              <text>Describes work with JPEG files using the API of classic LibJpeg.</text> </td>
+          </tr>
+        </tbody>
+      </table>
+    </descriptionarticle>
   </file>
 </xml>
