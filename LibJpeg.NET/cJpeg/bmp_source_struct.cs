@@ -102,76 +102,79 @@ namespace BitMiracle.cJpeg
             int mapentrysize = 0;       /* 0 indicates no colormap */
             switch (headerSize)
             {
-            case 12:
-                /* Decode OS/2 1.x header (Microsoft calls this a BITMAPCOREHEADER) */
-                biWidth = GET_2B(bmpinfoheader, 4);
-                biHeight = GET_2B(bmpinfoheader, 6);
-                biPlanes = GET_2B(bmpinfoheader, 8);
-                bits_per_pixel = GET_2B(bmpinfoheader, 10);
+                case 12:
+                    /* Decode OS/2 1.x header (Microsoft calls this a BITMAPCOREHEADER) */
+                    biWidth = GET_2B(bmpinfoheader, 4);
+                    biHeight = GET_2B(bmpinfoheader, 6);
+                    biPlanes = GET_2B(bmpinfoheader, 8);
+                    bits_per_pixel = GET_2B(bmpinfoheader, 10);
 
-                switch (bits_per_pixel)
-                {
-                case 8:
-                    /* colormapped image */
-                    mapentrysize = 3;       /* OS/2 uses RGBTRIPLE colormap */
-                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2_MAPPED, biWidth, biHeight);
+                    switch (bits_per_pixel)
+                    {
+                        case 8:
+                            /* colormapped image */
+                            mapentrysize = 3;       /* OS/2 uses RGBTRIPLE colormap */
+                            cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2_MAPPED, biWidth, biHeight);
+                            break;
+                        case 24:
+                            /* RGB image */
+                            cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2, biWidth, biHeight);
+                            break;
+                        default:
+                            cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
+                            break;
+                    }
+
+                    if (biPlanes != 1)
+                        cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADPLANES);
                     break;
-                case 24:
-                    /* RGB image */
-                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_OS2, biWidth, biHeight);
+                case 40:
+                case 64:
+                    /* Decode Windows 3.x header (Microsoft calls this a BITMAPINFOHEADER) */
+                    /* or OS/2 2.x header, which has additional fields that we ignore */
+                    biWidth = GET_4B(bmpinfoheader, 4);
+                    biHeight = GET_4B(bmpinfoheader, 8);
+                    biPlanes = GET_2B(bmpinfoheader, 12);
+                    bits_per_pixel = GET_2B(bmpinfoheader, 14);
+                    biCompression = GET_4B(bmpinfoheader, 16);
+                    biXPelsPerMeter = GET_4B(bmpinfoheader, 24);
+                    biYPelsPerMeter = GET_4B(bmpinfoheader, 28);
+                    biClrUsed = GET_4B(bmpinfoheader, 32);
+                    /* biSizeImage, biClrImportant fields are ignored */
+
+                    switch (bits_per_pixel)
+                    {
+                        case 8:
+                            /* colormapped image */
+                            mapentrysize = 4;       /* Windows uses RGBQUAD colormap */
+                            cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_MAPPED, biWidth, biHeight);
+                            break;
+                        case 24:
+                            /* RGB image */
+                            cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP, biWidth, biHeight);
+                            break;
+                        default:
+                            cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
+                            break;
+                    }
+
+                    if (biPlanes != 1)
+                        cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADPLANES);
+                    
+                    if (biCompression != 0)
+                        cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_COMPRESSED);
+
+                    if (biXPelsPerMeter > 0 && biYPelsPerMeter > 0)
+                    {
+                        /* Set JFIF density parameters from the BMP data */
+                        cinfo.X_density = (short)(biXPelsPerMeter / 100); /* 100 cm per meter */
+                        cinfo.Y_density = (short)(biYPelsPerMeter / 100);
+                        cinfo.Density_unit = DensityUnit.DotsCm;
+                    }
                     break;
                 default:
-                    cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
+                    cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADHEADER);
                     break;
-                }
-                if (biPlanes != 1)
-                    cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADPLANES);
-                break;
-            case 40:
-            case 64:
-                /* Decode Windows 3.x header (Microsoft calls this a BITMAPINFOHEADER) */
-                /* or OS/2 2.x header, which has additional fields that we ignore */
-                biWidth = GET_4B(bmpinfoheader, 4);
-                biHeight = GET_4B(bmpinfoheader, 8);
-                biPlanes = GET_2B(bmpinfoheader, 12);
-                bits_per_pixel = GET_2B(bmpinfoheader, 14);
-                biCompression = GET_4B(bmpinfoheader, 16);
-                biXPelsPerMeter = GET_4B(bmpinfoheader, 24);
-                biYPelsPerMeter = GET_4B(bmpinfoheader, 28);
-                biClrUsed = GET_4B(bmpinfoheader, 32);
-                /* biSizeImage, biClrImportant fields are ignored */
-
-                switch (bits_per_pixel)
-                {
-                case 8:
-                    /* colormapped image */
-                    mapentrysize = 4;       /* Windows uses RGBQUAD colormap */
-                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP_MAPPED, biWidth, biHeight);
-                    break;
-                case 24:
-                    /* RGB image */
-                    cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP, biWidth, biHeight);
-                    break;
-                default:
-                    cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
-                    break;
-                }
-                if (biPlanes != 1)
-                    cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADPLANES);
-                if (biCompression != 0)
-                    cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_COMPRESSED);
-
-                if (biXPelsPerMeter > 0 && biYPelsPerMeter > 0)
-                {
-                    /* Set JFIF density parameters from the BMP data */
-                    cinfo.X_density = (short)(biXPelsPerMeter / 100); /* 100 cm per meter */
-                    cinfo.Y_density = (short)(biYPelsPerMeter / 100);
-                    cinfo.Density_unit = DensityUnit.DotsCm;
-                }
-                break;
-            default:
-                cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADHEADER);
-                break;
             }
 
             /* Compute distance to bitmap data --- will adjust for colormap below */
@@ -184,6 +187,7 @@ namespace BitMiracle.cJpeg
                     biClrUsed = 256;        /* assume it's 256 */
                 else if (biClrUsed > 256)
                     cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADCMAP);
+
                 /* Allocate space to store the colormap */
                 colormap = jpeg_common_struct.AllocJpegSamples(biClrUsed, 3);
                 /* and read it from the file */
@@ -197,9 +201,7 @@ namespace BitMiracle.cJpeg
                 cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADHEADER);
 
             while (--bPad >= 0)
-            {
                 read_byte();
-            }
 
             /* Compute row width in file, including padding to 4-byte boundary */
             if (bits_per_pixel == 24)

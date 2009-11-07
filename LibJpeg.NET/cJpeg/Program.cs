@@ -363,7 +363,7 @@ namespace BitMiracle.cJpeg
                 else if (cdjpeg_utils.keymatch(arg, "smooth", 2))
                 {
                     /* Set input smoothing factor. */
-                    
+
                     argn++; /* advance to next argument */
                     if (argn >= argv.Length)
                         return false;
@@ -382,8 +382,11 @@ namespace BitMiracle.cJpeg
                         return false;
                     }
                 }
-                else /* bogus switch */
+                else
+                {
+                    /* bogus switch */
                     return false;
+                }
             }
 
             /* Post-switch-scanning cleanup */

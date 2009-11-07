@@ -103,7 +103,6 @@ namespace BitMiracle.Jpeg
                 return null;
             }
         }
-
         
         private static void usage()
         {

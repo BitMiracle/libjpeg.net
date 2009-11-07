@@ -93,7 +93,7 @@ namespace BitMiracle.Jpeg
             cur_output_row = 0;
             if (cinfo.Progress != null)
             {
-                cdjpeg_progress_mgr progress = (cdjpeg_progress_mgr)cinfo.Progress;
+                cdjpeg_progress_mgr progress = cinfo.Progress as cdjpeg_progress_mgr;
                 progress.total_extra_passes++; /* count file input as separate pass */
             }
 
@@ -135,7 +135,7 @@ namespace BitMiracle.Jpeg
             else
                 write_bmp_header();
 
-            cdjpeg_progress_mgr progress = (cdjpeg_progress_mgr)cinfo.Progress;
+            cdjpeg_progress_mgr progress = cinfo.Progress as cdjpeg_progress_mgr;
             /* Write the file body from our virtual array */
             for (int row = cinfo.Output_height; row > 0; row--)
             {
