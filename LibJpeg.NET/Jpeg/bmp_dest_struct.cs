@@ -94,7 +94,11 @@ namespace BitMiracle.Jpeg
             if (cinfo.Progress != null)
             {
                 cdjpeg_progress_mgr progress = cinfo.Progress as cdjpeg_progress_mgr;
-                progress.total_extra_passes++; /* count file input as separate pass */
+                if (progress != null)
+                {
+                    /* count file input as separate pass */
+                    progress.total_extra_passes++;
+                }
             }
 
             /* Create decompressor output buffer. */
@@ -136,6 +140,7 @@ namespace BitMiracle.Jpeg
                 write_bmp_header();
 
             cdjpeg_progress_mgr progress = cinfo.Progress as cdjpeg_progress_mgr;
+
             /* Write the file body from our virtual array */
             for (int row = cinfo.Output_height; row > 0; row--)
             {

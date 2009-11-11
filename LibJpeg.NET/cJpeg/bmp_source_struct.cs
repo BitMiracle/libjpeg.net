@@ -220,7 +220,11 @@ namespace BitMiracle.cJpeg
             if (cinfo.Progress != null)
             {
                 cdjpeg_progress_mgr progress = cinfo.Progress as cdjpeg_progress_mgr;
-                progress.total_extra_passes++; /* count file input as separate pass */
+                if (progress != null)
+                {
+                    /* count file input as separate pass */
+                    progress.total_extra_passes++;
+                }
             }
 
             /* Allocate one-row buffer for returned data */
