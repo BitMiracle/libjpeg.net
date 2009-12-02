@@ -370,6 +370,7 @@
     <ref>JpegConstants.RGB_BLUE.xml</ref>
     <ref>JpegConstants.RGB_PIXELSIZE.xml</ref>
     <ref>BitMiracle_LibJpeg.xml</ref>
+    <ref>JHUFF_TBL.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -1261,6 +1262,7 @@
         <ref>JBLOCK.xml</ref>
       </node>
     </node>
+    <node title="JHUFF_TBL" file="JHUFF_TBL.xml" iconindex="6" />
     <node title="JpegConstants" file="JpegConstants.xml" iconindex="6">
       <ref>JpegConstants.DCTSIZE.xml</ref>
       <ref>JpegConstants.DCTSIZE2.xml</ref>

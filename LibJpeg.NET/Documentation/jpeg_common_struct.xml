@@ -35,7 +35,7 @@
             </tr>
             <tr>
               <td>
-                <img src="_TemplateMSDN_files/icons/23.png" />
+                <img src="_TemplateMSDN_files\icons\23.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.ctor.xml">
@@ -46,7 +46,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\27.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.Err.xml">
@@ -57,7 +57,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\27.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.Progress.xml">
@@ -68,7 +68,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\27.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.Version.xml">
@@ -79,7 +79,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\27.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.Copyright.xml">
@@ -90,7 +90,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\23.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.CreateSamplesArray.xml">
@@ -101,7 +101,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\23.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.CreateBlocksArray.xml">
@@ -112,7 +112,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\23.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.AllocJpegSamples.xml">
@@ -123,7 +123,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\23.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.jpeg_abort.xml">
@@ -134,7 +134,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\23.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.ERREXIT3.xml">
@@ -145,7 +145,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\23.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.WARNMS3.xml">
@@ -156,7 +156,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\23.png" />
               </td>
               <td>
                 <link file="jpeg_common_struct.TRACEMS3.xml">
