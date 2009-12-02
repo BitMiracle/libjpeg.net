@@ -3,7 +3,7 @@
   <file>
     <title>Decompression parameter selection</title>
     <breadcumbs>
-      <link file="..\\Knowledge_base.xml">
+      <link file="..\Knowledge_base.xml">
         <text>Knowledge base</text>
       </link>
       <text> :: </text>
@@ -13,21 +13,21 @@
     </breadcumbs>
     <descriptionarticle only="true">
       <p>
-        <text>Decompression parameter selection is somewhat simpler than </text> <link file="Compression_parameter_selection.xml"><text>compression parameter selection</text> </link><text>, since all of the JPEG internal parameters are recorded in the source file and need not be supplied by the application. Decompression parameters control the postprocessing done on the image to deliver it in a format suitable for the application's use. Many of the parameters control speed/quality tradeoffs, in which faster decompression may be obtained at the price of a poorer-quality image. The defaults select the highest quality (slowest) processing.</text> <br /><br /><text>The following </text> <b><text>properties</text> </b><text> in the JPEG object are set by </text> <link file="../jpeg_decompress_struct.jpeg_read_header.xml"><text>jpeg_read_header</text> </link><text>() and may be useful to the application in choosing decompression parameters:</text> </p>
+        <text>Decompression parameter selection is somewhat simpler than </text> <link file="Compression_parameter_selection.xml"><text>compression parameter selection</text> </link><text>, since all of the JPEG internal parameters are recorded in the source file and need not be supplied by the application. Decompression parameters control the postprocessing done on the image to deliver it in a format suitable for the application's use. Many of the parameters control speed/quality tradeoffs, in which faster decompression may be obtained at the price of a poorer-quality image. The defaults select the highest quality (slowest) processing.</text> <br /><br /><text>The following </text> <b><text>properties</text> </b><text> in the JPEG object are set by </text> <link file="..\jpeg_decompress_struct.jpeg_read_header.xml"><text>jpeg_read_header</text> </link><text>() and may be useful to the application in choosing decompression parameters:</text> </p>
       <p>
         <table>
           <tbody>
             <tr>
               <td>
-                <link file="../jpeg_decompress_struct.Image_width.xml">
+                <link file="..\jpeg_decompress_struct.Image_width.xml">
                   <text>Image_width</text> </link>
-                <text>, </text> <br /><link file="../jpeg_decompress_struct.Image_height.xml"><text>Image_height</text> </link></td>
+                <text>, </text> <br /><link file="..\jpeg_decompress_struct.Image_height.xml"><text>Image_height</text> </link></td>
               <td>
                 <text>Width and height of image.</text> </td>
             </tr>
             <tr>
               <td>
-                <link file="../jpeg_decompress_struct.Num_components.xml">
+                <link file="..\jpeg_decompress_struct.Num_components.xml">
                   <text>Num_components</text> </link>
               </td>
               <td>
@@ -35,7 +35,7 @@
             </tr>
             <tr>
               <td>
-                <link file="../jpeg_decompress_struct.Jpeg_color_space.xml">
+                <link file="..\jpeg_decompress_struct.Jpeg_color_space.xml">
                   <text>Jpeg_color_space</text> </link>
               </td>
               <td>
@@ -43,9 +43,9 @@
             </tr>
             <tr>
               <td>
-                <link file="../jpeg_decompress_struct.Density_unit.xml">
+                <link file="..\jpeg_decompress_struct.Density_unit.xml">
                   <text>Density_unit</text> </link>
-                <text>,</text> <br /><link file="../jpeg_decompress_struct.X_density.xml"><text>X_density</text> </link><text>,</text> <br /><link file="../jpeg_decompress_struct.Y_density.xml"><text>Y_density</text> </link></td>
+                <text>,</text> <br /><link file="..\jpeg_decompress_struct.X_density.xml"><text>X_density</text> </link><text>,</text> <br /><link file="..\jpeg_decompress_struct.Y_density.xml"><text>Y_density</text> </link></td>
               <td>
                 <text>Resolution data from JFIF marker.</text> </td>
             </tr>
@@ -53,15 +53,15 @@
         </table>
       </p>
       <p>
-        <text>The JPEG color space, unfortunately, is something of a guess since the JPEG standard proper does not provide a way to record it. In practice most files adhere to the JFIF or Adobe conventions, and the decoder will recognize these correctly. See "Special color spaces", below, for more info.</text> <br /><br /><br /><text>The decompression parameters that determine the basic </text> <b><text>properties</text> </b><text> of the returned image are:</text> <br /><br /><table><tbody><tr><td><link file="../jpeg_decompress_struct.Out_color_space.xml"><text>Out_color_space</text> </link></td><td><text>Output color space.</text> </td></tr><tr><td><link file="../jpeg_decompress_struct.Scale_num.xml"><text>Scale_num</text> </link><text>,</text> <br /><link file="../jpeg_decompress_struct.Scale_denom.xml"><text>Scale_denom</text> </link></td><td><text>Scale the image by the fraction Scale_num/Scale_denom.</text> </td></tr><tr><td><link file="../jpeg_decompress_struct.Quantize_colors.xml"><text>Quantize_colors</text> </link></td><td><p><text>Chooses colormapped or full-color output.</text> </p></td></tr></tbody></table></p>
+        <text>The JPEG color space, unfortunately, is something of a guess since the JPEG standard proper does not provide a way to record it. In practice most files adhere to the JFIF or Adobe conventions, and the decoder will recognize these correctly. See "Special color spaces", below, for more info.</text> <br /><br /><br /><text>The decompression parameters that determine the basic </text> <b><text>properties</text> </b><text> of the returned image are:</text> <br /><br /><table><tbody><tr><td><link file="..\jpeg_decompress_struct.Out_color_space.xml"><text>Out_color_space</text> </link></td><td><text>Output color space.</text> </td></tr><tr><td><link file="..\jpeg_decompress_struct.Scale_num.xml"><text>Scale_num</text> </link><text>,</text> <br /><link file="..\jpeg_decompress_struct.Scale_denom.xml"><text>Scale_denom</text> </link></td><td><text>Scale the image by the fraction Scale_num/Scale_denom.</text> </td></tr><tr><td><link file="..\jpeg_decompress_struct.Quantize_colors.xml"><text>Quantize_colors</text> </link></td><td><p><text>Chooses colormapped or full-color output.</text> </p></td></tr></tbody></table></p>
       <p>
-        <text>The next three parameters are relevant only if </text> <link file="../jpeg_decompress_struct.Quantize_colors.xml"><text>Quantize_colors</text> </link><text> is </text> <b><text>true</text> </b><text>.</text> <br /><br /></p>
+        <text>The next three parameters are relevant only if </text> <link file="..\jpeg_decompress_struct.Quantize_colors.xml"><text>Quantize_colors</text> </link><text> is </text> <b><text>true</text> </b><text>.</text> <br /><br /></p>
       <p>
         <table>
           <tbody>
             <tr>
               <td>
-                <link file="../jpeg_decompress_struct.Desired_number_of_colors.xml">
+                <link file="..\jpeg_decompress_struct.Desired_number_of_colors.xml">
                   <text>Desired_number_of_colors</text> </link>
               </td>
               <td>
@@ -69,7 +69,7 @@
             </tr>
             <tr>
               <td>
-                <link file="../jpeg_decompress_struct.Two_pass_quantize.xml">
+                <link file="..\jpeg_decompress_struct.Two_pass_quantize.xml">
                   <text>Two_pass_quantize</text> </link>
               </td>
               <td>
@@ -77,7 +77,7 @@
             </tr>
             <tr>
               <td>
-                <link file="../jpeg_decompress_struct.Dither_mode.xml">
+                <link file="..\jpeg_decompress_struct.Dither_mode.xml">
                   <text>Dither_mode</text> </link>
               </td>
               <td>
@@ -87,21 +87,21 @@
         </table>
       </p>
       <p>
-        <text>When Quantize_colors is </text> <b><text>true</text> </b><text>, the target color map is described by the next</text> <br /><text>two properties. </text> <link file="Colormap"><text>Colormap</text> </link><text> is set to </text> <b><text>null</text> </b><text> by </text> <link file="../jpeg_decompress_struct.jpeg_read_header.xml"><text>jpeg_read_header</text> </link><text>(). The application</text> <br /><text>can supply a color map by setting Colormap non-</text> <b><text>null</text> </b><text> and setting </text> <link file="../jpeg_decompress_struct.Actual_number_of_colors.xml"><text>Actual_number_of_colors</text> </link><text> to the map size. Otherwise, jpeg_start_decompress()</text> <br /><text>selects a suitable color map and sets these two properties itself.</text> <br /><br /></p>
+        <text>When Quantize_colors is </text> <b><text>true</text> </b><text>, the target color map is described by the next</text> <br /><text>two properties. </text> <link file="Colormap"><text>Colormap</text> </link><text> is set to </text> <b><text>null</text> </b><text> by </text> <link file="..\jpeg_decompress_struct.jpeg_read_header.xml"><text>jpeg_read_header</text> </link><text>(). The application</text> <br /><text>can supply a color map by setting Colormap non-</text> <b><text>null</text> </b><text> and setting </text> <link file="..\jpeg_decompress_struct.Actual_number_of_colors.xml"><text>Actual_number_of_colors</text> </link><text> to the map size. Otherwise, jpeg_start_decompress()</text> <br /><text>selects a suitable color map and sets these two properties itself.</text> <br /><br /></p>
       <p>
         <table>
           <tbody>
             <tr>
               <td>
-                <link file="../jpeg_decompress_struct.Colormap.xml">
+                <link file="..\jpeg_decompress_struct.Colormap.xml">
                   <text>Colormap</text> </link>
               </td>
               <td>
-                <text>The color map, represented as a 2-D pixel array of </text> <link file="../jpeg_decompress_struct.Out_color_components.xml"><text>Out_color_components</text> </link><text> rows and Actual_number_of_colors columns.</text> </td>
+                <text>The color map, represented as a 2-D pixel array of </text> <link file="..\jpeg_decompress_struct.Out_color_components.xml"><text>Out_color_components</text> </link><text> rows and Actual_number_of_colors columns.</text> </td>
             </tr>
             <tr>
               <td>
-                <link file="../jpeg_decompress_struct.Actual_number_of_colors.xml">
+                <link file="..\jpeg_decompress_struct.Actual_number_of_colors.xml">
                   <text>Actual_number_of_colors</text> </link>
               </td>
               <td>
@@ -112,7 +112,7 @@
       </p>
       <p>
         <br />
-        <text>Additional decompression parameters that the application may set include:</text> <br /><br /><table><tbody><tr><td><link file="../jpeg_decompress_struct.Dct_method.xml"><text>Dct_method</text> </link></td><td><text>Selects the algorithm used for the DCT step.</text> </td></tr><tr><td><link file="../jpeg_decompress_struct.Do_fancy_upsampling.xml"><text>Do_fancy_upsampling</text> </link></td><td><text>Upsampling of chroma components.</text> </td></tr><tr><td><link file="../jpeg_decompress_struct.Do_block_smoothing.xml"><text>Do_block_smoothing</text> </link></td><td><text>Apply interblock smoothing in early stages of decoding progressive JPEG files.</text> </td></tr><tr><td><link file="../jpeg_decompress_struct.Enable_1pass_quant.xml"><text>Enable_1pass_quant</text> </link><text>,</text> <br /><link file="../jpeg_decompress_struct.Enable_external_quant.xml"><text>Enable_external_quant</text> </link><text>,</text> <br /><link file="../jpeg_decompress_struct.Enable_2pass_quant.xml"><text>Enable_2pass_quant</text> </link></td><td><text>These are significant only in </text> <link file="Buffered_image_mode.xml"><text>buffered-image mode</text> </link><text>.</text> </td></tr></tbody></table><br /><br /><text>The output image dimensions are given by the following properties. These are computed from the source image dimensions and the decompression parameters by </text> <link file="../jpeg_decompress_struct.jpeg_start_decompress.xml"><text>jpeg_start_decompress</text> </link><text>(). You can also call </text> <link file="../jpeg_decompress_struct.jpeg_calc_output_dimensions.xml"><text>jpeg_calc_output_dimensions</text> </link><text>() to obtain the values that will result from the current parameter settings. This can be useful if you are trying to pick a scaling ratio that will get close to a desired target size.</text> <br /><br /><table><tbody><tr><td><link file="../jpeg_decompress_struct.Output_width.xml"><text>Output_width</text> </link><text>,</text> <br /><link file="../jpeg_decompress_struct.Output_height.xml"><text>Output_height</text> </link></td><td><text>Actual dimensions of output image.</text> </td></tr><tr><td><link file="../jpeg_decompress_struct.Out_color_components.xml"><text>Out_color_components</text> </link></td><td><text>Number of color components in </text> <link file="../jpeg_decompress_struct.Out_color_space.xml"><text>Out_color_space</text> </link><text>.</text> </td></tr><tr><td><link file="../jpeg_decompress_struct.Output_components.xml"><text>Output_components</text> </link></td><td><text>Number of color components returned.</text> </td></tr><tr><td><link file="../jpeg_decompress_struct.Rec_outbuf_height.xml"><text>Rec_outbuf_height</text> </link></td><td><text>Recommended height of scanline buffer.</text> </td></tr></tbody></table><br /><text>The output arrays are required to be Output_width * Output_components bytes wide.</text> </p>
+        <text>Additional decompression parameters that the application may set include:</text> <br /><br /><table><tbody><tr><td><link file="..\jpeg_decompress_struct.Dct_method.xml"><text>Dct_method</text> </link></td><td><text>Selects the algorithm used for the DCT step.</text> </td></tr><tr><td><link file="..\jpeg_decompress_struct.Do_fancy_upsampling.xml"><text>Do_fancy_upsampling</text> </link></td><td><text>Upsampling of chroma components.</text> </td></tr><tr><td><link file="..\jpeg_decompress_struct.Do_block_smoothing.xml"><text>Do_block_smoothing</text> </link></td><td><text>Apply interblock smoothing in early stages of decoding progressive JPEG files.</text> </td></tr><tr><td><link file="..\jpeg_decompress_struct.Enable_1pass_quant.xml"><text>Enable_1pass_quant</text> </link><text>,</text> <br /><link file="..\jpeg_decompress_struct.Enable_external_quant.xml"><text>Enable_external_quant</text> </link><text>,</text> <br /><link file="..\jpeg_decompress_struct.Enable_2pass_quant.xml"><text>Enable_2pass_quant</text> </link></td><td><text>These are significant only in </text> <link file="Buffered_image_mode.xml"><text>buffered-image mode</text> </link><text>.</text> </td></tr></tbody></table><br /><br /><text>The output image dimensions are given by the following properties. These are computed from the source image dimensions and the decompression parameters by </text> <link file="..\jpeg_decompress_struct.jpeg_start_decompress.xml"><text>jpeg_start_decompress</text> </link><text>(). You can also call </text> <link file="..\jpeg_decompress_struct.jpeg_calc_output_dimensions.xml"><text>jpeg_calc_output_dimensions</text> </link><text>() to obtain the values that will result from the current parameter settings. This can be useful if you are trying to pick a scaling ratio that will get close to a desired target size.</text> <br /><br /><table><tbody><tr><td><link file="..\jpeg_decompress_struct.Output_width.xml"><text>Output_width</text> </link><text>,</text> <br /><link file="..\jpeg_decompress_struct.Output_height.xml"><text>Output_height</text> </link></td><td><text>Actual dimensions of output image.</text> </td></tr><tr><td><link file="..\jpeg_decompress_struct.Out_color_components.xml"><text>Out_color_components</text> </link></td><td><text>Number of color components in </text> <link file="..\jpeg_decompress_struct.Out_color_space.xml"><text>Out_color_space</text> </link><text>.</text> </td></tr><tr><td><link file="..\jpeg_decompress_struct.Output_components.xml"><text>Output_components</text> </link></td><td><text>Number of color components returned.</text> </td></tr><tr><td><link file="..\jpeg_decompress_struct.Rec_outbuf_height.xml"><text>Rec_outbuf_height</text> </link></td><td><text>Recommended height of scanline buffer.</text> </td></tr></tbody></table><br /><text>The output arrays are required to be Output_width * Output_components bytes wide.</text> </p>
     </descriptionarticle>
   </file>
 </xml>

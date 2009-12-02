@@ -27,6 +27,6 @@
       </function>
     </signature>
     <remarks>
-      <text>See "</text> <link file="Classic/Special_color_spaces.xml"><text>Special color spaces</text> </link><text>", below, before using this. A large number of parameters, including all per-component parameters, are set by this routine; if you want to twiddle individual parameters you should call jpeg_set_colorspace() before rather than after.</text> </remarks>
+      <text>See "</text> <link file="Classic\Special_color_spaces.xml"><text>Special color spaces</text> </link><text>", below, before using this. A large number of parameters, including all per-component parameters, are set by this routine; if you want to twiddle individual parameters you should call jpeg_set_colorspace() before rather than after.</text> </remarks>
   </file>
 </xml>
