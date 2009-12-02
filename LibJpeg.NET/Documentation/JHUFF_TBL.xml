@@ -7,11 +7,41 @@
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
-    <descriptionarticle only="false" />
+    <descriptionarticle only="false">
+      <text>Huffman coding tables.</text> </descriptionarticle>
     <signature>
       <class>
         <name>JHUFF_TBL</name>
       </class>
     </signature>
+    <remarks>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <text> </text> </td>
+            <td>
+              <b>
+                <text>Member</text> </b>
+            </td>
+            <td>
+              <b>
+                <text>Description</text> </b>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <link file="JHUFF_TBL_Sent_table.xml">
+                <text>Sent_table</text> </link>
+            </td>
+            <td>
+              <text>Indicates whether the table has been output to file.</text> </td>
+          </tr>
+        </tbody>
+      </table>
+    </remarks>
   </file>
 </xml>

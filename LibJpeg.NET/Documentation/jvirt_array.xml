@@ -11,7 +11,7 @@
       <text>JPEG virtual array.</text> </descriptionarticle>
     <signature>
       <class>
-        <name>jvirt_array&lt;T&gt;</name>
+        <name><![CDATA[jvirt_array<T>]]></name>
       </class>
     </signature>
     <remarks>
@@ -34,7 +34,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\27.png" />
               </td>
               <td>
                 <link file="jvirt_array.ErrorProcessor.xml">
@@ -45,7 +45,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\23.png" />
               </td>
               <td>
                 <link file="jvirt_array.Access.xml">

@@ -371,6 +371,7 @@
     <ref>JpegConstants.RGB_PIXELSIZE.xml</ref>
     <ref>BitMiracle_LibJpeg.xml</ref>
     <ref>JHUFF_TBL.xml</ref>
+    <ref>JHUFF_TBL_Sent_table.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -641,6 +642,7 @@
         <ref>jpeg_compress_struct.jpeg_write_tables.xml</ref>
         <ref>jpeg_compress_struct.jpeg_start_compress.xml</ref>
         <ref>jpeg_compress_struct.xml</ref>
+        <ref>JHUFF_TBL_Sent_table.xml</ref>
       </node>
       <node title="jpeg_finish_compress" file="jpeg_compress_struct.jpeg_finish_compress.xml" iconindex="23">
         <ref>jpeg_compress_struct.jpeg_write_tables.xml</ref>
@@ -1262,7 +1264,12 @@
         <ref>JBLOCK.xml</ref>
       </node>
     </node>
-    <node title="JHUFF_TBL" file="JHUFF_TBL.xml" iconindex="6" />
+    <node title="JHUFF_TBL" file="JHUFF_TBL.xml" iconindex="6">
+      <ref>JHUFF_TBL_Sent_table.xml</ref>
+      <node title="Sent_table" file="JHUFF_TBL_Sent_table.xml" iconindex="27">
+        <ref>JHUFF_TBL.xml</ref>
+      </node>
+    </node>
     <node title="JpegConstants" file="JpegConstants.xml" iconindex="6">
       <ref>JpegConstants.DCTSIZE.xml</ref>
       <ref>JpegConstants.DCTSIZE2.xml</ref>
