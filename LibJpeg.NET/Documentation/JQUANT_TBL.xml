@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xml>
   <file>
-    <title>JHUFF_TBL</title>
+    <title>JQUANT_TBL</title>
     <breadcumbs>
       <link file="BitMiracle_LibJpeg_Classic.xml">
         <text>BitMiracle.LibJpeg.Classic namespace</text>
       </link>
     </breadcumbs>
     <descriptionarticle only="false">
-      <text>Huffman coding table.</text> </descriptionarticle>
+      <text>DCT coefficient quantization table.</text> </descriptionarticle>
     <signature>
       <class>
-        <name>JHUFF_TBL</name>
+        <name>JQUANT_TBL</name>
       </class>
     </signature>
     <remarks>
@@ -34,7 +34,7 @@
               <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
-              <link file="JHUFF_TBL.Sent_table.xml">
+              <link file="JQUANT_TBL.Sent_table.xml">
                 <text>Sent_table</text> </link>
             </td>
             <td>
