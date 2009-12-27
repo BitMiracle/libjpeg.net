@@ -24,6 +24,6 @@
       </property>
     </signature>
     <remarks>
-      <text>This field is used only during compression.</text> </remarks>
+      <text>This property is used only during compression.</text> </remarks>
   </file>
 </xml>
