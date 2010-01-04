@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>jpeg_component_info</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Basic info about one component (color channel)</text> </descriptionarticle>
+    <signature>
+      <class>
+        <name>jpeg_component_info</name>
+      </class>
+    </signature>
+    <remarks>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <p align="justify">
+                <text> </text> </p>
+            </td>
+            <td>
+              <p align="center">
+                <b>
+                  <text>Member</text> </b>
+              </p>
+            </td>
+            <td>
+              <p align="center">
+                <b>
+                  <text>Description</text> </b>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <p align="justify">
+                <link file="jpeg_component_info.Ac_tbl_no.xml">
+                  <text>Ac_tbl_no</text> </link>
+              </p>
+            </td>
+            <td>
+              <p align="justify">
+                <text>AC entropy table selector (0..3)</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <p align="justify">
+                <link file="jpeg_component_info.Component_id.xml">
+                  <text>Component_id</text> </link>
+              </p>
+            </td>
+            <td>
+              <p align="justify">
+                <text>Identifier for this component (0..255)</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <p align="justify">
+                <link file="jpeg_component_info.Component_index.xml">
+                  <text>Component_index</text> </link>
+              </p>
+            </td>
+            <td>
+              <p align="justify">
+                <text>Its index in SOF or </text> <link file="jpeg_decompress_struct.Comp_info.xml"><text>Comp_info</text> </link><text>.</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <p align="justify">
+                <link file="jpeg_component_info.Dc_tbl_no.xml">
+                  <text>Dc_tbl_no</text> </link>
+              </p>
+            </td>
+            <td>
+              <p align="justify">
+                <text>DC entropy table selector (0..3)</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <p align="justify">
+                <link file="jpeg_component_info.Downsampled_width.xml">
+                  <text>Downsampled_width</text> </link>
+              </p>
+            </td>
+            <td>
+              <p align="justify">
+                <text>Actual width in samples.</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <p align="justify">
+                <link file="jpeg_component_info.H_samp_factor.xml">
+                  <text>H_samp_factor</text> </link>
+              </p>
+            </td>
+            <td>
+              <p align="justify">
+                <text>Horizontal sampling factor (1..4)</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <p align="justify">
+                <link file="jpeg_component_info.Quant_tbl_no.xml">
+                  <text>Quant_tbl_no</text> </link>
+              </p>
+            </td>
+            <td>
+              <p align="justify">
+                <text>Quantization table selector (0..3)</text> </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <p align="justify">
+                <link file="jpeg_component_info.V_samp_factor.xml">
+                  <text>V_samp_factor</text> </link>
+              </p>
+            </td>
+            <td>
+              <text>Vertical sampling factor (1..4)</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <p align="justify">
+                <link file="jpeg_component_info.Width_in_blocks.xml">
+                  <text>Width_in_blocks</text> </link>
+              </p>
+            </td>
+            <td>
+              <p align="justify">
+                <text> </text> </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </remarks>
+  </file>
+</xml>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>Component_index</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_component_info.xml">
+        <text>jpeg_component_info</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Its index in SOF or </text> <link file="jpeg_decompress_struct.Comp_info.xml"><text>Comp_info</text> </link><text>.</text> </descriptionarticle>
+    <signature>
+      <property access="full">
+        <name>Component_index</name>
+        <return type="Int32" />
+      </property>
+    </signature>
+  </file>
+</xml>

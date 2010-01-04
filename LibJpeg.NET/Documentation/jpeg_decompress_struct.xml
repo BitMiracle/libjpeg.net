@@ -34,7 +34,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/14.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\14.png" />
             </td>
             <td>
               <link file="jpeg_marker_parser_method.xml">
@@ -45,7 +45,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.ctor.xml">
@@ -56,7 +56,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.ctor1.xml">
@@ -67,7 +67,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Image_width.xml">
@@ -78,7 +78,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Image_height.xml">
@@ -89,7 +89,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Num_components.xml">
@@ -100,7 +100,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Jpeg_color_space.xml">
@@ -111,7 +111,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Out_color_space.xml">
@@ -122,7 +122,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Scale_num.xml">
@@ -133,7 +133,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Scale_denom.xml">
@@ -144,7 +144,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Buffered_image.xml">
@@ -155,7 +155,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Raw_data_out.xml">
@@ -166,7 +166,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Dct_method.xml">
@@ -177,7 +177,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Do_fancy_upsampling.xml">
@@ -188,7 +188,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Do_block_smoothing.xml">
@@ -199,7 +199,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Quantize_colors.xml">
@@ -210,7 +210,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Dither_mode.xml">
@@ -221,7 +221,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Two_pass_quantize.xml">
@@ -232,7 +232,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Desired_number_of_colors.xml">
@@ -243,7 +243,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Enable_1pass_quant.xml">
@@ -254,7 +254,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Enable_external_quant.xml">
@@ -265,7 +265,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Enable_2pass_quant.xml">
@@ -276,7 +276,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Output_width.xml">
@@ -287,7 +287,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Output_height.xml">
@@ -298,7 +298,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Out_color_components.xml">
@@ -309,7 +309,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Output_components.xml">
@@ -320,7 +320,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Rec_outbuf_height.xml">
@@ -331,7 +331,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Actual_number_of_colors.xml">
@@ -342,7 +342,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Colormap.xml">
@@ -353,7 +353,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Output_scanline.xml">
@@ -364,7 +364,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Input_scan_number.xml">
@@ -375,7 +375,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Input_iMCU_row.xml">
@@ -386,7 +386,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Output_scan_number.xml">
@@ -397,7 +397,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Output_iMCU_row.xml">
@@ -408,7 +408,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Coef_bits.xml">
@@ -419,7 +419,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Density_unit.xml">
@@ -430,7 +430,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.X_density.xml">
@@ -441,7 +441,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Y_density.xml">
@@ -452,7 +452,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Unread_marker.xml">
@@ -463,7 +463,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/27.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.Marker_list.xml">
@@ -474,7 +474,18 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\27.png" />
+            </td>
+            <td>
+              <link file="jpeg_decompress_struct.Comp_info.xml">
+                <text>Comp_info</text> </link>
+            </td>
+            <td>
+              <text>Comp_info[i] describes component that appears i'th in SOF.</text> </td>
+          </tr>
+          <tr>
+            <td>
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_stdio_src.xml">
@@ -485,7 +496,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_read_header.xml">
@@ -496,7 +507,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_start_decompress.xml">
@@ -507,7 +518,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_read_scanlines.xml">
@@ -518,7 +529,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_finish_decompress.xml">
@@ -529,7 +540,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_read_raw_data.xml">
@@ -540,7 +551,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_has_multiple_scans.xml">
@@ -551,7 +562,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_start_output.xml">
@@ -562,7 +573,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_finish_output.xml">
@@ -573,7 +584,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_input_complete.xml">
@@ -584,7 +595,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_consume_input.xml">
@@ -595,7 +606,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_calc_output_dimensions.xml">
@@ -606,7 +617,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_read_coefficients.xml">
@@ -617,7 +628,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_copy_critical_parameters.xml">
@@ -628,7 +639,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_abort_decompress.xml">
@@ -639,7 +650,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_set_marker_processor.xml">
@@ -650,7 +661,7 @@
           </tr>
           <tr>
             <td>
-              <img alt="" src="_TemplateMSDN_files/icons/23.png" />
+              <img alt="" src="_TemplateMSDN_files\icons\23.png" />
             </td>
             <td>
               <link file="jpeg_decompress_struct.jpeg_save_markers.xml">

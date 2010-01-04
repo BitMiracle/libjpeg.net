@@ -36,6 +36,17 @@
                 <img alt="" src="_TemplateMSDN_files\icons\6.png" />
               </td>
               <td>
+                <link file="jpeg_component_info.xml">
+                  <text>jpeg_component_info</text> </link>
+              </td>
+              <td>
+                <text>Basic info about one component (color channel)</text> </td>
+            </tr>
+            <tr>
+              <td>
+                <img alt="" src="_TemplateMSDN_files\icons\6.png" />
+              </td>
+              <td>
                 <link file="jpeg_compress_struct.xml">
                   <text>jpeg_compress_struct</text> </link>
               </td>

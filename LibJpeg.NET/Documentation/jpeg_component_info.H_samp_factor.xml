@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <file>
+    <title>H_samp_factor</title>
+    <breadcumbs>
+      <link file="BitMiracle_LibJpeg_Classic.xml">
+        <text>BitMiracle.LibJpeg.Classic namespace</text>
+      </link>
+      <text> :: </text>
+      <link file="jpeg_component_info.xml">
+        <text>jpeg_component_info</text>
+      </link>
+    </breadcumbs>
+    <descriptionarticle only="false">
+      <text>Horizontal sampling factor (1..4)</text> </descriptionarticle>
+    <signature>
+      <property access="full">
+        <name>H_samp_factor</name>
+        <return type="Int32" />
+      </property>
+    </signature>
+  </file>
+</xml>

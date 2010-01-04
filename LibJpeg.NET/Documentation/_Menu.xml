@@ -374,6 +374,17 @@
     <ref>JQUANT_TBL.xml</ref>
     <ref>JQUANT_TBL.Sent_table.xml</ref>
     <ref>JHUFF_TBL.Sent_table.xml</ref>
+    <ref>jpeg_component_info.xml</ref>
+    <ref>jpeg_component_info.Ac_tbl_no.xml</ref>
+    <ref>jpeg_component_info.H_samp_factor.xml</ref>
+    <ref>jpeg_component_info.Component_id.xml</ref>
+    <ref>jpeg_component_info.Component_index.xml</ref>
+    <ref>jpeg_decompress_struct.Comp_info.xml</ref>
+    <ref>jpeg_component_info.Dc_tbl_no.xml</ref>
+    <ref>jpeg_component_info.Downsampled_width.xml</ref>
+    <ref>jpeg_component_info.V_samp_factor.xml</ref>
+    <ref>jpeg_component_info.Quant_tbl_no.xml</ref>
+    <ref>jpeg_component_info.Width_in_blocks.xml</ref>
     <node title="jpeg_common_struct" file="jpeg_common_struct.xml" iconindex="6">
       <ref>jpeg_common_struct.Progress.xml</ref>
       <ref>jpeg_common_struct.Err.xml</ref>
@@ -462,6 +473,46 @@
       </node>
       <node title="TRACEMS" file="jpeg_common_struct.TRACEMS3.xml" iconindex="23">
         <ref>jpeg_common_struct.xml</ref>
+      </node>
+    </node>
+    <node title="jpeg_component_info" file="jpeg_component_info.xml" iconindex="6">
+      <ref>jpeg_component_info.Ac_tbl_no.xml</ref>
+      <ref>jpeg_component_info.Component_id.xml</ref>
+      <ref>jpeg_component_info.Component_index.xml</ref>
+      <ref>jpeg_component_info.Quant_tbl_no.xml</ref>
+      <ref>jpeg_component_info.Width_in_blocks.xml</ref>
+      <ref>jpeg_component_info.H_samp_factor.xml</ref>
+      <ref>BitMiracle_LibJpeg_Classic.xml</ref>
+      <ref>jpeg_decompress_struct.Comp_info.xml</ref>
+      <ref>jpeg_component_info.Dc_tbl_no.xml</ref>
+      <ref>jpeg_component_info.Downsampled_width.xml</ref>
+      <ref>jpeg_component_info.V_samp_factor.xml</ref>
+      <node title="Ac_tbl_no" file="jpeg_component_info.Ac_tbl_no.xml" iconindex="27">
+        <ref>jpeg_component_info.xml</ref>
+      </node>
+      <node title="Component_id" file="jpeg_component_info.Component_id.xml" iconindex="27">
+        <ref>jpeg_component_info.xml</ref>
+      </node>
+      <node title="Component_index" file="jpeg_component_info.Component_index.xml" iconindex="27">
+        <ref>jpeg_component_info.xml</ref>
+      </node>
+      <node title="Dc_tbl_no" file="jpeg_component_info.Dc_tbl_no.xml" iconindex="27">
+        <ref>jpeg_component_info.xml</ref>
+      </node>
+      <node title="Downsampled_width" file="jpeg_component_info.Downsampled_width.xml" iconindex="27">
+        <ref>jpeg_component_info.xml</ref>
+      </node>
+      <node title="H_samp_factor" file="jpeg_component_info.H_samp_factor.xml" iconindex="27">
+        <ref>jpeg_component_info.xml</ref>
+      </node>
+      <node title="Quant_tbl_no" file="jpeg_component_info.Quant_tbl_no.xml" iconindex="27">
+        <ref>jpeg_component_info.xml</ref>
+      </node>
+      <node title="V_samp_factor" file="jpeg_component_info.V_samp_factor.xml" iconindex="27">
+        <ref>jpeg_component_info.xml</ref>
+      </node>
+      <node title="Width_in_blocks" file="jpeg_component_info.Width_in_blocks.xml" iconindex="27">
+        <ref>jpeg_component_info.xml</ref>
       </node>
     </node>
     <node title="jpeg_compress_struct" file="jpeg_compress_struct.xml" iconindex="6">
@@ -818,6 +869,7 @@
       <ref>BitMiracle_LibJpeg_Classic.xml</ref>
       <ref>Classic\Decompression_details.xml</ref>
       <ref>Classic\Error_handling.xml</ref>
+      <ref>jpeg_decompress_struct.Comp_info.xml</ref>
       <node title="jpeg_marker_parser_method" file="jpeg_marker_parser_method.xml" iconindex="23">
         <ref>jpeg_decompress_struct.jpeg_set_marker_processor.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
@@ -1018,6 +1070,11 @@
         <ref>jpeg_decompress_struct.jpeg_save_markers.xml</ref>
         <ref>jpeg_decompress_struct.xml</ref>
         <ref>Classic\Special_markers.xml</ref>
+      </node>
+      <node title="Comp_info" file="jpeg_decompress_struct.Comp_info.xml" iconindex="27">
+        <ref>jpeg_component_info.Component_index.xml</ref>
+        <ref>jpeg_decompress_struct.xml</ref>
+        <ref>jpeg_component_info.xml</ref>
       </node>
       <node title="jpeg_stdio_src" file="jpeg_decompress_struct.jpeg_stdio_src.xml" iconindex="23">
         <ref>jpeg_decompress_struct.xml</ref>

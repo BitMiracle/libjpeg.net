@@ -49,5 +49,6 @@
     <type>jvirt_array[T&gt;</type>
     <type>jvirt_arrayT</type>
     <type>jvirt_array&lt;BLOCK&gt;</type>
+    <type>jpeg_component_info[]</type>
   </types>
 </xml>
