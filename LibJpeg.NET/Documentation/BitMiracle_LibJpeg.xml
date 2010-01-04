@@ -22,7 +22,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\6.png" />
               </td>
               <td>
                 <link file="CompressionParameters.xml">
@@ -33,7 +33,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\6.png" />
               </td>
               <td>
                 <link file="JpegImage.xml">
@@ -44,7 +44,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\6.png" />
               </td>
               <td>
                 <link file="Sample.xml">
@@ -55,7 +55,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/6.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\6.png" />
               </td>
               <td>
                 <link file="SampleRow.xml">
@@ -66,7 +66,7 @@
             </tr>
             <tr>
               <td>
-                <img alt="" src="_TemplateMSDN_files/icons/10.png" />
+                <img alt="" src="_TemplateMSDN_files\icons\10.png" />
               </td>
               <td>
                 <link file="Colorspace.xml">
