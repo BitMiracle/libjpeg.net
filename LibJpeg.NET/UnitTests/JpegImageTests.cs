@@ -21,16 +21,18 @@ namespace UnitTests
         public void TestCompressionResultsSameAsForCJpeg()
         {
             string pathToTestFiles = m_testcase + @"jpeg_compression_data\";
-            JpegImage jpeg = new JpegImage(pathToTestFiles + "test24.bmp");
-            testJpegOutput(jpeg, "test24.jpg", pathToTestFiles);
+            using (JpegImage jpeg = new JpegImage(pathToTestFiles + "test24.bmp"))
+            {
+                testJpegOutput(jpeg, "test24.jpg", pathToTestFiles);
 
-            CompressionParameters parameters = new CompressionParameters();
-            parameters.Quality = 25;
-            testJpegOutput(jpeg, parameters, "test24_25.jpg", pathToTestFiles);
+                CompressionParameters parameters = new CompressionParameters();
+                parameters.Quality = 25;
+                testJpegOutput(jpeg, parameters, "test24_25.jpg", pathToTestFiles);
 
-            parameters = new CompressionParameters();
-            parameters.SimpleProgressive = true;
-            testJpegOutput(jpeg, parameters, "test24_prog.jpg", pathToTestFiles);
+                parameters = new CompressionParameters();
+                parameters.SimpleProgressive = true;
+                testJpegOutput(jpeg, parameters, "test24_prog.jpg", pathToTestFiles);
+            }
         }
 
         [Test]
@@ -54,14 +56,16 @@ namespace UnitTests
         [Test]
         public void TestDecompressionFromCMYKJpeg()
         {
-            JpegImage jpeg = new JpegImage(m_dataFolder + "ammerland.jpg");
-            Assert.AreEqual(jpeg.BitsPerComponent, 8);
-            Assert.AreEqual(jpeg.ComponentsPerSample, 4);
-            Assert.AreEqual(jpeg.Colorspace, Colorspace.CMYK);
-            Assert.AreEqual(jpeg.Width, 315);
-            Assert.AreEqual(jpeg.Height, 349);
+            using (JpegImage jpeg = new JpegImage(m_dataFolder + "ammerland.jpg"))
+            {
+                Assert.AreEqual(jpeg.BitsPerComponent, 8);
+                Assert.AreEqual(jpeg.ComponentsPerSample, 4);
+                Assert.AreEqual(jpeg.Colorspace, Colorspace.CMYK);
+                Assert.AreEqual(jpeg.Width, 315);
+                Assert.AreEqual(jpeg.Height, 349);
 
-            testBitmapOutput(jpeg, "ammerland.bmp", m_expectedResults);
+                testBitmapOutput(jpeg, "ammerland.bmp", m_expectedResults);
+            }
         }
 
         [Test]
@@ -83,24 +87,28 @@ namespace UnitTests
         [Test]
         public void TestCreateJpegImageFromPixels()
         {
-            JpegImage jpegImage = createImageFromPixels();
-
-            testJpegOutput(jpegImage, "JpegImageFromPixels.jpg", m_expectedResults);
-            testBitmapOutput(jpegImage, "JpegImageFromPixels.png", m_expectedResults);
+            using (JpegImage jpegImage = createImageFromPixels())
+            {
+                testJpegOutput(jpegImage, "JpegImageFromPixels.jpg", m_expectedResults);
+                testBitmapOutput(jpegImage, "JpegImageFromPixels.png", m_expectedResults);
+            }
         }
 
         [Test]
         public void TestCreateFromPixelsAndRecompress()
         {
-            JpegImage jpegImage = createImageFromPixels();
+            using (JpegImage jpegImage = createImageFromPixels())
+            {
+                CompressionParameters compressionParameters = new CompressionParameters();
+                compressionParameters.Quality = 20;
+                const string output = "JpegImageFromPixels_20.jpg";
+                testJpegOutput(jpegImage, compressionParameters, output, m_expectedResults);
 
-            CompressionParameters compressionParameters = new CompressionParameters();
-            compressionParameters.Quality = 20;
-            const string output = "JpegImageFromPixels_20.jpg";
-            testJpegOutput(jpegImage, compressionParameters, output, m_expectedResults);
-
-            JpegImage recompressedImage = new JpegImage(output);
-            Assert.AreEqual(recompressedImage.Colorspace, jpegImage.Colorspace);
+                using (JpegImage recompressedImage = new JpegImage(output))
+                {
+                    Assert.AreEqual(recompressedImage.Colorspace, jpegImage.Colorspace);
+                }
+            }
         }
 
         private static JpegImage createImageFromPixels()
@@ -143,21 +151,25 @@ namespace UnitTests
 
         private static void testJpegFromBitmap(Bitmap bmp, string jpegFileName)
         {
-            JpegImage jpeg = new JpegImage(bmp);
-            Assert.AreEqual(jpeg.Width, bmp.Width);
-            Assert.AreEqual(jpeg.Height, bmp.Height);
-            Assert.AreEqual(jpeg.ComponentsPerSample, 3);//Number of components in Bitmap
+            using (JpegImage jpeg = new JpegImage(bmp))
+            {
+                Assert.AreEqual(jpeg.Width, bmp.Width);
+                Assert.AreEqual(jpeg.Height, bmp.Height);
+                Assert.AreEqual(jpeg.ComponentsPerSample, 3);//Number of components in Bitmap
 
-            using (FileStream output = new FileStream(jpegFileName, FileMode.Create))
-                jpeg.WriteJpeg(output);
+                using (FileStream output = new FileStream(jpegFileName, FileMode.Create))
+                    jpeg.WriteJpeg(output);
+            }
 
             Assert.IsTrue(Utils.FilesAreEqual(jpegFileName, Path.Combine(m_expectedResults, jpegFileName)));
         }
 
         private static void testJpegFromFile(string fileName, string jpegFileName, string folderWithExpectedResults)
         {
-            JpegImage jpeg = new JpegImage(fileName);
-            testJpegOutput(jpeg, jpegFileName, folderWithExpectedResults);
+            using (JpegImage jpeg = new JpegImage(fileName))
+            {
+                testJpegOutput(jpeg, jpegFileName, folderWithExpectedResults);
+            }
         }
 
         private static void testJpegOutput(JpegImage jpeg, string jpegFileName, string folderWithExpectedResults)
@@ -175,8 +187,10 @@ namespace UnitTests
 
         private static void testBitmapFromFile(string sourceFileName, string bitmapFileName, string folderWithExpectedResults)
         {
-            JpegImage jpeg = new JpegImage(sourceFileName);
-            testBitmapOutput(jpeg, bitmapFileName, folderWithExpectedResults);
+            using (JpegImage jpeg = new JpegImage(sourceFileName))
+            {
+                testBitmapOutput(jpeg, bitmapFileName, folderWithExpectedResults);
+            }
         }
 
         private static void testBitmapOutput(JpegImage jpeg, string bitmapFileName, string folderWithExpectedResults)
