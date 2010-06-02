@@ -14,7 +14,7 @@ namespace UnitTests
     public class JpegImageTests
     {
         private const string m_expectedResults = @"..\..\ExpectedResults\";
-        private const string m_testcase = @"..\..\..\..\TestCase\";
+        private const string m_testcase = @"..\..\..\TestCase\";
         private const string m_dataFolder = m_testcase + @"Data\";
 
         [Test]
