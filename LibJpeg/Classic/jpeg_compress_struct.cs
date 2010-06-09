@@ -201,6 +201,11 @@ namespace BitMiracle.LibJpeg.Classic
         internal jpeg_scan_info[] m_script_space; /* workspace for jpeg_simple_progression */
         internal int m_script_space_size;
 
+        public override bool IsDecompressor
+        {
+            get { return false; }
+        }
+
         // Destination for compressed data
         public LibJpeg.Classic.jpeg_destination_mgr Dest
         {
@@ -1170,8 +1175,6 @@ namespace BitMiracle.LibJpeg.Classic
         /// </summary>
         private void initialize()
         {
-            m_is_decompressor = false;
-
             /* Zero out pointers to permanent structures. */
             m_progress = null;
             m_dest = null;

@@ -20,12 +20,13 @@ using System.Globalization;
 
 namespace BitMiracle.LibJpeg.Classic
 {
-    /// <summary>
-    ///  Common fields between JPEG compression and decompression master structs.
-    ///  Routines that are to be used by both halves of the library are declared
-    ///  to receive an instance of this structure. There are no actual instances of 
-    ///  jpeg_common_struct, only of jpeg_compress_struct and jpeg_decompress_struct.
-    /// </summary>
+    /// <summary>Base class for both JPEG compressor and decompresor.</summary>
+    /// <remarks>
+    /// Routines that are to be used by both halves of the library are declared
+    /// to receive an instance of this class. There are no actual instances of 
+    /// <see cref="jpeg_common_struct"/>, only of <see cref="jpeg_compress_struct"/> 
+    /// and <see cref="jpeg_decompress_struct"/>
+    /// </remarks>
 #if EXPOSE_LIBJPEG
     public
 #endif
@@ -56,7 +57,6 @@ namespace BitMiracle.LibJpeg.Classic
         
         // Progress monitor, or null if none
         internal jpeg_progress_mgr m_progress;
-        public bool m_is_decompressor;   /* So common code can tell which is which */
         
         internal JpegState m_global_state;     /* For checking call sequence validity */
 
@@ -69,6 +69,22 @@ namespace BitMiracle.LibJpeg.Classic
             Err = errorManager;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is Jpeg decompressor.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this is Jpeg decompressor; otherwise, <c>false</c>.
+        /// </value>
+        public abstract bool IsDecompressor
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Progress monitor.
+        /// </summary>
+        /// <value>The progress manager.</value>
+        /// <remarks>Default value: <c>null</c>.</remarks>
         public jpeg_progress_mgr Progress
         {
             get
@@ -84,6 +100,10 @@ namespace BitMiracle.LibJpeg.Classic
             }
         }
 
+        /// <summary>
+        /// Error handler module.
+        /// </summary>
+        /// <value>The error manager.</value>
         public jpeg_error_mgr Err
         {
             get
@@ -99,6 +119,7 @@ namespace BitMiracle.LibJpeg.Classic
             }
         }
 
+        
         public static string Version
         {
             get
@@ -168,7 +189,7 @@ namespace BitMiracle.LibJpeg.Classic
         public void jpeg_abort()
         {
             /* Reset overall state for possible reuse of object */
-            if (m_is_decompressor)
+            if (IsDecompressor)
             {
                 m_global_state = JpegState.DSTATE_START;
 

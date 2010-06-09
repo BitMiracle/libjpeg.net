@@ -4,13 +4,25 @@ using System.Text;
 
 namespace BitMiracle.LibJpeg.Classic
 {
+    /// <summary>
+    /// The unit of density.
+    /// </summary>
 #if EXPOSE_LIBJPEG
     public
 #endif
     enum DensityUnit
     {
-        Unknown = 0, /* Unknown */
-        DotsInch = 1, /* dots/inch */
-        DotsCm = 2 /* dots/cm */
+        /// <summary>
+        /// Unknown density
+        /// </summary>
+        Unknown = 0,
+        /// <summary>
+        /// Dots/inch
+        /// </summary>
+        DotsInch = 1,
+        /// <summary>
+        /// Dots/cm
+        /// </summary>
+        DotsCm = 2
     }
 }

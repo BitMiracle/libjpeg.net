@@ -20,7 +20,7 @@ namespace BitMiracle.LibJpeg
 #if EXPOSE_LIBJPEG
     public
 #endif
-    class JpegImage : IDisposable
+    sealed class JpegImage : IDisposable
     {
         private bool m_alreadyDisposed;
 
@@ -129,13 +129,16 @@ namespace BitMiracle.LibJpeg
         }
 #endif
 
+        /// <summary>
+        /// Frees and releases all resources allocated by this <see cref="JpegImage"/>
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (!m_alreadyDisposed)
             {

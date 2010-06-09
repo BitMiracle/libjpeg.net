@@ -200,6 +200,11 @@ namespace BitMiracle.LibJpeg.Classic
             initialize();
         }
 
+        public override bool IsDecompressor
+        {
+            get { return true; }
+        }
+
         public LibJpeg.Classic.jpeg_source_mgr Src
         {
             get { return m_src; }
@@ -1314,8 +1319,6 @@ namespace BitMiracle.LibJpeg.Classic
         /// </summary>
         private void initialize()
         {
-            m_is_decompressor = true;
-
             /* Zero out pointers to permanent structures. */
             m_progress = null;
             m_src = null;
