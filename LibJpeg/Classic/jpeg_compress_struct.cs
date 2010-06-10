@@ -17,8 +17,9 @@ using BitMiracle.LibJpeg.Classic.Internal;
 namespace BitMiracle.LibJpeg.Classic
 {
     /// <summary>
-    /// Master record for a compression instance
+    /// JPEG compression routine.
     /// </summary>
+    /// <seealso cref="jpeg_decompress_struct"/>
 #if EXPOSE_LIBJPEG
     public
 #endif
@@ -201,12 +202,37 @@ namespace BitMiracle.LibJpeg.Classic
         internal jpeg_scan_info[] m_script_space; /* workspace for jpeg_simple_progression */
         internal int m_script_space_size;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="jpeg_compress_struct"/> class.
+        /// </summary>
+        public jpeg_compress_struct()
+        {
+            initialize();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="jpeg_compress_struct"/> class.
+        /// </summary>
+        /// <param name="errorManager">The error manager.</param>
+        public jpeg_compress_struct(jpeg_error_mgr errorManager)
+            : base(errorManager)
+        {
+            initialize();
+        }
+
+        /// <summary>
+        /// Retrieves <c>false</c> because this is not decompressor.
+        /// </summary>
+        /// <value><c>false</c></value>
         public override bool IsDecompressor
         {
             get { return false; }
         }
 
-        // Destination for compressed data
+        /// <summary>
+        /// Gets or sets the destination for compressed data
+        /// </summary>
+        /// <value>The destination for compressed data.</value>
         public LibJpeg.Classic.jpeg_destination_mgr Dest
         {
             get { return m_dest; }
@@ -218,28 +244,45 @@ namespace BitMiracle.LibJpeg.Classic
          * be correct before you can even call jpeg_set_defaults().
          */
 
-        // input image width
+        /// <summary>
+        /// Gets or sets the width of image, in pixels.
+        /// </summary>
+        /// <value>The width of image.</value>
+        /// <seealso cref="Compression details"/>
         public int Image_width
         {
             get { return m_image_width; }
             set { m_image_width = value; }
         }
 
-        // input image height
+        /// <summary>
+        /// Gets or sets the height of image, in pixels.
+        /// </summary>
+        /// <value>The height of image.</value>
+        /// <seealso cref="Compression details"/>
         public int Image_height
         {
             get { return m_image_height; }
             set { m_image_height = value; }
         }
 
-        // # of color components in input image
+        /// <summary>
+        /// Gets or sets the number of color channels (components per pixel)
+        /// </summary>
+        /// <value>The number of color channels.</value>
+        /// <seealso cref="Compression details"/>
         public int Input_components
         {
             get { return m_input_components; }
             set { m_input_components = value; }
         }
 
-        // colorspace of input image
+        /// <summary>
+        /// Gets or sets the color space of source image.
+        /// </summary>
+        /// <value>The color space.</value>
+        /// <seealso cref="Compression details"/>
+        /// <seealso cref="Special color spaces"/>
         public LibJpeg.Classic.J_COLOR_SPACE In_color_space
         {
             get { return m_in_color_space; }
@@ -255,20 +298,36 @@ namespace BitMiracle.LibJpeg.Classic
          */
         
         // bits of precision in image data
+
+
+        /// <summary>
+        /// Gets or sets the number of bits of precision in image data.
+        /// </summary>
+        /// <remarks>Default value: 8<br/>
+        /// The number of bits.
+        /// </remarks>
+        /// <value>The data precision.</value>
         public int Data_precision
         {
             get { return m_data_precision; }
             set { m_data_precision = value; }
         }
-        
-        // # of color components in JPEG image
+
+        /// <summary>
+        /// Gets or sets the number of color components for JPEG color space.
+        /// </summary>
+        /// <value>The number of color components for JPEG color space.</value>
         public int Num_components
         {
             get { return m_num_components; }
             set { m_num_components = value; }
         }
 
-        // colorspace of JPEG image
+        /// <summary>
+        /// Gets or sets the JPEG color space.
+        /// </summary>
+        /// <remarks>We recommend to use <see cref="jpeg_set_colorspace"/> if you want to change this.</remarks>
+        /// <value>The JPEG color space.</value>
         public J_COLOR_SPACE Jpeg_color_space
         {
             get { return m_jpeg_color_space; }
@@ -276,34 +335,65 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         // true=caller supplies downsampled data
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether you will be supplying raw data.
+        /// </summary>
+        /// <remarks>Default value: <c>false</c></remarks>
+        /// <value><c>true</c> if you will be supplying raw data; otherwise, <c>false</c>.</value>
+        /// <seealso cref="jpeg_compress_struct.jpeg_write_raw_data"/>
         public bool Raw_data_in
         {
             get { return m_raw_data_in; }
             set { m_raw_data_in = value; }
         }
 
-        // true=optimize entropy encoding parms
+        /// <summary>
+        /// Gets or sets a value indicating a way of using Huffman coding tables.
+        /// </summary>
+        /// <remarks>When this is <c>true</c>, you need not supply Huffman tables at all, and any you do supply will be overwritten.</remarks>
+        /// <value><c>true</c> causes the compressor to compute optimal Huffman coding tables 
+        /// for the image. This requires an extra pass over the data and therefore costs a good 
+        /// deal of space and time. The default is <c>false</c>, which tells the compressor to use the 
+        /// supplied or default Huffman tables. In most cases optimal tables save only a few 
+        /// percent of file size compared to the default tables.</value>
+        /// <seealso cref="Compression parameter selection"/>
         public bool Optimize_coding
         {
             get { return m_optimize_coding; }
             set { m_optimize_coding = value; }
         }
 
-        // true=first samples are cosited
+        /// <summary>
+        /// Gets or sets a value indicating whether first samples are cosited.
+        /// </summary>
+        /// <value><c>true</c> if first samples are cosited; otherwise, <c>false</c>.</value>
         public bool CCIR601_sampling
         {
             get { return m_CCIR601_sampling; }
             set { m_CCIR601_sampling = value; }
         }
 
-        // 1..100, or 0 for no input smoothing
+        /// <summary>
+        /// Gets or sets the coefficient of image smoothing.
+        /// </summary>
+        /// <remarks>Default value: 0<br/>
+        /// If non-zero, the input image is smoothed; the value should be 1 for minimal smoothing 
+        /// to 100 for maximum smoothing.</remarks>
+        /// <value>The coefficient of image smoothing.</value>
+        /// <seealso cref="Compression parameter selection"/>
         public int Smoothing_factor
         {
             get { return m_smoothing_factor; }
             set { m_smoothing_factor = value; }
         }
         
-        // DCT algorithm selector
+        /// <summary>
+        /// Gets or sets the algorithm used for the DCT step.
+        /// </summary>
+        /// <value>The DCT algorithm.</value>
+        /// <seealso cref="Compression parameter selection"/>
         public J_DCT_METHOD Dct_method
         {
             get { return m_dct_method; }
@@ -316,14 +406,34 @@ namespace BitMiracle.LibJpeg.Classic
          * for each scan).
          */
         
-        // MCUs per restart, or 0 for no restart
+        /// <summary>
+        /// Gets or sets the exact interval in MCU blocks.
+        /// </summary>
+        /// <remarks>Default value: 0<br/>
+        /// One restart marker per MCU row is often a good choice. The overhead of restart markers 
+        /// is higher in grayscale JPEG files than in color files, and MUCH higher in progressive JPEGs. 
+        /// If you use restarts, you may want to use larger intervals in those cases.</remarks>
+        /// <value>The restart interval.</value>
+        /// <seealso cref="jpeg_compress_struct.Restart_in_rows"/>
+        /// <seealso cref="Compression parameter selection"/>
         public int Restart_interval
         {
             get { return m_restart_interval; }
             set { m_restart_interval = value; }
         }
         
-        // if > 0, MCU rows per restart interval
+        /// <summary>
+        /// Gets or sets the interval in MCU rows.
+        /// </summary>
+        /// <remarks>Default value: 0<br/>
+        /// If Restart_in_rows is not 0, then <see cref="jpeg_compress_struct.Restart_interval"/> is set 
+        /// after the image width in MCUs is computed.<br/>
+        /// One restart marker per MCU row is often a good choice. 
+        /// The overhead of restart markers is higher in grayscale JPEG files than in color files, and MUCH higher in progressive JPEGs. If you use restarts, you may want to use larger intervals in those cases.
+        /// </remarks>
+        /// <value>The restart interval in MCU rows.</value>
+        /// <seealso cref="jpeg_compress_struct.Restart_interval"/>
+        /// <seealso cref="Compression parameter selection"/>
         public int Restart_in_rows
         {
             get { return m_restart_in_rows; }
@@ -332,20 +442,45 @@ namespace BitMiracle.LibJpeg.Classic
 
         /* Parameters controlling emission of special markers. */
         
-        // should a JFIF marker be written?
+        /// <summary>
+        /// Gets or sets a value indicating whether the JFIF APP0 marker is emitted.
+        /// </summary>
+        /// <remarks><see cref="jpeg_compress_struct.jpeg_set_defaults"/> and 
+        /// <see cref="jpeg_compress_struct.jpeg_set_colorspace"/> set this <c>true</c> 
+        /// if a JFIF-legal JPEG color space (i.e., YCbCr or grayscale) is selected, otherwise <c>false</c>.</remarks>
+        /// <value><c>true</c> if JFIF APP0 marker is emitted; otherwise, <c>false</c>.</value>
+        /// <seealso cref="jpeg_compress_struct.JFIF_major_version"/>
+        /// <seealso cref="Compression parameter selection"/>
         public bool Write_JFIF_header
         {
             get { return m_write_JFIF_header; }
             set { m_write_JFIF_header = value; }
         }
-        
-        // What to write for the JFIF version number
+
+        /// <summary>
+        /// Gets or sets the version number to be written into the JFIF marker.
+        /// </summary>
+        /// <remarks><see cref="jpeg_compress_struct.jpeg_set_defaults"/> initializes the version to 
+        /// 1.01 (major=minor=1). You should set it to 1.02 (major=1, minor=2) if you plan to write any 
+        /// JFIF 1.02 extension markers.</remarks>
+        /// <value>The version number to be written into the JFIF marker.</value>
+        /// <seealso cref="jpeg_compress_struct.JFIF_minor_version"/>
+        /// <seealso cref="jpeg_compress_struct.Write_JFIF_header"/>
         public byte JFIF_major_version
         {
             get { return m_JFIF_major_version; }
             set { m_JFIF_major_version = value; }
         }
-        
+
+        /// <summary>
+        /// Gets or sets the version number to be written into the JFIF marker.
+        /// </summary>
+        /// <remarks><see cref="jpeg_compress_struct.jpeg_set_defaults"/> initializes the version to 
+        /// 1.01 (major=minor=1). You should set it to 1.02 (major=1, minor=2) if you plan to write any 
+        /// JFIF 1.02 extension markers.</remarks>
+        /// <value>The version number to be written into the JFIF marker.</value>
+        /// <seealso cref="jpeg_compress_struct.JFIF_major_version"/>
+        /// <seealso cref="jpeg_compress_struct.Write_JFIF_header"/>
         public byte JFIF_minor_version
         {
             get { return m_JFIF_minor_version; }
@@ -421,16 +556,6 @@ namespace BitMiracle.LibJpeg.Classic
         public int Next_scanline
         {
             get { return m_next_scanline; }
-        }
-
-        public jpeg_compress_struct()
-        {
-            initialize();
-        }
-
-        public jpeg_compress_struct(jpeg_error_mgr errorManager) : base(errorManager)
-        {
-            initialize();
         }
 
         /// <summary>

@@ -16,11 +16,11 @@ namespace BitMiracle.LibJpeg
         private Sample[] m_samples;
 
         /// <summary>
-        /// Creates row from raw samples data.
+        /// Creates a row from raw samples data.
         /// </summary>
-        /// <param name="row">Raw description of samples.
-        /// You can pass collection with more than sampleCount samples - when sampleCount samples will be parsed all remaining bytes
-        /// will be ignored.</param>
+        /// <param name="row">Raw description of samples.<br/>
+        /// You can pass collection with more than sampleCount samples - only sampleCount samples 
+        /// will be parsed and all remaining bytes will be ignored.</param>
         /// <param name="sampleCount">The number of samples in row.</param>
         /// <param name="bitsPerComponent">The number of bits per component.</param>
         /// <param name="componentsPerSample">The number of components per sample.</param>
@@ -57,7 +57,8 @@ namespace BitMiracle.LibJpeg
         /// <param name="sampleComponents">Array of color components.</param>
         /// <param name="bitsPerComponent">The number of bits per component.</param>
         /// <param name="componentsPerSample">The number of components per sample.</param>
-        /// <remarks>The difference between this constructor and another one -
+        /// <remarks>The difference between this constructor and 
+        /// <see cref="M:BitMiracle.LibJpeg.SampleRow.#ctor(System.Byte[],System.Int32,System.Byte,System.Byte)">another one</see> -
         /// this constructor accept an array of prepared color components whereas
         /// another constructor accept raw bytes and parse them.
         /// </remarks>
@@ -98,7 +99,11 @@ namespace BitMiracle.LibJpeg
             }
         }
 
-        /// <summary>The number of samples in row.</summary>
+
+        /// <summary>
+        /// Gets the number of samples in this row.
+        /// </summary>
+        /// <value>The number of samples.</value>
         public int Length
         {
             get
@@ -107,8 +112,12 @@ namespace BitMiracle.LibJpeg
             }
         }
 
-        /// <summary>Indexer, gets the sample at the specified index.</summary>
+
+        /// <summary>
+        /// Gets the sample at the specified index.
+        /// </summary>
         /// <param name="sampleNumber">The number of sample.</param>
+        /// <returns>The required sample.</returns>
         public Sample this[int sampleNumber]
         {
             get
@@ -117,14 +126,20 @@ namespace BitMiracle.LibJpeg
             }
         }
 
-        /// <summary>Retrieves the required sample.</summary>
+        /// <summary>
+        /// Gets the sample at the specified index.
+        /// </summary>
         /// <param name="sampleNumber">The number of sample.</param>
+        /// <returns>The required sample.</returns>
         public Sample GetAt(int sampleNumber)
         {
             return m_samples[sampleNumber];
         }
 
-        /// <summary>Serializes row to raw bytes.</summary>
+        /// <summary>
+        /// Serializes this row to raw bytes.
+        /// </summary>
+        /// <returns>The row representation as array of bytes</returns>
         public byte[] ToBytes()
         {
             return m_bytes;

@@ -63,8 +63,9 @@ namespace BitMiracle.LibJpeg
 
 #if !SILVERLIGHT
         /// <summary>
-        /// Creates JpegImage from .NET bitmap
+        /// Creates <see cref="JpegImage"/> from <see cref="System.Drawing.Bitmap">.NET bitmap</see>
         /// </summary>
+        /// <param name="bitmap">Source .NET bitmap.</param>
         public JpegImage(System.Drawing.Bitmap bitmap)
         {
             createFromBitmap(bitmap);
@@ -72,16 +73,20 @@ namespace BitMiracle.LibJpeg
 #endif
 
         /// <summary>
-        /// Creates JpegImage from stream with an arbitrary image data
+        /// Creates <see cref="JpegImage"/> from stream with an arbitrary image data
         /// </summary>
+        /// <param name="imageData">Stream containing bytes of image in 
+        /// arbitrary format (BMP, Jpeg, GIF, PNG, TIFF, e.t.c)</param>
         public JpegImage(Stream imageData)
         {
             createFromStream(imageData);
         }
 
         /// <summary>
-        /// Creates JpegImage from file with an arbitrary image
+        /// Creates <see cref="JpegImage"/> from file with an arbitrary image
         /// </summary>
+        /// <param name="fileName">Path to file with image in 
+        /// arbitrary format (BMP, Jpeg, GIF, PNG, TIFF, e.t.c)</param>
         public JpegImage(string fileName)
         {
             if (fileName == null)
@@ -92,10 +97,11 @@ namespace BitMiracle.LibJpeg
         }
 
         /// <summary>
-        /// Creates JpegImage from pixels
+        /// Creates <see cref="JpegImage"/> from pixels
         /// </summary>
-        /// <param name="sampleData">Pixels</param>
-        /// <param name="colorspace">Colorspace</param>
+        /// <param name="sampleData">Description of pixels.</param>
+        /// <param name="colorspace">Colorspace of image.</param>
+        /// <seealso cref="SampleRow"/>
         public JpegImage(SampleRow[] sampleData, Colorspace colorspace)
         {
             if (sampleData == null)
@@ -121,8 +127,10 @@ namespace BitMiracle.LibJpeg
 
 #if !SILVERLIGHT
         /// <summary>
-        /// Factory method, constructs JpegImage from .NET Bitmap
+        /// Creates <see cref="JpegImage"/> from <see cref="System.Drawing.Bitmap">.NET bitmap</see>
         /// </summary>
+        /// <param name="bitmap">Source .NET bitmap.</param>
+        /// <remarks>Same as corresponding <see cref="M:BitMiracle.LibJpeg.JpegImage.#ctor(System.Drawing.Bitmap)">constructor</see>.</remarks>
         public static JpegImage FromBitmap(Bitmap bitmap)
         {
             return new JpegImage(bitmap);
@@ -170,8 +178,9 @@ namespace BitMiracle.LibJpeg
         }
 
         /// <summary>
-        /// Gets the width of image in samples.
+        /// Gets the width of image in <see cref="Sample">samples</see>.
         /// </summary>
+        /// <value>The width of image.</value>
         public int Width
         {
             get
@@ -185,8 +194,9 @@ namespace BitMiracle.LibJpeg
         }
 
         /// <summary>
-        /// Gets the height of image in samples.
+        /// Gets the height of image in <see cref="Sample">samples</see>.
         /// </summary>
+        /// <value>The height of image.</value>
         public int Height
         {
             get
@@ -200,8 +210,9 @@ namespace BitMiracle.LibJpeg
         }
 
         /// <summary>
-        /// Gets the number of color components per sample.
+        /// Gets the number of color components per <see cref="Sample">sample</see>.
         /// </summary>
+        /// <value>The number of color components per sample.</value>
         public byte ComponentsPerSample
         {
             get
@@ -215,8 +226,9 @@ namespace BitMiracle.LibJpeg
         }
 
         /// <summary>
-        /// Gets the number of bits per color component of sample.
+        /// Gets the number of bits per color component of <see cref="Sample">sample</see>.
         /// </summary>
+        /// <value>The number of bits per color component.</value>
         public byte BitsPerComponent
         {
             get
@@ -232,6 +244,7 @@ namespace BitMiracle.LibJpeg
         /// <summary>
         /// Gets the colorspace of image.
         /// </summary>
+        /// <value>The colorspace of image.</value>
         public Colorspace Colorspace
         {
             get
@@ -244,10 +257,12 @@ namespace BitMiracle.LibJpeg
             }
         }
 
+
         /// <summary>
         /// Retrieves the required row of image.
         /// </summary>
         /// <param name="rowNumber">The number of row.</param>
+        /// <returns>Image row of samples.</returns>
         public SampleRow GetRow(int rowNumber)
         {
             return m_rows[rowNumber];
@@ -286,6 +301,7 @@ namespace BitMiracle.LibJpeg
         /// <summary>
         /// Retrieves image as .NET Bitmap.
         /// </summary>
+        /// <returns>.NET Bitmap</returns>
         public Bitmap ToBitmap()
         {
             return bitmap.Clone() as Bitmap;

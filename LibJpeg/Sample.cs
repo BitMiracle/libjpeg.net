@@ -7,6 +7,10 @@ namespace BitMiracle.LibJpeg
     /// <summary>
     /// Represents a "sample" (you can understand it as a "pixel") of image.
     /// </summary>
+    /// <remarks>It's impossible to create an instance of this class directly, 
+    /// but you can use existing samples through <see cref="SampleRow"/> collection. 
+    /// Usual scenario is to get row of samples from the <see cref="JpegImage.GetRow"/> method.
+    /// </remarks>
 #if EXPOSE_LIBJPEG
     public
 #endif
@@ -53,6 +57,7 @@ namespace BitMiracle.LibJpeg
         /// <summary>
         /// Gets the number of bits per color component.
         /// </summary>
+        /// <value>The number of bits per color component.</value>
         public byte BitsPerComponent
         {
             get
@@ -64,6 +69,7 @@ namespace BitMiracle.LibJpeg
         /// <summary>
         /// Gets the number of color components.
         /// </summary>
+        /// <value>The number of color components.</value>
         public byte ComponentCount
         {
             get
@@ -73,7 +79,7 @@ namespace BitMiracle.LibJpeg
         }
 
         /// <summary>
-        /// Indexer, gets the color component at the specified index.
+        /// Gets the color component at the specified index.
         /// </summary>
         /// <param name="componentNumber">The number of color component.</param>
         /// <returns>Value of color component.</returns>
@@ -86,7 +92,7 @@ namespace BitMiracle.LibJpeg
         }
 
         /// <summary>
-        /// Retrieves the required color component.
+        /// Gets the required color component.
         /// </summary>
         /// <param name="componentNumber">The number of color component.</param>
         /// <returns>Value of color component.</returns>

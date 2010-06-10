@@ -60,10 +60,21 @@ namespace BitMiracle.LibJpeg.Classic
         
         internal JpegState m_global_state;     /* For checking call sequence validity */
 
+        /// <summary>
+        /// Base constructor.
+        /// </summary>
+        /// <seealso cref="jpeg_compress_struct"/>
+        /// <seealso cref="jpeg_decompress_struct"/>
         public jpeg_common_struct() : this(new jpeg_error_mgr())
         {
         }
 
+        /// <summary>
+        /// Base constructor.
+        /// </summary>
+        /// <param name="errorManager">The error manager.</param>
+        /// <seealso cref="jpeg_compress_struct"/>
+        /// <seealso cref="jpeg_decompress_struct"/>
         public jpeg_common_struct(jpeg_error_mgr errorManager)
         {
             Err = errorManager;
@@ -104,6 +115,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// Error handler module.
         /// </summary>
         /// <value>The error manager.</value>
+        /// <seealso cref="Error handling"/>
         public jpeg_error_mgr Err
         {
             get
@@ -119,7 +131,10 @@ namespace BitMiracle.LibJpeg.Classic
             }
         }
 
-        
+        /// <summary>
+        /// Gets the version of LibJpeg.
+        /// </summary>
+        /// <value>The version of LibJpeg.</value>
         public static string Version
         {
             get
@@ -135,25 +150,47 @@ namespace BitMiracle.LibJpeg.Classic
             }
         }
 
+        /// <summary>
+        /// Gets the LibJpeg's copyright.
+        /// </summary>
+        /// <value>The copyright.</value>
         public static string Copyright
         {
             get
             {
-                return "Copyright (C) 2008-2009, Bit Miracle";
+                return "Copyright (C) 2008-2010, Bit Miracle";
             }
         }
 
+        /// <summary>
+        /// Creates the array of samples.
+        /// </summary>
+        /// <param name="samplesPerRow">The number of samples in row.</param>
+        /// <param name="numberOfRows">The number of rows.</param>
+        /// <returns>The array of samples.</returns>
         public static jvirt_array<byte> CreateSamplesArray(int samplesPerRow, int numberOfRows)
         {
             return new jvirt_array<byte>(samplesPerRow, numberOfRows, AllocJpegSamples);
         }
 
+        /// <summary>
+        /// Creates the array of blocks.
+        /// </summary>
+        /// <param name="blocksPerRow">The number of blocks in row.</param>
+        /// <param name="numberOfRows">The number of rows.</param>
+        /// <returns>The array of blocks.</returns>
+        /// <seealso cref="JBLOCK"/>
         public static jvirt_array<JBLOCK> CreateBlocksArray(int blocksPerRow, int numberOfRows)
         {
             return new jvirt_array<JBLOCK>(blocksPerRow, numberOfRows, allocJpegBlocks);
         }
 
-        // Creation of 2-D sample arrays.
+        /// <summary>
+        /// Creates 2-D sample array.
+        /// </summary>
+        /// <param name="samplesPerRow">The number of samples per row.</param>
+        /// <param name="numberOfRows">The number of rows.</param>
+        /// <returns>The array of samples.</returns>
         public static byte[][] AllocJpegSamples(int samplesPerRow, int numberOfRows)
         {
             byte[][] result = new byte[numberOfRows][];
@@ -220,16 +257,30 @@ namespace BitMiracle.LibJpeg.Classic
 
         // Fatal errors (print message and exit)
 
+        /// <summary>
+        /// Used for fatal errors (print message and exit).
+        /// </summary>
+        /// <param name="code">The message code.</param>
         public void ERREXIT(J_MESSAGE_CODE code)
         {
             ERREXIT((int)code);
         }
 
+        /// <summary>
+        /// Used for fatal errors (print message and exit).
+        /// </summary>
+        /// <param name="code">The message code.</param>
+        /// <param name="args">The parameters of message.</param>
         public void ERREXIT(J_MESSAGE_CODE code, params object[] args)
         {
             ERREXIT((int)code, args);
         }
 
+        /// <summary>
+        /// Used for fatal errors (print message and exit).
+        /// </summary>
+        /// <param name="code">The message code.</param>
+        /// <param name="args">The parameters of message.</param>
         public void ERREXIT(int code, params object[] args)
         {
             m_err.m_msg_code = code;
@@ -239,16 +290,31 @@ namespace BitMiracle.LibJpeg.Classic
 
         // Nonfatal errors (we can keep going, but the data is probably corrupt)
 
+
+        /// <summary>
+        /// Used for non-fatal errors (we can keep going, but the data is probably corrupt).
+        /// </summary>
+        /// <param name="code">The message code.</param>
         public void WARNMS(J_MESSAGE_CODE code)
         {
             WARNMS((int)code);
         }
 
+        /// <summary>
+        /// Used for non-fatal errors (we can keep going, but the data is probably corrupt).
+        /// </summary>
+        /// <param name="code">The message code.</param>
+        /// <param name="args">The parameters of message.</param>
         public void WARNMS(J_MESSAGE_CODE code, params object[] args)
         {
             WARNMS((int)code, args);
         }
 
+        /// <summary>
+        /// Used for non-fatal errors (we can keep going, but the data is probably corrupt).
+        /// </summary>
+        /// <param name="code">The message code.</param>
+        /// <param name="args">The parameters of message.</param>
         public void WARNMS(int code, params object[] args)
         {
             m_err.m_msg_code = code;
@@ -258,16 +324,36 @@ namespace BitMiracle.LibJpeg.Classic
 
         // Informational/debugging messages
 
+        /// <summary>
+        /// Shows informational and debugging messages.
+        /// </summary>
+        /// <param name="lvl">See <see cref="jpeg_error_mgr.emit_message"/> for description.</param>
+        /// <param name="code">The message code.</param>
+        /// <seealso cref="jpeg_error_mgr.emit_message"/>
         public void TRACEMS(int lvl, J_MESSAGE_CODE code)
         {
             TRACEMS(lvl, (int)code);
         }
 
+        /// <summary>
+        /// Shows informational and debugging messages.
+        /// </summary>
+        /// <param name="lvl">See <see cref="jpeg_error_mgr.emit_message"/> for description.</param>
+        /// <param name="code">The message code.</param>
+        /// <param name="args">The parameters of message.</param>
+        /// <seealso cref="jpeg_error_mgr.emit_message"/>
         public void TRACEMS(int lvl, J_MESSAGE_CODE code, params object[] args)
         {
             TRACEMS(lvl, (int)code, args);
         }
 
+        /// <summary>
+        /// Shows informational and debugging messages.
+        /// </summary>
+        /// <param name="lvl">See <see cref="jpeg_error_mgr.emit_message"/> for description.</param>
+        /// <param name="code">The message code.</param>
+        /// <param name="args">The parameters of message.</param>
+        /// <seealso cref="jpeg_error_mgr.emit_message"/>
         public void TRACEMS(int lvl, int code, params object[] args)
         {
             m_err.m_msg_code = code;

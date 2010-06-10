@@ -117,6 +117,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Identifier for this component (0..255)
         /// </summary>
+        /// <value>The component ID.</value>
         public int Component_id
         {
             get { return component_id; }
@@ -124,8 +125,9 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Its index in SOF or cinfo.comp_info[]
+        /// Its index in SOF or <see cref="jpeg_decompress_struct.Comp_info"/>.
         /// </summary>
+        /// <value>The component index.</value>
         public int Component_index
         {
             get { return component_index; }
@@ -135,6 +137,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Horizontal sampling factor (1..4)
         /// </summary>
+        /// <value>The horizontal sampling factor.</value>
         public int H_samp_factor
         {
             get { return h_samp_factor; }
@@ -144,6 +147,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Vertical sampling factor (1..4)
         /// </summary>
+        /// <value>The vertical sampling factor.</value>
         public int V_samp_factor
         {
             get { return v_samp_factor; }
@@ -153,6 +157,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Quantization table selector (0..3)
         /// </summary>
+        /// <value>The quantization table selector.</value>
         public int Quant_tbl_no
         {
             get { return quant_tbl_no; }
@@ -162,6 +167,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// DC entropy table selector (0..3)
         /// </summary>
+        /// <value>The DC entropy table selector.</value>
         public int Dc_tbl_no
         {
             get { return dc_tbl_no; }
@@ -171,18 +177,27 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// AC entropy table selector (0..3)
         /// </summary>
+        /// <value>The AC entropy table selector.</value>
         public int Ac_tbl_no
         {
             get { return ac_tbl_no; }
             set { ac_tbl_no = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the width in blocks.
+        /// </summary>
+        /// <value>The width in blocks.</value>
         public int Width_in_blocks
         {
             get { return width_in_blocks; }
             set { width_in_blocks = value; }
         }
 
+        /// <summary>
+        /// Gets the downsampled width.
+        /// </summary>
+        /// <value>The downsampled width.</value>
         public int Downsampled_width
 	    {
 		    get { return downsampled_width; }
