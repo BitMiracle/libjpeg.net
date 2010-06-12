@@ -492,7 +492,17 @@ namespace BitMiracle.LibJpeg.Classic
         /* 1 for dots/inch, or 2 for dots/cm.  Note that the pixel aspect */
         /* ratio is defined by X_density/Y_density even when density_unit=0. */
         
-        // JFIF code for pixel size units
+        /// <summary>
+        /// Gets or sets the resolution information to be written into the JFIF marker; not used otherwise.
+        /// </summary>
+        /// <remarks>Default value: <see cref="F:BitMiracle.LibJpeg.Classic.DensityUnit.Unknown"/><br/>
+        /// The pixel aspect ratio is defined by 
+        /// <see cref="jpeg_compress_struct.X_density"/>/<see cref="jpeg_compress_struct.Y_density"/> 
+        /// even when Density_unit is <see cref="F:BitMiracle.LibJpeg.Classic.DensityUnit.Unknown">Unknown</see>.</remarks>
+        /// <value>The density unit.</value>
+        /// <seealso cref="jpeg_compress_struct.X_density"/>
+        /// <seealso cref="jpeg_compress_struct.Y_density"/>
+        /// <seealso cref="Compression parameter selection"/>
         public DensityUnit Density_unit
         {
             get { return m_density_unit; }
@@ -500,70 +510,112 @@ namespace BitMiracle.LibJpeg.Classic
         }
         
         // Horizontal pixel density
+
+        /// <summary>
+        /// Gets or sets the horizontal component of pixel ratio.
+        /// </summary>
+        /// <remarks>Default value: 1</remarks>
+        /// <value>The horizontal density.</value>
+        /// <seealso cref="jpeg_compress_struct.Density_unit"/>
+        /// <seealso cref="jpeg_compress_struct.Y_density"/>
         public short X_density
         {
             get { return m_X_density; }
             set { m_X_density = value; }
         }
-        
-        // Vertical pixel density
+
+        /// <summary>
+        /// Gets or sets the vertical component of pixel ratio.
+        /// </summary>
+        /// <remarks>Default value: 1</remarks>
+        /// <value>The vertical density.</value>
+        /// <seealso cref="jpeg_compress_struct.Density_unit"/>
+        /// <seealso cref="jpeg_compress_struct.X_density"/>
         public short Y_density
         {
             get { return m_Y_density; }
             set { m_Y_density = value; }
         }
-        
-        // should an Adobe marker be written?
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to emit Adobe APP14 marker.
+        /// </summary>
+        /// <remarks><see cref="jpeg_compress_struct.jpeg_set_defaults"/> and <see cref="jpeg_compress_struct.jpeg_set_colorspace"/> 
+        /// set this <c>true</c> if JPEG color space RGB, CMYK, or YCCK is selected, otherwise <c>false</c>. 
+        /// It is generally a bad idea to set both <see cref="jpeg_compress_struct.Write_JFIF_header"/> and 
+        /// <see cref="jpeg_compress_struct.Write_Adobe_marker"/>. 
+        /// In fact, you probably shouldn't change the default settings at all - the default behavior ensures that the JPEG file's 
+        /// color space can be recognized by the decoder.</remarks>
+        /// <value>If <c>true</c> an Adobe APP14 marker is emitted; <c>false</c>, otherwise.</value>
+        /// <seealso cref="Compression parameter selection"/>
         public bool Write_Adobe_marker
         {
             get { return m_write_Adobe_marker; }
             set { m_write_Adobe_marker = value; }
         }
 
+        /// <summary>
+        /// Gets the largest vertical sample factor.
+        /// </summary>
+        /// <value>The largest vertical sample factor.</value>
+        /// <seealso cref="Compression parameter selection"/>
         public int Max_v_samp_factor
         {
             get { return m_max_v_samp_factor; }
         }
 
+        /// <summary>
+        /// Gets the components that appears in SOF.
+        /// </summary>
+        /// <value>The component info array.</value>
         public jpeg_component_info[] Component_info
         {
             get { return m_comp_info; }
         }
 
         /* ptrs to coefficient quantization tables, or null if not defined */
+        /* ptrs to coefficient quantization tables, or null if not defined */
+        /// <summary>
+        /// Gets the coefficient quantization tables.
+        /// </summary>
+        /// <value>The coefficient quantization tables or null if not defined.</value>
         public JQUANT_TBL[] Quant_tbl_ptrs
         {
             get { return m_quant_tbl_ptrs; }
         }
 
-        /* ptrs to Huffman coding tables, or null if not defined */
+        /// <summary>
+        /// Gets the Huffman coding tables.
+        /// </summary>
+        /// <value>The Huffman coding tables or null if not defined.</value>
 	    public JHUFF_TBL[] Dc_huff_tbl_ptrs
 	    {
 		    get { return m_dc_huff_tbl_ptrs; }
 	    }
 
+        /// <summary>
+        /// Gets the Huffman coding tables.
+        /// </summary>
+        /// <value>The Huffman coding tables or null if not defined.</value>
         public JHUFF_TBL[] Ac_huff_tbl_ptrs
 	    {
 		    get { return m_ac_huff_tbl_ptrs; }
 	    }
 
-        /* State variable: index of next scanline to be written to
-         * jpeg_write_scanlines().  Application may use this to control its
-         * processing loop, e.g., "while (next_scanline < image_height)".
-         */
-
-        // 0 .. image_height-1
+        /// <summary>
+        /// Gets the index of next scanline to be written to <see cref="jpeg_compress_struct.jpeg_write_scanlines"/>.
+        /// </summary>
+        /// <remarks>Application may use this to control its processing loop, 
+        /// e.g., "while (Next_scanline &lt; Image_height)"</remarks>
+        /// <value>Range: from 0 to (Image_height - 1)</value>
+        /// <seealso cref="jpeg_compress_struct.jpeg_write_scanlines"/>
         public int Next_scanline
         {
             get { return m_next_scanline; }
         }
 
         /// <summary>
-        /// Abort processing of a JPEG compression operation, but don't destroy 
-        /// the object itself. If you choose to abort compression before completing 
-        /// jpeg_finish_compress, then you need to clean up temporary files, etc.
-        /// You can just call jpeg_destroy_compress if you're done with the JPEG 
-        /// object, but if you want to clean it up and reuse it, call this:
+        /// Abort processing of a JPEG compression operation.
         /// </summary>
         public void jpeg_abort_compress()
         {
@@ -573,13 +625,13 @@ namespace BitMiracle.LibJpeg.Classic
 
         /// <summary>
         /// Forcibly suppress or un-suppress all quantization and Huffman tables.
-        /// Marks all currently defined tables as already written (if suppress)
+        /// </summary>
+        /// <remarks>Marks all currently defined tables as already written (if suppress)
         /// or not written (if !suppress). This will control whether they get 
-        /// emitted by a subsequent jpeg_start_compress call.
+        /// emitted by a subsequent <see cref="jpeg_compress_struct.jpeg_start_compress"/> call.<br/>
         /// 
         /// This routine is exported for use by applications that want to produce
-        /// abbreviated JPEG datastreams.
-        /// </summary>
+        /// abbreviated JPEG datastreams.</remarks>
         /// <param name="suppress">if set to <c>true</c> then suppress tables; 
         /// otherwise unsuppress.</param>
         public void jpeg_suppress_tables(bool suppress)
@@ -601,11 +653,10 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Finish JPEG compression.
-        /// 
-        /// If a multipass operating mode was selected, this may do a great 
-        /// deal of work including most of the actual output.
+        /// Finishes JPEG compression.
         /// </summary>
+        /// <remarks>If a multipass operating mode was selected, this may do a great 
+        /// deal of work including most of the actual output.</remarks>
         public void jpeg_finish_compress()
         {
             int iMCU_row;
@@ -651,13 +702,20 @@ namespace BitMiracle.LibJpeg.Classic
             jpeg_abort();
         }
 
+
         /// <summary>
         /// Write a special marker.
-        /// 
-        /// This is only recommended for writing COM or APPn markers. 
-        /// Must be called after jpeg_start_compress() and before first call to 
-        /// jpeg_write_scanlines() or jpeg_write_raw_data().
         /// </summary>
+        /// <remarks>This is only recommended for writing COM or APPn markers. 
+        /// Must be called after <see cref="jpeg_compress_struct.jpeg_start_compress"/> and before first call to 
+        /// <see cref="jpeg_compress_struct.jpeg_write_scanlines"/> or <see cref="jpeg_compress_struct.jpeg_write_raw_data"/>.
+        /// </remarks>
+        /// <param name="marker">Specify the marker type parameter as <see cref="JPEG_MARKER"/>.COM for COM or 
+        /// <see cref="JPEG_MARKER"/>.APP0 + n for APPn. (Actually, jpeg_write_marker will let you write any marker type, 
+        /// but we don't recommend writing any other kinds of marker)</param>
+        /// <param name="data">The data associated with the marker.</param>
+        /// <seealso cref="Special markers"/>
+        /// <seealso cref="JPEG_MARKER"/>
         public void jpeg_write_marker(int marker, byte[] data)
         {
             if (m_next_scanline != 0 || (m_global_state != JpegState.CSTATE_SCANNING && m_global_state != JpegState.CSTATE_RAW_OK && m_global_state != JpegState.CSTATE_WRCOEFS))
@@ -669,6 +727,19 @@ namespace BitMiracle.LibJpeg.Classic
                 m_marker.write_marker_byte(data[i]);
         }
 
+        /// <summary>
+        /// Writes special marker's header.
+        /// </summary>
+        /// <param name="marker">Special marker.</param>
+        /// <param name="datalen">Length of data associated with the marker.</param>
+        /// <remarks>After calling this method you need to call <see cref="jpeg_compress_struct.jpeg_write_m_byte"/>
+        /// exactly the number of times given in the length parameter.<br/>
+        /// This method lets you empty the output buffer partway through a marker, which might be important when 
+        /// using a suspending data destination module. In any case, if you are using a suspending destination, 
+        /// you should flush its buffer after inserting any special markers.</remarks>
+        /// <seealso cref="jpeg_compress_struct.jpeg_write_m_byte"/>
+        /// <seealso cref="jpeg_compress_struct.jpeg_write_marker"/>
+        /// <seealso cref="Special markers"/>
         public void jpeg_write_m_header(int marker, int datalen)
         {
             if (m_next_scanline != 0 || (m_global_state != JpegState.CSTATE_SCANNING && m_global_state != JpegState.CSTATE_RAW_OK && m_global_state != JpegState.CSTATE_WRCOEFS))
@@ -677,6 +748,11 @@ namespace BitMiracle.LibJpeg.Classic
             m_marker.write_marker_header(marker, datalen);
         }
 
+        /// <summary>
+        /// Writes a byte of special marker's data.
+        /// </summary>
+        /// <param name="val">The byte of data.</param>
+        /// <seealso cref="jpeg_compress_struct.jpeg_write_m_header"/>
         public void jpeg_write_m_byte(byte val)
         {
             m_marker.write_marker_byte(val);
@@ -684,23 +760,27 @@ namespace BitMiracle.LibJpeg.Classic
 
         /// <summary>
         /// Alternate compression function: just write an abbreviated table file.
-        /// Before calling this, all parameters and a data destination must be set up.
+        /// </summary>
+        /// <remarks>Before calling this, all parameters and a data destination must be set up.<br/>
         /// 
         /// To produce a pair of files containing abbreviated tables and abbreviated
-        /// image data, one would proceed as follows:
-        /// initialize JPEG object
-        /// set JPEG parameters
-        /// set destination to table file
-        /// jpeg_write_tables(cinfo);
-        /// set destination to image file
-        /// jpeg_start_compress(cinfo, false);
-        /// write data...
-        /// jpeg_finish_compress(cinfo);
+        /// image data, one would proceed as follows:<br/>
+        /// 
+        /// <c>Initialize JPEG object<br/>
+        /// Set JPEG parameters<br/>
+        /// Set destination to table file<br/>
+        /// <see cref="jpeg_compress_struct.jpeg_write_tables">jpeg_write_tables();</see><br/>
+        /// Set destination to image file<br/>
+        /// <see cref="jpeg_compress_struct.jpeg_start_compress">jpeg_start_compress(false);</see><br/>
+        /// Write data...<br/>
+        /// <see cref="jpeg_compress_struct.jpeg_finish_compress">jpeg_finish_compress();</see><br/>
+        /// </c><br/>
         /// 
         /// jpeg_write_tables has the side effect of marking all tables written
-        /// (same as jpeg_suppress_tables(..., true)).  Thus a subsequent start_compress
-        /// will not re-emit the tables unless it is passed write_all_tables=true.
-        /// </summary>
+        /// (same as <see cref="jpeg_compress_struct.jpeg_suppress_tables">jpeg_suppress_tables(true)</see>).
+        /// Thus a subsequent <see cref="jpeg_compress_struct.jpeg_start_compress">jpeg_start_compress</see> 
+        /// will not re-emit the tables unless it is passed <c>write_all_tables=true</c>.
+        /// </remarks>
         public void jpeg_write_tables()
         {
             if (m_global_state != JpegState.CSTATE_START)
@@ -721,25 +801,25 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Prepare for output to a stdio stream.
-        /// 
-        /// The caller must have already opened the stream, and is responsible
-        /// for closing it after finishing compression.
+        /// Sets output stream.
         /// </summary>
+        /// <param name="outfile">The output stream.</param>
+        /// <remarks>The caller must have already opened the stream, and is responsible
+        /// for closing it after finishing compression.</remarks>
+        /// <seealso cref="Compression details"/>
         public void jpeg_stdio_dest(Stream outfile)
         {
             m_dest = new my_destination_mgr(this, outfile);
         }
 
         /// <summary>
-        /// Default parameter setup for compression.
-        /// 
-        /// Applications that don't choose to use this routine must do their
-        /// own setup of all these parameters.  Alternately, you can call this
-        /// to establish defaults and then alter parameters selectively.  This
-        /// is the recommended approach since, if we add any new parameters,
-        /// your code will still work (they'll be set to reasonable defaults).
+        /// Jpeg_set_defaultses this instance.
         /// </summary>
+        /// <remarks>Uses only the input image's color space (property <see cref="jpeg_compress_struct.In_color_space"/>, 
+        /// which must already be set in <see cref="jpeg_compress_struct"/>). Many applications will only need 
+        /// to use this routine and perhaps <see cref="jpeg_compress_struct.jpeg_set_quality"/>.
+        /// </remarks>
+        /// <seealso cref="Compression parameter selection"/>
         public void jpeg_set_defaults()
         {
             /* Safety check to ensure start_compress not called yet. */
@@ -818,8 +898,16 @@ namespace BitMiracle.LibJpeg.Classic
         // Compression parameter setup aids
 
         /// <summary>
-        /// Set the JPEG colorspace, and choose colorspace-dependent default values.
+        /// Set the JPEG colorspace (property <see cref="jpeg_compress_struct.Jpeg_color_space"/>,
+        /// and choose colorspace-dependent parameters appropriately.
         /// </summary>
+        /// <param name="colorspace">The required colorspace.</param>
+        /// <remarks>See <see cref="Special color spaces"/>, below, before using this. 
+        /// A large number of parameters, including all per-component parameters, 
+        /// are set by this routine; if you want to twiddle individual parameters you should call 
+        /// <c>jpeg_set_colorspace</c> before rather than after.</remarks>
+        /// <seealso cref="Compression parameter selection"/>
+        /// <seealso cref="Special color spaces"/>
         public void jpeg_set_colorspace(J_COLOR_SPACE colorspace)
         {
             int ci;
@@ -893,8 +981,12 @@ namespace BitMiracle.LibJpeg.Classic
         }
         
         /// <summary>
-        /// Select an appropriate JPEG colorspace for in_color_space.
+        /// Select an appropriate JPEG colorspace based on <see cref="jpeg_compress_struct.In_color_space"/>,
+        /// and calls <see cref="jpeg_compress_struct.jpeg_set_colorspace"/>
         /// </summary>
+        /// <remarks>This is actually a subroutine of <see cref="jpeg_set_defaults"/>. 
+        /// It's broken out in case you want to change just the colorspace-dependent JPEG parameters.</remarks>
+        /// <seealso cref="Compression parameter selection"/>
         public void jpeg_default_colorspace()
         {
             switch (m_in_color_space)
@@ -924,11 +1016,18 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Set or change the 'quality' (quantization) setting, using default tables.
-        /// This is the standard quality-adjusting entry point for typical user
-        /// interfaces; only those who want detailed control over quantization tables
-        /// would use the preceding three routines directly.
+        /// Constructs JPEG quantization tables appropriate for the indicated quality setting.
         /// </summary>
+        /// <param name="quality">The quality value is expressed on the 0..100 scale recommended by IJG.</param>
+        /// <param name="force_baseline">If <c>true</c>, then the quantization table entries are constrained 
+        /// to the range 1..255 for full JPEG baseline compatibility. In the current implementation, 
+        /// this only makes a difference for quality settings below 25, and it effectively prevents 
+        /// very small/low quality files from being generated. The IJG decoder is capable of reading 
+        /// the non-baseline files generated at low quality settings when <c>force_baseline</c> is <c>false</c>,
+        /// but other decoders may not be.</param>
+        /// <remarks>Note that the exact mapping from quality values to tables may change in future IJG releases 
+        /// as more is learned about DCT quantization.</remarks>
+        /// <seealso cref="Compression parameter selection"/>
         public void jpeg_set_quality(int quality, bool force_baseline)
         {
             /* Convert user 0-100 rating to percentage scaling */
@@ -939,11 +1038,22 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Set or change the 'quality' (quantization) setting, using default 
-        /// tables and a straight percentage-scaling quality scale. In most 
-        /// cases it's better to use jpeg_set_quality (below); this entry point 
-        /// is provided for applications that insist on a linear percentage scaling.
+        /// Same as <see cref="jpeg_set_quality"/> except that the generated tables are the 
+        /// sample tables given in the JPEG specification section K.1, multiplied by 
+        /// the specified scale factor.
         /// </summary>
+        /// <param name="scale_factor">The scale_factor.</param>
+        /// <param name="force_baseline">If <c>true</c>, then the quantization table entries are 
+        /// constrained to the range 1..255 for full JPEG baseline compatibility. In the current 
+        /// implementation, this only makes a difference for quality settings below 25, and it 
+        /// effectively prevents very small/low quality files from being generated. The IJG decoder 
+        /// is capable of reading the non-baseline files generated at low quality settings when 
+        /// <c>force_baseline</c> is <c>false</c>, but other decoders may not be.</param>
+        /// <remarks>Note that larger scale factors give lower quality. This entry point is 
+        /// useful for conforming to the Adobe PostScript DCT conventions, but we do not 
+        /// recommend linear scaling as a user-visible quality scale otherwise.
+        /// </remarks>
+        /// <seealso cref="Compression parameter selection"/>
         public void jpeg_set_linear_quality(int scale_factor, bool force_baseline)
         {
             /* Set up two quantization tables using the specified scaling */
@@ -952,13 +1062,18 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Quantization table setup routines
-        /// 
-        /// Define a quantization table equal to the basic_table times
-        /// a scale factor (given as a percentage).
-        /// If force_baseline is true, the computed quantization table entries
-        /// are limited to 1..255 for JPEG baseline compatibility.
+        /// Allows an arbitrary quantization table to be created.
         /// </summary>
+        /// <param name="which_tbl">Indicates which table slot to fill.</param>
+        /// <param name="basic_table">An array of 64 unsigned integers given in normal array order.
+        /// These values are multiplied by <c>scale_factor/100</c> and then clamped to the range 1..65535 
+        /// (or to 1..255 if <c>force_baseline</c> is <c>true</c>).<br/>
+        /// The basic table should be given in JPEG zigzag order.
+        /// </param>
+        /// <param name="scale_factor">Multiplier for values in <c>basic_table</c>.</param>
+        /// <param name="force_baseline">Defines range of values in <c>basic_table</c>. 
+        /// If <c>true</c> - 1..255, otherwise - 1..65535.</param>
+        /// <seealso cref="Compression parameter selection"/>
         public void jpeg_add_quant_table(int which_tbl, int[] basic_table, int scale_factor, bool force_baseline)
         {
             /* Safety check to ensure start_compress not called yet. */
@@ -995,10 +1110,11 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Convert a user-specified quality rating to a percentage scaling factor
-        /// for an underlying quantization table, using our recommended scaling curve.
-        /// The input 'quality' factor should be 0 (terrible) to 100 (very good).
+        /// Converts a value on the IJG-recommended quality scale to a linear scaling percentage.
         /// </summary>
+        /// <param name="quality">The IJG-recommended quality scale. Should be 0 (terrible) to 100 (very good).</param>
+        /// <returns>The linear scaling percentage.</returns>
+        /// <seealso cref="Compression parameter selection"/>
         public static int jpeg_quality_scaling(int quality)
         {
             /* Safety limit on quality factor.  Convert 0 to 1 to avoid zero divide. */
@@ -1023,9 +1139,12 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Create a recommended progressive-JPEG script.
-        /// num_components and jpeg_color_space must be correct.
+        /// Generates a default scan script for writing a progressive-JPEG file.
         /// </summary>
+        /// <remarks>This is the recommended method of creating a progressive file, unless you want 
+        /// to make a custom scan sequence. You must ensure that the JPEG color space is 
+        /// set correctly before calling this routine.</remarks>
+        /// <seealso cref="Compression parameter selection"/>
         public void jpeg_simple_progression()
         {
             /* Safety check to ensure start_compress not called yet. */
@@ -1122,20 +1241,13 @@ namespace BitMiracle.LibJpeg.Classic
         // Main entry points for compression
 
         /// <summary>
-        /// Compression initialization.
-        /// 
-        /// Before calling this, all parameters and a data destination must be set up.
-        /// 
-        /// We require a write_all_tables parameter as a failsafe check when writing
-        /// multiple datastreams from the same compression object.  Since prior runs
-        /// will have left all the tables marked sent_table=true, a subsequent run
-        /// would emit an abbreviated stream (no tables) by default.  This may be what
-        /// is wanted, but for safety's sake it should not be the default behavior:
-        /// programmers should have to make a deliberate choice to emit abbreviated
-        /// images.  Therefore the documentation and examples should encourage people
-        /// to pass write_all_tables=true; then it will take active thought to do the
-        /// wrong thing.
+        /// Starts JPEG compression.
         /// </summary>
+        /// <param name="write_all_tables">Write or not write all quantization and Huffman tables.</param>
+        /// <remarks>Before calling this, all parameters and a data destination must be set up.</remarks>
+        /// <seealso cref="jpeg_compress_struct.jpeg_suppress_tables"/>
+        /// <seealso cref="jpeg_compress_struct.jpeg_write_tables"/>
+        /// <seealso cref="Compression details"/>
         public void jpeg_start_compress(bool write_all_tables)
         {
             if (m_global_state != JpegState.CSTATE_START)
@@ -1163,18 +1275,19 @@ namespace BitMiracle.LibJpeg.Classic
 
         /// <summary>
         /// Write some scanlines of data to the JPEG compressor.
-        /// 
-        /// The return value will be the number of lines actually written.
-        /// This should be less than the supplied num_lines only in case that
-        /// the data destination module has requested suspension of the compressor,
-        /// or if more than image_height scanlines are passed in.
-        /// 
-        /// Note: we warn about excess calls to jpeg_write_scanlines() since
-        /// this likely signals an application programmer error.  However,
-        /// excess scanlines passed in the last valid call are *silently* ignored,
-        /// so that the application need not adjust num_lines for end-of-image
-        /// when using a multiple-scanline buffer.
         /// </summary>
+        /// <param name="scanlines">The array of scanlines.</param>
+        /// <param name="num_lines">The number of scanlines for writing.</param>
+        /// <returns>The return value will be the number of lines actually written.<br/>
+        /// This should be less than the supplied <c>num_lines</c> only in case that 
+        /// the data destination module has requested suspension of the compressor, 
+        /// or if more than image_height scanlines are passed in.
+        /// </returns>
+        /// <remarks>We warn about excess calls to <c>jpeg_write_scanlines()</c> since this likely 
+        /// signals an application programmer error. However, excess scanlines passed in the last 
+        /// valid call are "silently" ignored, so that the application need not adjust <c>num_lines</c>
+        /// for end-of-image when using a multiple-scanline buffer.</remarks>
+        /// <seealso cref="Compression details"/>
         public int jpeg_write_scanlines(byte[][] scanlines, int num_lines)
         {
             if (m_global_state != JpegState.CSTATE_SCANNING)
@@ -1212,10 +1325,12 @@ namespace BitMiracle.LibJpeg.Classic
 
         /// <summary>
         /// Alternate entry point to write raw data.
-        /// 
-        /// Processes exactly one iMCU row per call, unless suspended.
-        /// Replaces jpeg_write_scanlines when writing raw downsampled data.
         /// </summary>
+        /// <param name="data">The raw data.</param>
+        /// <param name="num_lines">The number of scanlines for writing.</param>
+        /// <returns>The return value will be the number of lines actually written.</returns>
+        /// <remarks>Processes exactly one iMCU row per call, unless suspended.
+        /// Replaces <see cref="jpeg_write_scanlines"/> when writing raw downsampled data.</remarks>
         public int jpeg_write_raw_data(byte[][][] data, int num_lines)
         {
             if (m_global_state != JpegState.CSTATE_RAW_OK)
@@ -1261,18 +1376,15 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Compression initialization for writing raw-coefficient data. 
-        /// Useful for lossless transcoding.
-        /// 
-        /// Before calling this, all parameters and a data destination must be set up.
-        /// Call jpeg_finish_compress() to actually write the data.
-        /// 
-        /// The number of passed virtual arrays must match num_components.
-        /// Note that the virtual arrays need not be filled or even realized at
-        /// the time write_coefficients is called; indeed, if the virtual arrays
-        /// were requested from this compression object's memory manager, they
-        /// typically will be realized during this routine and filled afterwards.
+        /// Compression initialization for writing raw-coefficient data. Useful for lossless transcoding.
         /// </summary>
+        /// <param name="coef_arrays">The virtual arrays need not be filled or even realized at the time 
+        /// <c>jpeg_write_coefficients</c> is called; indeed, the virtual arrays typically will be realized 
+        /// during this routine and filled afterwards.
+        /// </param>
+        /// <remarks>Before calling this, all parameters and a data destination must be set up.
+        /// Call <see cref="jpeg_finish_compress"/> to actually write the data.
+        /// </remarks>
         public void jpeg_write_coefficients(jvirt_array<JBLOCK>[] coef_arrays)
         {
             if (m_global_state != JpegState.CSTATE_START)
