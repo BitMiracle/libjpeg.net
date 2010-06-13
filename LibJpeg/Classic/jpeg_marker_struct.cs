@@ -14,9 +14,14 @@ using System.Text;
 namespace BitMiracle.LibJpeg.Classic
 {
     /// <summary>
-    /// The decompressor can save APPn and COM markers in a list of these:
+    /// Representation of special JPEG marker.
     /// </summary>
-    /// <remarks>The marker length word is not counted in Data.Length or OriginalLength</remarks>
+    /// <remarks>You can't create instance of this class manually.
+    /// Concrete objects are instantiated by library and you can get them
+    /// through <see cref="jpeg_decompress_struct.Marker_list">Marker_list</see> property.
+    /// </remarks>
+    /// <seealso cref="jpeg_decompress_struct.Marker_list"/>
+    /// <seealso cref="Special markers"/>
 #if EXPOSE_LIBJPEG
     public
 #endif
@@ -33,6 +38,10 @@ namespace BitMiracle.LibJpeg.Classic
             m_data = new byte[lengthLimit];
         }
 
+        /// <summary>
+        /// Gets the special marker.
+        /// </summary>
+        /// <value>The marker value.</value>
         public byte Marker
         {
             get
@@ -41,6 +50,13 @@ namespace BitMiracle.LibJpeg.Classic
             }
         }
 
+        /// <summary>
+        /// Gets the full length of original data associated with the marker.
+        /// </summary>
+        /// <value>The length of original data associated with the marker.</value>
+        /// <remarks>This length excludes the marker length word, whereas the stored representation 
+        /// within the JPEG file includes it. (Hence the maximum data length is really only 65533.)
+        /// </remarks>
         public int OriginalLength
         {
             get
@@ -49,6 +65,14 @@ namespace BitMiracle.LibJpeg.Classic
             }
         }
 
+        /// <summary>
+        /// Gets the data associated with the marker.
+        /// </summary>
+        /// <value>The data associated with the marker.</value>
+        /// <remarks>The length of this array doesn't exceed <c>length_limit</c> for the particular marker type.
+        /// Note that this length excludes the marker length word, whereas the stored representation 
+        /// within the JPEG file includes it. (Hence the maximum data length is really only 65533.)
+        /// </remarks>
         public byte[] Data
         {
             get

@@ -14,7 +14,7 @@ using System.Text;
 namespace BitMiracle.LibJpeg.Classic
 {
     /// <summary>
-    /// Constants used in code
+    /// Defines some JPEG constants.
     /// </summary>
 #if EXPOSE_LIBJPEG
     public
@@ -26,19 +26,29 @@ namespace BitMiracle.LibJpeg.Classic
         // if you want to be compatible.
         //
 
-        // The basic DCT block is 8x8 samples
+        /// <summary>
+        /// The basic DCT block is 8x8 samples
+        /// </summary>
         public const int DCTSIZE = 8;
 
-        // DCTSIZE squared; # of elements in a block
+        /// <summary>
+        /// DCTSIZE squared; the number of elements in a block. 
+        /// </summary>
         public const int DCTSIZE2 = DCTSIZE * DCTSIZE;
 
-        // Quantization tables are numbered 0..3
+        /// <summary>
+        /// Quantization tables are numbered 0..3 
+        /// </summary>
         public const int NUM_QUANT_TBLS = 4;
 
-        // Huffman tables are numbered 0..3
+        /// <summary>
+        /// Huffman tables are numbered 0..3
+        /// </summary>
         public const int NUM_HUFF_TBLS = 4;
 
-        // JPEG limit on # of components in one scan
+        /// <summary>
+        /// JPEG limit on the number of components in one scan.
+        /// </summary>
         public const int MAX_COMPS_IN_SCAN = 4;
 
         // compressor's limit on blocks per MCU
@@ -49,12 +59,20 @@ namespace BitMiracle.LibJpeg.Classic
         // to handle it.  We even let you do this from the jconfig.h file. However,
         // we strongly discourage changing C_MAX_BLOCKS_IN_MCU; just because Adobe
         // sometimes emits noncompliant files doesn't mean you should too.
+
+        /// <summary>
+        /// Compressor's limit on blocks per MCU.
+        /// </summary>
         public const int C_MAX_BLOCKS_IN_MCU = 10;
 
-        /* decompressor's limit on blocks per MCU */
+        /// <summary>
+        /// Decompressor's limit on blocks per MCU.
+        /// </summary>
         public const int D_MAX_BLOCKS_IN_MCU = 10;
         
-        // JPEG limit on sampling factors
+        /// <summary>
+        /// JPEG limit on sampling factors.
+        /// </summary>
         public const int MAX_SAMP_FACTOR = 4;
 
 
@@ -68,25 +86,48 @@ namespace BitMiracle.LibJpeg.Classic
         // mask).  We recommend 10 as a reasonable compromise; use 4 if you are
         // really short on memory.  (Each allowed component costs a hundred or so
         // bytes of storage, whether actually used in an image or not.)
+
+        /// <summary>
+        /// Maximum number of color channels allowed in JPEG image.
+        /// </summary>
         public const int MAX_COMPONENTS = 10;
 
-        // BITS_IN_JSAMPLE are either
-        //      8   for 8-bit sample values (the usual setting)
-        //      12  for 12-bit sample values (not supported by this version)
-        //
-        // Only 8 and 12 are legal data precisions for lossy JPEG according to the
-        // JPEG standard.
-        // Althought original IJG code claims it supports 12 bit images, our code
-        // does not support anything except 8-bit images, sorry.
+
+
+        /// <summary>
+        /// The size of sample.
+        /// </summary>
+        /// <remarks>Are either:
+        /// 8 - for 8-bit sample values (the usual setting)<br/>
+        /// 12 - for 12-bit sample values (not supported by this version)<br/>
+        /// Only 8 and 12 are legal data precisions for lossy JPEG according to the JPEG standard.
+        /// Althought original IJG code claims it supports 12 bit images, our code does not support 
+        /// anything except 8-bit images.</remarks>
         public const int BITS_IN_JSAMPLE = 8;
 
+        /// <summary>
+        /// DCT method used by default.
+        /// </summary>
         public static J_DCT_METHOD JDCT_DEFAULT = J_DCT_METHOD.JDCT_ISLOW;
+
+        /// <summary>
+        /// Fastest DCT method.
+        /// </summary>
         public static J_DCT_METHOD JDCT_FASTEST = J_DCT_METHOD.JDCT_IFAST;
 
-        // a tad under 64K to prevent overflows
+        /// <summary>
+        /// A tad under 64K to prevent overflows. 
+        /// </summary>
         public const int JPEG_MAX_DIMENSION = 65500;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public const int MAXJSAMPLE = 255;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public const int CENTERJSAMPLE = 128;
 
         // Ordering of RGB data in scanlines passed to or from the application.
@@ -96,11 +137,30 @@ namespace BitMiracle.LibJpeg.Classic
         // 2. The color quantizer modules will not behave desirably if RGB_PIXELSIZE
         // is not 3 (they don't understand about dummy color components!).  So you
         // can't use color quantization if you change that value.
-        public const int RGB_RED = 0;   /* Offset of Red in an RGB scanline element */
-        public const int RGB_GREEN = 1;   /* Offset of Green */
-        public const int RGB_BLUE = 2;   /* Offset of Blue */
-        public const int RGB_PIXELSIZE = 3;   /* JSAMPLEs per RGB scanline element */
 
-        public const int HUFF_LOOKAHEAD = 8;   /* # of bits of lookahead */
+        /// <summary>
+        /// Offset of Red in an RGB scanline element. 
+        /// </summary>
+        public const int RGB_RED = 0;
+
+        /// <summary>
+        /// Offset of Green in an RGB scanline element. 
+        /// </summary>
+        public const int RGB_GREEN = 1;
+
+        /// <summary>
+        /// Offset of Blue in an RGB scanline element. 
+        /// </summary>
+        public const int RGB_BLUE = 2;
+
+        /// <summary>
+        /// Bytes per RGB scanline element.
+        /// </summary>
+        public const int RGB_PIXELSIZE = 3;
+
+        /// <summary>
+        /// The number of bits of lookahead.
+        /// </summary>
+        public const int HUFF_LOOKAHEAD = 8;
     }
 }

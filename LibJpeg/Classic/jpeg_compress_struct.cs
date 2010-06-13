@@ -1328,7 +1328,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// </summary>
         /// <param name="data">The raw data.</param>
         /// <param name="num_lines">The number of scanlines for writing.</param>
-        /// <returns>The return value will be the number of lines actually written.</returns>
+        /// <returns>The number of lines actually written.</returns>
         /// <remarks>Processes exactly one iMCU row per call, unless suspended.
         /// Replaces <see cref="jpeg_write_scanlines"/> when writing raw downsampled data.</remarks>
         public int jpeg_write_raw_data(byte[][][] data, int num_lines)

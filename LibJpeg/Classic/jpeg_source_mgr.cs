@@ -14,7 +14,7 @@ using System.Text;
 namespace BitMiracle.LibJpeg.Classic
 {
     /// <summary>
-    /// Data source object for decompression
+    /// Data source object for decompression.
     /// </summary>
 #if EXPOSE_LIBJPEG
     public
@@ -25,9 +25,22 @@ namespace BitMiracle.LibJpeg.Classic
         private int m_bytes_in_buffer; /* # of bytes remaining (unread) in buffer */
         private int m_position;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public abstract void init_source();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public abstract bool fill_input_buffer();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="size"></param>
         protected void initInternalBuffer(byte[] buffer, int size)
         {
             m_bytes_in_buffer = size;
@@ -38,14 +51,13 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Skip data - used to skip over a potentially large amount of
         /// uninteresting data (such as an APPn marker).
-        /// 
-        /// Writers of suspendable-input applications must note that skip_input_data
+        /// </summary>
+        /// <remarks>Writers of suspendable-input applications must note that skip_input_data
         /// is not granted the right to give a suspension return.  If the skip extends
         /// beyond the data currently in the buffer, the buffer can be marked empty so
         /// that the next read will cause a fill_input_buffer call that can suspend.
         /// Arranging for additional bytes to be discarded before reloading the input
-        /// buffer is the application writer's problem.
-        /// </summary>
+        /// buffer is the application writer's problem.</remarks>
         public virtual void skip_input_data(int num_bytes)
         {
             /* Just a dumb implementation for now.  Could use fseek() except
@@ -71,53 +83,56 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// This is the default resync_to_restart method for data source 
         /// managers to use if they don't have any better approach.
-        /// That method assumes that no backtracking is possible. 
+        /// </summary>
+        /// <param name="cinfo"></param>
+        /// <param name="desired"></param>
+        /// <returns></returns>
+        /// <remarks>That method assumes that no backtracking is possible. 
         /// Some data source managers may be able to back up, or may have 
         /// additional knowledge about the data which permits a more 
         /// intelligent recovery strategy; such managers would
-        /// presumably supply their own resync method.
+        /// presumably supply their own resync method.<br/>
         /// 
         /// read_restart_marker calls resync_to_restart if it finds a marker other than
         /// the restart marker it was expecting.  (This code is *not* used unless
         /// a nonzero restart interval has been declared.)  cinfo.unread_marker is
         /// the marker code actually found (might be anything, except 0 or FF).
-        /// The desired restart marker number (0..7) is passed as a parameter.
+        /// The desired restart marker number (0..7) is passed as a parameter.<br/>
         /// This routine is supposed to apply whatever error recovery strategy seems
         /// appropriate in order to position the input stream to the next data segment.
         /// Note that cinfo.unread_marker is treated as a marker appearing before
         /// the current data-source input point; usually it should be reset to zero
-        /// before returning.
-        /// Returns false if suspension is required.
+        /// before returning.<br/>
+        /// Returns <c>false</c> if suspension is required.<br/>
         /// 
         /// This implementation is substantially constrained by wanting to treat the
         /// input as a data stream; this means we can't back up.  Therefore, we have
-        /// only the following actions to work with:
+        /// only the following actions to work with:<br/>
         /// 1. Simply discard the marker and let the entropy decoder resume at next
-        /// byte of file.
+        /// byte of file.<br/>
         /// 2. Read forward until we find another marker, discarding intervening
         /// data.  (In theory we could look ahead within the current bufferload,
         /// without having to discard data if we don't find the desired marker.
         /// This idea is not implemented here, in part because it makes behavior
-        /// dependent on buffer size and chance buffer-boundary positions.)
+        /// dependent on buffer size and chance buffer-boundary positions.)<br/>
         /// 3. Leave the marker unread (by failing to zero cinfo.unread_marker).
         /// This will cause the entropy decoder to process an empty data segment,
-        /// inserting dummy zeroes, and then we will reprocess the marker.
+        /// inserting dummy zeroes, and then we will reprocess the marker.<br/>
         /// 
         /// #2 is appropriate if we think the desired marker lies ahead, while #3 is
         /// appropriate if the found marker is a future restart marker (indicating
         /// that we have missed the desired restart marker, probably because it got
-        /// corrupted).
+        /// corrupted).<br/>
         /// We apply #2 or #3 if the found marker is a restart marker no more than
         /// two counts behind or ahead of the expected one.  We also apply #2 if the
         /// found marker is not a legal JPEG marker code (it's certainly bogus data).
         /// If the found marker is a restart marker more than 2 counts away, we do #1
         /// (too much risk that the marker is erroneous; with luck we will be able to
-        /// resync at some future point).
+        /// resync at some future point).<br/>
         /// For any valid non-restart JPEG marker, we apply #3.  This keeps us from
         /// overrunning the end of a scan.  An implementation limited to single-scan
         /// files might find it better to apply #2 for markers other than EOI, since
-        /// any other marker would have to be bogus data in that case.
-        /// </summary>
+        /// any other marker would have to be bogus data in that case.</remarks>
         public virtual bool resync_to_restart(jpeg_decompress_struct cinfo, int desired)
         {
             /* Always put up a warning. */
@@ -183,11 +198,10 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Terminate source - called by jpeg_finish_decompress
         /// after all data has been read.  Often a no-op.
-        /// 
-        /// NB: *not* called by jpeg_abort or jpeg_destroy; surrounding
-        /// application must deal with any cleanup that should happen even
-        /// for error exit.
         /// </summary>
+        /// <remarks>NB: <b>not</b> called by jpeg_abort or jpeg_destroy; surrounding
+        /// application must deal with any cleanup that should happen even
+        /// for error exit.</remarks>
         public virtual void term_source()
         {
         }
@@ -234,6 +248,12 @@ namespace BitMiracle.LibJpeg.Classic
             return true;
         }
 
+        /// <summary>
+        /// Gets the bytes.
+        /// </summary>
+        /// <param name="dest">The destination.</param>
+        /// <param name="amount">The amount.</param>
+        /// <returns></returns>
         public virtual int GetBytes(byte[] dest, int amount)
         {
             int avail = amount;
@@ -252,11 +272,10 @@ namespace BitMiracle.LibJpeg.Classic
 
         /// <summary>
         /// Functions for fetching data from the data source module.
-        /// 
-        /// At all times, cinfo.src.next_input_byte and .bytes_in_buffer reflect
-        /// the current restart point; we update them only when we have reached a
-        /// suitable place to restart if a suspension occurs.
         /// </summary>
+        /// <remarks>At all times, cinfo.src.next_input_byte and .bytes_in_buffer reflect
+        /// the current restart point; we update them only when we have reached a
+        /// suitable place to restart if a suspension occurs.</remarks>
         public virtual bool MakeByteAvailable()
         {
             if (m_bytes_in_buffer == 0)

@@ -13,7 +13,10 @@ using System.Text;
 
 namespace BitMiracle.LibJpeg.Classic
 {
-    // Progress monitor object
+    /// <summary>
+    /// The progress monitor object.
+    /// </summary>
+    /// <seealso cref="Progress monitoring"/>
 #if EXPOSE_LIBJPEG
     public
 #endif
@@ -24,36 +27,61 @@ namespace BitMiracle.LibJpeg.Classic
         private int m_completedPasses;
         private int m_totalPasses;
 
+        /// <summary>
+        /// Occurs when progress is changed.
+        /// </summary>
+        /// <seealso cref="Progress monitoring"/>
         public event EventHandler OnProgress;
 
-        // work units completed in this pass
+        /// <summary>
+        /// Gets or sets the number of work units completed in this pass.
+        /// </summary>
+        /// <value>The number of work units completed in this pass.</value>
+        /// <seealso cref="Progress monitoring"/>
         public int Pass_counter
         {
             get { return m_passCounter; }
             set { m_passCounter = value; }
         }
         
-        // total number of work units in this pass
+        /// <summary>
+        /// Gets or sets the total number of work units in this pass.
+        /// </summary>
+        /// <value>The total number of work units in this pass.</value>
+        /// <seealso cref="Progress monitoring"/>
         public int Pass_limit
         {
             get { return m_passLimit; }
             set { m_passLimit = value; }
         }
         
-        // passes completed so far
+        /// <summary>
+        /// Gets or sets the number of passes completed so far.
+        /// </summary>
+        /// <value>The number of passes completed so far.</value>
+        /// <seealso cref="Progress monitoring"/>
         public int Completed_passes
         {
             get { return m_completedPasses; }
             set { m_completedPasses = value; }
         }
         
-        // total number of passes expected
+        /// <summary>
+        /// Gets or sets the total number of passes expected.
+        /// </summary>
+        /// <value>The total number of passes expected.</value>
+        /// <seealso cref="Progress monitoring"/>
         public int Total_passes
         {
             get { return m_totalPasses; }
             set { m_totalPasses = value; }
         }
 
+        /// <summary>
+        /// Indicates that progress was changed.
+        /// </summary>
+        /// <remarks>Call this method if you change some progress parameters manually.
+        /// This method ensures happening of the <see cref="jpeg_progress_mgr.OnProgress">OnProgress</see> event.</remarks>
         public void Updated()
         {
             if (OnProgress != null)

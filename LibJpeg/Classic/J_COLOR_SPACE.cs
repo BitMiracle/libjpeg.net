@@ -16,16 +16,35 @@ namespace BitMiracle.LibJpeg.Classic
     /// <summary>
     /// Known color spaces.
     /// </summary>
+    /// <seealso cref="Special color spaces"/>
 #if EXPOSE_LIBJPEG
     public
 #endif
     enum J_COLOR_SPACE
     {
-        JCS_UNKNOWN,    /* error/unspecified */
+        /// <summary>
+        /// Unspecified color space.
+        /// </summary>
+        JCS_UNKNOWN,
+        /// <summary>
+        /// Grayscale
+        /// </summary>
         JCS_GRAYSCALE,  /* monochrome */
-        JCS_RGB,        /* red/green/blue */
-        JCS_YCbCr,      /* Y/Cb/Cr (also known as YUV) */
-        JCS_CMYK,       /* C/M/Y/K */
-        JCS_YCCK        /* Y/Cb/Cr/K */
+        /// <summary>
+        /// RGB
+        /// </summary>
+        JCS_RGB,
+        /// <summary>
+        /// YCbCr (also known as YUV)
+        /// </summary>
+        JCS_YCbCr,
+        /// <summary>
+        /// CMYK
+        /// </summary>
+        JCS_CMYK,
+        /// <summary>
+        /// YCbCrK
+        /// </summary>
+        JCS_YCCK
     }
 }

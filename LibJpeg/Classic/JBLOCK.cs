@@ -14,7 +14,7 @@ using System.Text;
 namespace BitMiracle.LibJpeg.Classic
 {
     /// <summary>
-    /// one block of coefficients
+    /// One block of coefficients.
     /// </summary>
 #if EXPOSE_LIBJPEG
     public
@@ -23,6 +23,11 @@ namespace BitMiracle.LibJpeg.Classic
     {
         internal short[] data = new short[JpegConstants.DCTSIZE2];
 
+        /// <summary>
+        /// Gets or sets the element at the specified index.
+        /// </summary>
+        /// <param name="index">The index of required element.</param>
+        /// <value>The required element.</value>
         public short this[int index]
         {
             get

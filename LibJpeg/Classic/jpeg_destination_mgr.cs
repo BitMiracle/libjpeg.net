@@ -14,7 +14,7 @@ using System.Text;
 namespace BitMiracle.LibJpeg.Classic
 {
     /// <summary>
-    /// Data destination object for compression
+    /// Data destination object for compression.
     /// </summary>
 #if EXPOSE_LIBJPEG
     public
@@ -25,8 +25,20 @@ namespace BitMiracle.LibJpeg.Classic
         private int m_position;
         private int m_free_in_buffer;  /* # of byte spaces remaining in buffer */
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         public abstract void init_destination();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public abstract bool empty_output_buffer();
+
+        /// <summary>
+        /// Term_destinations this instance.
+        /// </summary>
         public abstract void term_destination();
 
         /// <summary>
@@ -46,6 +58,11 @@ namespace BitMiracle.LibJpeg.Classic
             return true;
         }
 
+        /// <summary>
+        /// Initializes the internal buffer.
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="offset"></param>
         protected void initInternalBuffer(byte[] buffer, int offset)
         {
             m_buffer = buffer;
@@ -53,6 +70,10 @@ namespace BitMiracle.LibJpeg.Classic
             m_position = offset;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <value></value>
         protected int freeInBuffer
         {
             get

@@ -32,6 +32,10 @@ namespace BitMiracle.LibJpeg.Classic
     /// <summary>
     /// JPEG virtual array.
     /// </summary>
+    /// <remarks>You can't create virtual array manually. For creation use methods 
+    /// <see cref="jpeg_common_struct.CreateSamplesArray"/> and 
+    /// <see cref="jpeg_common_struct.CreateBlocksArray"/>.
+    /// </remarks>
 #if EXPOSE_LIBJPEG
     public
 #endif
@@ -57,6 +61,15 @@ namespace BitMiracle.LibJpeg.Classic
             Debug.Assert(m_buffer != null);
         }
 
+        /// <summary>
+        /// Gets or sets the error processor.
+        /// </summary>
+        /// <value>The error processor.<br/>
+        /// Default value: <c>null</c>
+        /// </value>
+        /// <remarks>Uses only for calling 
+        /// <see cref="M:BitMiracle.LibJpeg.Classic.jpeg_common_struct.ERREXIT(BitMiracle.LibJpeg.Classic.J_MESSAGE_CODE)">jpeg_common_struct.ERREXIT</see>
+        /// on error.</remarks>
         public jpeg_common_struct ErrorProcessor
         {
             get { return m_cinfo; }
@@ -64,8 +77,11 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Access the part of a virtual array starting at startRow and extending for numberOfRows rows.
+        /// Access the part of a virtual array.
         /// </summary>
+        /// <param name="startRow">The first row in required block.</param>
+        /// <param name="numberOfRows">The number of required rows.</param>
+        /// <returns>The required part of virtual array.</returns>
         public T[][] Access(int startRow, int numberOfRows)
         {
             /* debugging check */

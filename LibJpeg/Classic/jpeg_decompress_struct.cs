@@ -826,10 +826,14 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Prepare for input from a stdio stream.
+        /// Sets input stream.
+        /// </summary>
+        /// <param name="infile">The input stream.</param>
+        /// <remarks>
         /// The caller must have already opened the stream, and is responsible
         /// for closing it after finishing decompression.
-        /// </summary>
+        /// </remarks>
+        /// <seealso cref="Decompression details"/>
         public void jpeg_stdio_src(Stream infile)
         {
             /* The source object and input buffer are made permanent so that a series
@@ -851,38 +855,42 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Decompression startup: read start of JPEG datastream to see what's there.
-        /// Need only initialize JPEG object and supply a data source before calling.
-        /// 
-        /// If you pass require_image = true (normal case), you need not check for
-        /// a TABLES_ONLY return code; an abbreviated file will cause an error exit.
-        /// JPEG_SUSPENDED is only possible if you use a data source module that can
-        /// give a suspension return (the stdio source module doesn't).
-        /// 
-        /// This routine will read as far as the first SOS marker (ie, actual start of
-        /// compressed data), and will save all tables and parameters in the JPEG
-        /// object.  It will also initialize the decompression parameters to default
-        /// values, and finally return JPEG_HEADER_OK.  On return, the application may
-        /// adjust the decompression parameters and then call jpeg_start_decompress.
-        /// (Or, if the application only wanted to determine the image parameters,
-        /// the data need not be decompressed.  In that case, call jpeg_abort or
-        /// jpeg_destroy to release any temporary space.)
-        /// 
-        /// If an abbreviated (tables only) datastream is presented, the routine will
-        /// return JPEG_HEADER_TABLES_ONLY upon reaching EOI.  The application may then
-        /// re-use the JPEG object to read the abbreviated image datastream(s).
-        /// It is unnecessary (but OK) to call jpeg_abort in this case.
-        /// The JPEG_SUSPENDED return code only occurs if the data source module
-        /// requests suspension of the decompressor.  In this case the application
-        /// should load more source data and then re-call jpeg_read_header to resume
-        /// processing.
-        /// 
-        /// If a non-suspending data source is used and require_image is true, then the
-        /// return code need not be inspected since only JPEG_HEADER_OK is possible.
-        /// 
-        /// This routine is now just a front end to jpeg_consume_input, with some
-        /// extra error checking.
+        /// Decompression startup: this will read the source datastream header markers, up to the beginning of the compressed data proper.
         /// </summary>
+        /// <param name="require_image"></param>
+        /// <returns>If you pass <c>require_image=true</c> (normal case), you need not check for a 
+        /// <see cref="ReadResult.JPEG_HEADER_TABLES_ONLY"/> return code; an abbreviated file will cause 
+        /// an error exit. <see cref="ReadResult.JPEG_SUSPENDED"/> is only possible if you use a data source 
+        /// module that can give a suspension return.<br/>
+        /// 
+        /// This method will read as far as the first SOS marker (ie, actual start of compressed data), 
+        /// and will save all tables and parameters in the JPEG object. It will also initialize the 
+        /// decompression parameters to default values, and finally return <see cref="ReadResult.JPEG_HEADER_OK"/>. 
+        /// On return, the application may adjust the decompression parameters and then call 
+        /// <see cref="jpeg_decompress_struct.jpeg_start_decompress"/>. (Or, if the application only wanted to 
+        /// determine the image parameters, the data need not be decompressed. In that case, call 
+        /// <see cref="jpeg_decompress_struct.jpeg_abort"/> to release any temporary space.)<br/>
+        /// 
+        /// If an abbreviated (tables only) datastream is presented, the routine will return 
+        /// <see cref="ReadResult.JPEG_HEADER_TABLES_ONLY"/> upon reaching EOI. The application may then re-use 
+        /// the JPEG object to read the abbreviated image datastream(s). It is unnecessary (but OK) to call 
+        /// <see cref="jpeg_decompress_struct.jpeg_abort">jpeg_abort</see> in this case. 
+        /// The <see cref="ReadResult.JPEG_SUSPENDED"/> return code only occurs if the data source module 
+        /// requests suspension of the decompressor. In this case the application should load more source 
+        /// data and then re-call <c>jpeg_read_header</c> to resume processing.<br/>
+        /// 
+        /// If a non-suspending data source is used and <c>require_image</c> is <c>true</c>, 
+        /// then the return code need not be inspected since only <see cref="ReadResult.JPEG_HEADER_OK"/> is possible.
+        /// </returns>
+        /// <remarks>Need only initialize JPEG object and supply a data source before calling.<br/>
+        /// 
+        /// On return, the image dimensions and other info have been stored in the JPEG object. 
+        /// The application may wish to consult this information before selecting decompression parameters.<br/>
+        /// 
+        /// This routine is now just a front end to <see cref="jpeg_consume_input"/>, with some extra error checking.
+        /// </remarks>
+        /// <seealso cref="Decompression details"/>
+        /// <seealso cref="Decompression parameter selection"/>
         public ReadResult jpeg_read_header(bool require_image)
         {
             if (m_global_state != JpegState.DSTATE_START && m_global_state != JpegState.DSTATE_INHEADER)
@@ -917,14 +925,16 @@ namespace BitMiracle.LibJpeg.Classic
 
         /// <summary>
         /// Decompression initialization.
-        /// jpeg_read_header must be completed before calling this.
-        /// 
-        /// If a multipass operating mode was selected, this will do all but the
-        /// last pass, and thus may take a great deal of time.
-        /// 
-        /// Returns false if suspended.  The return value need be inspected only if
-        /// a suspending data source is used.
         /// </summary>
+        /// <returns>Returns <c>false</c> if suspended. The return value need be inspected 
+        /// only if a suspending data source is used.
+        /// </returns>
+        /// <remarks><see cref="jpeg_decompress_struct.jpeg_read_header">jpeg_read_header</see> must be completed before calling this.<br/>
+        /// 
+        /// If a multipass operating mode was selected, this will do all but the last pass, and thus may take a great deal of time.
+        /// </remarks>
+        /// <seealso cref="jpeg_decompress_struct.jpeg_finish_decompress"/>
+        /// <seealso cref="Decompression details"/>
         public bool jpeg_start_decompress()
         {
             if (m_global_state == JpegState.DSTATE_READY)
@@ -984,16 +994,18 @@ namespace BitMiracle.LibJpeg.Classic
 
         /// <summary>
         /// Read some scanlines of data from the JPEG decompressor.
-        /// 
-        /// The return value will be the number of lines actually read.
-        /// This may be less than the number requested in several cases,
-        /// including bottom of image, data source suspension, and operating
-        /// modes that emit multiple scanlines at a time.
-        /// 
-        /// Note: we warn about excess calls to jpeg_read_scanlines() since
-        /// this likely signals an application programmer error.  However,
-        /// an oversize buffer (max_lines > scanlines remaining) is not an error.
         /// </summary>
+        /// <param name="scanlines">Buffer for filling.</param>
+        /// <param name="max_lines">Required number of lines.</param>
+        /// <returns>The return value will be the number of lines actually read. 
+        /// This may be less than the number requested in several cases, including 
+        /// bottom of image, data source suspension, and operating modes that emit multiple scanlines at a time.
+        /// </returns>
+        /// <remarks>We warn about excess calls to <c>jpeg_read_scanlines</c> since this likely signals an 
+        /// application programmer error. However, an oversize buffer <c>(max_lines > scanlines remaining)</c> 
+        /// is not an error.
+        /// </remarks>
+        /// <seealso cref="Decompression details"/>
         public int jpeg_read_scanlines(byte[][] scanlines, int max_lines)
         {
             if (m_global_state != JpegState.DSTATE_SCANNING)
@@ -1022,12 +1034,13 @@ namespace BitMiracle.LibJpeg.Classic
 
         /// <summary>
         /// Finish JPEG decompression.
-        /// 
-        /// This will normally just verify the file trailer and release temp storage.
-        /// 
-        /// Returns false if suspended.  The return value need be inspected only if
-        /// a suspending data source is used.
         /// </summary>
+        /// <returns>Returns <c>false</c> if suspended. The return value need be inspected 
+        /// only if a suspending data source is used.
+        /// </returns>
+        /// <remarks>This will normally just verify the file trailer and release temp storage.</remarks>
+        /// <seealso cref="jpeg_decompress_struct.jpeg_start_decompress"/>
+        /// <seealso cref="Decompression details"/>
         public bool jpeg_finish_decompress()
         {
             if ((m_global_state == JpegState.DSTATE_SCANNING || m_global_state == JpegState.DSTATE_RAW_OK) && !m_buffered_image)
@@ -1070,9 +1083,13 @@ namespace BitMiracle.LibJpeg.Classic
 
         /// <summary>
         /// Alternate entry point to read raw data.
-        /// Replaces jpeg_read_scanlines when reading raw downsampled data.
-        /// Processes exactly one iMCU row per call, unless suspended.
         /// </summary>
+        /// <param name="data">The raw data.</param>
+        /// <param name="max_lines">The number of scanlines for reading.</param>
+        /// <returns>The number of lines actually read.</returns>
+        /// <remarks>Replaces <see cref="jpeg_decompress_struct.jpeg_read_scanlines">jpeg_read_scanlines</see> 
+        /// when reading raw downsampled data. Processes exactly one iMCU row per call, unless suspended.
+        /// </remarks>
         public int jpeg_read_raw_data(byte[][][] data, int max_lines)
         {
             if (m_global_state != JpegState.DSTATE_RAW_OK)
@@ -1123,6 +1140,11 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Is there more than one scan?
         /// </summary>
+        /// <returns><c>true</c> if image has more than one scan; otherwise, <c>false</c></returns>
+        /// <remarks>If you are concerned about maximum performance on baseline JPEG files,
+        /// you should use <see cref="Buffered-image mode">buffered-image mode</see> only
+        /// when the incoming file actually has multiple scans. This can be tested by calling this method.
+        /// </remarks>
         public bool jpeg_has_multiple_scans()
         {
             /* Only valid after jpeg_read_header completes */
@@ -1133,8 +1155,13 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Initialize for an output pass in buffered-image mode.
+        /// Initialize for an output pass in <see cref="Buffered-image mode">buffered-image mode</see>.
         /// </summary>
+        /// <param name="scan_number">Indicates which scan of the input file is to be displayed; 
+        /// the scans are numbered starting at 1 for this purpose.</param>
+        /// <returns><c>true</c> if done; <c>false</c> if suspended</returns>
+        /// <seealso cref="jpeg_decompress_struct.jpeg_finish_output"/>
+        /// <seealso cref="Buffered-image mode"/>
         public bool jpeg_start_output(int scan_number)
         {
             if (m_global_state != JpegState.DSTATE_BUFIMAGE && m_global_state != JpegState.DSTATE_PRESCAN)
@@ -1153,11 +1180,11 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Finish up after an output pass in buffered-image mode.
-        /// 
-        /// Returns false if suspended.  The return value need be inspected only if
-        /// a suspending data source is used.
+        /// Finish up after an output pass in <see cref="Buffered-image mode">buffered-image mode</see>.
         /// </summary>
+        /// <returns>Returns <c>false</c> if suspended. The return value need be inspected only if a suspending data source is used.</returns>
+        /// <seealso cref="jpeg_decompress_struct.jpeg_start_output"/>
+        /// <seealso cref="Buffered-image mode"/>
         public bool jpeg_finish_output()
         {
             if ((m_global_state == JpegState.DSTATE_SCANNING || m_global_state == JpegState.DSTATE_RAW_OK) && m_buffered_image)
@@ -1188,8 +1215,10 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Have we finished reading the input file?
+        /// Indicates if we have finished reading the input file.
         /// </summary>
+        /// <returns><c>true</c> if we have finished reading the input file.</returns>
+        /// <seealso cref="Buffered-image mode"/>
         public bool jpeg_input_complete()
         {
             /* Check for valid jpeg object */
@@ -1201,15 +1230,12 @@ namespace BitMiracle.LibJpeg.Classic
 
         /// <summary>
         /// Consume data in advance of what the decompressor requires.
-        /// This can be called at any time once the decompressor object has
-        /// been created and a data source has been set up.
-        /// 
-        /// This routine is essentially a state machine that handles a couple
-        /// of critical state-transition actions, namely initial setup and
-        /// transition from header scanning to ready-for-start_decompress.
-        /// All the actual input is done via the input controller's consume_input
-        /// method.
         /// </summary>
+        /// <returns>The result of data consumption.</returns>
+        /// <remarks>This routine can be called at any time after initializing the JPEG object.
+        /// It reads some additional data and returns when one of the indicated significant events
+        /// occurs. If called after the EOI marker is reached, it will immediately return
+        /// <see cref="ReadResult.JPEG_REACHED_EOI"/> without attempting to read more data.</remarks>
         public ReadResult jpeg_consume_input()
         {
             ReadResult retcode = ReadResult.JPEG_SUSPENDED;
@@ -1245,13 +1271,11 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Precalculate output image dimensions and related values for 
-        /// current decompression parameters.
-        /// 
-        /// NOTE: this is allowed for possible use by application.
-        /// Hence it mustn't do anything that can't be done twice.
-        /// Also note that it may be called before the master module is initialized!
+        /// Pre-calculate output image dimensions and related values for current decompression parameters.
         /// </summary>
+        /// <remarks>This is allowed for possible use by application. Hence it mustn't do anything 
+        /// that can't be done twice. Also note that it may be called before the master module is initialized!
+        /// </remarks>
         public void jpeg_calc_output_dimensions()
         {
             // Do computations that are needed before master selection phase
@@ -1352,29 +1376,25 @@ namespace BitMiracle.LibJpeg.Classic
                 m_rec_outbuf_height = 1;
         }
 
-        /* Read or write raw DCT coefficients --- useful for lossless transcoding. */
         /// <summary>
-        /// Read or write the raw DCT coefficient arrays from a JPEG file
-        /// (useful for lossless transcoding). 
-        /// jpeg_read_header must be completed before calling this.
-        /// 
-        /// The entire image is read into a set of virtual coefficient-block arrays,
-        /// one per component.  The return value is a pointer to the array of
-        /// virtual-array descriptors.  These can be manipulated directly via the
-        /// JPEG memory manager, or handed off to jpeg_write_coefficients().
-        /// To release the memory occupied by the virtual arrays, call
-        /// jpeg_finish_decompress() when done with the data.
-        /// 
-        /// An alternative usage is to simply obtain access to the coefficient arrays
-        /// during a buffered-image-mode decompression operation.  This is allowed
-        /// after any jpeg_finish_output() call.  The arrays can be accessed until
-        /// jpeg_finish_decompress() is called.  (Note that any call to the library
-        /// may reposition the arrays, so don't rely on access_virt_barray() results
-        /// to stay valid across library calls.)
-        /// 
-        /// Returns null if suspended.  This case need be checked only if
-        /// a suspending data source is used.
+        /// Read or write the raw DCT coefficient arrays from a JPEG file (useful for lossless transcoding).
         /// </summary>
+        /// <returns>Returns <c>null</c> if suspended. This case need be checked only 
+        /// if a suspending data source is used.
+        /// </returns>
+        /// <remarks>
+        /// <see cref="jpeg_decompress_struct.jpeg_read_header">jpeg_read_header</see> must be completed before calling this.<br/>
+        /// 
+        /// The entire image is read into a set of virtual coefficient-block arrays, one per component.
+        /// The return value is an array of virtual-array descriptors.<br/>
+        /// 
+        /// An alternative usage is to simply obtain access to the coefficient arrays during a 
+        /// <see cref="Buffered-image mode">buffered-image mode</see> decompression operation. This is allowed after any 
+        /// <see cref="jpeg_decompress_struct.jpeg_finish_output">jpeg_finish_output</see> call. The arrays can be accessed 
+        /// until <see cref="jpeg_decompress_struct.jpeg_finish_decompress">jpeg_finish_decompress</see> is called. 
+        /// Note that any call to the library may reposition the arrays, 
+        /// so don't rely on <see cref="jvirt_array{T}.Access"/> results to stay valid across library calls.
+        /// </remarks>
         public jvirt_array<JBLOCK>[] jpeg_read_coefficients()
         {
             if (m_global_state == JpegState.DSTATE_READY)
@@ -1432,11 +1452,12 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Initialize the compression object with default parameters,
-        /// then copy from the source object all parameters needed for lossless
-        /// transcoding.  Parameters that can be varied without loss (such as
-        /// scan script and Huffman optimization) are left in their default states.
+        /// Initializes the compression object with default parameters, then copy from the source object 
+        /// all parameters needed for lossless transcoding.
         /// </summary>
+        /// <param name="dstinfo">Target JPEG compression object.</param>
+        /// <remarks>Parameters that can be varied without loss (such as scan script and 
+        /// Huffman optimization) are left in their default states.</remarks>
         public void jpeg_copy_critical_parameters(jpeg_compress_struct dstinfo)
         {
             /* Safety check to ensure start_compress not called yet. */
@@ -1532,27 +1553,43 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Abort processing of a JPEG decompression operation, 
-        /// but don't destroy the object itself.
-        /// 
-        /// If you choose to abort compression or decompression before completing
-        /// jpeg_finish_(de)compress, then you need to clean up to release memory,
-        /// temporary files, etc.  You can just call jpeg_destroy_(de)compress
-        /// if you're done with the JPEG object, but if you want to clean it up and
-        /// reuse it, call this:
+        /// Aborts processing of a JPEG decompression operation.
         /// </summary>
+        /// <seealso cref="jpeg_decompress_struct.jpeg_abort"/>
         public void jpeg_abort_decompress()
         {
             jpeg_abort();
         }
 
-        /* Install a special processing method for COM or APPn markers. */
+        /// <summary>
+        /// Sets processor for special marker.
+        /// </summary>
+        /// <param name="marker_code">The marker code.</param>
+        /// <param name="routine">The processor.</param>
+        /// <remarks>Allows you to supply your own routine to process 
+        /// COM and/or APPn markers on-the-fly as they are read.
+        /// </remarks>
+        /// <seealso cref="Special markers"/>
         public void jpeg_set_marker_processor(int marker_code, jpeg_marker_parser_method routine)
         {
             m_marker.jpeg_set_marker_processor(marker_code, routine);
         }
 
-        /* Control saving of COM and APPn markers into marker_list. */
+        /// <summary>
+        /// Control saving of COM and APPn markers into <see cref="jpeg_decompress_struct.Marker_list">Marker_list</see>.
+        /// </summary>
+        /// <param name="marker_code">The marker type to save (see JPEG_MARKER enumeration).<br/>
+        /// To arrange to save all the special marker types, you need to call this 
+        /// routine 17 times, for COM and APP0-APP15 markers.</param>
+        /// <param name="length_limit">If the incoming marker is longer than <c>length_limit</c> data bytes, 
+        /// only <c>length_limit</c> bytes will be saved; this parameter allows you to avoid chewing up memory 
+        /// when you only need to see the first few bytes of a potentially large marker. If you want to save 
+        /// all the data, set <c>length_limit</c> to 0xFFFF; that is enough since marker lengths are only 16 bits. 
+        /// As a special case, setting <c>length_limit</c> to 0 prevents that marker type from being saved at all. 
+        /// (That is the default behavior, in fact.)
+        /// </param>
+        /// <seealso cref="jpeg_decompress_struct.Marker_list"/>
+        /// <seealso cref="Special markers"/>
         public void jpeg_save_markers(int marker_code, int length_limit)
         {
             m_marker.jpeg_save_markers(marker_code, length_limit);

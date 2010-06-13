@@ -22,8 +22,10 @@ using System.Globalization;
 namespace BitMiracle.LibJpeg.Classic
 {
     /// <summary>
-    /// Error handler object
+    /// Contains simple error-reporting and trace-message routines.
     /// </summary>
+    /// <remarks>This class is used by both the compression and decompression code.</remarks>
+    /// <seealso cref="Error handling"/>
 #if EXPOSE_LIBJPEG
     public
 #endif
@@ -36,7 +38,23 @@ namespace BitMiracle.LibJpeg.Classic
         internal int m_trace_level;
         internal int m_num_warnings;
 
-        // max msg_level that will be displayed
+        /// <summary>
+        /// Initializes a new instance of the <see cref="jpeg_error_mgr"/> class.
+        /// </summary>
+        public jpeg_error_mgr()
+        {
+        }
+
+        /// <summary>
+        /// Gets or sets the maximum message level that will be displayed.
+        /// </summary>
+        /// <value>Values are:
+        /// -1: recoverable corrupt-data warning, may want to abort.<br/>
+        /// 0: important advisory messages (always display to user).<br/>
+        /// 1: first level of tracing detail.<br/>
+        /// 2, 3, ...: successively more detailed tracing messages.
+        /// </value>
+        /// <seealso cref="jpeg_error_mgr.emit_message"/>
         public int Trace_level
         {
             get { return m_trace_level; }
@@ -44,32 +62,24 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// number of corrupt-data warnings.
-        /// 
-        /// For recoverable corrupt-data errors, we emit a warning message, 
-        /// but keep going unless emit_message chooses to abort.  emit_message
-        /// should count warnings in num_warnings.  The surrounding application
-        /// can check for bad data by seeing if num_warnings is nonzero at the
-        /// end of processing.
+        /// Gets the number of corrupt-data warnings.
         /// </summary>
+        /// <value>The num_warnings.</value>
+        /// <remarks>For recoverable corrupt-data errors, we emit a warning message, but keep going 
+        /// unless <see cref="jpeg_error_mgr.emit_message">emit_message</see> chooses to abort. 
+        /// <c>emit_message</c> should count warnings in <c>Num_warnings</c>. The surrounding application 
+        /// can check for bad data by seeing if <c>Num_warnings</c> is nonzero at the end of processing.</remarks>
         public int Num_warnings
         {
             get { return m_num_warnings; }
         }
 
-        public jpeg_error_mgr()
-        {
-        }
-
         /// <summary>
-        /// Error exit handler: does not return to caller
-        /// 
-        /// Applications may override this if they want to get control back after
-        /// an error. Note that the info needed to generate an error message 
-        /// is stored in the error object, so you can generate the message now or
-        /// later, at your convenience. You should make sure that the JPEG object 
-        /// is cleaned up (with jpeg_abort or jpeg_destroy) at some point.
+        /// Receives control for a fatal error.
         /// </summary>
+        /// <remarks>This method calls <see cref="jpeg_error_mgr.output_message">output_message</see> 
+        /// and then throws an exception.</remarks>
+        /// <seealso cref="Error handling"/>
         public virtual void error_exit()
         {
             // Always display the message
@@ -80,17 +90,22 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Conditionally emit a trace or warning message
+        /// Conditionally emit a trace or warning message.
+        /// </summary>
+        /// <param name="msg_level">The message severity level.<br/>
+        /// Values are:<br/>
+        /// -1: recoverable corrupt-data warning, may want to abort.<br/>
+        /// 0: important advisory messages (always display to user).<br/>
+        /// 1: first level of tracing detail.<br/>
+        /// 2, 3, ...: successively more detailed tracing messages.
+        /// </param>
+        /// <remarks>The main reason for overriding this method would be to abort on warnings.
+        /// This method calls <see cref="jpeg_error_mgr.output_message">output_message</see> for message showing.<br/>
         /// 
         /// An application might override this method if it wanted to abort on 
         /// warnings or change the policy about which messages to display.
-        /// </summary>
-        /// <param name="msg_level">The message severity level. 
-        /// Values are:
-        ///     -1: recoverable corrupt-data warning, may want to abort.
-        ///     0: important advisory messages (always display to user).
-        ///     1: first level of tracing detail.
-        ///     2, 3, ...: successively more detailed tracing messages.</param>
+        /// </remarks>
+        /// <seealso cref="Error handling"/>
         public virtual void emit_message(int msg_level)
         {
             if (msg_level < 0)
@@ -114,11 +129,13 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Routine that actually outputs a trace or error message
-        /// 
-        /// Applications may override this method to send JPEG messages somewhere
-        /// other than console. 
+        /// Actual output of any JPEG message.
         /// </summary>
+        /// <remarks>Override this to send messages somewhere other than Console. 
+        /// Note that this method does not know how to generate a message, only where to send it.
+        /// For extending a generation of messages see <see cref="jpeg_error_mgr.format_message">format_message</see>.
+        /// </remarks>
+        /// <seealso cref="Error handling"/>
         public virtual void output_message()
         {
             // Create the message
@@ -129,10 +146,13 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Format a message string for the most recent JPEG error or message.
-        /// <br/>
-        /// Few applications should need to override this method.
+        /// Constructs a readable error message string.
         /// </summary>
+        /// <remarks>This method is called by <see cref="jpeg_error_mgr.output_message">output_message</see>.
+        /// Few applications should need to override this method. One possible reason for doing so is to 
+        /// implement dynamic switching of error message language.</remarks>
+        /// <returns>The formatted message</returns>
+        /// <seealso cref="Error handling"/>
         public virtual string format_message()
         {
             string msgtext = GetMessageText(m_msg_code);
@@ -147,12 +167,12 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// Reset error state variables at start of a new image
-        /// 
-        /// This is called during compression startup to reset trace/error
-        /// processing to default state. An application might possibly want to 
-        /// override this method if it has additional error processing state.
+        /// Resets error manager to initial state.
         /// </summary>
+        /// <remarks>This is called during compression startup to reset trace/error
+        /// processing to default state. An application might possibly want to
+        /// override this method if it has additional error processing state.
+        /// </remarks>
         public virtual void reset_error_mgr()
         {
             m_num_warnings = 0;
@@ -163,6 +183,18 @@ namespace BitMiracle.LibJpeg.Classic
             m_msg_code = 0;
         }
 
+        /// <summary>
+        /// Gets the actual message texts.
+        /// </summary>
+        /// <param name="code">The message code. See <see cref="J_MESSAGE_CODE"/> for details.</param>
+        /// <returns>The message text associated with <c>code</c>.</returns>
+        /// <remarks>It may be useful for an application to add its own message texts that are handled 
+        /// by the same mechanism. You can override <c>GetMessageText</c> for this purpose. If you number 
+        /// the addon messages beginning at 1000 or so, you won't have to worry about conflicts 
+        /// with the library's built-in messages.
+        /// </remarks>
+        /// <seealso cref="J_MESSAGE_CODE"/>
+        /// <seealso cref="Error handling"/>
         protected virtual string GetMessageText(int code)
         {
             switch ((J_MESSAGE_CODE)code)
