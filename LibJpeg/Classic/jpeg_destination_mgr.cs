@@ -31,9 +31,9 @@ namespace BitMiracle.LibJpeg.Classic
         public abstract void init_destination();
 
         /// <summary>
-        /// 
+        /// Empties output buffer.
         /// </summary>
-        /// <returns></returns>
+        /// <returns><c>true</c> if operation succeed; otherwise, <c>false</c></returns>
         public abstract bool empty_output_buffer();
 
         /// <summary>
@@ -42,8 +42,10 @@ namespace BitMiracle.LibJpeg.Classic
         public abstract void term_destination();
 
         /// <summary>
-        /// Emit a byte
+        /// Emits a byte.
         /// </summary>
+        /// <param name="val">The byte value.</param>
+        /// <returns><c>true</c> if operation succeed; otherwise, <c>false</c></returns>
         public virtual bool emit_byte(int val)
         {
             m_buffer[m_position] = (byte)val;
@@ -61,8 +63,8 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Initializes the internal buffer.
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="offset"></param>
+        /// <param name="buffer">The buffer.</param>
+        /// <param name="offset">The offset.</param>
         protected void initInternalBuffer(byte[] buffer, int offset)
         {
             m_buffer = buffer;
@@ -71,9 +73,9 @@ namespace BitMiracle.LibJpeg.Classic
         }
 
         /// <summary>
-        /// 
+        /// Gets the number of free bytes in buffer.
         /// </summary>
-        /// <value></value>
+        /// <value>The number of free bytes in buffer.</value>
         protected int freeInBuffer
         {
             get

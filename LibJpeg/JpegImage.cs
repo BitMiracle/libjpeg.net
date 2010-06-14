@@ -130,6 +130,7 @@ namespace BitMiracle.LibJpeg
         /// Creates <see cref="JpegImage"/> from <see cref="System.Drawing.Bitmap">.NET bitmap</see>
         /// </summary>
         /// <param name="bitmap">Source .NET bitmap.</param>
+        /// <returns>Created instance of <see cref="JpegImage"/> class.</returns>
         /// <remarks>Same as corresponding <see cref="M:BitMiracle.LibJpeg.JpegImage.#ctor(System.Drawing.Bitmap)">constructor</see>.</remarks>
         public static JpegImage FromBitmap(Bitmap bitmap)
         {

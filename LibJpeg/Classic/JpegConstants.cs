@@ -121,12 +121,12 @@ namespace BitMiracle.LibJpeg.Classic
         public const int JPEG_MAX_DIMENSION = 65500;
 
         /// <summary>
-        /// 
+        /// The maximum sample value.
         /// </summary>
         public const int MAXJSAMPLE = 255;
 
         /// <summary>
-        /// 
+        /// The medium sample value.
         /// </summary>
         public const int CENTERJSAMPLE = 128;
 

@@ -26,21 +26,21 @@ namespace BitMiracle.LibJpeg.Classic
         private int m_position;
 
         /// <summary>
-        /// 
+        /// Initializes this instance.
         /// </summary>
         public abstract void init_source();
 
         /// <summary>
-        /// 
+        /// Fills input buffer
         /// </summary>
-        /// <returns></returns>
+        /// <returns><c>true</c> if operation succeed; otherwise, <c>false</c></returns>
         public abstract bool fill_input_buffer();
 
         /// <summary>
-        /// 
+        /// Initializes the internal buffer.
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="size"></param>
+        /// <param name="buffer">The buffer.</param>
+        /// <param name="size">The size.</param>
         protected void initInternalBuffer(byte[] buffer, int size)
         {
             m_bytes_in_buffer = size;
@@ -52,6 +52,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// Skip data - used to skip over a potentially large amount of
         /// uninteresting data (such as an APPn marker).
         /// </summary>
+        /// <param name="num_bytes">The number of bytes to skip.</param>
         /// <remarks>Writers of suspendable-input applications must note that skip_input_data
         /// is not granted the right to give a suspension return.  If the skip extends
         /// beyond the data currently in the buffer, the buffer can be marked empty so
@@ -84,26 +85,26 @@ namespace BitMiracle.LibJpeg.Classic
         /// This is the default resync_to_restart method for data source 
         /// managers to use if they don't have any better approach.
         /// </summary>
-        /// <param name="cinfo"></param>
-        /// <param name="desired"></param>
-        /// <returns></returns>
+        /// <param name="cinfo">An instance of <see cref="jpeg_decompress_struct"/></param>
+        /// <param name="desired">The desired</param>
+        /// <returns><c>false</c> if suspension is required.</returns>
         /// <remarks>That method assumes that no backtracking is possible. 
         /// Some data source managers may be able to back up, or may have 
         /// additional knowledge about the data which permits a more 
         /// intelligent recovery strategy; such managers would
-        /// presumably supply their own resync method.<br/>
+        /// presumably supply their own resync method.<br/><br/>
         /// 
         /// read_restart_marker calls resync_to_restart if it finds a marker other than
         /// the restart marker it was expecting.  (This code is *not* used unless
         /// a nonzero restart interval has been declared.)  cinfo.unread_marker is
         /// the marker code actually found (might be anything, except 0 or FF).
-        /// The desired restart marker number (0..7) is passed as a parameter.<br/>
+        /// The desired restart marker number (0..7) is passed as a parameter.<br/><br/>
+        /// 
         /// This routine is supposed to apply whatever error recovery strategy seems
         /// appropriate in order to position the input stream to the next data segment.
         /// Note that cinfo.unread_marker is treated as a marker appearing before
         /// the current data-source input point; usually it should be reset to zero
-        /// before returning.<br/>
-        /// Returns <c>false</c> if suspension is required.<br/>
+        /// before returning.<br/><br/>
         /// 
         /// This implementation is substantially constrained by wanting to treat the
         /// input as a data stream; this means we can't back up.  Therefore, we have
@@ -194,7 +195,7 @@ namespace BitMiracle.LibJpeg.Classic
                 }
             }
         }
-        
+
         /// <summary>
         /// Terminate source - called by jpeg_finish_decompress
         /// after all data has been read.  Often a no-op.
@@ -209,6 +210,8 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Reads two bytes interpreted as an unsigned 16-bit integer.
         /// </summary>
+        /// <param name="V">The result.</param>
+        /// <returns><c>true</c> if operation succeed; otherwise, <c>false</c></returns>
         public virtual bool GetTwoBytes(out int V)
         {
             if (!MakeByteAvailable())
@@ -234,6 +237,8 @@ namespace BitMiracle.LibJpeg.Classic
         /// Read a byte into variable V.
         /// If must suspend, take the specified action (typically "return false").
         /// </summary>
+        /// <param name="V">The result.</param>
+        /// <returns><c>true</c> if operation succeed; otherwise, <c>false</c></returns>
         public virtual bool GetByte(out int V)
         {
             if (!MakeByteAvailable())
@@ -253,7 +258,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// </summary>
         /// <param name="dest">The destination.</param>
         /// <param name="amount">The amount.</param>
-        /// <returns></returns>
+        /// <returns>The number of available bytes.</returns>
         public virtual int GetBytes(byte[] dest, int amount)
         {
             int avail = amount;
@@ -273,6 +278,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Functions for fetching data from the data source module.
         /// </summary>
+        /// <returns><c>true</c> if operation succeed; otherwise, <c>false</c></returns>
         /// <remarks>At all times, cinfo.src.next_input_byte and .bytes_in_buffer reflect
         /// the current restart point; we update them only when we have reached a
         /// suitable place to restart if a suspension occurs.</remarks>

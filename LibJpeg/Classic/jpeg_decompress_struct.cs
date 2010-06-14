@@ -857,36 +857,35 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Decompression startup: this will read the source datastream header markers, up to the beginning of the compressed data proper.
         /// </summary>
-        /// <param name="require_image"></param>
-        /// <returns>If you pass <c>require_image=true</c> (normal case), you need not check for a 
-        /// <see cref="ReadResult.JPEG_HEADER_TABLES_ONLY"/> return code; an abbreviated file will cause 
-        /// an error exit. <see cref="ReadResult.JPEG_SUSPENDED"/> is only possible if you use a data source 
-        /// module that can give a suspension return.<br/>
+        /// <param name="require_image">Read a description of <b>Return Value</b>.</param>
+        /// <returns>
+        /// If you pass <c>require_image=true</c> (normal case), you need not check for a
+        /// <see cref="ReadResult.JPEG_HEADER_TABLES_ONLY"/> return code; an abbreviated file will cause
+        /// an error exit. <see cref="ReadResult.JPEG_SUSPENDED"/> is only possible if you use a data source
+        /// module that can give a suspension return.<br/><br/>
         /// 
-        /// This method will read as far as the first SOS marker (ie, actual start of compressed data), 
-        /// and will save all tables and parameters in the JPEG object. It will also initialize the 
-        /// decompression parameters to default values, and finally return <see cref="ReadResult.JPEG_HEADER_OK"/>. 
-        /// On return, the application may adjust the decompression parameters and then call 
-        /// <see cref="jpeg_decompress_struct.jpeg_start_decompress"/>. (Or, if the application only wanted to 
-        /// determine the image parameters, the data need not be decompressed. In that case, call 
-        /// <see cref="jpeg_common_struct.jpeg_abort"/> to release any temporary space.)<br/>
+        /// This method will read as far as the first SOS marker (ie, actual start of compressed data),
+        /// and will save all tables and parameters in the JPEG object. It will also initialize the
+        /// decompression parameters to default values, and finally return <see cref="ReadResult.JPEG_HEADER_OK"/>.
+        /// On return, the application may adjust the decompression parameters and then call
+        /// <see cref="jpeg_decompress_struct.jpeg_start_decompress"/>. (Or, if the application only wanted to
+        /// determine the image parameters, the data need not be decompressed. In that case, call
+        /// <see cref="jpeg_common_struct.jpeg_abort"/> to release any temporary space.)<br/><br/>
         /// 
-        /// If an abbreviated (tables only) datastream is presented, the routine will return 
-        /// <see cref="ReadResult.JPEG_HEADER_TABLES_ONLY"/> upon reaching EOI. The application may then re-use 
-        /// the JPEG object to read the abbreviated image datastream(s). It is unnecessary (but OK) to call 
-        /// <see cref="jpeg_common_struct.jpeg_abort">jpeg_abort</see> in this case. 
-        /// The <see cref="ReadResult.JPEG_SUSPENDED"/> return code only occurs if the data source module 
-        /// requests suspension of the decompressor. In this case the application should load more source 
-        /// data and then re-call <c>jpeg_read_header</c> to resume processing.<br/>
+        /// If an abbreviated (tables only) datastream is presented, the routine will return
+        /// <see cref="ReadResult.JPEG_HEADER_TABLES_ONLY"/> upon reaching EOI. The application may then re-use
+        /// the JPEG object to read the abbreviated image datastream(s). It is unnecessary (but OK) to call
+        /// <see cref="jpeg_common_struct.jpeg_abort">jpeg_abort</see> in this case.
+        /// The <see cref="ReadResult.JPEG_SUSPENDED"/> return code only occurs if the data source module
+        /// requests suspension of the decompressor. In this case the application should load more source
+        /// data and then re-call <c>jpeg_read_header</c> to resume processing.<br/><br/>
         /// 
-        /// If a non-suspending data source is used and <c>require_image</c> is <c>true</c>, 
+        /// If a non-suspending data source is used and <c>require_image</c> is <c>true</c>,
         /// then the return code need not be inspected since only <see cref="ReadResult.JPEG_HEADER_OK"/> is possible.
         /// </returns>
         /// <remarks>Need only initialize JPEG object and supply a data source before calling.<br/>
-        /// 
-        /// On return, the image dimensions and other info have been stored in the JPEG object. 
+        /// On return, the image dimensions and other info have been stored in the JPEG object.
         /// The application may wish to consult this information before selecting decompression parameters.<br/>
-        /// 
         /// This routine is now just a front end to <see cref="jpeg_consume_input"/>, with some extra error checking.
         /// </remarks>
         /// <seealso href="9d052723-a7f9-42de-8747-0bd9896f8157.htm" target="_self">Decompression details</seealso>

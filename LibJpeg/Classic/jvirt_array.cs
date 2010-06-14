@@ -32,8 +32,9 @@ namespace BitMiracle.LibJpeg.Classic
     /// <summary>
     /// JPEG virtual array.
     /// </summary>
-    /// <remarks>You can't create virtual array manually. For creation use methods 
-    /// <see cref="jpeg_common_struct.CreateSamplesArray"/> and 
+    /// <typeparam name="T">The type of array's elements.</typeparam>
+    /// <remarks>You can't create virtual array manually. For creation use methods
+    /// <see cref="jpeg_common_struct.CreateSamplesArray"/> and
     /// <see cref="jpeg_common_struct.CreateBlocksArray"/>.
     /// </remarks>
 #if EXPOSE_LIBJPEG
