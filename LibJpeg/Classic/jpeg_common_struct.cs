@@ -115,7 +115,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// Error handler module.
         /// </summary>
         /// <value>The error manager.</value>
-        /// <seealso cref="Error handling"/>
+        /// <seealso href="41dc1a3b-0dea-4594-87d2-c213ab1049e1.htm" target="_self">Error handling</seealso>
         public jpeg_error_mgr Err
         {
             get

@@ -16,7 +16,7 @@ namespace BitMiracle.LibJpeg.Classic
     /// <summary>
     /// The progress monitor object.
     /// </summary>
-    /// <seealso cref="Progress monitoring"/>
+    /// <seealso href="febdc6af-ca72-4f3b-8cfe-3473ce6a7c7f.htm" target="_self">Progress monitoring</seealso>
 #if EXPOSE_LIBJPEG
     public
 #endif
@@ -30,14 +30,14 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// Occurs when progress is changed.
         /// </summary>
-        /// <seealso cref="Progress monitoring"/>
+        /// <seealso href="febdc6af-ca72-4f3b-8cfe-3473ce6a7c7f.htm" target="_self">Progress monitoring</seealso>
         public event EventHandler OnProgress;
 
         /// <summary>
         /// Gets or sets the number of work units completed in this pass.
         /// </summary>
         /// <value>The number of work units completed in this pass.</value>
-        /// <seealso cref="Progress monitoring"/>
+        /// <seealso href="febdc6af-ca72-4f3b-8cfe-3473ce6a7c7f.htm" target="_self">Progress monitoring</seealso>
         public int Pass_counter
         {
             get { return m_passCounter; }
@@ -48,7 +48,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// Gets or sets the total number of work units in this pass.
         /// </summary>
         /// <value>The total number of work units in this pass.</value>
-        /// <seealso cref="Progress monitoring"/>
+        /// <seealso href="febdc6af-ca72-4f3b-8cfe-3473ce6a7c7f.htm" target="_self">Progress monitoring</seealso>
         public int Pass_limit
         {
             get { return m_passLimit; }
@@ -59,7 +59,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// Gets or sets the number of passes completed so far.
         /// </summary>
         /// <value>The number of passes completed so far.</value>
-        /// <seealso cref="Progress monitoring"/>
+        /// <seealso href="febdc6af-ca72-4f3b-8cfe-3473ce6a7c7f.htm" target="_self">Progress monitoring</seealso>
         public int Completed_passes
         {
             get { return m_completedPasses; }
@@ -70,7 +70,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// Gets or sets the total number of passes expected.
         /// </summary>
         /// <value>The total number of passes expected.</value>
-        /// <seealso cref="Progress monitoring"/>
+        /// <seealso href="febdc6af-ca72-4f3b-8cfe-3473ce6a7c7f.htm" target="_self">Progress monitoring</seealso>
         public int Total_passes
         {
             get { return m_totalPasses; }

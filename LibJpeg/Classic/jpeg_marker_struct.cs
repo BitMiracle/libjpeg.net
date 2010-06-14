@@ -21,7 +21,7 @@ namespace BitMiracle.LibJpeg.Classic
     /// through <see cref="jpeg_decompress_struct.Marker_list">Marker_list</see> property.
     /// </remarks>
     /// <seealso cref="jpeg_decompress_struct.Marker_list"/>
-    /// <seealso cref="Special markers"/>
+    /// <seealso href="81c88818-a5d7-4550-9ce5-024a768f7b1e.htm" target="_self">Special markers</seealso>
 #if EXPOSE_LIBJPEG
     public
 #endif

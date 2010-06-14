@@ -16,7 +16,7 @@ namespace BitMiracle.LibJpeg.Classic
     /// <summary>
     /// JPEG marker codes.
     /// </summary>
-    /// <seealso cref="Special markers"/>
+    /// <seealso href="81c88818-a5d7-4550-9ce5-024a768f7b1e.htm" target="_self">Special markers</seealso>
 #if EXPOSE_LIBJPEG
     public
 #endif

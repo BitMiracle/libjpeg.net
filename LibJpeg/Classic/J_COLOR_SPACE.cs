@@ -16,7 +16,7 @@ namespace BitMiracle.LibJpeg.Classic
     /// <summary>
     /// Known color spaces.
     /// </summary>
-    /// <seealso cref="Special color spaces"/>
+    /// <seealso href="c90654b9-f3f4-4319-80d1-979c73d84e76.htm" target="_self">Special color spaces</seealso>
 #if EXPOSE_LIBJPEG
     public
 #endif

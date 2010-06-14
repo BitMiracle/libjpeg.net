@@ -25,7 +25,7 @@ namespace BitMiracle.LibJpeg.Classic
     /// Contains simple error-reporting and trace-message routines.
     /// </summary>
     /// <remarks>This class is used by both the compression and decompression code.</remarks>
-    /// <seealso cref="Error handling"/>
+    /// <seealso href="41dc1a3b-0dea-4594-87d2-c213ab1049e1.htm" target="_self">Error handling</seealso>
 #if EXPOSE_LIBJPEG
     public
 #endif
@@ -79,7 +79,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// </summary>
         /// <remarks>This method calls <see cref="jpeg_error_mgr.output_message">output_message</see> 
         /// and then throws an exception.</remarks>
-        /// <seealso cref="Error handling"/>
+        /// <seealso href="41dc1a3b-0dea-4594-87d2-c213ab1049e1.htm" target="_self">Error handling</seealso>
         public virtual void error_exit()
         {
             // Always display the message
@@ -105,7 +105,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// An application might override this method if it wanted to abort on 
         /// warnings or change the policy about which messages to display.
         /// </remarks>
-        /// <seealso cref="Error handling"/>
+        /// <seealso href="41dc1a3b-0dea-4594-87d2-c213ab1049e1.htm" target="_self">Error handling</seealso>
         public virtual void emit_message(int msg_level)
         {
             if (msg_level < 0)
@@ -135,7 +135,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// Note that this method does not know how to generate a message, only where to send it.
         /// For extending a generation of messages see <see cref="jpeg_error_mgr.format_message">format_message</see>.
         /// </remarks>
-        /// <seealso cref="Error handling"/>
+        /// <seealso href="41dc1a3b-0dea-4594-87d2-c213ab1049e1.htm" target="_self">Error handling</seealso>
         public virtual void output_message()
         {
             // Create the message
@@ -152,7 +152,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// Few applications should need to override this method. One possible reason for doing so is to 
         /// implement dynamic switching of error message language.</remarks>
         /// <returns>The formatted message</returns>
-        /// <seealso cref="Error handling"/>
+        /// <seealso href="41dc1a3b-0dea-4594-87d2-c213ab1049e1.htm" target="_self">Error handling</seealso>
         public virtual string format_message()
         {
             string msgtext = GetMessageText(m_msg_code);
@@ -194,7 +194,7 @@ namespace BitMiracle.LibJpeg.Classic
         /// with the library's built-in messages.
         /// </remarks>
         /// <seealso cref="J_MESSAGE_CODE"/>
-        /// <seealso cref="Error handling"/>
+        /// <seealso href="41dc1a3b-0dea-4594-87d2-c213ab1049e1.htm" target="_self">Error handling</seealso>
         protected virtual string GetMessageText(int code)
         {
             switch ((J_MESSAGE_CODE)code)
