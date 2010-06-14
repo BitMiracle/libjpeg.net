@@ -75,11 +75,13 @@
     </ComponentConfigurations>
     <DocumentationSources>
       <DocumentationSource sourceFile="bin\Release\BitMiracle.LibJpeg.NET.dll" />
-<DocumentationSource sourceFile="bin\Release\BitMiracle.LibJpeg.NET.xml" /></DocumentationSources>
+      <DocumentationSource sourceFile="bin\Release\BitMiracle.LibJpeg.NET.xml" />
+    </DocumentationSources>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="(global)" isDocumented="False" />
-<NamespaceSummaryItem name="BitMiracle.LibJpeg" isDocumented="True">Contains new API for work with JPEG images. This is more easy and more comfortable than classic LibJpeg API.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="BitMiracle.LibJpeg.Classic" isDocumented="True">The .NET port of original libjpeg.</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="BitMiracle.LibJpeg" isDocumented="True">Contains new API for work with JPEG images. This is more easy and more comfortable than classic LibJpeg API.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="BitMiracle.LibJpeg.Classic" isDocumented="True">The .NET port of original libjpeg.</NamespaceSummaryItem>
+    </NamespaceSummaries>
     <CopyrightHref>http://www.bitmiracle.com/libjpeg</CopyrightHref>
     <CopyrightText>Copyright &amp;#169%3b 2009-2010 Bit Miracle. All rights reserved.</CopyrightText>
     <FeedbackEMailAddress>support%40bitmiracle.com</FeedbackEMailAddress>
