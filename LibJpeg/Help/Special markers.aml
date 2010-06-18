@@ -125,7 +125,7 @@
         </para>
         
         <para>If you want to supply your own marker-reading routine, you do it by 
-        calling <codeEntityReference>M:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_set_marker_processor</codeEntityReference>.
+        calling <codeEntityReference>M:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_set_marker_processor(System.Int32,BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_marker_parser_method)</codeEntityReference>.
         A marker processor routine must have the signature of delegate 
         <codeEntityReference>T:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_marker_parser_method</codeEntityReference>.
         </para>
@@ -135,13 +135,13 @@
         to occur properly. We recommend copying and extending the default 
         processors if you want to do that. (A better idea is to save these marker 
         types for later examination by calling 
-        <codeEntityReference>M:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_save_markers</codeEntityReference>;
+        <codeEntityReference>M:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_save_markers(System.Int32,System.Int32)</codeEntityReference>;
         that method doesn't interfere with the library's own processing of these 
         markers.)
         </para>
         
-        <para><codeEntityReference>M:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_set_marker_processor</codeEntityReference>
-        and <codeEntityReference>M:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_save_markers</codeEntityReference>
+        <para><codeEntityReference>M:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_set_marker_processor(System.Int32,BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_marker_parser_method)</codeEntityReference>
+        and <codeEntityReference>M:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_save_markers(System.Int32,System.Int32)</codeEntityReference>
         are mutually exclusive - if you call one it overrides any previous call 
         to the other, for the particular marker type specified.
         </para>
