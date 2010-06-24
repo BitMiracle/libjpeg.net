@@ -31,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibJpeg.Silverlight", "LibJpeg.Silverlight\LibJpeg.Silverlight.csproj", "{297AC639-8A6C-43D1-A3FF-01D8A79C4090}"
+	ProjectSection(ProjectDependencies) = postProject
+		{89A3BDA9-830B-4F7F-8F0B-2954576862C5} = {89A3BDA9-830B-4F7F-8F0B-2954576862C5}
+		{7300CDF5-1C93-4611-8CC9-47FE79F340AB} = {7300CDF5-1C93-4611-8CC9-47FE79F340AB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
