@@ -51,28 +51,28 @@ namespace UnitTests
         [Test, TestCaseSource("FullList")]
         public void TestDeCompression(string file)
         {
-            Tester.PerformDeCompressionTest(new string[] { }, file, "");
+            Tester.PerformDecompressionTest(new string[] { }, file, "");
         }
 
         [Test, TestCaseSource("ShortList")]
         public void TestFastDequantizer(string file)
         {
             // test fast (1-pass) dequantizer
-            Tester.PerformDeCompressionTest(new string[] { "-fast", "-colors", "256", "-bmp" }, file, "_fast");
+            Tester.PerformDecompressionTest(new string[] { "-fast", "-colors", "256", "-bmp" }, file, "_fast");
         }
 
         [Test, TestCaseSource("ShortList")]
         public void TestSlowDequantizer(string file)
         {
             // test slow (2-pass) dequantizer
-            Tester.PerformDeCompressionTest(new string[] { "-colors", "256", "-bmp" }, file, "_slow");
+            Tester.PerformDecompressionTest(new string[] { "-colors", "256", "-bmp" }, file, "_slow");
         }
 
         [Test]
         public void TestMarkerList()
         {
             jpeg_decompress_struct cinfo = new jpeg_decompress_struct();
-            using (FileStream input = new FileStream(@"..\..\..\TestCase\PARROTS.JPG", FileMode.Open))
+            using (FileStream input = new FileStream(Path.Combine(Tester.Testcase, "PARROTS.JPG"), FileMode.Open))
             {
                 /* Specify data source for decompression */
                 cinfo.jpeg_stdio_src(input);

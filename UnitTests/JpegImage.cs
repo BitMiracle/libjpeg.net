@@ -14,9 +14,7 @@ namespace UnitTests
     public class JpegImageTests
     {
         private const string m_expectedResults = @"..\..\..\TestCase\Expected\";
-        private const string m_outputFolder = @"..\..\..\TestCase\Output\";
         private const string m_testcase = @"..\..\..\TestCase\";
-        private const string m_dataFolder = m_testcase;
 
         private static string[] DecompressionFiles
         {
@@ -67,13 +65,13 @@ namespace UnitTests
         public void TestDecompressionResultsSameAsForDJpeg(string fileName)
         {
             string outputFileName = fileName.Replace(".JPG", ".bmp");
-            testBitmapFromFile(m_dataFolder + fileName, outputFileName, m_expectedResults);
+            testBitmapFromFile(m_testcase + fileName, outputFileName, m_expectedResults);
         }
 
         [Test]
         public void TestDecompressionFromCMYKJpeg()
         {
-            using (JpegImage jpeg = new JpegImage(m_dataFolder + "ammerland.jpg"))
+            using (JpegImage jpeg = new JpegImage(m_testcase + "ammerland.jpg"))
             {
                 Assert.AreEqual(jpeg.BitsPerComponent, 8);
                 Assert.AreEqual(jpeg.ComponentsPerSample, 4);
@@ -91,10 +89,10 @@ namespace UnitTests
             string jpegFileName = fileName.Remove(fileName.Length - 4);
             jpegFileName += ".jpg";
 
-            using (Bitmap bmp = new Bitmap(m_dataFolder + fileName))
+            using (Bitmap bmp = new Bitmap(m_testcase + fileName))
                 testJpegFromBitmap(bmp, jpegFileName);
 
-            testJpegFromFile(m_dataFolder + fileName, jpegFileName, m_expectedResults);
+            testJpegFromFile(m_testcase + fileName, jpegFileName, m_expectedResults);
         }
 
         [Test]

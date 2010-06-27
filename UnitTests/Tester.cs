@@ -9,18 +9,15 @@ namespace UnitTests
 {
     class Tester
     {
-        public const string m_testcase = @"..\..\..\TestCase\";
         private static object locked = new object();
-
-        private bool m_testClassicImplementation = true;
-
         private bool m_compression;
-        private string m_dataFolder;
 
-        public Tester(string dataFolder, bool compression)
+        public static string Testcase
         {
-            m_dataFolder = dataFolder;
-            m_compression = compression;
+            get
+            {
+                return @"..\..\..\TestCase\";
+            }
         }
 
         public static void PerformCompressionTest(string[] args, string file, string suffix)
@@ -28,24 +25,29 @@ namespace UnitTests
             PerformTest(args, file, suffix, true);
         }
 
-        public static void PerformDeCompressionTest(string[] args, string file, string suffix)
+        public static void PerformDecompressionTest(string[] args, string file, string suffix)
         {
             PerformTest(args, file, suffix, false);
         }
 
         public static void PerformTest(string[] args, string file, string suffix, bool compression)
         {
-            Tester tester = new Tester("", compression);
-            string inputFile = Path.Combine(m_testcase, Path.GetFileName(file));
-            
+            Tester tester = new Tester(compression);
+            string inputFile = Path.Combine(Testcase, Path.GetFileName(file));
+
             string ext;
             if (compression)
                 ext = ".jpg";
             else
                 ext = ".bmp";
 
-            string outputFile = m_testcase + @"Output\" + Path.GetFileNameWithoutExtension(file) + suffix + ext;
+            string outputFile = Testcase + @"Output\" + Path.GetFileNameWithoutExtension(file) + suffix + ext;
             tester.Run(args, inputFile, outputFile);
+        }
+
+        public Tester(bool compression)
+        {
+            m_compression = compression;
         }
 
         public void Run(string[] args, string sourceImage, string targetImage)
@@ -55,11 +57,7 @@ namespace UnitTests
 
             lock (locked)
             {
-                string dataFolder = m_testcase + m_dataFolder;
                 List<string> completeArgs = new List<string>(1 + args.Length + 2);
-
-                if (!m_testClassicImplementation)
-                    completeArgs.Add(m_compression ? "-c" : "-d");
 
                 for (int i = 0; i < args.Length; ++i)
                     completeArgs.Add(args[i]);
@@ -67,15 +65,10 @@ namespace UnitTests
                 completeArgs.Add(sourceImage);
                 completeArgs.Add(targetImage);
 
-                if (m_testClassicImplementation)
-                {
-                    if (m_compression)
-                        BitMiracle.cJpeg.Program.Main(completeArgs.ToArray());
-                    else
-                        BitMiracle.dJpeg.Program.Main(completeArgs.ToArray());
-                }
+                if (m_compression)
+                    BitMiracle.cJpeg.Program.Main(completeArgs.ToArray());
                 else
-                    BitMiracle.Jpeg.Program.Main(completeArgs.ToArray());
+                    BitMiracle.dJpeg.Program.Main(completeArgs.ToArray());
 
                 string sampleFile = targetImage.Replace(@"\Output\", @"\Expected\");
                 FileAssert.AreEqual(sampleFile, targetImage);
