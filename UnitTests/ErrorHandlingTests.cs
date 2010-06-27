@@ -52,7 +52,6 @@ namespace UnitTests
         public void TestEmptySourceImage_Compress()
         {
             Tester.PerformCompressionTest(new string[] { }, "", "asd.jpg");
-            //m_testerCompress.Run(new string[] { }, "a", "asd.jpg");
         }
 
         [Test]
@@ -60,7 +59,6 @@ namespace UnitTests
         public void TestEmptySourceImage_Decompress()
         {
             Tester.PerformDeCompressionTest(new string[] { }, "", "asd.jpg");
-            //m_testerDecompress.Run(new string[] { }, "", "asd.jpg");
         }
 
         [Test]

@@ -64,7 +64,6 @@ namespace UnitTests
                 for (int i = 0; i < args.Length; ++i)
                     completeArgs.Add(args[i]);
 
-                //completeArgs.Add(Path.Combine(dataFolder, sourceImage));
                 completeArgs.Add(sourceImage);
                 completeArgs.Add(targetImage);
 
@@ -79,10 +78,7 @@ namespace UnitTests
                     BitMiracle.Jpeg.Program.Main(completeArgs.ToArray());
 
                 string sampleFile = targetImage.Replace(@"\Output\", @"\Expected\");
-                //Assert.IsTrue(File.Exists(targetImage));
                 FileAssert.AreEqual(sampleFile, targetImage);
-
-                //FileAssert.AreEqual(Path.Combine(dataFolder, targetImage), targetImage);
             }
         }
     }
