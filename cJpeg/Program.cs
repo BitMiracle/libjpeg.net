@@ -200,7 +200,7 @@ namespace BitMiracle.cJpeg
             for ( ; argn < argv.Length; argn++)
             {
                 string arg = argv[argn];
-                if (arg[0] != '-')
+                if (string.IsNullOrEmpty(arg) || arg[0] != '-')
                 {
                     /* Not a switch, must be a file name argument */
                     fileIndex = argn;

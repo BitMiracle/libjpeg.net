@@ -13,44 +13,61 @@ namespace UnitTests
     [TestFixture]
     public class JpegImageTests
     {
-        private const string m_expectedResults = @"..\..\ExpectedResults\";
+        private const string m_expectedResults = @"..\..\..\TestCase\Expected\";
+        private const string m_outputFolder = @"..\..\..\TestCase\Output\";
         private const string m_testcase = @"..\..\..\TestCase\";
-        private const string m_dataFolder = m_testcase + @"Data\";
+        private const string m_dataFolder = m_testcase;
 
-        [Test]
-        public void TestCompressionResultsSameAsForCJpeg()
+        private static string[] DecompressionFiles
         {
-            string pathToTestFiles = m_testcase + @"jpeg_compression_data\";
-            using (JpegImage jpeg = new JpegImage(pathToTestFiles + "test24.bmp"))
+            get
             {
-                testJpegOutput(jpeg, "test24.jpg", pathToTestFiles);
+                return new string[]
+                {
+                    "BLU.JPG",
+                    "PARROTS.JPG",
+                    "3D.JPG",
+                    "MARBLES.JPG",
+                };
+            }
+        }
 
-                CompressionParameters parameters = new CompressionParameters();
-                parameters.Quality = 25;
-                testJpegOutput(jpeg, parameters, "test24_25.jpg", pathToTestFiles);
-
-                parameters = new CompressionParameters();
-                parameters.SimpleProgressive = true;
-                testJpegOutput(jpeg, parameters, "test24_prog.jpg", pathToTestFiles);
+        private static string[] BitmapFiles
+        {
+            get
+            {
+                return new string[]
+                {
+                    "duck.bmp",
+                    "particle.bmp",
+                    "pink.png",
+                    "rainbow.bmp"
+                };
             }
         }
 
         [Test]
-        public void TestDecompressionResultsSameAsForDJpeg()
+        public void TestCompressionResultsSameAsForCJpeg()
         {
-            const string pathToTestFiles = m_testcase + @"jpeg_decompression_data\";
-
-            List<string> jpegs = new List<string>();
-            jpegs.Add("BLU.JPG");
-            jpegs.Add("PARROTS.JPG");
-            jpegs.Add("3D.JPG");
-            jpegs.Add("MARBLES.JPG");
-
-            foreach (string fileName in jpegs)
+            using (JpegImage jpeg = new JpegImage(Path.Combine(m_testcase, "test24.bmp")))
             {
-                string outputFileName = fileName.Replace(".JPG", ".bmp");
-                testBitmapFromFile(m_dataFolder + @"jpg/" + fileName, outputFileName, pathToTestFiles);
+                testJpegOutput(jpeg, "test24.jpg", m_expectedResults);
+
+                CompressionParameters parameters = new CompressionParameters();
+                parameters.Quality = 25;
+                testJpegOutput(jpeg, parameters, "test24_25.jpg", m_expectedResults);
+
+                parameters = new CompressionParameters();
+                parameters.SimpleProgressive = true;
+                testJpegOutput(jpeg, parameters, "test24_prog.jpg", m_expectedResults);
             }
+        }
+
+        [Test, TestCaseSource("DecompressionFiles")]
+        public void TestDecompressionResultsSameAsForDJpeg(string fileName)
+        {
+            string outputFileName = fileName.Replace(".JPG", ".bmp");
+            testBitmapFromFile(m_dataFolder + fileName, outputFileName, m_expectedResults);
         }
 
         [Test]
@@ -68,20 +85,16 @@ namespace UnitTests
             }
         }
 
-        [Test]
-        public void TestJpegImageFromBitmap()
+        [Test, TestCaseSource("BitmapFiles")]
+        public void TestJpegImageFromBitmap(string fileName)
         {
-            string[] bitmaps = new string[4] { "duck.bmp", "particle.bmp", "pink.png", "rainbow.bmp" };
-            foreach (string fileName in bitmaps)
-            {
-                string jpegFileName = fileName.Remove(fileName.Length - 4);
-                jpegFileName += ".jpg";
+            string jpegFileName = fileName.Remove(fileName.Length - 4);
+            jpegFileName += ".jpg";
 
-                using (Bitmap bmp = new Bitmap(m_dataFolder + fileName))
-                    testJpegFromBitmap(bmp, jpegFileName);
+            using (Bitmap bmp = new Bitmap(m_dataFolder + fileName))
+                testJpegFromBitmap(bmp, jpegFileName);
 
-                testJpegFromFile(m_dataFolder + fileName, jpegFileName, m_expectedResults);
-            }
+            testJpegFromFile(m_dataFolder + fileName, jpegFileName, m_expectedResults);
         }
 
         [Test]

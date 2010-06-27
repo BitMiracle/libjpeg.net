@@ -10,8 +10,8 @@ namespace UnitTests
     [TestFixture]
     public class ErrorHandlingTests
     {
-        private Tester m_testerCompress = new Tester(@"jpeg_compression_data\", true);
-        private Tester m_testerDecompress = new Tester(@"jpeg_decompression_data\", false);
+        private Tester m_testerCompress = new Tester("", true);
+        private Tester m_testerDecompress = new Tester("", false);
 
         private TextWriter m_consoleOutBefore;
 
@@ -37,28 +37,30 @@ namespace UnitTests
         [ExpectedException(typeof(DirectoryNotFoundException))]
         public void TestEmptyTargetImage_Compress()
         {
-            m_testerCompress.Run(new string[] { }, "testimg.bmp", "");
+            m_testerCompress.Run(new string[] { }, Path.Combine(Tester.m_testcase, "testimg.bmp"), Tester.m_testcase);
         }
 
         [Test]
         [ExpectedException(typeof(DirectoryNotFoundException))]
         public void TestEmptyTargetImage_Decompress()
         {
-            m_testerDecompress.Run(new string[] { }, "3D.JPG", "");
+            m_testerDecompress.Run(new string[] { }, Path.Combine(Tester.m_testcase, "3D.JPG"), Tester.m_testcase);
         }
 
         [Test]
         [ExpectedException(typeof(FileNotFoundException))]
         public void TestEmptySourceImage_Compress()
         {
-            m_testerCompress.Run(new string[] { }, "", "asd.jpg");
+            Tester.PerformCompressionTest(new string[] { }, "", "asd.jpg");
+            //m_testerCompress.Run(new string[] { }, "a", "asd.jpg");
         }
 
         [Test]
         [ExpectedException(typeof(FileNotFoundException))]
         public void TestEmptySourceImage_Decompress()
         {
-            m_testerDecompress.Run(new string[] { }, "", "asd.jpg");
+            Tester.PerformDeCompressionTest(new string[] { }, "", "asd.jpg");
+            //m_testerDecompress.Run(new string[] { }, "", "asd.jpg");
         }
 
         [Test]
