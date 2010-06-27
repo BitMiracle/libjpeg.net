@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibJpeg2005", "LibJpeg\LibJ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests2005", "UnitTests\UnitTests2005.csproj", "{1CBA5A80-BCCE-4C6D-8A27-31D27E317182}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{83C844E7-9C2B-4941-BDDC-1564C31B74F4}"
+	ProjectSection(SolutionItems) = preProject
+		LibJpeg\Help.shfbproj = LibJpeg\Help.shfbproj
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
