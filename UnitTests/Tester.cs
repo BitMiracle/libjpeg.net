@@ -52,7 +52,7 @@ namespace UnitTests
                 else
                     BitMiracle.Jpeg.Program.Main(completeArgs.ToArray());
 
-                Assert.IsTrue(Utils.FilesAreEqual(Path.Combine(dataFolder, targetImage), targetImage));
+                FileAssert.AreEqual(Path.Combine(dataFolder, targetImage), targetImage);
             }
         }
     }

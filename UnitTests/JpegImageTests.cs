@@ -161,7 +161,7 @@ namespace UnitTests
                     jpeg.WriteJpeg(output);
             }
 
-            Assert.IsTrue(Utils.FilesAreEqual(jpegFileName, Path.Combine(m_expectedResults, jpegFileName)));
+            FileAssert.AreEqual(jpegFileName, Path.Combine(m_expectedResults, jpegFileName));
         }
 
         private static void testJpegFromFile(string fileName, string jpegFileName, string folderWithExpectedResults)
@@ -182,7 +182,7 @@ namespace UnitTests
             using (FileStream output = new FileStream(jpegFileName, FileMode.Create))
                 jpeg.WriteJpeg(output, parameters);
 
-            Assert.IsTrue(Utils.FilesAreEqual(jpegFileName, Path.Combine(folderWithExpectedResults, jpegFileName)));
+            FileAssert.AreEqual(jpegFileName, Path.Combine(folderWithExpectedResults, jpegFileName));
         }
 
         private static void testBitmapFromFile(string sourceFileName, string bitmapFileName, string folderWithExpectedResults)
@@ -198,7 +198,7 @@ namespace UnitTests
             using (FileStream output = new FileStream(bitmapFileName, FileMode.Create))
                 jpeg.WriteBitmap(output);
 
-            Assert.IsTrue(Utils.FilesAreEqual(bitmapFileName, Path.Combine(folderWithExpectedResults, bitmapFileName)));
+            FileAssert.AreEqual(bitmapFileName, Path.Combine(folderWithExpectedResults, bitmapFileName));
         }
     }
 }
