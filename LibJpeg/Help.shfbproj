@@ -15,7 +15,7 @@
     <Name>Documentation</Name>
     <!-- SHFB properties -->
     <OutputPath>bin\Release\Help\</OutputPath>
-    <HtmlHelpName>LibJpeg.NET</HtmlHelpName>
+    <HtmlHelpName>LibJpeg.Net</HtmlHelpName>
     <Preliminary>False</Preliminary>
     <FrameworkVersion>2.0.50727</FrameworkVersion>
     <ComponentConfigurations>
@@ -102,7 +102,7 @@
     <CopyrightText>Copyright &amp;#169%3b 2009-2010 Bit Miracle. All rights reserved.</CopyrightText>
     <FeedbackEMailAddress>support%40bitmiracle.com</FeedbackEMailAddress>
     <FeedbackEMailLinkText>support%40bitmiracle.com</FeedbackEMailLinkText>
-    <HelpTitle>LibJpeg.NET, a managed version of LibJpeg library used for reading and writing JPEG images.</HelpTitle>
+    <HelpTitle>LibJpeg.Net, a managed version of LibJpeg library used for reading and writing JPEG images.</HelpTitle>
     <IncludeFavorites>True</IncludeFavorites>
     <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
   </PropertyGroup>
