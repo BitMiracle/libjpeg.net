@@ -51,7 +51,7 @@ namespace BitMiracle.LibJpeg
             m_bitsPerComponent = bitsPerComponent;
 
             m_components = new short[components.Length];
-            Array.Copy(components, m_components, components.Length);
+            Buffer.BlockCopy(components, 0, m_components, 0, components.Length * sizeof(short));
         }
 
         /// <summary>
