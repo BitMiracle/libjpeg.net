@@ -106,6 +106,15 @@ namespace UnitTests
         }
 
         [Test]
+        public void TestGrayscaleJpegToBitmap()
+        {
+            using (JpegImage jpegImage = new JpegImage(m_testcase + "turkey.jpg"))
+            {
+                testBitmapOutput(jpegImage, "turkey.png", m_expectedResults);
+            }
+        }
+
+        [Test]
         public void TestCreateFromPixelsAndRecompress()
         {
             using (JpegImage jpegImage = createImageFromPixels())
