@@ -75,16 +75,16 @@ namespace UnitTests
             m_testerCompress.Run(new string[] { }, "q.bmp", "asd.jpg");
         }
 
-        [Test]
-        public void TestWritingOfUsage_Compress()
-        {
-            m_testerCompress.Run(new string[] { "-qwerty" }, "testimg.bmp", "testimg_gray.jpg");
-        }
+        //[Test]
+        //public void TestWritingOfUsage_Compress()
+        //{
+        //    m_testerCompress.Run(new string[] { "-qwerty" }, "testimg.bmp", "testimg_gray.jpg");
+        //}
 
-        [Test]
-        public void TestWritingOfUsage_Decompress()
-        {
-            m_testerDecompress.Run(new string[] { "-qwerty" }, "3D.JPG", "3D.bmp");
-        }
+        //[Test]
+        //public void TestWritingOfUsage_Decompress()
+        //{
+        //    m_testerDecompress.Run(new string[] { "-qwerty" }, "3D.JPG", "3D.bmp");
+        //}
     }
 }
