@@ -16,7 +16,7 @@
                             </listItem>
                             <listItem>
                                 Added support for Visual Studio 2010. Now Visual 2005, 2008 and 2010
-                                can be used to build LibTiff.Net.
+                                can be used to build LibJpeg.Net.
                             </listItem>
                             <listItem>
                                 Fixed bugs within JpegImage.WriteBitmap.
