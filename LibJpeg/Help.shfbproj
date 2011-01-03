@@ -100,7 +100,7 @@
       <NamespaceSummaryItem name="BitMiracle.LibJpeg.Classic" isDocumented="True">The .NET port of original libjpeg.</NamespaceSummaryItem>
     </NamespaceSummaries>
     <CopyrightHref>http://www.bitmiracle.com/libjpeg</CopyrightHref>
-    <CopyrightText>Copyright &amp;#169%3b 2009-2010 Bit Miracle. All rights reserved.</CopyrightText>
+    <CopyrightText>Copyright &amp;#169%3b 2008-2011 Bit Miracle. All rights reserved.</CopyrightText>
     <FeedbackEMailAddress>support%40bitmiracle.com</FeedbackEMailAddress>
     <FeedbackEMailLinkText>support%40bitmiracle.com</FeedbackEMailLinkText>
     <HelpTitle>LibJpeg.Net, a managed version of LibJpeg library used for reading and writing JPEG images.</HelpTitle>
