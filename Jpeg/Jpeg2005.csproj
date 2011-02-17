@@ -10,7 +10,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BitMiracle.Jpeg</RootNamespace>
     <AssemblyName>Jpeg</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -64,7 +63,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LibJpeg\LibJpeg2005.csproj">
       <Project>{7300CDF5-1C93-4611-8CC9-47FE79F340AB}</Project>
-      <Name>LibJpeg2005</Name>
+      <Name>LibJpeg</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -10,7 +10,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitTests</RootNamespace>
     <AssemblyName>UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -31,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=2.5.3.9345, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NUnit\bin\nunit.framework.dll</HintPath>
     </Reference>
@@ -51,19 +50,19 @@
   <ItemGroup>
     <ProjectReference Include="..\cJpeg\cJpeg2005.csproj">
       <Project>{C0DFBCE2-9E77-4697-AA67-A46C088A1D45}</Project>
-      <Name>cJpeg2005</Name>
+      <Name>cJpeg</Name>
     </ProjectReference>
     <ProjectReference Include="..\dJpeg\dJpeg2005.csproj">
       <Project>{3B558417-DD92-481E-9202-2693059E344C}</Project>
-      <Name>dJpeg2005</Name>
+      <Name>dJpeg</Name>
     </ProjectReference>
     <ProjectReference Include="..\Jpeg\Jpeg2005.csproj">
       <Project>{89A3BDA9-830B-4F7F-8F0B-2954576862C5}</Project>
-      <Name>Jpeg2005</Name>
+      <Name>Jpeg</Name>
     </ProjectReference>
     <ProjectReference Include="..\LibJpeg\LibJpeg2005.csproj">
       <Project>{7300CDF5-1C93-4611-8CC9-47FE79F340AB}</Project>
-      <Name>LibJpeg2005</Name>
+      <Name>LibJpeg</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
