@@ -20,6 +20,16 @@ namespace UnitTests
             }
         }
 
+        public static string MapOutputPath(string fileName)
+        {
+            return Path.Combine(Path.Combine(Testcase, "Output"), fileName);
+        }
+
+        public static string MapExpectedPath(string fileName)
+        {
+            return Path.Combine(Path.Combine(Testcase, "Expected"), fileName);
+        }
+
         public static void PerformCompressionTest(string[] args, string file, string suffix)
         {
             PerformTest(args, file, suffix, true);

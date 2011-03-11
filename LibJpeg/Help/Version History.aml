@@ -20,7 +20,10 @@
                             </listItem>
                             <listItem>
                                 Fixed bugs within JpegImage.WriteBitmap.
-                            </listItem>                            
+                            </listItem>
+                            <listItem>
+                                Fixed bugs within compression preprocessing code.
+                            </listItem>
                         </list>
                     </content>
                 </section>
