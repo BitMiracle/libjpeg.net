@@ -9,10 +9,10 @@
                     <content>
                         <list class="bullet">
                             <listItem>
-                                Greatly improved the documentation.
+                                Improved the documentation.
                             </listItem>
                             <listItem>
-                                Added Silverlight support
+                                Added Silverlight support.
                             </listItem>
                             <listItem>
                                 Added support for Visual Studio 2010. Now Visual 2005, 2008 and 2010
