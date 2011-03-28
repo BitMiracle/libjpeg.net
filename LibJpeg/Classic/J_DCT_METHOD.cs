@@ -33,10 +33,12 @@ namespace BitMiracle.LibJpeg.Classic
         /// Slow but accurate integer algorithm.
         /// </summary>
         JDCT_ISLOW,
+
         /// <summary>
         /// Faster, less accurate integer method.
         /// </summary>
         JDCT_IFAST,
+
         /// <summary>
         /// Floating-point method.
         /// </summary>

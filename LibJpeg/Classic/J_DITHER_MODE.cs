@@ -26,10 +26,12 @@ namespace BitMiracle.LibJpeg.Classic
         /// No dithering: fast, very low quality
         /// </summary>
         JDITHER_NONE,
+
         /// <summary>
         /// Ordered dither: moderate speed and quality
         /// </summary>
         JDITHER_ORDERED,
+
         /// <summary>
         /// Floyd-Steinberg dither: slow, high quality
         /// </summary>

@@ -12,17 +12,34 @@ namespace BitMiracle.LibJpeg
 #endif
     enum Colorspace
     {
-        /// <summary>Unspecified colorspace</summary>
+        /// <summary>
+        /// Unspecified colorspace
+        /// </summary>
         Unknown,
-        /// <summary>Grayscale</summary>
+
+        /// <summary>
+        /// Grayscale
+        /// </summary>
         Grayscale,
-        /// <summary>RGB</summary>
+
+        /// <summary>
+        /// RGB
+        /// </summary>
         RGB,
-        /// <summary>YCbCr (also known as YUV)</summary>
+
+        /// <summary>
+        /// YCbCr (also known as YUV)
+        /// </summary>
         YCbCr,
-        /// <summary>CMYK</summary>
+
+        /// <summary>
+        /// CMYK
+        /// </summary>
         CMYK,
-        /// <summary>YCbCrK</summary>
+
+        /// <summary>
+        /// YCbCrK
+        /// </summary>
         YCCK
     }
 
