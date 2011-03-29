@@ -18,7 +18,7 @@ using System.Runtime.InteropServices;
 //      Revision
 //
 // 
-//      Build Number gets placed in strings below using SVN version info
+//      Build Number gets placed in strings below using Mercurial version info
 
 [assembly: AssemblyVersion("1.2.$REVNUM$.$DIRTY$")]
 [assembly: AssemblyFileVersion("1.2.$REVNUM$.$DIRTY$")]
