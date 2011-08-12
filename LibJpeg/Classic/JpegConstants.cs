@@ -108,12 +108,12 @@ namespace BitMiracle.LibJpeg.Classic
         /// <summary>
         /// DCT method used by default.
         /// </summary>
-        public static J_DCT_METHOD JDCT_DEFAULT = J_DCT_METHOD.JDCT_ISLOW;
+        public const J_DCT_METHOD JDCT_DEFAULT = J_DCT_METHOD.JDCT_ISLOW;
 
         /// <summary>
         /// Fastest DCT method.
         /// </summary>
-        public static J_DCT_METHOD JDCT_FASTEST = J_DCT_METHOD.JDCT_IFAST;
+        public const J_DCT_METHOD JDCT_FASTEST = J_DCT_METHOD.JDCT_IFAST;
 
         /// <summary>
         /// A tad under 64K to prevent overflows. 

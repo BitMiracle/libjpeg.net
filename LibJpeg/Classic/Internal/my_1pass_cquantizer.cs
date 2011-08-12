@@ -100,7 +100,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             quantize_fs_dither_quantizer
         }
 
-        private static int[] RGB_order = { JpegConstants.RGB_GREEN, JpegConstants.RGB_RED, JpegConstants.RGB_BLUE };
+        private static readonly int[] RGB_order = { JpegConstants.RGB_GREEN, JpegConstants.RGB_RED, JpegConstants.RGB_BLUE };
         private const int MAX_Q_COMPS = 4; /* max components I can handle */
     
         private const int ODITHER_SIZE = 16; /* dimension of dither matrix */
@@ -113,7 +113,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         * Stephen Hawley's article "Ordered Dithering" in Graphics Gems I.
         * The values in this array must range from 0 to ODITHER_CELLS-1.
         */
-        private static byte[][] base_dither_matrix = new byte[][] 
+        private static readonly byte[][] base_dither_matrix = new byte[][] 
         {
             new byte[] {   0,192, 48,240, 12,204, 60,252,  3,195, 51,243, 15,207, 63,255 },
             new byte[] { 128, 64,176,112,140, 76,188,124,131, 67,179,115,143, 79,191,127 },
