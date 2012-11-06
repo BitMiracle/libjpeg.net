@@ -176,7 +176,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
             /* Huffman's basic algorithm to assign optimal code lengths to symbols */
 
-            for (; ;)
+            for (;;)
             {
                 /* Find the smallest nonzero frequency, set c1 = its symbol */
                 /* In case of ties, take the larger symbol number */
