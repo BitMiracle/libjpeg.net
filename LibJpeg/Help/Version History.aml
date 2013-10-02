@@ -4,6 +4,19 @@
         <section address="Section1">
             <content></content>
             <sections>
+                <section address="SubSection4">
+                    <title>Version 1.3</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Fixed bug in marker reader.
+                            </listItem>
+                            <listItem>
+                                Fixed bug in upsampler.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
                 <section address="SubSection3">
                     <title>Version 1.2</title>
                     <content>
@@ -21,9 +34,7 @@
                             <listItem>
                                 Fixed bugs within JpegImage.WriteBitmap.
                             </listItem>
-							<listItem>
-                                Fixed bug in marker reader.
-                            </listItem>
+
                             <listItem>
                                 Fixed bugs within compression preprocessing code.
                             </listItem>
