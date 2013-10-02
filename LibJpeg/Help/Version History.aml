@@ -21,6 +21,9 @@
                             <listItem>
                                 Fixed bugs within JpegImage.WriteBitmap.
                             </listItem>
+							<listItem>
+                                Fixed bug in marker reader.
+                            </listItem>
                             <listItem>
                                 Fixed bugs within compression preprocessing code.
                             </listItem>
