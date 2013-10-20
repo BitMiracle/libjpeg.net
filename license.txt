@@ -1,5 +1,5 @@
 LibJpeg.Net
-Copyright (c) 2008-2011, Bit Miracle
+Copyright (c) 2008-2013, Bit Miracle
 
 All rights reserved.
 
