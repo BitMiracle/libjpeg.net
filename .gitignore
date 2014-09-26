@@ -19,6 +19,9 @@ build/
 [Bb]in/
 [Oo]bj/
 
+# Auto-generated files
+#AssemblyVersion.cs
+
 # Test outputs
 TestCase/Output/*.bmp
 TestCase/Output/*.jpg
