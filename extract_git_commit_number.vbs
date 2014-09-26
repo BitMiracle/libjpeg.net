@@ -35,7 +35,7 @@ IF (IsNumeric(revCount)) THEN
 	revCount = Replace(revCount, vbCr, "")
 	revCount = Replace(revCount, vbLf, "")
 
-	Wscript.Echo revCount
+	'Wscript.Echo revCount
 
 	'Read source text file
 	FileContents = GetFile(InputFile)
