@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2008-2013, Bit Miracle
+﻿/* Copyright (C) 2008-2015, Bit Miracle
  * http://www.bitmiracle.com
  * 
  * Copyright (C) 1994-1996, Thomas G. Lane.
@@ -170,7 +170,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                     case downSampleMethod.int_downsampler:
                         int_downsample(ci, input_buf[ci], in_row_index, output_buf[ci], outIndex);
                         break;
-                };
+                }
             }
         }
 

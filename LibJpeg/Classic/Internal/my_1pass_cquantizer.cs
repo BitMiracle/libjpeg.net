@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2008-2013, Bit Miracle
+﻿/* Copyright (C) 2008-2015, Bit Miracle
  * http://www.bitmiracle.com
  * 
  * Copyright (C) 1994-1996, Thomas G. Lane.
@@ -551,7 +551,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                     m_fserrors[ci][errorIndex + 0] = (short) bpreverr; /* unload prev err into array */
                 }
 
-                m_on_odd_row = (m_on_odd_row ? false : true);
+                m_on_odd_row = !m_on_odd_row;
             }
         }
 
