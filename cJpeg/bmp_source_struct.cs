@@ -1,13 +1,4 @@
-﻿/* Copyright (C) 2008-2013, Bit Miracle
- * http://www.bitmiracle.com
- * 
- * Copyright (C) 1994-1996, Thomas G. Lane.
- * This file is part of the Independent JPEG Group's software.
- * For conditions of distribution and use, see the accompanying README file.
- *
- */
-
-/*
+﻿/*
  * This file contains routines to read input images in Microsoft "BMP"
  * format (MS Windows 3.x, OS/2 1.x, and OS/2 2.x flavors).
  * Currently, only 8-bit and 24-bit images are supported, not 1-bit or
@@ -17,13 +8,9 @@
  * Original code was contributed by James Arthur Boucher.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-
-using BitMiracle.LibJpeg.Classic;
 using BitMiracle.cdJpeg;
+using BitMiracle.LibJpeg.Classic;
+using System.IO;
 
 namespace BitMiracle.cJpeg
 {

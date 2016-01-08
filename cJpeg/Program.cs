@@ -1,13 +1,4 @@
-﻿/* Copyright (C) 2008-2013, Bit Miracle
- * http://www.bitmiracle.com
- * 
- * Copyright (C) 1994-1996, Thomas G. Lane.
- * This file is part of the Independent JPEG Group's software.
- * For conditions of distribution and use, see the accompanying README file.
- *
- */
-
-/*
+﻿/*
  * This file contains a command-line user interface for the JPEG compressor.
  *
  * To simplify script writing, the "-outfile" switch is provided.  The syntax
@@ -16,10 +7,7 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
-using System.Globalization;
 
 using BitMiracle.LibJpeg.Classic;
 using BitMiracle.cdJpeg;

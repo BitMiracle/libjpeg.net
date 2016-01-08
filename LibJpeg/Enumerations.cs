@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BitMiracle.LibJpeg
+﻿namespace BitMiracle.LibJpeg
 {
     /// <summary>
     /// Known color spaces.

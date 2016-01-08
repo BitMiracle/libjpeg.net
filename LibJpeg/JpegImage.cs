@@ -9,7 +9,6 @@ using System.Drawing.Imaging;
 #endif
 
 using System.IO;
-using System.Text;
 
 using BitMiracle.LibJpeg.Classic;
 
