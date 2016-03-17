@@ -18,6 +18,7 @@ namespace BitMiracle.cdJpeg
         JERR_BMP_BADPLANES,
         JERR_BMP_COLORSPACE,
         JERR_BMP_COMPRESSED,
+        JERR_BMP_EMPTY,
         JERR_BMP_NOT,
         JTRC_BMP,
         JTRC_BMP_MAPPED,

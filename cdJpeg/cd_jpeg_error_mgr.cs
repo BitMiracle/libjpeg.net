@@ -23,6 +23,8 @@ namespace BitMiracle.cdJpeg
                     return "BMP output must be grayscale or RGB";
                 case ADDON_MESSAGE_CODE.JERR_BMP_COMPRESSED:
                     return "Sorry, compressed BMPs not yet supported";
+                case ADDON_MESSAGE_CODE.JERR_BMP_EMPTY:
+                    return "Empty BMP image";
                 case ADDON_MESSAGE_CODE.JERR_BMP_NOT:
                     return "Not a BMP file - does not start with BM";
                 case ADDON_MESSAGE_CODE.JTRC_BMP:

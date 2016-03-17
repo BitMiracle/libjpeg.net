@@ -23,7 +23,8 @@ namespace BitMiracle.cJpeg
         {
             preload,
             use8bit,
-            use24bit
+            use24bit,
+            use32bit
         }
 
         private jpeg_compress_struct cinfo;
@@ -81,7 +82,7 @@ namespace BitMiracle.cJpeg
 
             int biWidth = 0;      /* initialize to avoid compiler warning */
             int biHeight = 0;
-            int biPlanes;
+            int biPlanes = 0;
             int biCompression;
             int biXPelsPerMeter;
             int biYPelsPerMeter;
@@ -112,8 +113,6 @@ namespace BitMiracle.cJpeg
                             break;
                     }
 
-                    if (biPlanes != 1)
-                        cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADPLANES);
                     break;
                 case 40:
                 case 64:
@@ -140,14 +139,15 @@ namespace BitMiracle.cJpeg
                             /* RGB image */
                             cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP, biWidth, biHeight);
                             break;
+                        case 32:
+                            /* RGB image + Alpha channel */
+                            cinfo.TRACEMS(1, (int)ADDON_MESSAGE_CODE.JTRC_BMP, biWidth, biHeight);
+                            break;
                         default:
                             cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
                             break;
                     }
 
-                    if (biPlanes != 1)
-                        cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADPLANES);
-                    
                     if (biCompression != 0)
                         cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_COMPRESSED);
 
@@ -163,6 +163,12 @@ namespace BitMiracle.cJpeg
                     cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADHEADER);
                     break;
             }
+
+            if (biWidth <= 0 || biHeight <= 0)
+                cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_EMPTY);
+
+            if (biPlanes != 1)
+                cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADPLANES);
 
             /* Compute distance to bitmap data --- will adjust for colormap below */
             int bPad = bfOffBits - (headerSize + 14);
@@ -193,6 +199,8 @@ namespace BitMiracle.cJpeg
             /* Compute row width in file, including padding to 4-byte boundary */
             if (bits_per_pixel == 24)
                 row_width = biWidth * 3;
+            else if (bits_per_pixel == 32)
+                row_width = biWidth * 4;
             else
                 row_width = biWidth;
 
@@ -231,8 +239,10 @@ namespace BitMiracle.cJpeg
                 return preload_image();
             else if (m_pixelRowsMethod == PixelRowsMethod.use8bit)
                 return get_8bit_row();
+            else if (m_pixelRowsMethod == PixelRowsMethod.use24bit)
+                return get_24bit_row();
 
-            return get_24bit_row();
+            return get_32bit_row();
         }
 
         // Finish up at the end of the file.
@@ -307,6 +317,34 @@ namespace BitMiracle.cJpeg
             return 1;
         }
 
+        /// This version is for reading 32-bit pixels.
+        private int get_32bit_row()
+        {
+            /* Fetch next row from virtual array */
+            source_row--;
+            byte[][] image_ptr = whole_image.Access(source_row, 1);
+
+            /* Transfer data.  Note source values are in BGR order
+             * (even though Microsoft's own documents say the opposite).
+             */
+            int imageIndex = 0;
+            int outIndex = 0;
+
+            for (int col = cinfo.Image_width; col > 0; col--)
+            {
+                buffer[0][outIndex + 2] = image_ptr[0][imageIndex];   /* can omit GETbyte() safely */
+                imageIndex++;
+                buffer[0][outIndex + 1] = image_ptr[0][imageIndex];
+                imageIndex++;
+                buffer[0][outIndex] = image_ptr[0][imageIndex];
+                imageIndex++;
+                imageIndex++;   /* skip the 4th byte (Alpha channel) */
+                outIndex += 3;
+            }
+
+            return 1;
+        }
+
         /// <summary>
         /// This method loads the image into whole_image during the first call on
         /// get_pixel_rows. 
@@ -350,6 +388,9 @@ namespace BitMiracle.cJpeg
                     break;
                 case 24:
                     m_pixelRowsMethod = PixelRowsMethod.use24bit;
+                    break;
+                case 32:
+                    m_pixelRowsMethod = PixelRowsMethod.use32bit;
                     break;
                 default:
                     cinfo.ERREXIT((int)ADDON_MESSAGE_CODE.JERR_BMP_BADDEPTH);
