@@ -492,10 +492,35 @@ namespace BitMiracle.cJpeg
             return false;
         }
 
+        /* Process a quality-ratings parameter string, of the form
+         *     N[,N,...]
+         * If there are more q-table slots than parameters, the last value is replicated.
+         */
         static bool set_quality_ratings(jpeg_compress_struct cinfo, string arg, bool force_baseline)
         {
-            // not implemented yet
-            return false;
+            int val = 75;           /* default value */
+            string[] factors = arg.Split(new char[','], StringSplitOptions.RemoveEmptyEntries);
+             
+            for (int tblno = 0; tblno < JpegConstants.NUM_QUANT_TBLS; tblno++)
+            {
+                if (factors.Length > tblno)
+                {
+                    bool parsed = int.TryParse(factors[tblno], out val);
+                    if (!parsed)
+                        return false;
+
+                    /* Convert user 0-100 rating to percentage scaling */
+                    cinfo.q_scale_factor[tblno] = jpeg_compress_struct.jpeg_quality_scaling(val);
+                }
+                else
+                {
+                    /* reached end of parameter, set remaining factors to last value */
+                    cinfo.q_scale_factor[tblno] = jpeg_compress_struct.jpeg_quality_scaling(val);
+                }
+            }
+
+            cinfo.jpeg_default_qtables(force_baseline);
+            return true;
         }
 
         static bool set_quant_slots(jpeg_compress_struct cinfo, string arg)

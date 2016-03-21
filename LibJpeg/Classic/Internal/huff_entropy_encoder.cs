@@ -179,6 +179,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                         /* Note that jpeg_gen_optimal_table expects 257 entries in each table! */
                         if (m_dc_count_ptrs[tbl] == null)
                             m_dc_count_ptrs[tbl] = new long[257];
+                        else
+                            Array.Clear(m_dc_count_ptrs[tbl], 0, m_dc_count_ptrs[tbl].Length);
                     }
                     else
                     {
@@ -202,6 +204,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
                         if (m_ac_count_ptrs[tbl] == null)
                             m_ac_count_ptrs[tbl] = new long[257];
+                        else
+                            Array.Clear(m_ac_count_ptrs[tbl], 0, m_ac_count_ptrs[tbl].Length);
                     }
                     else
                     {
