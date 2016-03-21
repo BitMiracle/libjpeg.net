@@ -365,6 +365,11 @@ namespace BitMiracle.dJpeg
                     /* Force monochrome output. */
                     cinfo.Out_color_space = J_COLOR_SPACE.JCS_GRAYSCALE;
                 }
+                else if (cdjpeg_utils.keymatch(arg, "rgb", 3))
+                {
+                    /* Force RGB output. */
+                    cinfo.Out_color_space = J_COLOR_SPACE.JCS_RGB;
+                }
                 else if (cdjpeg_utils.keymatch(arg, "nosmooth", 3))
                 {
                     /* Suppress fancy upsampling */
@@ -451,6 +456,7 @@ namespace BitMiracle.dJpeg
             Console.WriteLine("  -colors N      Reduce image to no more than N colors");
             Console.WriteLine("  -fast          Fast, low-quality processing");
             Console.WriteLine("  -grayscale     Force grayscale output");
+            Console.WriteLine("  -rgb           Force RGB output");
             Console.WriteLine("  -scale M/N     Scale output image by fraction M/N, eg, 1/8");
             Console.WriteLine("  -os2           Select BMP output format (OS/2 style)");
             Console.WriteLine("Switches for advanced users:");

@@ -106,7 +106,7 @@ namespace BitMiracle.cJpeg
                 {
                     Console.WriteLine(string.Format("{0}: can't open {1}", progname, args[file_index]));
                     Console.WriteLine(e.Message);
-                    return;	
+                    return;
                 }
             }
             else
@@ -167,14 +167,10 @@ namespace BitMiracle.cJpeg
         static bool parse_switches(jpeg_compress_struct cinfo, string[] argv, bool for_real, out int fileIndex)
         {
             /* Set up default JPEG parameters. */
-            /* Note that default -quality level need not, and does not,
-             * match the default scaling for an explicit -qtables argument.
-             */
-            int quality = 75;           /* default -quality value */
-            int q_scale_factor = 100;       /* default to no scaling for -qtables */
             bool force_baseline = false; /* by default, allow 16-bit quantizers */
             bool simple_progressive = false;
 
+            string qualityarg = null;	/* saves -quality parm if any */
             string qtablefile = null;    /* saves -qtables filename if any */
             string qslotsarg = null; /* saves -qslots parm if any */
             string samplearg = null; /* saves -sample parm if any */
@@ -185,7 +181,7 @@ namespace BitMiracle.cJpeg
 
             /* Scan command line options, adjust parameters */
             int argn = 0;
-            for ( ; argn < argv.Length; argn++)
+            for (; argn < argv.Length; argn++)
             {
                 string arg = argv[argn];
                 if (string.IsNullOrEmpty(arg) || arg[0] != '-')
@@ -197,10 +193,26 @@ namespace BitMiracle.cJpeg
 
                 arg = arg.Substring(1);
 
-                if (cdjpeg_utils.keymatch(arg, "baseline", 1))
+                if (cdjpeg_utils.keymatch(arg, "baseline", 2))
                 {
                     /* Force baseline-compatible output (8-bit quantizer values). */
                     force_baseline = true;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "block", 2))
+                {
+                    /* Set DCT block size. */
+                    argn++; /* advance to next argument */
+                    if (argn >= argv.Length)
+                        return false;
+
+                    int val;
+                    if (!int.TryParse(argv[argn], out val))
+                        return false;
+
+                    if (val < 1 || val > 16)
+                        return false;
+
+                    cinfo.block_size = val;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "dct", 2))
                 {
@@ -234,10 +246,29 @@ namespace BitMiracle.cJpeg
                     /* Force a monochrome JPEG file to be generated. */
                     cinfo.jpeg_set_colorspace(J_COLOR_SPACE.JCS_GRAYSCALE);
                 }
+                else if (cdjpeg_utils.keymatch(arg, "rgb", 3) || cdjpeg_utils.keymatch(arg, "rgb1", 4))
+                {
+                    /* Force an RGB JPEG file to be generated. */
+                    /* Note: Entropy table assignment in Jpeg_color_space depends
+                     * on color_transform.
+                     */
+                    cinfo.color_transform = (arg == "rgb") ? J_COLOR_TRANSFORM.JCT_SUBTRACT_GREEN : J_COLOR_TRANSFORM.JCT_NONE;
+                    cinfo.Jpeg_color_space = J_COLOR_SPACE.JCS_RGB;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "bgycc", 5))
+                {
+                    /* Force a big gamut YCC JPEG file to be generated. */
+                    cinfo.Jpeg_color_space = J_COLOR_SPACE.JCS_BG_YCC;
+                }
                 else if (cdjpeg_utils.keymatch(arg, "optimize", 1) || cdjpeg_utils.keymatch(arg, "optimise", 1))
                 {
                     /* Enable entropy parm optimization. */
                     cinfo.Optimize_coding = true;
+                }
+                else if (cdjpeg_utils.keymatch(arg, "nosmooth", 3))
+                {
+                    /* Suppress fancy downsampling. */
+                    cinfo.do_fancy_downsampling = false;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "outfile", 4))
                 {
@@ -256,22 +287,12 @@ namespace BitMiracle.cJpeg
                 }
                 else if (cdjpeg_utils.keymatch(arg, "quality", 1))
                 {
-                    /* Quality factor (quantization table scaling factor). */
+                    /* Quality ratings (quantization table scaling factors). */
                     argn++;/* advance to next argument */
                     if (argn >= argv.Length)
                         return false;
 
-                    try
-                    {
-                        quality = int.Parse(argv[argn]);
-                        /* Change scale factor in case -qtables is present. */
-                        q_scale_factor = jpeg_compress_struct.jpeg_quality_scaling(quality);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        return false;
-                    }
+                    qualityarg = argv[argn];
                 }
                 else if (cdjpeg_utils.keymatch(arg, "qslots", 2))
                 {
@@ -331,7 +352,7 @@ namespace BitMiracle.cJpeg
                     }
                     catch (Exception e)
                     {
-                    	Console.WriteLine(e.Message);
+                        Console.WriteLine(e.Message);
                         return false;
                     }
                 }
@@ -347,6 +368,23 @@ namespace BitMiracle.cJpeg
                      * colorspace-determining switches, since jpeg_set_colorspace sets
                      * default sampling factors.
                      */
+                }
+                else if (cdjpeg_utils.keymatch(arg, "scale", 4))
+                {
+                    /* Scale the image by a fraction M/N. */
+                    argn++; /* advance to next argument */
+                    if (argn >= argv.Length)
+                        return false;
+
+                    string[] parts = argv[argn].Split(',');
+                    if (parts.Length != 2)
+                        return false;
+
+                    if (!int.TryParse(parts[0], out cinfo.scale_num))
+                        return false;
+
+                    if (!int.TryParse(parts[1], out cinfo.scale_denom))
+                        return false;
                 }
                 else if (cdjpeg_utils.keymatch(arg, "smooth", 2))
                 {
@@ -383,11 +421,15 @@ namespace BitMiracle.cJpeg
             {
                 /* Set quantization tables for selected quality. */
                 /* Some or all may be overridden if -qtables is present. */
-                cinfo.jpeg_set_quality(quality, force_baseline);
+                if (qualityarg != null)
+                {
+                    if (!set_quality_ratings(cinfo, qualityarg, force_baseline))
+                        return false;
+                }
 
                 if (qtablefile != null) /* process -qtables if it was present */
                 {
-                    if (!read_quant_tables(cinfo, qtablefile, q_scale_factor, force_baseline))
+                    if (!read_quant_tables(cinfo, qtablefile, force_baseline))
                         return false;
                 }
 
@@ -418,14 +460,21 @@ namespace BitMiracle.cJpeg
             Console.WriteLine(string.Format("usage: {0} [switches] inputfile outputfile", progname));
 
             Console.WriteLine("Switches (names may be abbreviated):");
-            Console.WriteLine("  -quality N     Compression quality (0..100; 5-95 is useful range)");
+            Console.WriteLine("  -quality N[,...]     Compression quality (0..100; 5-95 is useful range)");
             Console.WriteLine("  -grayscale     Create monochrome JPEG file");
+            Console.WriteLine("  -rgb           Create RGB JPEG file");
             Console.WriteLine("  -optimize      Optimize Huffman table (smaller file, but slow compression)");
             Console.WriteLine("  -progressive   Create progressive JPEG file");
+            Console.WriteLine("  -scale M/N     Scale image by fraction M/N, eg, 1/2");
             Console.WriteLine("Switches for advanced users:");
+            Console.WriteLine("  -arithmetic    Use arithmetic coding");
+            Console.WriteLine("  -block N       DCT block size (1..16; default is 8)");
+            Console.WriteLine("  -rgb1          Create RGB JPEG file with reversible color transform");
+            Console.WriteLine("  -bgycc         Create big gamut YCC JPEG file");
             Console.WriteLine(string.Format("  -dct int       Use integer DCT method {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_ISLOW ? " (default)" : "")));
             Console.WriteLine(string.Format("  -dct fast      Use fast integer DCT (less accurate) {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_IFAST ? " (default)" : "")));
             Console.WriteLine(string.Format("  -dct float     Use floating-point DCT method {0}", (JpegConstants.JDCT_DEFAULT == J_DCT_METHOD.JDCT_FLOAT ? " (default)" : "")));
+            Console.WriteLine("  -nosmooth      Don't use high-quality downsampling");
             Console.WriteLine("  -restart N     Set restart interval in rows, or in blocks with B");
             Console.WriteLine("  -smooth N      Smooth dithered input (N=1..100 is strength)");
             Console.WriteLine("  -outfile name  Specify name for output file");
@@ -437,10 +486,41 @@ namespace BitMiracle.cJpeg
             Console.WriteLine("  -sample HxV[,...]  Set component sampling factors");
         }
 
-        static bool read_quant_tables(jpeg_compress_struct cinfo, string filename, int scale_factor, bool force_baseline)
+        static bool read_quant_tables(jpeg_compress_struct cinfo, string filename, bool force_baseline)
         {
             // not implemented yet
             return false;
+        }
+
+        /* Process a quality-ratings parameter string, of the form
+         *     N[,N,...]
+         * If there are more q-table slots than parameters, the last value is replicated.
+         */
+        static bool set_quality_ratings(jpeg_compress_struct cinfo, string arg, bool force_baseline)
+        {
+            int val = 75;           /* default value */
+            string[] factors = arg.Split(new char[','], StringSplitOptions.RemoveEmptyEntries);
+             
+            for (int tblno = 0; tblno < JpegConstants.NUM_QUANT_TBLS; tblno++)
+            {
+                if (factors.Length > tblno)
+                {
+                    bool parsed = int.TryParse(factors[tblno], out val);
+                    if (!parsed)
+                        return false;
+
+                    /* Convert user 0-100 rating to percentage scaling */
+                    cinfo.q_scale_factor[tblno] = jpeg_compress_struct.jpeg_quality_scaling(val);
+                }
+                else
+                {
+                    /* reached end of parameter, set remaining factors to last value */
+                    cinfo.q_scale_factor[tblno] = jpeg_compress_struct.jpeg_quality_scaling(val);
+                }
+            }
+
+            cinfo.jpeg_default_qtables(force_baseline);
+            return true;
         }
 
         static bool set_quant_slots(jpeg_compress_struct cinfo, string arg)
