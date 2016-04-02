@@ -65,6 +65,14 @@ namespace UnitTests
             Tester.PerformDecompressionTest(new string[] { "-colors", "256", "-bmp" }, file, "_slow");
         }
 
+        [TestCase("logo1.jpg")]
+        [TestCase("logo2.jpg")]
+        public void TestCmykToRgb(string file)
+        {
+            // forcing rgb output
+            Tester.PerformDecompressionTest(new string[] { "-rgb", "-colors", "256" }, file, "_cmyk2rgb256");
+        }
+
         [Test]
         public void TestMarkerList()
         {

@@ -416,8 +416,11 @@ namespace BitMiracle.dJpeg
                         return false;
                     }
                 }
-                else /* bogus switch */
+                else
+                {
+                    /* bogus switch */
                     return false;
+                }
             }
 
             return true;
