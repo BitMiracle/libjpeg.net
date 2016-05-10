@@ -82,6 +82,7 @@ namespace BitMiracle.LibJpeg
             createFromStream(imageData);
         }
 
+#if !SILVERLIGHT
         /// <summary>
         /// Creates <see cref="JpegImage"/> from file with an arbitrary image
         /// </summary>
@@ -95,6 +96,7 @@ namespace BitMiracle.LibJpeg
             using (FileStream input = new FileStream(fileName, FileMode.Open))
                 createFromStream(input);
         }
+#endif
 
         /// <summary>
         /// Creates <see cref="JpegImage"/> from pixels
