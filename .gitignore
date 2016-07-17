@@ -25,3 +25,4 @@ AssemblyVersion.cs
 # Test outputs
 TestCase/Output/*.bmp
 TestCase/Output/*.jpg
+/LibJpeg.NetStandard/project.lock.json
