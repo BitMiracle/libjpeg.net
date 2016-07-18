@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 #if !NETSTANDARD
-// namespace System.Drawing.* is not available in Silverlight
+// namespace System.Drawing.* is not available in .NET Standard
 using System.Drawing;
 using System.Drawing.Imaging;
 #endif
@@ -70,19 +70,7 @@ namespace BitMiracle.LibJpeg
         {
             createFromBitmap(bitmap);
         }
-#endif
 
-        /// <summary>
-        /// Creates <see cref="JpegImage"/> from stream with an arbitrary image data
-        /// </summary>
-        /// <param name="imageData">Stream containing bytes of image in 
-        /// arbitrary format (BMP, Jpeg, GIF, PNG, TIFF, e.t.c)</param>
-        public JpegImage(Stream imageData)
-        {
-            createFromStream(imageData);
-        }
-
-#if !NETSTANDARD
         /// <summary>
         /// Creates <see cref="JpegImage"/> from file with an arbitrary image
         /// </summary>
@@ -97,6 +85,16 @@ namespace BitMiracle.LibJpeg
                 createFromStream(input);
         }
 #endif
+
+        /// <summary>
+        /// Creates <see cref="JpegImage"/> from stream with an arbitrary image data
+        /// </summary>
+        /// <param name="imageData">Stream containing bytes of image in 
+        /// arbitrary format (BMP, Jpeg, GIF, PNG, TIFF, e.t.c)</param>
+        public JpegImage(Stream imageData)
+        {
+            createFromStream(imageData);
+        }
 
         /// <summary>
         /// Creates <see cref="JpegImage"/> from pixels
@@ -383,14 +381,6 @@ namespace BitMiracle.LibJpeg
             return (first == 0xFF && second == (int)JPEG_MARKER.SOI);
         }
 
-#if !NETSTANDARD
-        private void createFromBitmap(System.Drawing.Bitmap bitmap)
-        {
-            initializeFromBitmap(bitmap);
-            compress(new CompressionParameters());
-        }
-#endif
-
         private void createFromStream(Stream imageData)
         {
             if (imageData == null)
@@ -412,6 +402,12 @@ namespace BitMiracle.LibJpeg
         }
 
 #if !NETSTANDARD
+        private void createFromBitmap(System.Drawing.Bitmap bitmap)
+        {
+            initializeFromBitmap(bitmap);
+            compress(new CompressionParameters());
+        }
+
         private void initializeFromBitmap(Bitmap bitmap)
         {
             if (bitmap == null)
@@ -508,9 +504,7 @@ namespace BitMiracle.LibJpeg
             else if (pixelSizeByte == 48 || pixelSizeByte == 64)
                 m_bitsPerComponent = 16;
         }
-#endif
 
-#if !NETSTANDARD
         private void fillSamplesFromBitmap()
         {
             Debug.Assert(m_bitmap != null);
