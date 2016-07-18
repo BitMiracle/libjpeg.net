@@ -45,8 +45,6 @@
     <DocumentationSources>
       <DocumentationSource sourceFile="bin\Release\BitMiracle.LibJpeg.NET.dll" />
       <DocumentationSource sourceFile="bin\Release\BitMiracle.LibJpeg.NET.xml" />
-      <DocumentationSource sourceFile="..\LibJpeg.Silverlight\Bin\Release\BitMiracle.LibJpeg.Silverlight.dll" />
-      <DocumentationSource sourceFile="..\LibJpeg.Silverlight\Bin\Release\BitMiracle.LibJpeg.Silverlight.xml" />
     </DocumentationSources>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="(global)" isDocumented="False" />
