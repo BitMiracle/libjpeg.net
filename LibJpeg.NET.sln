@@ -32,7 +32,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jpeg", "Jpeg\Jpeg.csproj", 
 		{7300CDF5-1C93-4611-8CC9-47FE79F340AB} = {7300CDF5-1C93-4611-8CC9-47FE79F340AB}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibJpeg.Portable", "LibJpeg.Portable\LibJpeg.Portable.csproj", "{305A25DA-BA3E-4403-ADF1-536F44CFD813}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibJpeg.NetStandard", "LibJpeg.NetStandard\LibJpeg.NetStandard.csproj", "{305A25DA-BA3E-4403-ADF1-536F44CFD813}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
