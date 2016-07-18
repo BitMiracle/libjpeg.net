@@ -101,8 +101,6 @@
     <Compile Include="Classic\Internal\my_source_mgr.cs" />
     <Compile Include="Classic\Internal\my_trans_c_coef_controller.cs" />
     <Compile Include="Classic\Internal\my_upsampler.cs" />
-    <Compile Include="Classic\Internal\phuff_entropy_decoder.cs" />
-    <Compile Include="Classic\Internal\phuff_entropy_encoder.cs" />
     <Compile Include="CompressionParameters.cs" />
     <Compile Include="DecompressionParameters.cs" />
     <Compile Include="DecompressorToJpegImage.cs" />
