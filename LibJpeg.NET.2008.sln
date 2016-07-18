@@ -30,12 +30,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jpeg2008", "Jpeg\Jpeg2008.c
 		{7300CDF5-1C93-4611-8CC9-47FE79F340AB} = {7300CDF5-1C93-4611-8CC9-47FE79F340AB}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibJpeg.Silverlight2008", "LibJpeg.Silverlight\LibJpeg.Silverlight2008.csproj", "{297AC639-8A6C-43D1-A3FF-01D8A79C4090}"
-	ProjectSection(ProjectDependencies) = postProject
-		{89A3BDA9-830B-4F7F-8F0B-2954576862C5} = {89A3BDA9-830B-4F7F-8F0B-2954576862C5}
-		{7300CDF5-1C93-4611-8CC9-47FE79F340AB} = {7300CDF5-1C93-4611-8CC9-47FE79F340AB}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,10 +56,6 @@ Global
 		{89A3BDA9-830B-4F7F-8F0B-2954576862C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89A3BDA9-830B-4F7F-8F0B-2954576862C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89A3BDA9-830B-4F7F-8F0B-2954576862C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{297AC639-8A6C-43D1-A3FF-01D8A79C4090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{297AC639-8A6C-43D1-A3FF-01D8A79C4090}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{297AC639-8A6C-43D1-A3FF-01D8A79C4090}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{297AC639-8A6C-43D1-A3FF-01D8A79C4090}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
