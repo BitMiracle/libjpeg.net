@@ -4,8 +4,8 @@
  */
 
 using System;
-using System.Reflection;
 using System.Globalization;
+using System.Reflection;
 
 namespace BitMiracle.LibJpeg.Classic
 {
