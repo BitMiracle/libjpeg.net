@@ -94,7 +94,7 @@ namespace BitMiracle.LibJpeg.Classic
             set
             {
                 if (value == null)
-                    throw new ArgumentOutOfRangeException(nameof(value));
+                    throw new ArgumentNullException(nameof(value));
 
                 m_progress = value;
             }
@@ -114,7 +114,7 @@ namespace BitMiracle.LibJpeg.Classic
             set
             {
                 if (value == null)
-                    throw new ArgumentOutOfRangeException(nameof(value));
+                    throw new ArgumentNullException(nameof(value));
 
                 m_err = value;
             }
