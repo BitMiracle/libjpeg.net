@@ -155,7 +155,7 @@ namespace BitMiracle.LibJpeg.Classic
         {
             get
             {
-                return "Copyright (C) 2008-2016, Bit Miracle";
+                return "Copyright (C) 2008-2018, Bit Miracle";
             }
         }
 
