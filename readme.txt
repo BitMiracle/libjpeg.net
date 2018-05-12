@@ -40,7 +40,7 @@ License
 =======
 Please read License.txt
 
-This software is copyright (C) 2008-2016, Bit Miracle
+This software is copyright (C) 2008-2018, Bit Miracle
 http://www.bitmiracle.com
 
 This software is based in part on the work of the Independent JPEG Group

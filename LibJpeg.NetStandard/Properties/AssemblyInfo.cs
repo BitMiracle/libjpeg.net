@@ -10,7 +10,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bit Miracle")]
 [assembly: AssemblyProduct("BitMiracle.LibJpeg.NetStandard")]
-[assembly: AssemblyCopyright("Copyright (C) 2008-2016, Bit Miracle")]
+[assembly: AssemblyCopyright("Copyright (C) 2008-2018, Bit Miracle")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
