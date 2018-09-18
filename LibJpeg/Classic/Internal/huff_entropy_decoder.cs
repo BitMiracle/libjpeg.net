@@ -1325,9 +1325,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         {
             if (bits_left < nbits)
             {
-                if (!jpeg_fill_bit_buffer(ref state, get_buffer, bits_left, nbits))
-                    return false;
-
+                jpeg_fill_bit_buffer(ref state, get_buffer, bits_left, nbits);
                 get_buffer = state.get_buffer;
                 bits_left = state.bits_left;
             }
@@ -1373,11 +1371,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
             if (bits_left < JpegConstants.HUFF_LOOKAHEAD)
             {
-                if (!jpeg_fill_bit_buffer(ref state, get_buffer, bits_left, 0))
-                {
-                    result = -1;
-                    return false;
-                }
+                jpeg_fill_bit_buffer(ref state, get_buffer, bits_left, 0);
 
                 get_buffer = state.get_buffer;
                 bits_left = state.bits_left;
@@ -1412,7 +1406,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         }
 
         /* Load up the bit buffer to a depth of at least nbits */
-        private static bool jpeg_fill_bit_buffer(ref bitread_working_state state, int get_buffer, int bits_left, int nbits)
+        private static void jpeg_fill_bit_buffer(ref bitread_working_state state, int get_buffer, int bits_left, int nbits)
         {
             /* Attempt to load at least MIN_GET_BITS bits into get_buffer. */
             /* (It is assumed that no request will be for more than that many bits.) */
@@ -1501,8 +1495,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             /* Unload the local registers */
             state.get_buffer = get_buffer;
             state.bits_left = bits_left;
-
-            return true;
         }
 
         /// <summary>
