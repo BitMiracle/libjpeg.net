@@ -30,29 +30,38 @@
           <output includeNamespaces="false" namespacesFile="Namespaces" folder="{@OutputFolder}" />
         </component>
       </ComponentConfig>
-<ComponentConfig id="API Token Resolution" enabled="False"><component id="API Token Resolution" type="Microsoft.Ddue.Tools.SharedContentComponent" assembly="{@SandcastlePath}ProductionTools\BuildComponents.dll">
+      <ComponentConfig id="API Token Resolution" enabled="False">
+        <component id="API Token Resolution" type="Microsoft.Ddue.Tools.SharedContentComponent" assembly="{@SandcastlePath}ProductionTools\BuildComponents.dll">
 
 			{@TokenFiles}
-			<replace elements="/*//token" item="string(.)" />
-</component></ComponentConfig>
+			<replace elements="/*//token" item="string(.)" /></component>
+      </ComponentConfig>
     </ComponentConfigurations>
     <DocumentationSources>
-      <DocumentationSource sourceFile="bin\Release\BitMiracle.LibJpeg.NET.dll" />
-      <DocumentationSource sourceFile="bin\Release\BitMiracle.LibJpeg.NET.xml" />
-    </DocumentationSources>
+      <DocumentationSource sourceFile="bin\Release\net20\BitMiracle.LibJpeg.NET.dll" />
+<DocumentationSource sourceFile="bin\Release\net20\BitMiracle.LibJpeg.NET.xml" /></DocumentationSources>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="(global)" isDocumented="False" />
       <NamespaceSummaryItem name="BitMiracle.LibJpeg" isDocumented="True">Contains new API for JPEG images manipulation. New API is easier and more slick than classic LibJpeg API.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="BitMiracle.LibJpeg.Classic" isDocumented="True">The .NET version of original libjpeg API.</NamespaceSummaryItem>
     </NamespaceSummaries>
     <CopyrightHref>http://www.bitmiracle.com/libjpeg</CopyrightHref>
-    <CopyrightText>Copyright &amp;#169%3b 2008-2011 Bit Miracle. All rights reserved.</CopyrightText>
+    <CopyrightText>Copyright &amp;#169%3b 2008-2018 Bit Miracle. All rights reserved.</CopyrightText>
     <FeedbackEMailAddress>support%40bitmiracle.com</FeedbackEMailAddress>
     <FeedbackEMailLinkText>support%40bitmiracle.com</FeedbackEMailLinkText>
     <HelpTitle>LibJpeg.Net, a managed version of LibJpeg library used for reading and writing JPEG images.</HelpTitle>
     <PresentationStyle>VS2013</PresentationStyle>
     <IncludeFavorites>True</IncludeFavorites>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
+    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <MaximumGroupParts>2</MaximumGroupParts>
+    <NamespaceGrouping>False</NamespaceGrouping>
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <NamingMethod>Guid</NamingMethod>
+    <Language>en-US</Language>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in
        order for Visual Studio to perform the build.  The others are optional
@@ -84,7 +93,6 @@
     <None Include="Help\Knowledge Base.aml" />
     <None Include="Help\License and Copyright.aml" />
     <None Include="Help\Welcome.aml" />
-    <None Include="Help\Version History.aml" />
     <None Include="Help\Progress monitoring.aml" />
     <None Include="Help\Special markers.aml" />
     <None Include="Help\Buffered-image mode.aml" />
