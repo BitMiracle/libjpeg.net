@@ -1,16 +1,22 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
+#if NETSTANDARD
+[assembly: AssemblyTitle("BitMiracle.LibJpeg.Portable")]
+[assembly: AssemblyDescription(".NET Standard version of IJG's LibJpeg library made by Bit Miracle")]
+[assembly: AssemblyProduct("BitMiracle.LibJpeg.NetStandard")]
+#else
 [assembly: AssemblyTitle("BitMiracle.LibJpeg.NET")]
 [assembly: AssemblyDescription(".NET version of IJG's LibJpeg library made by Bit Miracle")]
+[assembly: AssemblyProduct("BitMiracle.LibJpeg.NET")]
+#endif
+
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bit Miracle")]
-[assembly: AssemblyProduct("BitMiracle.LibJpeg.NET")]
 [assembly: AssemblyCopyright("Copyright (C) 2008-2018, Bit Miracle")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
