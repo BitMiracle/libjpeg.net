@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-
+using System.Text;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -10,12 +10,38 @@ namespace UnitTests
         private static object locked = new object();
         private bool m_compression;
 
-        public static string Testcase
+        public static readonly string Testcase;
+
+        static Tester()
         {
-            get
+#if NETSTANDARD
+            string currentDirectoryPath = Directory.GetCurrentDirectory();
+#else
+            string currentDirectoryPath = TestContext.CurrentContext.TestDirectory;
+#endif
+            StringBuilder pathToTestcase = new StringBuilder("TestCase\\");
+            var dir = new DirectoryInfo(currentDirectoryPath);
+            while (dir.Parent != null)
             {
-                return @"..\..\..\TestCase\";
+                var dirs = dir.GetDirectories("TestCase", SearchOption.TopDirectoryOnly);
+                var testcase = (dirs.Length > 0) ? dirs[0] : null;
+                if (testcase != null)
+                {
+                    Testcase = Path.Combine(currentDirectoryPath, pathToTestcase.ToString());
+                    return;
+                }
+
+                dir = dir.Parent;
+                pathToTestcase.Insert(0, "..\\");
             }
+
+            Assert.Fail("Unable to find TestCase directory");
+
+        }
+
+        public static string MapOpenPath(string path)
+        {
+            return Path.Combine(Testcase, path);
         }
 
         public static string MapOutputPath(string fileName)
@@ -40,7 +66,7 @@ namespace UnitTests
 
         public static void PerformTest(string[] args, string file, string suffix, bool compression)
         {
-            Tester tester = new Tester(compression);
+            Tester Tester = new Tester(compression);
             string inputFile = Path.Combine(Testcase, Path.GetFileName(file));
 
             string ext;
@@ -49,8 +75,8 @@ namespace UnitTests
             else
                 ext = ".bmp";
 
-            string outputFile = Testcase + @"Output\" + Path.GetFileNameWithoutExtension(file) + suffix + ext;
-            tester.Run(args, inputFile, outputFile);
+            string outputFile = MapOutputPath(Path.GetFileNameWithoutExtension(file) + suffix + ext);
+            Tester.Run(args, inputFile, outputFile);
         }
 
         public Tester(bool compression)

@@ -77,7 +77,7 @@ namespace UnitTests
         public void TestMarkerList()
         {
             jpeg_decompress_struct cinfo = new jpeg_decompress_struct();
-            using (FileStream input = new FileStream(Path.Combine(Tester.Testcase, "PARROTS.JPG"), FileMode.Open))
+            using (FileStream input = new FileStream(Tester.MapOpenPath("PARROTS.JPG"), FileMode.Open))
             {
                 /* Specify data source for decompression */
                 cinfo.jpeg_stdio_src(input);

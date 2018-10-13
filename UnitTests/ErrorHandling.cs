@@ -13,7 +13,7 @@ namespace UnitTests
 
         private TextWriter m_consoleOutBefore;
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void SetUp()
         {
             m_consoleOutBefore = Console.Out;
@@ -21,7 +21,7 @@ namespace UnitTests
             Console.SetOut(new StreamWriter(fs));
         }
 
-        [TestFixtureTearDown]
+        [TearDown]
         public void TearDown()
         {
             TextWriter output = Console.Out;
@@ -32,45 +32,57 @@ namespace UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(DirectoryNotFoundException))]
         public void TestEmptyTargetImage_Compress()
         {
-            m_testerCompress.Run(new string[] { }, Path.Combine(Tester.Testcase, "testimg.bmp"), Tester.Testcase);
+            Assert.Throws<DirectoryNotFoundException>(() =>
+            {
+                m_testerCompress.Run(new string[] { }, Tester.MapOpenPath("testimg.bmp"), Tester.Testcase);
+            });
         }
 
         [Test]
-        [ExpectedException(typeof(DirectoryNotFoundException))]
         public void TestEmptyTargetImage_Decompress()
         {
-            m_testerDecompress.Run(new string[] { }, Path.Combine(Tester.Testcase, "3D.JPG"), Tester.Testcase);
+            Assert.Throws<DirectoryNotFoundException>(() =>
+            {
+                m_testerDecompress.Run(new string[] { }, Tester.MapOpenPath("3D.JPG"), Tester.Testcase);
+            });
         }
 
         [Test]
-        [ExpectedException(typeof(FileNotFoundException))]
         public void TestEmptySourceImage_Compress()
         {
-            Tester.PerformCompressionTest(new string[] { }, "", "asd.jpg");
+            Assert.Throws<FileNotFoundException>(() =>
+            {
+                Tester.PerformCompressionTest(new string[] { }, "", "asd.jpg");
+            });
         }
 
         [Test]
-        [ExpectedException(typeof(FileNotFoundException))]
         public void TestEmptySourceImage_Decompress()
         {
-            Tester.PerformDecompressionTest(new string[] { }, "", "asd.jpg");
+            Assert.Throws<FileNotFoundException>(() =>
+            {
+                Tester.PerformDecompressionTest(new string[] { }, "", "asd.jpg");
+            });
         }
 
         [Test]
-        [ExpectedException(typeof(FileNotFoundException))]
         public void TestWrongSourceImage_Compress()
         {
-            m_testerCompress.Run(new string[] { }, "q.bmp", "asd.jpg");
+            Assert.Throws<FileNotFoundException>(() =>
+            {
+                m_testerCompress.Run(new string[] { }, "q.bmp", "asd.jpg");
+            });
         }
 
         [Test]
-        [ExpectedException(typeof(FileNotFoundException))]
         public void TestWrongSourceImage_Decompress()
         {
-            m_testerCompress.Run(new string[] { }, "q.bmp", "asd.jpg");
+            Assert.Throws<FileNotFoundException>(() =>
+            {
+                m_testerCompress.Run(new string[] { }, "q.bmp", "asd.jpg");
+            });
         }
 
         //[Test]

@@ -1,80 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1CBA5A80-BCCE-4C6D-8A27-31D27E317182}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitTests</RootNamespace>
+    <TargetFrameworks>net20;netcoreapp2.0</TargetFrameworks>
     <AssemblyName>UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <RootNamespace>UnitTests</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>  
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants Condition="'$(TargetFramework)'=='netcoreapp2.0'">TRACE;DEBUG;NETSTANDARD</DefineConstants>
+    <DefineConstants Condition="'$(TargetFramework)'=='net20'">TRACE;DEBUG</DefineConstants>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants Condition="'$(TargetFramework)'=='netcoreapp2.0'">TRACE;NETSTANDARD</DefineConstants>
+    <DefineConstants Condition="'$(TargetFramework)'=='net20'">TRACE</DefineConstants>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.3.9345, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NUnit\bin\nunit.framework.dll</HintPath>
-    </Reference>
+  
+  <ItemGroup Condition=" '$(TargetFramework)'=='net46' ">
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  
   <ItemGroup>
-    <Compile Include="Compression.cs" />
-    <Compile Include="Decompression.cs" />
-    <Compile Include="ErrorHandling.cs" />
-    <Compile Include="JpegImage.cs" />
-    <Compile Include="Tester.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <!-- <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" /> -->
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\cJpeg\cJpeg.csproj">
-      <Project>{C0DFBCE2-9E77-4697-AA67-A46C088A1D45}</Project>
-      <Name>cJpeg</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\dJpeg\dJpeg.csproj">
-      <Project>{3B558417-DD92-481E-9202-2693059E344C}</Project>
-      <Name>dJpeg</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Jpeg\Jpeg.csproj">
-      <Project>{89A3BDA9-830B-4F7F-8F0B-2954576862C5}</Project>
-      <Name>Jpeg</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LibJpeg\LibJpeg.csproj">
-      <Project>{7300CDF5-1C93-4611-8CC9-47FE79F340AB}</Project>
-      <Name>LibJpeg</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\cJpeg\cJpeg.csproj" />
+    <ProjectReference Include="..\dJpeg\dJpeg.csproj" />
+    <ProjectReference Include="..\Jpeg\Jpeg.csproj" />
+    <ProjectReference Include="..\LibJpeg\LibJpeg.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
