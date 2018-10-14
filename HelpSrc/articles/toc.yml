@@ -1,2 +1,32 @@
 - name: Welcome
   href: welcome.md
+- name: License and Copyright
+  href: license.md
+- name: Knowledge Base
+  items:
+    - name: Outline of typical usage
+      href: KB/typical-usage.md
+    - name: Data formats
+      href: KB/data-formats.md
+    - name: Compression details
+      href: KB/compression-details.md
+    - name: Decompression details
+      href: KB/decompression-details.md
+    - name: Mechanics of usage
+      href: KB/mechanics-of-usage.md
+    - name: Compression parameter selection
+      href: KB/compression-parameter-selection.md
+    - name: Decompression parameter selection
+      href: KB/decompression-parameter-selection.md
+    - name: Special color spaces
+      href: KB/special-color-spaces.md
+    - name: Error handling
+      href: KB/error-handling.md
+    - name: Progressive JPEG support
+      href: KB/progressive-jpeg.md
+    - name: Buffered-image mode
+      href: KB/bufferd-image-mode.md
+    - name: Special markers
+      href: KB/special-markers.md
+    - name: Progress monitoring
+      href: KB/progress-monitoring.md
