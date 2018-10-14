@@ -1,0 +1,464 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/Work/Bit Miracle/GitHub/LibJpeg.Net/HelpSrc",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.DensityUnit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.DensityUnit.html",
+          "hash": "tGOWMFhdMiL037f/D9e+aA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.JBLOCK.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.JBLOCK.html",
+          "hash": "co4/sj7lA710bsJ6l9vL3w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.JHUFF_TBL.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.JHUFF_TBL.html",
+          "hash": "GI48aFjVYpuhPQDjYQmSiw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.JPEG_MARKER.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.JPEG_MARKER.html",
+          "hash": "Sa37A6504+U84pXarL3s4A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.JQUANT_TBL.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.JQUANT_TBL.html",
+          "hash": "AcqrNAk23PJkkGpbz1Y8VA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.J_COLOR_SPACE.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.J_COLOR_SPACE.html",
+          "hash": "LPpsIW/d0tVSx6tiJHkuNg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.J_COLOR_TRANSFORM.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.J_COLOR_TRANSFORM.html",
+          "hash": "6nUmoPIaEeH52T8Ytzr8cQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.J_DCT_METHOD.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.J_DCT_METHOD.html",
+          "hash": "GkkcQhd7AmQ5IUSCXYPxhg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.J_DITHER_MODE.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.J_DITHER_MODE.html",
+          "hash": "7DGS9swgBJZo1PTYd4okPQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.J_MESSAGE_CODE.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.J_MESSAGE_CODE.html",
+          "hash": "bji+z4ipKWqaqNVAu/+5PA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.JpegConstants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.JpegConstants.html",
+          "hash": "O+pDn1djSzIpBrmJZLyZHg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.ReadResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.ReadResult.html",
+          "hash": "Pp7VaXZhJ39xQpYbLPxnKg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html",
+          "hash": "7fe1vn8qSk2CZHkwtL7pXQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_component_info.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_component_info.html",
+          "hash": "vT40rw6kTK3tzpKYIhuqqA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html",
+          "hash": "/NRIbgpn3LdjRSMoBR7AwA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_marker_parser_method.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_marker_parser_method.html",
+          "hash": "pMqbgu6PyrzZze1EVpZXMg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html",
+          "hash": "7vBKULMlj9q7duv3w8yUjA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_destination_mgr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_destination_mgr.html",
+          "hash": "3OFI3hNLlemjfN3xpwjOiw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html",
+          "hash": "F9ZpzrJou1CmeaWMLAm9iw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_marker_struct.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_marker_struct.html",
+          "hash": "2eIDenF52tAUzdMaFdlOEA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_progress_mgr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_progress_mgr.html",
+          "hash": "5gLA6vUYoGmOw7/nwGlFQg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_source_mgr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_source_mgr.html",
+          "hash": "GNjfyF4muuSnBd/3mDfNUg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.jvirt_array-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.jvirt_array-1.html",
+          "hash": "152uoPoZoGWvzWNKmOAFkw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Classic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Classic.html",
+          "hash": "6DSmmvfr0rEcYcArAJI9hg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Colorspace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Colorspace.html",
+          "hash": "jQhUS+RDD37EeAC+EuVttw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.CompressionParameters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.CompressionParameters.html",
+          "hash": "tmw//FK7Nm7xkMDWibT/LA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.JpegImage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.JpegImage.html",
+          "hash": "Q+0rYdERqzu5DCkEWiZOXQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.Sample.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.Sample.html",
+          "hash": "MUOrMJn0wEXG0t3zQr4WaQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.SampleRow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.SampleRow.html",
+          "hash": "IU3gwEHJ+vgHDw9nC6v0og=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BitMiracle.LibJpeg.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BitMiracle.LibJpeg.html",
+          "hash": "R+H1hWxnacFEfEkcT2xWKw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/welcome.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/welcome.html",
+          "hash": "1OOXdK078nJGUn1DrnACdw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "fusion/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "fusion/toc.html",
+          "hash": "yhss+FYFLioITZ0fUMudvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "Ups3rerW5og5+ZJGDpMJ1Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "xOROic9Y9iECD56EY+jW7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
