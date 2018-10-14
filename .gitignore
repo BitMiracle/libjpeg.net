@@ -27,3 +27,9 @@ AssemblyVersion.cs
 # Test outputs
 TestCase/Output/*.bmp
 TestCase/Output/*.jpg
+
+# Help 
+HelpSrc/bin
+HelpSrc/obj
+HelpSrc/api/*
+
