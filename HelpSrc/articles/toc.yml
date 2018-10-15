@@ -25,7 +25,7 @@
     - name: Progressive JPEG support
       href: KB/progressive-jpeg.md
     - name: Buffered-image mode
-      href: KB/bufferd-image-mode.md
+      href: KB/buffered-image-mode.md
     - name: Special markers
       href: KB/special-markers.md
     - name: Progress monitoring
