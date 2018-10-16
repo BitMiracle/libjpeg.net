@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>JPEG Compression </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="JPEG Compression ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../fusion/toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<p>This topic describes the outline of typical usage LibJpeg.Net for JPEG compression and decompression.</p>
+<h2 id="jpeg-compression">JPEG Compression</h2>
+<p>The rough outline of a JPEG compression operation is:</p>
+<ol>
+<li>Allocate and initialize a JPEG compression object</li>
+<li>Specify the destination for the compressed data (e.g., a file)</li>
+<li>Set parameters for compression, including image size and colorspace</li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_jpeg_start_compress_System_Boolean_">jpeg_start_compress(Boolean)</a></li>
+<li>while (scan lines remain to be written)</li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_jpeg_write_scanlines_System_Byte_____System_Int32_">jpeg_write_scanlines(Byte[][], Int32)</a></li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_jpeg_finish_compress">jpeg_finish_compress()</a></li>
+</ol>
+<p>A JPEG compression object holds parameters and working state for the JPEG library. We make creation/destruction of the object separate from starting or finishing compression of an image; the same object can be re-used for a series of image compression operations. This makes it easy to re-use the same parameter settings for a sequence of images. Re-use of a JPEG object also has important implications for processing abbreviated JPEG datastreams, as discussed later.</p>
+<p>The image data to be compressed is supplied to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_jpeg_write_scanlines_System_Byte_____System_Int32_">jpeg_write_scanlines(Byte[][], Int32)</a> from in-memory buffers. If the application is doing file-to-file compression, reading image data from the source file is the application&#39;s responsibility.</p>
+<p>The library emits compressed data by calling a &quot;data destination manager&quot;, which typically will write the data into a file; but the application can provide its own destination manager to do something else.</p>
+<p>For further information see the <a href="compression-details.html">Compression details</a>.</p>
+<h2 id="jpeg-decompression">JPEG Decompression</h2>
+<p>Similarly, the rough outline of a JPEG decompression operation is:</p>
+<ol>
+<li>Allocate and initialize a JPEG decompression object</li>
+<li>Specify the source of the compressed data (e.g., a file)</li>
+<li>Call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a> to obtain image info</li>
+<li>Set parameters for decompression</li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a></li>
+<li>while (scan lines remain to be read)</li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_scanlines_System_Byte_____System_Int32_">jpeg_read_scanlines(Byte[][], Int32)</a></li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_finish_decompress">jpeg_finish_decompress()</a></li>
+</ol>
+<p>This is comparable to the compression outline except that reading the datastream header is a separate step. This is helpful because information about the image&#39;s size, colorspace, etc is available when the application selects decompression parameters. For example, the application can choose an output scaling ratio that will fit the image into the available screen size.</p>
+<p>The decompression library obtains compressed data by calling a data source manager, which typically will read the data from a file; but other behaviors can be obtained with a custom source manager. Decompressed data is delivered into in-memory buffers passed to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_scanlines_System_Byte_____System_Int32_">jpeg_read_scanlines(Byte[][], Int32)</a>.</p>
+<p>It is possible to abort an incomplete compression or decompression operation by calling <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html#BitMiracle_LibJpeg_Classic_jpeg_common_struct_jpeg_abort">jpeg_abort()</a> or, if you do not need to retain the JPEG object, simply release it by calling <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html#BitMiracle_LibJpeg_Classic_jpeg_common_struct_jpeg_destroy">jpeg_destroy()</a>.</p>
+<p>JPEG compression and decompression objects are two separate struct types. However, they share some common fields, and certain routines such as <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html#BitMiracle_LibJpeg_Classic_jpeg_common_struct_jpeg_destroy">jpeg_destroy()</a> can work on either type of object.</p>
+<p>The JPEG library has no static variables: all state is in the compression or decompression object. Therefore it is possible to process multiple compression and decompression operations concurrently, using multiple JPEG objects.</p>
+<p>For further information see the <a href="decompression-details.html">Decompression details</a>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BitMiracle/libjpeg.net/blob/master/HelpSrc/articles/KB/typical-usage.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

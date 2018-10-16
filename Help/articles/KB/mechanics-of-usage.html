@@ -10,12 +10,12 @@
     <meta name="title" content=" ">
     <meta name="generator" content="docfx 2.40.0.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="../fusion/toc.html">
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../fusion/toc.html">
     
     
     
@@ -34,8 +34,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -68,11 +68,15 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
 
-<p>Welcome to the <strong>LibJpeg.Net</strong> library. </p>
-<p>LibJpeg.Net is a .NET version of original LibJpeg library developed by Tom Lane and the Independent JPEG Group (IJG). </p>
-<p>The library does <strong>not</strong> rely on GDI, GDI+ or any other imaging technologies of the .NET Framework and Windows OS. </p>
-<p>This software distribution includes two flavours (for general .NET applications and for Silverlight applications) of the LibJpeg.Net library, a small collection of tools for doing simple manipulations of JPEG images and documentation on the library. </p>
-<p>This software is based in part on the work of the Independent JPEG Group. </p>
+<ol>
+<li><p>If you want to use LibJpeg.Net as external assembly in your project.</p>
+<p> Simply add reference to BitMiracle.LibJpeg.NET.dll and then use classes from namespaces <a class="xref" href="../../api/BitMiracle.LibJpeg.html">BitMiracle.LibJpeg</a> or <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.html">BitMiracle.LibJpeg.Classic</a>. Usually you also need to use System.IO namespace. </p>
+</li>
+<li><p>If you embed some code files from LibJpeg.Net into your project.
+ If you want to mark imported classes as &quot;public&quot; just build your project with compilation symbol <strong>EXPOSE_LIBJPEG</strong>.</p>
+<p> If you don&#39;t declare this symbol then all imported classes will be declared as &quot;internal&quot;.</p>
+</li>
+</ol>
 </article>
           </div>
           
@@ -81,7 +85,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BitMiracle/libjpeg.net/blob/master/HelpSrc/articles/welcome.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/BitMiracle/libjpeg.net/blob/master/HelpSrc/articles/KB/mechanics-of-usage.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
@@ -107,8 +111,8 @@
       </footer>
     </div>
     
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
   </body>
 </html>

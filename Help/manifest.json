@@ -180,7 +180,7 @@
       "output": {
         ".html": {
           "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html",
-          "hash": "/NRIbgpn3LdjRSMoBR7AwA=="
+          "hash": "Yrz4KMBAqvmylNVeG/rL1A=="
         }
       },
       "is_incremental": true,
@@ -207,7 +207,7 @@
       "output": {
         ".html": {
           "relative_path": "api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html",
-          "hash": "7vBKULMlj9q7duv3w8yUjA=="
+          "hash": "OD+iibJuXNbquDVAVf97GQ=="
         }
       },
       "is_incremental": true,
@@ -370,15 +370,215 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "articles/KB/ProgressMonitoring.png",
+      "output": {
+        "resource": {
+          "relative_path": "articles/KB/ProgressMonitoring.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/buffered-image-mode.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/buffered-image-mode.html",
+          "hash": "CDgYuVHIEoNw9KdZktSZmg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/compression-details.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/compression-details.html",
+          "hash": "KesczbOsP7nR87d1JA21Eg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/compression-parameter-selection.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/compression-parameter-selection.html",
+          "hash": "ZHc4IJu9IPqQeb9Yy9OUQg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/data-formats.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/data-formats.html",
+          "hash": "qWK8NFkfVBIL3LR9pK92Dg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/decompression-details.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/decompression-details.html",
+          "hash": "5548qVnpnF7+gBCTEWniQQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/decompression-parameter-selection.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/decompression-parameter-selection.html",
+          "hash": "z0Vb3W5OiS+TbfMlg7/XRw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/error-handling.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/error-handling.html",
+          "hash": "5KvK1wry2NF341J7bV5FBA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/mechanics-of-usage.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/mechanics-of-usage.html",
+          "hash": "zX0ffVtvyD8XvhrxZc/4WA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/progress-monitoring.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/progress-monitoring.html",
+          "hash": "XgEOZD1RRldGV2BKKVEmJg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/progressive-jpeg.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/progressive-jpeg.html",
+          "hash": "AFg90dBMUtc/u7T6Syt5ZA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/special-color-spaces.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/special-color-spaces.html",
+          "hash": "69OTMQwKMY0J/VF+GFH6OQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/special-markers.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/special-markers.html",
+          "hash": "ycbxZSQYPIimIbYTC9S3vQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/KB/typical-usage.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/KB/typical-usage.html",
+          "hash": "tPYYFQddrar+g2KiRAU28A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidYamlHeader"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/license.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/license.html",
+          "hash": "EECTOSgTlemiNJcwfY8sug=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "articles/welcome.md",
       "output": {
         ".html": {
           "relative_path": "articles/welcome.html",
-          "hash": "1OOXdK078nJGUn1DrnACdw=="
+          "hash": "2X+ypBWkOsHqJ7widd/ooA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -387,7 +587,7 @@
       "output": {
         ".html": {
           "relative_path": "fusion/toc.html",
-          "hash": "yhss+FYFLioITZ0fUMudvw=="
+          "hash": "ovjZAaQuCBF6e8LYnYT8uw=="
         }
       },
       "is_incremental": false,
@@ -402,7 +602,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "Ups3rerW5og5+ZJGDpMJ1Q=="
+          "hash": "tKwfdiCyNfJfb1Z4z6++Tg=="
         }
       },
       "is_incremental": true,
@@ -431,16 +631,21 @@
         "incrementalPhase": "build"
       },
       "processors": {
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         }

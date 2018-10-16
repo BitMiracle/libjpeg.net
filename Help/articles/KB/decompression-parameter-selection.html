@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title> </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content=" ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../fusion/toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<p>Decompression parameter selection is somewhat simpler than <a href="compression-parameter-selection.html">compression parameter selection</a>, since all of the JPEG internal parameters are recorded in the source file and need not be supplied by the application. Decompression parameters control the postprocessing done on the image to deliver it in a format suitable for the application&#39;s use. Many of the parameters control speed/quality tradeoffs, in which faster decompression may be obtained at the price of a poorer-quality image. The defaults select the highest quality (slowest) processing. </p>
+<p>The following properties in the JPEG object are set by <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a> and may be useful to the application in choosing decompression parameters: </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Image_width">Image_width</a>, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Image_height">Image_height</a></td>
+<td>Width and height of image</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Num_components">Num_components</a></td>
+<td>Number of color components</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Jpeg_color_space">Jpeg_color_space</a></td>
+<td>Colorspace of image</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Density_unit">Density_unit</a>, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_X_density">X_density</a>, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Y_density">Y_density</a></td>
+<td>Resolution data from JFIF marker</td>
+</tr>
+</tbody>
+</table>
+<p>The JPEG color space, unfortunately, is something of a guess since the JPEG standard proper does not provide a way to record it. In practice most files adhere to the JFIF or Adobe conventions, and the decoder will recognize these correctly. See <a href="special-color-spaces.html">Special color spaces</a> for more info. </p>
+<p>The decompression parameters that determine the basic properties of the returned image are:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Out_color_space_">Out_color_space</a></td>
+<td>Output color space</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Scale_num">Scale_num</a>, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Scale_denom">Scale_denom</a></td>
+<td>Scale the image by the fraction <code>Scale_num/Scale_denom</code></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Quantize_colors">Quantize_colors</a></td>
+<td>Chooses colormapped or full-color output</td>
+</tr>
+</tbody>
+</table>
+<p>The next three parameters are relevant only if <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Quantize_colors">Quantize_colors</a> is <code>true</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Desired_number_of_colors">Desired_number_of_colors</a></td>
+<td>Maximum number of colors to use in generating a library-supplied color map</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Two_pass_quantize">Two_pass_quantize</a></td>
+<td>If <code>true</code>, an extra pass over the image is made to select a custom color map for the image</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Dither_mode">Dither_mode</a></td>
+<td>Selects color dithering method</td>
+</tr>
+</tbody>
+</table>
+<p>When <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Quantize_colors">Quantize_colors</a> is <code>true</code>, the target color map is described by the next two properties. <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Colormap">Colormap</a> is set to <code>null</code> by <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a>. The application can supply a color map by setting <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Colormap">Colormap</a> non-null and setting <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Actual_number_of_colors">Actual_number_of_colors</a> to the map size. Otherwise, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a> selects a suitable color map and sets these two properties itself.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Colormap">Colormap</a></td>
+<td>The color map, represented as a 2-D pixel array of <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Out_color_components">Out_color_components</a> rows and <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Actual_number_of_colors">Actual_number_of_colors</a> columns</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Actual_number_of_colors">Actual_number_of_colors</a></td>
+<td>The number of colors in the color map</td>
+</tr>
+</tbody>
+</table>
+<p>Additional decompression parameters that the application may set include:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Dct_method">Dct_method</a></td>
+<td>Selects the algorithm used for the DCT step</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Do_fancy_upsampling">Do_fancy_upsampling</a></td>
+<td>Upsampling of chroma components</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Do_block_smoothing">Do_block_smoothing</a></td>
+<td>Apply interblock smoothing in early stages of decoding progressive JPEG files</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Enable_1pass_quant">Enable_1pass_quant</a>, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Enable_external_quant">Enable_external_quant</a>, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Enable_2pass_quant">Enable_2pass_quant</a></td>
+<td>These are significant only in <a href="buffered-image-mode.html">buffered-image mode</a></td>
+</tr>
+</tbody>
+</table>
+<p>The output image dimensions are given by the following properties. These are computed from the source image dimensions and the decompression parameters by <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a>. You can also call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_calc_output_dimensions">jpeg_calc_output_dimensions()</a> to obtain the values that will result from the current parameter settings. This can be useful if you are trying to pick a scaling ratio that will get close to a desired target size. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Output_width">Output_width</a>, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Output_height">Output_height</a></td>
+<td>Actual dimensions of output image</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Out_color_components">Out_color_components</a></td>
+<td>Number of color components in <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Out_color_space_">Out_color_space</a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Output_components">Output_components</a></td>
+<td>Number of color components returned</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Rec_outbuf_height">Rec_outbuf_height</a></td>
+<td>Recommended height of scanline buffer</td>
+</tr>
+</tbody>
+</table>
+<p>The output arrays are required to be <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Output_width">Output_width</a> * <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Output_components">Output_components</a> bytes wide.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BitMiracle/libjpeg.net/blob/master/HelpSrc/articles/KB/decompression-parameter-selection.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

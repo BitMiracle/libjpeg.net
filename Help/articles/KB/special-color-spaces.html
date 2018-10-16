@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title> </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content=" ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../fusion/toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<p>The JPEG standard itself is &quot;color blind&quot; and doesn&#39;t specify any particular color space. It is customary to convert color data to a luminance/chrominance color space before compressing, since this permits greater compression. The existing de-facto JPEG file format standards specify YCbCr or grayscale data (JFIF), or grayscale, RGB, YCbCr, CMYK, or YCCK (Adobe). For special applications such as multispectral images, other color spaces can be used, but it must be understood that such files will be unportable. </p>
+<p>The JPEG library can handle the most common colorspace conversions (namely RGB &lt;=&gt; YCbCr and CMYK &lt;=&gt; YCCK). It can also deal with data of an unknown color space, passing it through without conversion. If you deal extensively with an unusual color space, you can easily extend the library to understand additional color spaces and perform appropriate conversions. </p>
+<p>For compression, the source data&#39;s color space is specified by property <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_In_color_space">In_color_space</a>. This is transformed to the JPEG file&#39;s color space given by <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_Jpeg_color_space">Jpeg_color_space</a>. <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_jpeg_set_defaults">jpeg_set_defaults()</a> chooses a reasonable JPEG color space depending on <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_In_color_space">In_color_space</a>, but you can override this by calling <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_jpeg_set_colorspace_BitMiracle_LibJpeg_Classic_J_COLOR_SPACE_">jpeg_set_colorspace(J_COLOR_SPACE)</a>. Of course you may select a supported transformation. </p>
+<p>The following transformations are currently supported:</p>
+<ul>
+<li>RGB =&gt; YCbCr</li>
+<li>RGB =&gt; GRAYSCALE</li>
+<li>YCbCr =&gt; GRAYSCALE</li>
+<li>CMYK =&gt; YCCK
+plus the null transforms: GRAYSCALE =&gt; GRAYSCALE, RGB =&gt; RGB, YCbCr =&gt; YCbCr, CMYK =&gt; CMYK, YCCK =&gt; YCCK, and UNKNOWN =&gt; UNKNOWN. </li>
+</ul>
+<p>The de-facto file format standards (JFIF and Adobe) specify APPn markers that indicate the color space of the JPEG file. It is important to ensure that these are written correctly, or omitted if the JPEG file&#39;s color space is not one of the ones supported by the de-facto standards. <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_jpeg_set_colorspace_BitMiracle_LibJpeg_Classic_J_COLOR_SPACE_">jpeg_set_colorspace(J_COLOR_SPACE)</a> will set the compression parameters to include or omit the APPn markers properly, so long as it is told the truth about the JPEG color space. For example, if you are writing some random 3-component color space without conversion, don&#39;t try to fake out the library by setting <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_In_color_space">In_color_space</a> and <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_Jpeg_color_space">Jpeg_color_space</a> to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.J_COLOR_SPACE.html#BitMiracle_LibJpeg_Classic_J_COLOR_SPACE_JCS_YCbCr">JCS_YCbCr</a>; use <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.J_COLOR_SPACE.html#BitMiracle_LibJpeg_Classic_J_COLOR_SPACE_JCS_UNKNOWN">JCS_UNKNOWN</a>. You may want to write an APPn marker of your own devising to identify the colorspace - see <a href="special-markers.html">Special markers</a>. </p>
+<p>For decompression, the JPEG file&#39;s color space is given in <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_Jpeg_color_space">Jpeg_color_space</a>, and this is transformed to the output color space <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Out_color_space">Out_color_space</a>. <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a>&#39;s setting of <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_Jpeg_color_space">Jpeg_color_space</a> can be relied on if the file conforms to JFIF or Adobe conventions, but otherwise it is no better than a guess. If you know the JPEG file&#39;s color space for certain, you can override <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a>&#39;s guess by setting <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_Jpeg_color_space">Jpeg_color_space</a>. <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a> also selects a default output color space based on (its guess of) <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_Jpeg_color_space">Jpeg_color_space</a>; set <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Out_color_space">Out_color_space</a> to override this. Again, you must select a supported transformation. </p>
+<p>The following transformations are currently supported:</p>
+<ul>
+<li>YCbCr =&gt; GRAYSCALE</li>
+<li>YCbCr =&gt; RGB</li>
+<li>GRAYSCALE =&gt; RGB</li>
+<li>YCCK =&gt; CMYK
+as well as the null transforms. (Since GRAYSCALE =&gt; RGB is provided, an application can force grayscale JPEGs to look like color JPEGs if it only wants to handle one case.) </li>
+</ul>
+<p>The two-pass color quantizer is specialized to handle RGB data (it weights distances appropriately for RGB colors). You&#39;ll need to modify the code if you want to use it for non-RGB output color spaces. </p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BitMiracle/libjpeg.net/blob/master/HelpSrc/articles/KB/special-color-spaces.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

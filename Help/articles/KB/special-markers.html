@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title> </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content=" ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../fusion/toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<p>Some applications may need to insert or extract special data in the JPEG datastream. The JPEG standard provides marker types &quot;COM&quot; (comment) and &quot;APP0&quot; through &quot;APP15&quot; (application) to hold application-specific data. Unfortunately, the use of these markers is not specified by the standard. COM markers are fairly widely used to hold user-supplied text. The JFIF file format spec uses APP0 markers with specified initial strings to hold certain data. Adobe applications use APP14 markers beginning with the string &quot;Adobe&quot; for miscellaneous data. Other APPn markers are rarely seen, but might contain almost anything. </p>
+<p>If you wish to store user-supplied text, we recommend you use COM markers and place readable 7-bit ASCII text in them. Newline conventions are not standardized - expect to find LF (Unix style), CR/LF (DOS style), or CR (Mac style). A robust COM reader should be able to cope with random binary garbage, including nulls, since some applications generate COM markers containing non-ASCII junk. (But yours should not be one of them.) </p>
+<p>For program-supplied data, use an APPn marker, and be sure to begin it with an identifying string so that you can tell whether the marker is actually yours. It&#39;s probably best to avoid using APP0 or APP14 for any private markers. (NOTE: the upcoming SPIFF standard will use APP8 markers; we recommend you not use APP8 markers for any private purposes, either) </p>
+<p>Keep in mind that at most 65533 bytes can be put into one marker, but you can have as many markers as you like. </p>
+<p>By default, the IJG compression library will write a JFIF APP0 marker if the selected JPEG colorspace is grayscale or YCbCr, or an Adobe APP14 marker if the selected colorspace is RGB, CMYK, or YCCK. You can disable this, but we don&#39;t recommend it. The decompression library will recognize JFIF and Adobe markers and will set the JPEG colorspace properly when one is found. </p>
+<p>You can write special markers immediately following the datastream header by calling <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_jpeg_write_marker_System_Int32_System_Byte___">jpeg_write_marker(Int32, Byte[])</a>. When you do this, the markers appear after the SOI and the JFIF APP0 and Adobe APP14 markers (if written), but before all else.</p>
+<p>If it&#39;s not convenient to store all the marker data in memory at once, you can instead call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_jpeg_write_m_header_System_Int32_System_Int32_">jpeg_write_m_header(Int32, Int32)</a> followed by multiple calls to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_jpeg_write_m_byte_System_Byte_">jpeg_write_m_byte(Byte)</a>. Or, if you prefer to synthesize the marker byte sequence yourself, you can just cram it straight into the data destination module. </p>
+<p>If you are writing JFIF 1.02 extension markers (thumbnail images), don&#39;t forget to set <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_compress_struct_JFIF_minor_version">JFIF_minor_version</a> = 2 so that the encoder will write the correct JFIF version number in the JFIF header marker. The library&#39;s default is to write version 1.01, but that&#39;s wrong if you insert any 1.02 extension markers. (We could probably get away with just defaulting to 1.02, but there used to be broken decoders that would complain about unknown minor version numbers. To reduce compatibility risks it&#39;s safest not to write 1.02 unless you are actually using 1.02 extensions.) </p>
+<p>When <strong>reading</strong>, two methods of handling special markers are available:</p>
+<ol>
+<li>You can ask the library to save the contents of COM and/or APPn markers into memory, and then examine them at your leisure afterwards. </li>
+<li>You can supply your own routine to process COM and/or APPn markers on-the-fly as they are read. The first method is simpler to use, especially if you are using a suspending data source; writing a marker processor that copes with input suspension is not easy (consider what happens if the marker is longer than your available input buffer). However, the second method conserves memory since the marker data need not be kept around after it&#39;s been processed. </li>
+</ol>
+<p>For either method, you&#39;d normally set up marker handling after creating a decompression object and before calling <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a>, because the markers of interest will typically be near the head of the file and so will be scanned by <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a>. Once you&#39;ve established a marker handling method, it will be used for the life of that decompression object (potentially many datastreams), unless you change it. Marker handling is determined separately for COM markers and for each APPn marker code. </p>
+<p>To save the contents of special markers in memory, call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_save_markers_System_Int32_System_Int32_">jpeg_save_markers(Int32, Int32)</a>. After <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a> completes, you can examine the special markers using the property <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Marker_list">Marker_list</a>. All the special markers in the file appear in this list, in order of their occurrence in the file (but omitting any markers of types you didn&#39;t ask for). </p>
+<p>It is possible that additional special markers appear in the file beyond the SOS marker at which <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a> stops; if so, the marker list will be extended during reading of the rest of the file. This is not expected to be common, however. </p>
+<p>The marker list remains stored until you call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_finish_decompress">jpeg_finish_decompress()</a> or <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html#BitMiracle_LibJpeg_Classic_jpeg_common_struct_jpeg_abort">jpeg_abort()</a>, at which point the memory is freed and the list is set to empty. </p>
+<p>Note that the library is internally interested in APP0 and APP14 markers; if you try to set a small nonzero length limit on these types, the library will silently force the length up to the minimum it wants. (But you can set a zero length limit to prevent them from being saved at all.) </p>
+<p>If you want to supply your own marker-reading routine, you do it by calling <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_set_marker_processor_System_Int32_BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_marker_parser_method_">jpeg_set_marker_processor(Int32, jpeg_decompress_struct.jpeg_marker_parser_method)</a>. A marker processor routine must have the signature of delegate <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_marker_parser_method.html">jpeg_decompress_struct.jpeg_marker_parser_method</a>. </p>
+<p>If you override the default APP0 or APP14 processors, it is up to you to recognize JFIF and Adobe markers if you want colorspace recognition to occur properly. We recommend copying and extending the default processors if you want to do that. (A better idea is to save these marker types for later examination by calling <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_save_markers_System_Int32_System_Int32_">jpeg_save_markers(Int32, Int32)</a>; that method doesn&#39;t interfere with the library&#39;s own processing of these markers.) </p>
+<p><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_set_marker_processor_System_Int32_BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_marker_parser_method_">jpeg_set_marker_processor(Int32, jpeg_decompress_struct.jpeg_marker_parser_method)</a> and <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_save_markers_System_Int32_System_Int32_">jpeg_save_markers(Int32, Int32)</a> are mutually exclusive - if you call one it overrides any previous call to the other, for the particular marker type specified. </p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BitMiracle/libjpeg.net/blob/master/HelpSrc/articles/KB/special-markers.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

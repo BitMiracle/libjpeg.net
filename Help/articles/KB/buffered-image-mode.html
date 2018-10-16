@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title> </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content=" ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../fusion/toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<p>In buffered-image mode, the library stores the partially decoded image in a coefficient buffer, from which it can be read out as many times as desired. This mode is typically used for incremental display of progressive JPEG files, but it can be used with any JPEG file. Each scan of a progressive JPEG file adds more data (more detail) to the buffered image. The application can display in lockstep with the source file (one display pass per input scan), or it can allow input processing to outrun display processing. By making input and display processing run independently, it is possible for the application to adapt progressive display to a wide range of data transmission rates. </p>
+<p>The basic control flow for buffered-image decoding is:</p>
+<pre><code class="lang-cs">Allocate and initialize a JPEG decompression object
+Set data source
+jpeg_read_header();
+Set overall decompression parameters
+cinfo.Buffered_image = true; /* select buffered-image mode */
+jpeg_start_decompress();
+for (each output pass)
+{
+    adjust output decompression parameters if required
+    jpeg_start_output(); /* start a new output pass */
+    for (all scanlines in image)
+    {
+        jpeg_read_scanlines();
+        display scanlines
+    }
+    jpeg_finish_output(); /* terminate output pass */
+}
+jpeg_finish_decompress();
+</code></pre><p>This differs from ordinary unbuffered decoding in that there is an additional level of looping. The application can choose how many output passes to make and how to display each pass. </p>
+<p>The simplest approach to displaying progressive images is to do one display pass for each scan appearing in the input file. In this case the start-output call should look as: </p>
+<pre><code class="lang-cs">cinfo.jpeg_start_output(cinfo.Input_scan_number);
+</code></pre><p>and the outer loop condition is typically:</p>
+<pre><code class="lang-cs">while (!cinfo.jpeg_input_complete())
+</code></pre><p>Alternative solution - you can use a loop counter starting at 1 if you like. The library automatically reads data as necessary to complete each requested scan, and <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_finish_output">jpeg_finish_output()</a> advances to the next scan or end-of-image marker (hence <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Input_scan_number">Input_scan_number</a> will be incremented by the time control arrives back at <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>). With this technique, data is read from the input file only as needed, and input and output processing run in lockstep. </p>
+<p>After reading the final scan and reaching the end of the input file, the buffered image remains available; it can be read additional times by repeating the <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>/<a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_scanlines_System_Byte_____System_Int32_">jpeg_read_scanlines(Byte[][], Int32)</a>/<a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_finish_output">jpeg_finish_output()</a> sequence. For example, a useful technique is to use fast one-pass color quantization for display passes made while the image is arriving, followed by a final display pass using two-pass quantization for highest quality. This is done by changing the library parameters before the final output pass. Changing parameters between passes is discussed in detail below. </p>
+<p>In general the last scan of a progressive file cannot be recognized as such until after it is read, so a post-input display pass is the best approach if you want special processing in the final pass. </p>
+<p>When done with the image, be sure to call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_finish_decompress">jpeg_finish_decompress()</a> to release the buffered image. </p>
+<p>If input data arrives faster than it can be displayed, the application can cause the library to decode input data in advance of what&#39;s needed to produce output. This is done by calling the routine <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a>. This routine reads some additional data and returns when one of the indicated significant events occurs.</p>
+<p>The library&#39;s output processing will automatically call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> whenever the output processing overtakes the input; thus, simple lockstep display requires no direct calls to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a>. But by adding calls to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a>, you can absorb data in advance of what is being displayed. This has two benefits: </p>
+<ul>
+<li>You can limit buildup of unprocessed data in your input buffer.</li>
+<li>You can eliminate extra display passes by paying attention to the state of the library&#39;s input processing.</li>
+</ul>
+<p>The first of these benefits only requires interspersing calls to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> with your display operations and any other processing you may be doing. To avoid wasting cycles due to backtracking, it&#39;s best to call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> only after a hundred or so new bytes have arrived. </p>
+<p>Note: the JPEG library currently is not thread-safe. You must not call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> from one thread of control if a different library routine is working on the same JPEG object in another thread. </p>
+<p>When input arrives fast enough that more than one new scan is available before you start a new output pass, you may as well skip the output pass corresponding to the completed scan. This occurs for free if you pass cinfo.Input_scan_number as the target scan number to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>. The <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Input_scan_number">Input_scan_number</a> property is simply the index of the scan currently being consumed by the input processor. You can ensure that this is up-to-date by emptying the input buffer just before calling <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>: call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> repeatedly until it returns <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_SUSPENDED">JPEG_SUSPENDED</a> or <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_REACHED_EOI">JPEG_REACHED_EOI</a>. </p>
+<p>The target scan number passed to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a> is saved in the cinfo.Output_scan_number property. The library&#39;s output processing calls <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> whenever the current input scan number and row within that scan is less than or equal to the current output scan number and row. Thus, input processing can &quot;get ahead&quot; of the output processing but is not allowed to &quot;fall behind&quot;. You can achieve several different effects by manipulating this interlock rule. For example, if you pass a target scan number greater than the current input scan number, the output processor will wait until that scan starts to arrive before producing any output. (To avoid an infinite loop, the target scan number is automatically reset to the last scan number when the end of image is reached. Thus, if you specify a large target scan number, the library will just absorb the entire input file and then perform an output pass. This is effectively the same as what <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a> does when you don&#39;t select buffered-image mode.) When you pass a target scan number equal to the current input scan number, the image is displayed no faster than the current input scan arrives. The final possibility is to pass a target scan number less than the current input scan number; this disables the input/output interlock and causes the output processor to simply display whatever it finds in the image buffer, without waiting for input. (However, the library will not accept a target scan number less than one, so you can&#39;t avoid waiting for the first scan.) </p>
+<p>When data is arriving faster than the output display processing can advance through the image, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> will store data into the buffered image beyond the point at which the output processing is reading data out again. If the input arrives fast enough, it may &quot;wrap around&quot; the buffer to the point where the input is more than one whole scan ahead of the output. If the output processing simply proceeds through its display pass without paying attention to the input, the effect seen on-screen is that the lower part of the image is one or more scans better in quality than the upper part. Then, when the next output scan is started, you have a choice of what target scan number to use. The recommended choice is to use the current input scan number at that time, which implies that you&#39;ve skipped the output scans corresponding to the input scans that were completed while you processed the previous output scan. In this way, the decoder automatically adapts its speed to the arriving data, by skipping output scans as necessary to keep up with the arriving data. </p>
+<p>When using this strategy, you&#39;ll want to be sure that you perform a final output pass after receiving all the data; otherwise your last display may not be full quality across the whole screen. So the right outer loop logic is something like this: </p>
+<pre><code class="lang-cs">do
+{
+    Absorb any waiting input by calling jpeg_consume_input()
+    final_pass = cinfo.jpeg_input_complete();
+    Adjust output decompression parameters if required
+    cinfo.jpeg_start_output(cinfo.Input_scan_number);
+    ...
+    jpeg_finish_output();
+} while (! final_pass);
+</code></pre><p>rather than quitting as soon as <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_input_complete">jpeg_input_complete()</a> returns <code>true</code>. This arrangement makes it simple to use higher-quality decoding parameters for the final pass. But if you don&#39;t want to use special parameters for the final pass, the right loop logic is like this: </p>
+<pre><code class="lang-cs">for (;;)
+{
+    Absorb any waiting input by calling jpeg_consume_input()
+    cinfo.jpeg_start_output(cinfo.Input_scan_number);
+    ...
+    jpeg_finish_output()
+    if (cinfo.jpeg_input_complete() &amp;&amp; cinfo.Input_scan_number == cinfo.Output_scan_number)
+        break;
+}
+</code></pre><p>In this case you don&#39;t need to know in advance whether an output pass is to be the last one, so it&#39;s not necessary to have reached EOF before starting the final output pass; rather, what you want to test is whether the output pass was performed in sync with the final input scan. This form of the loop will avoid an extra output pass whenever the decoder is able (or nearly able) to keep up with the incoming data. </p>
+<p>When the data transmission speed is high, you might begin a display pass, then find that much or all of the file has arrived before you can complete the pass. (You can detect this by noting the <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_REACHED_EOI">JPEG_REACHED_EOI</a> return code from <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a>, or equivalently by testing <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_input_complete">jpeg_input_complete()</a>) In this situation you may wish to abort the current display pass and start a new one using the newly arrived information. To do so, just call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_finish_output">jpeg_finish_output()</a> and then start a new pass with <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>.</p>
+<p>A variant strategy is to abort and restart display if more than one complete scan arrives during an output pass; this can be detected by noting <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_REACHED_SOS">JPEG_REACHED_SOS</a> returns and/or examining cinfo.Input_scan_number. This idea should be employed with caution, however, since the display process might never get to the bottom of the image before being aborted, resulting in the lower part of the screen being several passes worse than the upper. In most cases it&#39;s probably best to abort an output pass only if the whole file has arrived and you want to begin the final output pass immediately. </p>
+<p>When receiving data across a communication link, we recommend always using the current input scan number for the output target scan number; if a higher-quality final pass is to be done, it should be started (aborting any incomplete output pass) as soon as the end of file is received. However, many other strategies are possible. For example, the application can examine the parameters of the current input scan and decide whether to display it or not. If the scan contains only chroma data, one might choose not to use it as the target scan, expecting that the scan will be small and will arrive quickly. To skip to the next scan, call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> until it returns <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_REACHED_SOS">JPEG_REACHED_SOS</a> or <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_REACHED_EOI">JPEG_REACHED_EOI</a>. Or just use the next higher number as the target scan for <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>; but that method doesn&#39;t let you inspect the next scan&#39;s parameters before deciding to display it.</p>
+<p>In buffered-image mode, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a> never performs input and thus never suspends. An application that uses input suspension with buffered-image mode must be prepared for suspension returns from these routines: </p>
+<ul>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a> performs input only if you request 2-pass quantization and the target scan isn&#39;t fully read yet. (This is discussed below.) </li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_scanlines_System_Byte_____System_Int32_">jpeg_read_scanlines(Byte[][], Int32)</a>, as always, returns the number of scanlines that it was able to produce before suspending. </li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_finish_output">jpeg_finish_output()</a> will read any markers following the target scan, up to the end of the file or the SOS marker that begins another scan. (but it reads no input if <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> has already reached the end of the file or a SOS marker beyond the target output scan) </li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_finish_decompress">jpeg_finish_decompress()</a> will read until the end of file, and thus can suspend if the end hasn&#39;t already been reached (as can be tested by calling <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_input_complete">jpeg_input_complete()</a>).</li>
+</ul>
+<p><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_finish_output">jpeg_finish_output()</a>, and <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_finish_decompress">jpeg_finish_decompress()</a> all return <code>true</code> if they completed their tasks, <code>false</code> if they had to suspend. In the event of a <code>false</code> return, the application must load more input data and repeat the call. Applications that use non-suspending data sources need not check the return values of these three routines. </p>
+<p>It is possible to change decoding parameters between output passes in the buffered-image mode. The decoder library currently supports only very limited changes of parameters. Only the following parameters changes are allowed after <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a> is called:</p>
+<ul>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Dct_method">Dct_method</a> can be changed before each call to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>. For example, one could use a fast DCT method for early scans, changing to a higher quality method for the final scan. </li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Dither_mode">Dither_mode</a> can be changed before each call to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>; of course this has no impact if not using color quantization. Typically one would use ordered dither for initial passes, then switch to Floyd-Steinberg dither for the final pass. Caution: changing dither mode can cause more memory to be allocated by the library, but the amount of memory involved is not large (a scanline or so). </li>
+<li><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Do_block_smoothing">Do_block_smoothing</a> can be changed before each call to <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>. This setting is relevant only when decoding a progressive JPEG image. During the first DC-only scan, block smoothing provides a very &quot;fuzzy&quot; look instead of the very &quot;blocky&quot; look seen without it; which is better seems a matter of personal taste. But block smoothing is nearly always a win during later stages, especially when decoding a successive-approximation image: smoothing helps to hide the slight blockiness that otherwise shows up on smooth gradients until the lowest coefficient bits are sent. </li>
+<li>Color quantization mode (see <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Quantize_colors">Quantize_colors</a>) can be changed under the rules described below. You cannot change between full-color and quantized output (because that would alter the required I/O buffer sizes), but you can change which quantization method is used.</li>
+</ul>
+<p>When generating color-quantized output, changing quantization method is a very useful way of switching between high-speed and high-quality display. The library allows you to change among its three quantization methods: </p>
+<ol>
+<li><p>Single-pass quantization to a fixed color cube.</p>
+<p> Selected by <code>cinfo.Two_pass_quantize = false</code> and <code>cinfo.Colormap = null</code>.</p>
+</li>
+<li><p>Single-pass quantization to an application-supplied colormap.</p>
+<p> Selected by setting <code>cinfo.Colormap</code> to point to the colormap (the value of <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Two_pass_quantize">Two_pass_quantize</a> is ignored); also set <code>cinfo.Actual_number_of_colors</code>. </p>
+</li>
+<li><p>Two-pass quantization to a colormap chosen specifically for the image.</p>
+<p> Selected by <code>cinfo.Two_pass_quantize = true</code> and <code>cinfo.Colormap = null</code>. (This is the default setting selected by <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a>, but it is probably NOT what you want for the first pass of progressive display!) </p>
+</li>
+</ol>
+<p>These methods offer successively better quality and lesser speed. However, only the first method is available for quantizing in non-RGB color spaces. </p>
+<p>IMPORTANT: because the different quantizer methods have very different working-storage requirements, the library requires you to indicate which one(s) you intend to use before you call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a>. You do this by setting one or more of these three cinfo properties to <code>true</code>: </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Enable_1pass_quant">Enable_1pass_quant</a></td>
+<td>Fixed color cube colormap</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Enable_external_quant">Enable_external_quant</a></td>
+<td>Externally-supplied colormap</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Enable_2pass_quant">Enable_2pass_quant</a></td>
+<td>Two-pass custom colormap</td>
+</tr>
+</tbody>
+</table>
+<p>All three are initialized <code>false</code> by <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a>. But <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a> automatically sets <code>true</code> the one selected by the current <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Two_pass_quantize">Two_pass_quantize</a> and Colormap settings, so you only need to set the enable flags for any other quantization methods you plan to change to later. </p>
+<p>After setting the enable flags correctly at <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a> time, you can change to any enabled quantization method by setting <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_Two_pass_quantize">Two_pass_quantize</a> and Colormap properly just before calling <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>. You must explicitly set <code>cinfo.Colormap = null</code> when switching to 1-pass or 2-pass mode from a different mode, or when you want the 2-pass quantizer to be re-run to generate a new colormap. </p>
+<p>Note that in buffered-image mode, the library generates any requested colormap during <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a>, not during <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a>. </p>
+<p>When using two-pass quantization, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a> makes a pass over the buffered image to determine the optimum color map; it therefore may take a significant amount of time, whereas ordinarily it does little work. The progress monitor hook is called during this pass, if defined. It is also important to realize that if the specified target scan number is greater than or equal to the current input scan number, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a> will attempt to consume input as it makes this pass. If you use a suspending data source, you need to check for a false return from <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a> under these conditions. The combination of 2-pass quantization and a not-yet-fully-read target scan is the only case in which <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_output_System_Int32_">jpeg_start_output(Int32)</a> will consume input.</p>
+<p>Application authors who support buffered-image mode may be tempted to use it for all JPEG images, even single-scan ones. This will work, but it is inefficient: there is no need to create an image-sized coefficient buffer for single-scan images. Requesting buffered-image mode for such an image wastes memory. Worse, it can cost time on large images, since the buffered data has to be swapped out or written to a temporary file. If you are concerned about maximum performance on baseline JPEG files, you should use buffered-image mode only when the incoming file actually has multiple scans. This can be tested by calling jpeg_has_multiple_scans(), which will return a correct result at any time after <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a> completes.</p>
+<p>In some applications it may be convenient to use <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> for all input processing, including reading the initial markers; that is, you may wish to call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> instead of <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a> during startup. This works, but note that you must check for <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_REACHED_SOS">JPEG_REACHED_SOS</a> and <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_REACHED_EOI">JPEG_REACHED_EOI</a> return codes as the equivalent of <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_read_header_System_Boolean_">jpeg_read_header(Boolean)</a>&#39;s codes. Once the first SOS marker has been reached, you must call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_start_decompress">jpeg_start_decompress()</a> before <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> will consume more input; it&#39;ll just keep returning <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_REACHED_SOS">JPEG_REACHED_SOS</a> until you do. If you read a tables-only file this way, <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> will return <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_REACHED_EOI">JPEG_REACHED_EOI</a> without ever returning <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_REACHED_SOS">JPEG_REACHED_SOS</a>; be sure to check for this case. If this happens, the decompressor will not read any more input until you call jpeg_abort()  to reset it. It is OK to call <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html#BitMiracle_LibJpeg_Classic_jpeg_decompress_struct_jpeg_consume_input">jpeg_consume_input()</a> even when not using buffered-image mode, but in that case it&#39;s basically a no-op after the initial markers have been read: it will just return <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.ReadResult.html#BitMiracle_LibJpeg_Classic_ReadResult_JPEG_SUSPENDED">JPEG_SUSPENDED</a>. </p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BitMiracle/libjpeg.net/blob/master/HelpSrc/articles/KB/buffered-image-mode.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

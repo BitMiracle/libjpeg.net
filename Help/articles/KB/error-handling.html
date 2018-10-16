@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title> </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content=" ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../../fusion/toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<p>When the default error handler is used, any error detected inside the JPEG routines will cause a message to be printed on console, followed by throwing of exception. You can supply your own error handling routines to override this behavior and to control the treatment of nonfatal warnings and trace/debug messages. </p>
+<p>The JPEG library never writes any message directly; it always goes through the error handling routines. Three classes of messages are recognized:</p>
+<ul>
+<li>Fatal errors: the library cannot continue.</li>
+<li>Warnings: the library can continue, but the data is corrupt, and a damaged output image is likely to result.</li>
+<li>Trace/informational messages. These come with a trace level indicating the importance of the message; you can control the verbosity of the program by adjusting the maximum trace level that will be displayed.</li>
+</ul>
+<p>All of the error handling routines will receive the JPEG object (a <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html">jpeg_common_struct</a> which points to either a <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_compress_struct.html">jpeg_compress_struct</a> or a <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.html">jpeg_decompress_struct</a>). This struct includes the error manager struct in its <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html#BitMiracle_LibJpeg_Classic_jpeg_common_struct_Err">Err</a> property.</p>
+<p>The individual methods that you might wish to override are:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html#BitMiracle_LibJpeg_Classic_jpeg_error_mgr_error_exit">error_exit()</a></td>
+<td>Receives control for a fatal error</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html#BitMiracle_LibJpeg_Classic_jpeg_error_mgr_output_message">output_message()</a></td>
+<td>Actual output of any JPEG message</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html#BitMiracle_LibJpeg_Classic_jpeg_error_mgr_format_message">format_message()</a></td>
+<td>Constructs a readable error message string</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html#BitMiracle_LibJpeg_Classic_jpeg_error_mgr_emit_message_System_Int32_">emit_message(Int32)</a></td>
+<td>Decide whether or not to emit a warning or trace message</td>
+</tr>
+</tbody>
+</table>
+<p>Only <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html#BitMiracle_LibJpeg_Classic_jpeg_error_mgr_error_exit">error_exit()</a> and <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html#BitMiracle_LibJpeg_Classic_jpeg_error_mgr_emit_message_System_Int32_">emit_message(Int32)</a> are called from the rest of the JPEG library; the other two are internal to the error handler.</p>
+<p>You can get the actual message texts using protected virtual method <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html#BitMiracle_LibJpeg_Classic_jpeg_error_mgr_GetMessageText_System_Int32_">GetMessageText(Int32)</a>. It may be useful for an application to add its own message texts that are handled by the same mechanism. You can override <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html#BitMiracle_LibJpeg_Classic_jpeg_error_mgr_GetMessageText_System_Int32_">GetMessageText(Int32)</a> for this purpose. If you number the addon messages beginning at 1000 or so, you won&#39;t have to worry about conflicts with the library&#39;s built-in messages. See the sample applications <strong>cjpeg/djpeg</strong> for an example of using addon messages (class BitMiracle.cdJpeg.cd_jpeg_error_mgr) </p>
+<p>Actual invocation of the error handler is done via methods defined in <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html">jpeg_common_struct</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html#BitMiracle_LibJpeg_Classic_jpeg_common_struct_ERREXIT_BitMiracle_LibJpeg_Classic_J_MESSAGE_CODE_">ERREXIT(J_MESSAGE_CODE)</a></td>
+<td>For fatal errors</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html#BitMiracle_LibJpeg_Classic_jpeg_common_struct_WARNMS_BitMiracle_LibJpeg_Classic_J_MESSAGE_CODE_">WARNMS(J_MESSAGE_CODE)</a></td>
+<td>For corrupt-data warnings</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_common_struct.html#BitMiracle_LibJpeg_Classic_jpeg_common_struct_TRACEMS_System_Int32_BitMiracle_LibJpeg_Classic_J_MESSAGE_CODE_">TRACEMS(Int32, J_MESSAGE_CODE)</a></td>
+<td>For trace and informational messages</td>
+</tr>
+</tbody>
+</table>
+<p>These methods store the message code and any additional parameters into the error manager, then invoke the <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html#BitMiracle_LibJpeg_Classic_jpeg_error_mgr_error_exit">error_exit()</a> or <a class="xref" href="../../api/BitMiracle.LibJpeg.Classic.jpeg_error_mgr.html#BitMiracle_LibJpeg_Classic_jpeg_error_mgr_emit_message_System_Int32_">emit_message(Int32)</a> methods. The variants of each macro are for varying numbers of additional parameters. The additional parameters are inserted into the generated message using standard method string.Format. </p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BitMiracle/libjpeg.net/blob/master/HelpSrc/articles/KB/error-handling.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
