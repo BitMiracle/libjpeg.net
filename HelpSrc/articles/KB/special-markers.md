@@ -1,0 +1,36 @@
+Some applications may need to insert or extract special data in the JPEG datastream. The JPEG standard provides marker types "COM" (comment) and "APP0" through "APP15" (application) to hold application-specific data. Unfortunately, the use of these markers is not specified by the standard. COM markers are fairly widely used to hold user-supplied text. The JFIF file format spec uses APP0 markers with specified initial strings to hold certain data. Adobe applications use APP14 markers beginning with the string "Adobe" for miscellaneous data. Other APPn markers are rarely seen, but might contain almost anything. 
+
+If you wish to store user-supplied text, we recommend you use COM markers and place readable 7-bit ASCII text in them. Newline conventions are not standardized - expect to find LF (Unix style), CR/LF (DOS style), or CR (Mac style). A robust COM reader should be able to cope with random binary garbage, including nulls, since some applications generate COM markers containing non-ASCII junk. (But yours should not be one of them.) 
+
+For program-supplied data, use an APPn marker, and be sure to begin it with an identifying string so that you can tell whether the marker is actually yours. It's probably best to avoid using APP0 or APP14 for any private markers. (NOTE: the upcoming SPIFF standard will use APP8 markers; we recommend you not use APP8 markers for any private purposes, either) 
+
+Keep in mind that at most 65533 bytes can be put into one marker, but you can have as many markers as you like. 
+
+By default, the IJG compression library will write a JFIF APP0 marker if the selected JPEG colorspace is grayscale or YCbCr, or an Adobe APP14 marker if the selected colorspace is RGB, CMYK, or YCCK. You can disable this, but we don't recommend it. The decompression library will recognize JFIF and Adobe markers and will set the JPEG colorspace properly when one is found. 
+
+You can write special markers immediately following the datastream header by calling <xref:BitMiracle.LibJpeg.Classic.jpeg_compress_struct.jpeg_write_marker(System.Int32,System.Byte[])>. When you do this, the markers appear after the SOI and the JFIF APP0 and Adobe APP14 markers (if written), but before all else.
+
+If it's not convenient to store all the marker data in memory at once, you can instead call <xref:BitMiracle.LibJpeg.Classic.jpeg_compress_struct.jpeg_write_m_header(System.Int32,System.Int32)> followed by multiple calls to <xref:BitMiracle.LibJpeg.Classic.jpeg_compress_struct.jpeg_write_m_byte(System.Byte)>. Or, if you prefer to synthesize the marker byte sequence yourself, you can just cram it straight into the data destination module. 
+
+If you are writing JFIF 1.02 extension markers (thumbnail images), don't forget to set <xref:BitMiracle.LibJpeg.Classic.jpeg_compress_struct.JFIF_minor_version> = 2 so that the encoder will write the correct JFIF version number in the JFIF header marker. The library's default is to write version 1.01, but that's wrong if you insert any 1.02 extension markers. (We could probably get away with just defaulting to 1.02, but there used to be broken decoders that would complain about unknown minor version numbers. To reduce compatibility risks it's safest not to write 1.02 unless you are actually using 1.02 extensions.) 
+
+When **reading**, two methods of handling special markers are available:
+
+1. You can ask the library to save the contents of COM and/or APPn markers into memory, and then examine them at your leisure afterwards. 
+2. You can supply your own routine to process COM and/or APPn markers on-the-fly as they are read. The first method is simpler to use, especially if you are using a suspending data source; writing a marker processor that copes with input suspension is not easy (consider what happens if the marker is longer than your available input buffer). However, the second method conserves memory since the marker data need not be kept around after it's been processed. 
+
+For either method, you'd normally set up marker handling after creating a decompression object and before calling <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_read_header(System.Boolean)>, because the markers of interest will typically be near the head of the file and so will be scanned by <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_read_header(System.Boolean)>. Once you've established a marker handling method, it will be used for the life of that decompression object (potentially many datastreams), unless you change it. Marker handling is determined separately for COM markers and for each APPn marker code. 
+
+To save the contents of special markers in memory, call <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_save_markers(System.Int32,System.Int32)>. After <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_read_header(System.Boolean)> completes, you can examine the special markers using the property <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.Marker_list>. All the special markers in the file appear in this list, in order of their occurrence in the file (but omitting any markers of types you didn't ask for). 
+
+It is possible that additional special markers appear in the file beyond the SOS marker at which <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_read_header(System.Boolean)> stops; if so, the marker list will be extended during reading of the rest of the file. This is not expected to be common, however. 
+
+The marker list remains stored until you call <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_finish_decompress> or <xref:BitMiracle.LibJpeg.Classic.jpeg_common_struct.jpeg_abort>, at which point the memory is freed and the list is set to empty. 
+
+Note that the library is internally interested in APP0 and APP14 markers; if you try to set a small nonzero length limit on these types, the library will silently force the length up to the minimum it wants. (But you can set a zero length limit to prevent them from being saved at all.) 
+
+If you want to supply your own marker-reading routine, you do it by calling <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_set_marker_processor(System.Int32,BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_marker_parser_method)>. A marker processor routine must have the signature of delegate <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_marker_parser_method>. 
+
+If you override the default APP0 or APP14 processors, it is up to you to recognize JFIF and Adobe markers if you want colorspace recognition to occur properly. We recommend copying and extending the default processors if you want to do that. (A better idea is to save these marker types for later examination by calling <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_save_markers(System.Int32,System.Int32)>; that method doesn't interfere with the library's own processing of these markers.) 
+
+<xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_set_marker_processor(System.Int32,BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_marker_parser_method)> and <xref:BitMiracle.LibJpeg.Classic.jpeg_decompress_struct.jpeg_save_markers(System.Int32,System.Int32)> are mutually exclusive - if you call one it overrides any previous call to the other, for the particular marker type specified. 
