@@ -24,6 +24,14 @@
     <DefineConstants Condition="'$(TargetFramework)'=='net20'">TRACE</DefineConstants>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net20|AnyCPU'">
+    <OutputPath>..\Result\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net20|AnyCPU'">
+    <OutputPath>..\Result\</OutputPath>
+  </PropertyGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)'=='net46' ">
     <Reference Include="System" />

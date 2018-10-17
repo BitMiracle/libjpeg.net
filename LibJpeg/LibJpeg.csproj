@@ -12,18 +12,21 @@
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
+    
+    <DocumentationFile Condition="'$(TargetFramework)'=='netstandard1.6'">..\Result\netstandard1.6\BitMiracle.LibJpeg.NET.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFramework)'=='net20'">..\Result\net20\BitMiracle.LibJpeg.NET.xml</DocumentationFile>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants Condition="'$(TargetFramework)'=='netstandard1.6'">TRACE;DEBUG;NETSTANDARD;EXPOSE_LIBJPEG</DefineConstants>
     <DefineConstants Condition="'$(TargetFramework)'=='net20'">TRACE;DEBUG;EXPOSE_LIBJPEG</DefineConstants>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Result\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants Condition="'$(TargetFramework)'=='netstandard1.6'">TRACE;NETSTANDARD;EXPOSE_LIBJPEG</DefineConstants>
     <DefineConstants Condition="'$(TargetFramework)'=='net20'">TRACE;EXPOSE_LIBJPEG</DefineConstants>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Result\</OutputPath>
   </PropertyGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)'=='net20' ">
