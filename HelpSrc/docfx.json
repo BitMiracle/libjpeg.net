@@ -53,7 +53,7 @@
         ]
       }
     ],
-    "dest": "../Help",
+    "dest": "../help",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
