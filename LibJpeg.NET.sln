@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BE689AB8-58B7-4816-88F0-DA4C201A2B42}"
-	ProjectSection(SolutionItems) = preProject
-		LibJpeg\Help.shfbproj = LibJpeg\Help.shfbproj
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibJpeg", "LibJpeg\LibJpeg.csproj", "{7300CDF5-1C93-4611-8CC9-47FE79F340AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cJpeg", "cJpeg\cJpeg.csproj", "{C0DFBCE2-9E77-4697-AA67-A46C088A1D45}"
@@ -20,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dJpeg", "dJpeg\dJpeg.csproj
 		{7300CDF5-1C93-4611-8CC9-47FE79F340AB} = {7300CDF5-1C93-4611-8CC9-47FE79F340AB}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{1CBA5A80-BCCE-4C6D-8A27-31D27E317182}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{1CBA5A80-BCCE-4C6D-8A27-31D27E317182}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3B558417-DD92-481E-9202-2693059E344C} = {3B558417-DD92-481E-9202-2693059E344C}
 		{C0DFBCE2-9E77-4697-AA67-A46C088A1D45} = {C0DFBCE2-9E77-4697-AA67-A46C088A1D45}
