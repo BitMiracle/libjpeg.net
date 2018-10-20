@@ -37,6 +37,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
+  </ItemGroup>
+  
   <PropertyGroup>
     <PreBuildEvent Condition="'$(TargetFramework)'=='net20'">cd "$(SolutionDir)"
 update_version_info.bat "$(ProjectDir)AssemblyVersion.cs"</PreBuildEvent>
