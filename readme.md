@@ -16,6 +16,16 @@ The emphasis in designing this software has been on achieving portability and fl
 
 We welcome the use of this software as a component of commercial products. No royalty is required, but we do ask for an acknowledgement in product documentation.
 
+Installation
+============
+
+You can install LibJpeg.Net via NuGet
+
+https://www.nuget.org/packages/BitMiracle.LibJpeg.NET
+
+Another option is to build the library and tools yourselves.
+
+
 License
 =======
 
