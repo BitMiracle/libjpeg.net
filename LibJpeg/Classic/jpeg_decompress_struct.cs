@@ -1812,8 +1812,25 @@ namespace BitMiracle.LibJpeg.Classic
                     int cid1 = m_comp_info[1].Component_id;
                     int cid2 = m_comp_info[2].Component_id;
 
-                    /* First try to guess from the component IDs */
-                    if (cid0 == 0x01 && cid1 == 0x02 && cid2 == 0x03)
+                    // Use Adobe marker info, otherwise try to guess from the component IDs
+                    if (m_saw_Adobe_marker)
+                    {
+                        switch (m_Adobe_transform)
+                        {
+                            case 0:
+                                m_jpeg_color_space = J_COLOR_SPACE.JCS_RGB;
+                                break;
+                            case 1:
+                                m_jpeg_color_space = J_COLOR_SPACE.JCS_YCbCr;
+                                break;
+                            default:
+                                WARNMS(J_MESSAGE_CODE.JWRN_ADOBE_XFORM, m_Adobe_transform);
+                                /* assume it's YCbCr */
+                                m_jpeg_color_space = J_COLOR_SPACE.JCS_YCbCr;
+                                break;
+                        }
+                    }
+                    else if (cid0 == 0x01 && cid1 == 0x02 && cid2 == 0x03)
                     {
                         m_jpeg_color_space = J_COLOR_SPACE.JCS_YCbCr;
                     }
@@ -1835,23 +1852,6 @@ namespace BitMiracle.LibJpeg.Classic
                     {
                         /* assume it's YCbCr */
                         m_jpeg_color_space = J_COLOR_SPACE.JCS_YCbCr;
-                    }
-                    else if (m_saw_Adobe_marker)
-                    {
-                        switch (m_Adobe_transform)
-                        {
-                            case 0:
-                                m_jpeg_color_space = J_COLOR_SPACE.JCS_RGB;
-                                break;
-                            case 1:
-                                m_jpeg_color_space = J_COLOR_SPACE.JCS_YCbCr;
-                                break;
-                            default:
-                                WARNMS(J_MESSAGE_CODE.JWRN_ADOBE_XFORM, m_Adobe_transform);
-                                /* assume it's YCbCr */
-                                m_jpeg_color_space = J_COLOR_SPACE.JCS_YCbCr;
-                                break;
-                        }
                     }
                     else
                     {
