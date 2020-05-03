@@ -34,3 +34,5 @@ HelpSrc/bin
 HelpSrc/obj
 HelpSrc/api/*
 
+#NuGet
+packages
