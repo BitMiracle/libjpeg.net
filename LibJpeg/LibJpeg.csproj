@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net20;netstandard1.6;</TargetFrameworks>
+    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
     <AssemblyName>BitMiracle.LibJpeg.NET</AssemblyName>
     <RootNamespace>BitMiracle.LibJpeg</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -13,23 +13,23 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
     
-    <DocumentationFile Condition="'$(TargetFramework)'=='netstandard1.6'">..\Result\netstandard1.6\BitMiracle.LibJpeg.NET.xml</DocumentationFile>
-    <DocumentationFile Condition="'$(TargetFramework)'=='net20'">..\Result\net20\BitMiracle.LibJpeg.NET.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFramework)'=='netstandard2.0'">..\Result\netstandard2.0\BitMiracle.LibJpeg.NET.xml</DocumentationFile>
+    <DocumentationFile Condition="'$(TargetFramework)'=='net40'">..\Result\net40\BitMiracle.LibJpeg.NET.xml</DocumentationFile>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants Condition="'$(TargetFramework)'=='netstandard1.6'">TRACE;DEBUG;NETSTANDARD;EXPOSE_LIBJPEG</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)'=='net20'">TRACE;DEBUG;EXPOSE_LIBJPEG</DefineConstants>
+    <DefineConstants Condition="'$(TargetFramework)'=='netstandard2.0'">TRACE;DEBUG;NETSTANDARD;EXPOSE_LIBJPEG</DefineConstants>
+    <DefineConstants Condition="'$(TargetFramework)'=='net40'">TRACE;DEBUG;EXPOSE_LIBJPEG</DefineConstants>
     <OutputPath>..\Result\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants Condition="'$(TargetFramework)'=='netstandard1.6'">TRACE;NETSTANDARD;EXPOSE_LIBJPEG</DefineConstants>
-    <DefineConstants Condition="'$(TargetFramework)'=='net20'">TRACE;EXPOSE_LIBJPEG</DefineConstants>
+    <DefineConstants Condition="'$(TargetFramework)'=='netstandard2.0'">TRACE;NETSTANDARD;EXPOSE_LIBJPEG</DefineConstants>
+    <DefineConstants Condition="'$(TargetFramework)'=='net40'">TRACE;EXPOSE_LIBJPEG</DefineConstants>
     <OutputPath>..\Result\</OutputPath>
   </PropertyGroup>
   
-  <ItemGroup Condition=" '$(TargetFramework)'=='net20' ">
+  <ItemGroup Condition=" '$(TargetFramework)'=='net40' ">
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -42,7 +42,7 @@
   </ItemGroup>
   
   <PropertyGroup>
-    <PreBuildEvent Condition="'$(TargetFramework)'=='net20'">cd "$(SolutionDir)"
+    <PreBuildEvent Condition="'$(TargetFramework)'=='net40'">cd "$(SolutionDir)"
 update_version_info.bat "$(ProjectDir)AssemblyVersion.cs"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
