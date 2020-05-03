@@ -28,7 +28,8 @@ namespace LibJpeg.Net.Benchmarks.Decode
         [Benchmark]
         public void DecodeRgbToStream()
         {
-            decodeToStream();
+            for (int i = 0; i < 10; i++)
+                decodeToStream();
         }
     }
 }

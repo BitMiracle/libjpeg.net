@@ -17,11 +17,12 @@ namespace LibJpeg.Net.Benchmarks
             string[] docoticVersions =
             {
                 BaselineVersion,
-                "1.4.310",
+                "1.5.313",
             };
             Runtime[] runtimes =
             {
                 ClrRuntime.Net472,
+                CoreRuntime.Core31
             };
 
             ManualConfig config = ManualConfig.CreateEmpty();
