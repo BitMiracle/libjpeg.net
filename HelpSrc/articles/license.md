@@ -1,6 +1,6 @@
 **LibJpeg.Net**
 
-Copyright (c) 2008-2018, Bit Miracle
+Copyright (c) 2008-2020, Bit Miracle
 
 All rights reserved.
 

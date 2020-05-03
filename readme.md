@@ -29,7 +29,7 @@ Another option is to build the library and tools yourselves.
 License
 =======
 
-This software is copyright (C) 2008-2018, Bit Miracle
+This software is copyright (C) 2008-2020, Bit Miracle
 
 http://www.bitmiracle.com
 
