@@ -377,6 +377,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 do_dct(workspace, sample_data, start_row, start_col);
 
                 /* Quantize/descale the coefficients, and store into coef_blocks[] */
+                var coeffBlock = coef_blocks[bi].data;
                 for (int i = 0; i < JpegConstants.DCTSIZE2; i++)
                 {
                     int qval = divisors[i];
@@ -404,7 +405,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                             temp = 0;
                     }
 
-                    coef_blocks[bi][i] = (short)temp;
+                    coeffBlock[i] = (short)temp;
                 }
             }
         }
@@ -422,6 +423,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 do_dct(workspace, sample_data, start_row, start_col);
 
                 /* Quantize/descale the coefficients, and store into coef_blocks[] */
+                var coeffBlock = coef_blocks[bi].data;
                 for (int i = 0; i < JpegConstants.DCTSIZE2; i++)
                 {
                     /* Apply the quantization and scaling factor */
@@ -433,7 +435,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                      * The maximum coefficient size is +-16K (for 12-bit data), so this
                      * code should work for either 16-bit or 32-bit ints.
                      */
-                    coef_blocks[bi][i] = (short)((int)(temp + (float)16384.5) - 16384);
+                    coeffBlock[i] = (short)((int)(temp + (float)16384.5) - 16384);
                 }
             }
         }
