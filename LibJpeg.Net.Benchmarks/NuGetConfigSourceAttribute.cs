@@ -14,10 +14,10 @@ namespace LibJpeg.Net.Benchmarks
             // NOTE: The version of NuGet package referenced in this project should be <= 
             // than every version in this array.
             const string BaselineVersion = "1.4.309";
-            string[] docoticVersions =
+            string[] versions =
             {
                 BaselineVersion,
-                "1.5.313",
+                "1.5.314",
             };
             Runtime[] runtimes =
             {
@@ -28,7 +28,7 @@ namespace LibJpeg.Net.Benchmarks
             ManualConfig config = ManualConfig.CreateEmpty();
             foreach (Runtime runtime in runtimes)
             {
-                foreach (string version in docoticVersions)
+                foreach (string version in versions)
                 {
                     bool baseline = (version == BaselineVersion && runtime == ClrRuntime.Net472);
                     config.AddJob(createJob("BitMiracle.LibJpeg.NET", version, runtime, baseline));
