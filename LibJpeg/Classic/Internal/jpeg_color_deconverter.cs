@@ -344,10 +344,10 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 /* i is the actual input pixel value, in the range 0..MAXJSAMPLE */
                 /* The Cb or Cr value we are thinking of is x = i - CENTERJSAMPLE */
                 /* Cr=>R value is nearest int to 1.402 * x */
-                m_Cr_r_tab[i] = JpegUtils.RIGHT_SHIFT(FIX(1.402) * x + ONE_HALF, SCALEBITS);
+                m_Cr_r_tab[i] = (FIX(1.402) * x + ONE_HALF) >> SCALEBITS;
 
                 /* Cb=>B value is nearest int to 1.772 * x */
-                m_Cb_b_tab[i] = JpegUtils.RIGHT_SHIFT(FIX(1.772) * x + ONE_HALF, SCALEBITS);
+                m_Cb_b_tab[i] = (FIX(1.772) * x + ONE_HALF) >> SCALEBITS;
 
                 /* Cr=>G value is scaled-up -0.714136286 * x */
                 m_Cr_g_tab[i] = (-FIX(0.714136286)) * x;
@@ -374,10 +374,10 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 /* i is the actual input pixel value, in the range 0..MAXJSAMPLE */
                 /* The Cb or Cr value we are thinking of is x = i - CENTERJSAMPLE */
                 /* Cr=>R value is nearest int to 2.804 * x */
-                m_Cr_r_tab[i] = JpegUtils.RIGHT_SHIFT(FIX(2.804) * x + ONE_HALF, SCALEBITS);
+                m_Cr_r_tab[i] = (FIX(2.804) * x + ONE_HALF) >> SCALEBITS;
 
                 /* Cb=>B value is nearest int to 3.544 * x */
-                m_Cb_b_tab[i] = JpegUtils.RIGHT_SHIFT(FIX(3.544) * x + ONE_HALF, SCALEBITS);
+                m_Cb_b_tab[i] = (FIX(3.544) * x + ONE_HALF) >> SCALEBITS;
 
                 /* Cr=>G value is scaled-up -1.428272572 * x */
                 m_Cr_g_tab[i] = (-FIX(1.428272572)) * x;
@@ -414,7 +414,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                      * for extended gamut (sYCC) and wide gamut (bg-sYCC) encodings.
                      */
                     outputBuffer[columnOffset + JpegConstants.RGB_RED] = limit[limitOffset + y + m_Cr_r_tab[cr]];
-                    outputBuffer[columnOffset + JpegConstants.RGB_GREEN] = limit[limitOffset + y + JpegUtils.RIGHT_SHIFT(m_Cb_g_tab[cb] + m_Cr_g_tab[cr], SCALEBITS)];
+                    outputBuffer[columnOffset + JpegConstants.RGB_GREEN] = limit[limitOffset + y + ((m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS)];
                     outputBuffer[columnOffset + JpegConstants.RGB_BLUE] = limit[limitOffset + y + m_Cb_b_tab[cb]];
                     columnOffset += JpegConstants.RGB_PIXELSIZE;
                 }
@@ -624,7 +624,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                      * and for extended gamut encodings (sYCC).
                      */
                     outputBuffer[columnOffset] = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + m_Cr_r_tab[cr])]; /* red */
-                    outputBuffer[columnOffset + 1] = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + JpegUtils.RIGHT_SHIFT(m_Cb_g_tab[cb] + m_Cr_g_tab[cr], SCALEBITS))]; /* green */
+                    outputBuffer[columnOffset + 1] = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + ((m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS))]; /* green */
                     outputBuffer[columnOffset + 2] = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + m_Cb_b_tab[cb])]; /* blue */
 
                     /* K passes through unchanged */
@@ -744,7 +744,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                     int cr = inputBuffer2[col];
 
                     int cmyk_c = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + m_Cr_r_tab[cr])];
-                    int cmyk_m = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + JpegUtils.RIGHT_SHIFT(m_Cb_g_tab[cb] + m_Cr_g_tab[cr], SCALEBITS))];
+                    int cmyk_m = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + ((m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS))];
                     int cmyk_y = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + m_Cb_b_tab[cb])];
                     int cmyk_k = inputBuffer3[col];
 

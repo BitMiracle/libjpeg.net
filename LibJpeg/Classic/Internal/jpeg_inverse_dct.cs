@@ -55,6 +55,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
         private const int SLOW_INTEGER_CONST_BITS = 13;
         private const int SLOW_INTEGER_PASS1_BITS = 2;
+        private const int SLOW_INTEGER_PASS1_PLUS3_BITS = SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3;
 
         /* We use the following pre-calculated constants.
         * If you change SLOW_INTEGER_CONST_BITS you may want to add appropriate values.
@@ -516,7 +517,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                     coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7] == 0)
                 {
                     /* AC terms all zero */
-                    int dcval = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0],
+                    int dcval = (coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0] *
                         quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0]) << SLOW_INTEGER_PASS1_BITS;
 
                     m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 0] = dcval;
@@ -538,10 +539,10 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 /* Even part: reverse the even part of the forward DCT. */
                 /* The rotator is c(-6). */
 
-                int z2 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0]);
-                int z3 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 4],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 4]);
+                int z2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0] * 
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0];
+                int z3 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 4] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 4];
 
                 z2 <<= SLOW_INTEGER_CONST_BITS;
                 z3 <<= SLOW_INTEGER_CONST_BITS;
@@ -551,10 +552,10 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int tmp0 = z2 + z3;
                 int tmp1 = z2 - z3;
 
-                z2 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 2],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 2]);
-                z3 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 6],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 6]);
+                z2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 2] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 2];
+                z3 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 6] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 6];
 
                 int z1 = (z2 + z3) * SLOW_INTEGER_FIX_0_541196100;
                 int tmp2 = z1 + z2 * SLOW_INTEGER_FIX_0_765366865;
@@ -569,46 +570,46 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 * transpose is its inverse.  i0..i3 are y7,y5,y3,y1 respectively.
                 */
 
-                tmp0 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 7]);
-                tmp1 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 5],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 5]);
-                tmp2 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 3],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 3]);
-                tmp3 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 1],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 1]);
+                tmp0 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 7];
+                tmp1 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 5] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 5];
+                tmp2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 3] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 3];
+                tmp3 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 1] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 1];
 
                 z2 = tmp0 + tmp2;
                 z3 = tmp1 + tmp3;
 
                 z1 = (z2 + z3) * SLOW_INTEGER_FIX_1_175875602;       /*  c3 */
-                z2 = z2 * (-SLOW_INTEGER_FIX_1_961570560);          /* -c3-c5 */
-                z3 = z3 * (-SLOW_INTEGER_FIX_0_390180644);          /* -c3+c5 */
+                z2 *= (-SLOW_INTEGER_FIX_1_961570560);          /* -c3-c5 */
+                z3 *= (-SLOW_INTEGER_FIX_0_390180644);          /* -c3+c5 */
                 z2 += z1;
                 z3 += z1;
 
                 z1 = (tmp0 + tmp3) * (-SLOW_INTEGER_FIX_0_899976223); /* -c3+c7 */
-                tmp0 = tmp0 * SLOW_INTEGER_FIX_0_298631336;        /* -c1+c3+c5-c7 */
-                tmp3 = tmp3 * SLOW_INTEGER_FIX_1_501321110;        /*  c1+c3-c5-c7 */
+                tmp0 *= SLOW_INTEGER_FIX_0_298631336;        /* -c1+c3+c5-c7 */
+                tmp3 *= SLOW_INTEGER_FIX_1_501321110;        /*  c1+c3-c5-c7 */
                 tmp0 += z1 + z2;
                 tmp3 += z1 + z3;
 
                 z1 = (tmp1 + tmp2) * (-SLOW_INTEGER_FIX_2_562915447); /* -c1-c3 */
-                tmp1 = tmp1 * SLOW_INTEGER_FIX_2_053119869;        /*  c1+c3-c5+c7 */
-                tmp2 = tmp2 * SLOW_INTEGER_FIX_3_072711026;        /*  c1+c3+c5-c7 */
+                tmp1 *= SLOW_INTEGER_FIX_2_053119869;        /*  c1+c3-c5+c7 */
+                tmp2 *= SLOW_INTEGER_FIX_3_072711026;        /*  c1+c3+c5-c7 */
                 tmp1 += z1 + z3;
                 tmp2 += z1 + z2;
 
                 /* Final output stage: inputs are tmp10..tmp13, tmp0..tmp3 */
 
-                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 0] = JpegUtils.RIGHT_SHIFT(tmp10 + tmp3, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 7] = JpegUtils.RIGHT_SHIFT(tmp10 - tmp3, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 1] = JpegUtils.RIGHT_SHIFT(tmp11 + tmp2, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 6] = JpegUtils.RIGHT_SHIFT(tmp11 - tmp2, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 2] = JpegUtils.RIGHT_SHIFT(tmp12 + tmp1, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 5] = JpegUtils.RIGHT_SHIFT(tmp12 - tmp1, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 3] = JpegUtils.RIGHT_SHIFT(tmp13 + tmp0, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 4] = JpegUtils.RIGHT_SHIFT(tmp13 - tmp0, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 0] = (tmp10 + tmp3) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 7] = (tmp10 - tmp3) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 1] = (tmp11 + tmp2) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 6] = (tmp11 - tmp2) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 2] = (tmp12 + tmp1) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 5] = (tmp12 - tmp1) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 3] = (tmp13 + tmp0) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 4] = (tmp13 - tmp0) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
 
                 /* advance pointers to next column */
                 coefBlockIndex++;
@@ -649,7 +650,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                     m_workspace[workspaceIndex + 7] == 0)
                 {
                     /* AC terms all zero */
-                    byte dcval = limit[limitOffset + JpegUtils.RIGHT_SHIFT(z2, SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
+                    byte dcval = limit[limitOffset + ((z2 >> (SLOW_INTEGER_PASS1_BITS + 3)) & RANGE_MASK)];
 
                     currentOutBuffer[output_col + 0] = dcval;
                     currentOutBuffer[output_col + 1] = dcval;
@@ -697,47 +698,37 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 z3 = tmp1 + tmp3;
 
                 z1 = (z2 + z3) * SLOW_INTEGER_FIX_1_175875602;       /*  c3 */
-                z2 = z2 * (-SLOW_INTEGER_FIX_1_961570560);          /* -c3-c5 */
-                z3 = z3 * (-SLOW_INTEGER_FIX_0_390180644);          /* -c3+c5 */
+                z2 *= (-SLOW_INTEGER_FIX_1_961570560);          /* -c3-c5 */
+                z3 *= (-SLOW_INTEGER_FIX_0_390180644);          /* -c3+c5 */
                 z2 += z1;
                 z3 += z1;
 
                 z1 = (tmp0 + tmp3) * (-SLOW_INTEGER_FIX_0_899976223); /* -c3+c7 */
-                tmp0 = tmp0 * SLOW_INTEGER_FIX_0_298631336;        /* -c1+c3+c5-c7 */
-                tmp3 = tmp3 * SLOW_INTEGER_FIX_1_501321110;        /*  c1+c3-c5-c7 */
+                tmp0 *= SLOW_INTEGER_FIX_0_298631336;        /* -c1+c3+c5-c7 */
+                tmp3 *= SLOW_INTEGER_FIX_1_501321110;        /*  c1+c3-c5-c7 */
                 tmp0 += z1 + z2;
                 tmp3 += z1 + z3;
 
                 z1 = (tmp1 + tmp2) * (-SLOW_INTEGER_FIX_2_562915447); /* -c1-c3 */
-                tmp1 = tmp1 * SLOW_INTEGER_FIX_2_053119869;        /*  c1+c3-c5+c7 */
-                tmp2 = tmp2 * SLOW_INTEGER_FIX_3_072711026;        /*  c1+c3+c5-c7 */
+                tmp1 *= SLOW_INTEGER_FIX_2_053119869;        /*  c1+c3-c5+c7 */
+                tmp2 *= SLOW_INTEGER_FIX_3_072711026;        /*  c1+c3+c5-c7 */
                 tmp1 += z1 + z3;
                 tmp2 += z1 + z2;
 
                 /* Final output stage: inputs are tmp10..tmp13, tmp0..tmp3 */
 
-                currentOutBuffer[output_col + 0] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(tmp10 + tmp3, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 7] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(tmp10 - tmp3, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 1] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(tmp11 + tmp2, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 6] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(tmp11 - tmp2, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 2] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(tmp12 + tmp1, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 5] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(tmp12 - tmp1, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 3] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(tmp13 + tmp0, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 4] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(tmp13 - tmp0, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
+                currentOutBuffer[output_col + 0] = limit[limitOffset + ((tmp10 + tmp3) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 7] = limit[limitOffset + ((tmp10 - tmp3) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 1] = limit[limitOffset + ((tmp11 + tmp2) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 6] = limit[limitOffset + ((tmp11 - tmp2) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 2] = limit[limitOffset + ((tmp12 + tmp1) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 5] = limit[limitOffset + ((tmp12 - tmp1) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 3] = limit[limitOffset + ((tmp13 + tmp0) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 4] = limit[limitOffset + ((tmp13 - tmp0) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
 
                 /* advance pointer to next row */
                 workspaceIndex += JpegConstants.DCTSIZE;
             }
-        }
-
-        /// <summary>
-        /// Dequantize a coefficient by multiplying it by the multiplier-table
-        /// entry; produce an int result.  In this module, both inputs and result
-        /// are 16 bits or less, so either int or short multiply will work.
-        /// </summary>
-        private static int SLOW_INTEGER_DEQUANTIZE(int coef, int quantval)
-        {
-            return (coef * quantval);
         }
 
         private static int SLOW_INTEGER_FIX(double x)
@@ -1019,7 +1010,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         private static int FAST_INTEGER_MULTIPLY(int var, int c)
         {
 #if !USE_ACCURATE_ROUNDING
-            return (JpegUtils.RIGHT_SHIFT(var * c, FAST_INTEGER_CONST_BITS));
+            return (var * c) >> FAST_INTEGER_CONST_BITS;
 #else
             return (JpegUtils.DESCALE(var * c, FAST_INTEGER_CONST_BITS));
 #endif
@@ -1043,15 +1034,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         private static int FAST_INTEGER_IRIGHT_SHIFT(int x, int shft)
         {
             return (x >> shft);
-        }
-
-        private static int FAST_INTEGER_IDESCALE(int x, int n)
-        {
-#if USE_ACCURATE_ROUNDING
-            return (FAST_INTEGER_IRIGHT_SHIFT((x) + (1 << ((n) - 1)), n));
-#else
-            return (FAST_INTEGER_IRIGHT_SHIFT(x, n));
-#endif
         }
 
         /// <summary>
@@ -1648,14 +1630,14 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             for (int ctr = 0; ctr < 8; ctr++)
             {
                 /* Even part */
-                int tmp0 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0]);
+                int tmp0 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0];
                 tmp0 <<= SLOW_INTEGER_CONST_BITS;
                 /* Add fudge factor here for final descale. */
                 tmp0 += 1 << (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS - 1);
 
-                int z1 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 4],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 4]);
+                int z1 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 4] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 4];
                 int tmp1 = z1 * SLOW_INTEGER_FIX(1.306562965);      /* c4[16] = c2[8] */
                 int tmp2 = z1 * SLOW_INTEGER_FIX_0_541196100;       /* c12[16] = c6[8] */
 
@@ -1664,13 +1646,13 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int tmp12 = tmp0 + tmp2;
                 int tmp13 = tmp0 - tmp2;
 
-                z1 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 2],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 2]);
-                int z2 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 6],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 6]);
+                z1 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 2] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 2];
+                int z2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 6] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 6];
                 int z3 = z1 - z2;
                 int z4 = z3 * SLOW_INTEGER_FIX(0.275899379);        /* c14[16] = c7[8] */
-                z3 = z3 * SLOW_INTEGER_FIX(1.387039845);        /* c2[16] = c1[8] */
+                z3 *= SLOW_INTEGER_FIX(1.387039845);        /* c2[16] = c1[8] */
 
                 tmp0 = z3 + z2 * SLOW_INTEGER_FIX_2_562915447;  /* (c6+c2)[16] = (c3+c1)[8] */
                 tmp1 = z4 + z1 * SLOW_INTEGER_FIX_0_899976223;  /* (c6-c14)[16] = (c3-c7)[8] */
@@ -1688,14 +1670,14 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
                 /* Odd part */
 
-                z1 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 1],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 1]);
-                z2 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 3],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 3]);
-                z3 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 5],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 5]);
-                z4 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 7]);
+                z1 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 1] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 1];
+                z2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 3] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 3];
+                z3 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 5] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 5];
+                z4 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 7];
 
                 tmp11 = z1 + z3;
 
@@ -1703,7 +1685,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 tmp2 = tmp11 * SLOW_INTEGER_FIX(1.247225013);   /* c5 */
                 tmp3 = (z1 + z4) * SLOW_INTEGER_FIX(1.093201867);   /* c7 */
                 tmp10 = (z1 - z4) * SLOW_INTEGER_FIX(0.897167586);   /* c9 */
-                tmp11 = tmp11 * SLOW_INTEGER_FIX(0.666655658);   /* c11 */
+                tmp11 *= SLOW_INTEGER_FIX(0.666655658);   /* c11 */
                 tmp12 = (z1 - z2) * SLOW_INTEGER_FIX(0.410524528);   /* c13 */
                 tmp0 = tmp1 + tmp2 + tmp3 - z1 * SLOW_INTEGER_FIX(2.286341144);        /* c7+c5+c3-c1 */
                 tmp13 = tmp10 + tmp11 + tmp12 - z1 * SLOW_INTEGER_FIX(1.835730603);        /* c9+c11+c13-c15 */
@@ -1717,7 +1699,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 z1 = z2 * (-SLOW_INTEGER_FIX(0.666655658));      /* -c11 */
                 tmp1 += z1;
                 tmp3 += z1 + z4 * SLOW_INTEGER_FIX(1.065388962);  /* c3+c11+c15-c7 */
-                z2 = z2 * (-SLOW_INTEGER_FIX(1.247225013));      /* -c5 */
+                z2 *= (-SLOW_INTEGER_FIX(1.247225013));      /* -c5 */
                 tmp10 += z2 + z4 * SLOW_INTEGER_FIX(3.141271809);  /* c1+c5+c9-c13 */
                 tmp12 += z2;
                 z2 = (z3 + z4) * (-SLOW_INTEGER_FIX(1.353318001)); /* -c3 */
@@ -1729,22 +1711,22 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
                 /* Final output stage */
 
-                workspace[workspaceIndex + 8 * 0] = JpegUtils.RIGHT_SHIFT(tmp20 + tmp0, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 15] = JpegUtils.RIGHT_SHIFT(tmp20 - tmp0, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 1] = JpegUtils.RIGHT_SHIFT(tmp21 + tmp1, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 14] = JpegUtils.RIGHT_SHIFT(tmp21 - tmp1, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 2] = JpegUtils.RIGHT_SHIFT(tmp22 + tmp2, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 13] = JpegUtils.RIGHT_SHIFT(tmp22 - tmp2, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 3] = JpegUtils.RIGHT_SHIFT(tmp23 + tmp3, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 12] = JpegUtils.RIGHT_SHIFT(tmp23 - tmp3, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 4] = JpegUtils.RIGHT_SHIFT(tmp24 + tmp10, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 11] = JpegUtils.RIGHT_SHIFT(tmp24 - tmp10, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 5] = JpegUtils.RIGHT_SHIFT(tmp25 + tmp11, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 10] = JpegUtils.RIGHT_SHIFT(tmp25 - tmp11, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 6] = JpegUtils.RIGHT_SHIFT(tmp26 + tmp12, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 9] = JpegUtils.RIGHT_SHIFT(tmp26 - tmp12, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 7] = JpegUtils.RIGHT_SHIFT(tmp27 + tmp13, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 8] = JpegUtils.RIGHT_SHIFT(tmp27 - tmp13, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 0] = (tmp20 + tmp0) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 15] = (tmp20 - tmp0) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 1] = (tmp21 + tmp1) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 14] = (tmp21 - tmp1) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 2] = (tmp22 + tmp2) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 13] = (tmp22 - tmp2) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 3] = (tmp23 + tmp3) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 12] = (tmp23 - tmp3) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 4] = (tmp24 + tmp10) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 11] = (tmp24 - tmp10) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 5] = (tmp25 + tmp11) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 10] = (tmp25 - tmp11) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 6] = (tmp26 + tmp12) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 9] = (tmp26 - tmp12) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 7] = (tmp27 + tmp13) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 8] = (tmp27 - tmp13) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
 
                 /* advance pointers to next column */
                 coefBlockIndex++;
@@ -1781,7 +1763,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int z2 = workspace[workspaceIndex + 6];
                 int z3 = z1 - z2;
                 int z4 = z3 * SLOW_INTEGER_FIX(0.275899379);        /* c14[16] = c7[8] */
-                z3 = z3 * SLOW_INTEGER_FIX(1.387039845);        /* c2[16] = c1[8] */
+                z3 *= SLOW_INTEGER_FIX(1.387039845);        /* c2[16] = c1[8] */
 
                 tmp0 = z3 + z2 * SLOW_INTEGER_FIX_2_562915447;  /* (c6+c2)[16] = (c3+c1)[8] */
                 tmp1 = z4 + z1 * SLOW_INTEGER_FIX_0_899976223;  /* (c6-c14)[16] = (c3-c7)[8] */
@@ -1810,7 +1792,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 tmp2 = tmp11 * SLOW_INTEGER_FIX(1.247225013);   /* c5 */
                 tmp3 = (z1 + z4) * SLOW_INTEGER_FIX(1.093201867);   /* c7 */
                 tmp10 = (z1 - z4) * SLOW_INTEGER_FIX(0.897167586);   /* c9 */
-                tmp11 = tmp11 * SLOW_INTEGER_FIX(0.666655658);   /* c11 */
+                tmp11 *= SLOW_INTEGER_FIX(0.666655658);   /* c11 */
                 tmp12 = (z1 - z2) * SLOW_INTEGER_FIX(0.410524528);   /* c13 */
                 tmp0 = tmp1 + tmp2 + tmp3 - z1 * SLOW_INTEGER_FIX(2.286341144);        /* c7+c5+c3-c1 */
                 tmp13 = tmp10 + tmp11 + tmp12 - z1 * SLOW_INTEGER_FIX(1.835730603);        /* c9+c11+c13-c15 */
@@ -1824,7 +1806,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 z1 = z2 * (-SLOW_INTEGER_FIX(0.666655658));      /* -c11 */
                 tmp1 += z1;
                 tmp3 += z1 + z4 * SLOW_INTEGER_FIX(1.065388962);  /* c3+c11+c15-c7 */
-                z2 = z2 * (-SLOW_INTEGER_FIX(1.247225013));      /* -c5 */
+                z2 *= (-SLOW_INTEGER_FIX(1.247225013));      /* -c5 */
                 tmp10 += z2 + z4 * SLOW_INTEGER_FIX(3.141271809);  /* c1+c5+c9-c13 */
                 tmp12 += z2;
                 z2 = (z3 + z4) * (-SLOW_INTEGER_FIX(1.353318001)); /* -c3 */
@@ -1837,38 +1819,38 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 /* Final output stage */
                 int currentOutRow = output_row + ctr;
                 var currentOutBuffer = m_componentBuffer[currentOutRow];
-                currentOutBuffer[output_col + 0] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                        tmp20 + tmp0, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 15] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp20 - tmp0, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 1] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp21 + tmp1, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 14] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp21 - tmp1, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 2] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp22 + tmp2, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 13] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp22 - tmp2, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 3] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp23 + tmp3, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 12] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp23 - tmp3, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 4] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp24 + tmp10, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 11] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp24 - tmp10, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 5] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp25 + tmp11, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 10] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp25 - tmp11, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 6] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp26 + tmp12, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 9] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp26 - tmp12, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 7] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp27 + tmp13, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 8] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp27 - tmp13, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
+                currentOutBuffer[output_col + 0] = limit[limitOffset + 
+                    ((tmp20 + tmp0) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 15] = limit[limitOffset + 
+                    ((tmp20 - tmp0) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 1] = limit[limitOffset + 
+                    ((tmp21 + tmp1) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 14] = limit[limitOffset + 
+                    ((tmp21 - tmp1) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 2] = limit[limitOffset + 
+                    ((tmp22 + tmp2) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 13] = limit[limitOffset + 
+                    ((tmp22 - tmp2) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 3] = limit[limitOffset + 
+                    ((tmp23 + tmp3) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 12] = limit[limitOffset + 
+                    ((tmp23 - tmp3) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 4] = limit[limitOffset + 
+                    ((tmp24 + tmp10) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 11] = limit[limitOffset + 
+                    ((tmp24 - tmp10) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 5] = limit[limitOffset + 
+                    ((tmp25 + tmp11) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 10] = limit[limitOffset + 
+                    ((tmp25 - tmp11) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 6] = limit[limitOffset + 
+                    ((tmp26 + tmp12) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 9] = limit[limitOffset + 
+                    ((tmp26 - tmp12) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 7] = limit[limitOffset + 
+                    ((tmp27 + tmp13) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 8] = limit[limitOffset + 
+                    ((tmp27 - tmp13) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
 
                 workspaceIndex += 8;		/* advance pointer to next row */
             }
@@ -1911,7 +1893,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                     coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7] == 0)
                 {
                     /* AC terms all zero */
-                    int dcval = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0],
+                    int dcval = (coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0] *
                         quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0]) << SLOW_INTEGER_PASS1_BITS;
 
                     workspace[workspaceIndex + JpegConstants.DCTSIZE * 0] = dcval;
@@ -1933,19 +1915,19 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 /* Even part: reverse the even part of the forward DCT. */
                 /* The rotator is c(-6). */
 
-                int z2 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 2],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 2]);
-                int z3 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 6],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 6]);
+                int z2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 2] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 2];
+                int z3 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 6] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 6];
 
                 int z1 = (z2 + z3) * SLOW_INTEGER_FIX_0_541196100;
                 int tmp2 = z1 + z2 * SLOW_INTEGER_FIX_0_765366865;
                 int tmp3 = z1 - z3 * SLOW_INTEGER_FIX_1_847759065;
 
-                z2 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0]);
-                z3 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 4],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 4]);
+                z2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0];
+                z3 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 4] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 4];
 
                 z2 <<= SLOW_INTEGER_CONST_BITS;
                 z3 <<= SLOW_INTEGER_CONST_BITS;
@@ -1964,46 +1946,46 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 * transpose is its inverse.  i0..i3 are y7,y5,y3,y1 respectively.
                 */
 
-                tmp0 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 7]);
-                tmp1 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 5],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 5]);
-                tmp2 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 3],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 3]);
-                tmp3 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 1],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 1]);
+                tmp0 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 7];
+                tmp1 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 5] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 5];
+                tmp2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 3] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 3];
+                tmp3 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 1] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 1];
 
                 z2 = tmp0 + tmp2;
                 z3 = tmp1 + tmp3;
 
                 z1 = (z2 + z3) * SLOW_INTEGER_FIX_1_175875602;       /*  c3 */
-                z2 = z2 * (-SLOW_INTEGER_FIX_1_961570560);          /* -c3-c5 */
-                z3 = z3 * (-SLOW_INTEGER_FIX_0_390180644);          /* -c3+c5 */
+                z2 *= (-SLOW_INTEGER_FIX_1_961570560);          /* -c3-c5 */
+                z3 *= (-SLOW_INTEGER_FIX_0_390180644);          /* -c3+c5 */
                 z2 += z1;
                 z3 += z1;
 
                 z1 = (tmp0 + tmp3) * (-SLOW_INTEGER_FIX_0_899976223); /* -c3+c7 */
-                tmp0 = tmp0 * SLOW_INTEGER_FIX_0_298631336;        /* -c1+c3+c5-c7 */
-                tmp3 = tmp3 * SLOW_INTEGER_FIX_1_501321110;        /*  c1+c3-c5-c7 */
+                tmp0 *= SLOW_INTEGER_FIX_0_298631336;        /* -c1+c3+c5-c7 */
+                tmp3 *= SLOW_INTEGER_FIX_1_501321110;        /*  c1+c3-c5-c7 */
                 tmp0 += z1 + z2;
                 tmp3 += z1 + z3;
 
                 z1 = (tmp1 + tmp2) * (-SLOW_INTEGER_FIX_2_562915447); /* -c1-c3 */
-                tmp1 = tmp1 * SLOW_INTEGER_FIX_2_053119869;        /*  c1+c3-c5+c7 */
-                tmp2 = tmp2 * SLOW_INTEGER_FIX_3_072711026;        /*  c1+c3+c5-c7 */
+                tmp1 *= SLOW_INTEGER_FIX_2_053119869;        /*  c1+c3-c5+c7 */
+                tmp2 *= SLOW_INTEGER_FIX_3_072711026;        /*  c1+c3+c5-c7 */
                 tmp1 += z1 + z3;
                 tmp2 += z1 + z2;
 
                 /* Final output stage: inputs are tmp10..tmp13, tmp0..tmp3 */
 
-                workspace[workspaceIndex + JpegConstants.DCTSIZE * 0] = JpegUtils.RIGHT_SHIFT(tmp10 + tmp3, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + JpegConstants.DCTSIZE * 7] = JpegUtils.RIGHT_SHIFT(tmp10 - tmp3, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + JpegConstants.DCTSIZE * 1] = JpegUtils.RIGHT_SHIFT(tmp11 + tmp2, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + JpegConstants.DCTSIZE * 6] = JpegUtils.RIGHT_SHIFT(tmp11 - tmp2, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + JpegConstants.DCTSIZE * 2] = JpegUtils.RIGHT_SHIFT(tmp12 + tmp1, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + JpegConstants.DCTSIZE * 5] = JpegUtils.RIGHT_SHIFT(tmp12 - tmp1, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + JpegConstants.DCTSIZE * 3] = JpegUtils.RIGHT_SHIFT(tmp13 + tmp0, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + JpegConstants.DCTSIZE * 4] = JpegUtils.RIGHT_SHIFT(tmp13 - tmp0, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + JpegConstants.DCTSIZE * 0] = (tmp10 + tmp3) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + JpegConstants.DCTSIZE * 7] = (tmp10 - tmp3) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + JpegConstants.DCTSIZE * 1] = (tmp11 + tmp2) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + JpegConstants.DCTSIZE * 6] = (tmp11 - tmp2) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + JpegConstants.DCTSIZE * 2] = (tmp12 + tmp1) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + JpegConstants.DCTSIZE * 5] = (tmp12 - tmp1) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + JpegConstants.DCTSIZE * 3] = (tmp13 + tmp0) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + JpegConstants.DCTSIZE * 4] = (tmp13 - tmp0) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
 
                 /* advance pointers to next column */
                 coefBlockIndex++;
@@ -2041,7 +2023,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int z2 = workspace[workspaceIndex + 6];
                 int z3 = z1 - z2;
                 int z4 = z3 * SLOW_INTEGER_FIX(0.275899379);        /* c14[16] = c7[8] */
-                z3 = z3 * SLOW_INTEGER_FIX(1.387039845);        /* c2[16] = c1[8] */
+                z3 *= SLOW_INTEGER_FIX(1.387039845);        /* c2[16] = c1[8] */
 
                 tmp0 = z3 + z2 * SLOW_INTEGER_FIX_2_562915447;  /* (c6+c2)[16] = (c3+c1)[8] */
                 tmp1 = z4 + z1 * SLOW_INTEGER_FIX_0_899976223;  /* (c6-c14)[16] = (c3-c7)[8] */
@@ -2070,7 +2052,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 tmp2 = tmp11 * SLOW_INTEGER_FIX(1.247225013);   /* c5 */
                 tmp3 = (z1 + z4) * SLOW_INTEGER_FIX(1.093201867);   /* c7 */
                 tmp10 = (z1 - z4) * SLOW_INTEGER_FIX(0.897167586);   /* c9 */
-                tmp11 = tmp11 * SLOW_INTEGER_FIX(0.666655658);   /* c11 */
+                tmp11 *= SLOW_INTEGER_FIX(0.666655658);   /* c11 */
                 tmp12 = (z1 - z2) * SLOW_INTEGER_FIX(0.410524528);   /* c13 */
                 tmp0 = tmp1 + tmp2 + tmp3 - z1 * SLOW_INTEGER_FIX(2.286341144);        /* c7+c5+c3-c1 */
                 tmp13 = tmp10 + tmp11 + tmp12 - z1 * SLOW_INTEGER_FIX(1.835730603);        /* c9+c11+c13-c15 */
@@ -2084,7 +2066,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 z1 = z2 * (-SLOW_INTEGER_FIX(0.666655658));      /* -c11 */
                 tmp1 += z1;
                 tmp3 += z1 + z4 * SLOW_INTEGER_FIX(1.065388962);  /* c3+c11+c15-c7 */
-                z2 = z2 * (-SLOW_INTEGER_FIX(1.247225013));      /* -c5 */
+                z2 *= (-SLOW_INTEGER_FIX(1.247225013));      /* -c5 */
                 tmp10 += z2 + z4 * SLOW_INTEGER_FIX(3.141271809);  /* c1+c5+c9-c13 */
                 tmp12 += z2;
                 z2 = (z3 + z4) * (-SLOW_INTEGER_FIX(1.353318001)); /* -c3 */
@@ -2097,38 +2079,38 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 /* Final output stage */
                 int currentOutRow = output_row + ctr;
                 var currentOutBuffer = m_componentBuffer[currentOutRow];
-                currentOutBuffer[output_col + 0] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                        tmp20 + tmp0, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 15] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp20 - tmp0, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 1] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp21 + tmp1, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 14] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp21 - tmp1, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 2] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp22 + tmp2, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 13] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp22 - tmp2, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 3] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp23 + tmp3, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 12] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp23 - tmp3, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 4] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp24 + tmp10, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 11] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp24 - tmp10, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 5] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp25 + tmp11, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 10] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp25 - tmp11, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 6] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp26 + tmp12, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 9] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp26 - tmp12, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 7] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp27 + tmp13, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 8] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp27 - tmp13, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
+                currentOutBuffer[output_col + 0] = limit[limitOffset + 
+                    ((tmp20 + tmp0) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 15] = limit[limitOffset + 
+                    ((tmp20 - tmp0) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 1] = limit[limitOffset + 
+                    ((tmp21 + tmp1) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 14] = limit[limitOffset + 
+                    ((tmp21 - tmp1) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 2] = limit[limitOffset + 
+                    ((tmp22 + tmp2) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 13] = limit[limitOffset + 
+                    ((tmp22 - tmp2) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 3] = limit[limitOffset + 
+                    ((tmp23 + tmp3) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 12] = limit[limitOffset + 
+                    ((tmp23 - tmp3) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 4] = limit[limitOffset + 
+                    ((tmp24 + tmp10) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 11] = limit[limitOffset + 
+                    ((tmp24 - tmp10) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 5] = limit[limitOffset + 
+                    ((tmp25 + tmp11) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 10] = limit[limitOffset + 
+                    ((tmp25 - tmp11) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 6] = limit[limitOffset + 
+                    ((tmp26 + tmp12) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 9] = limit[limitOffset + 
+                    ((tmp26 - tmp12) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 7] = limit[limitOffset + 
+                    ((tmp27 + tmp13) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 8] = limit[limitOffset + 
+                    ((tmp27 - tmp13) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
 
                 workspaceIndex += 8;		/* advance pointer to next row */
             }
@@ -2186,14 +2168,14 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             for (int ctr = 0; ctr < 8; ctr++)
             {
                 /* Even part */
-                int tmp0 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0]);
+                int tmp0 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0];
                 tmp0 <<= SLOW_INTEGER_CONST_BITS;
                 /* Add fudge factor here for final descale. */
                 tmp0 += 1 << (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS - 1);
 
-                int z1 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 4],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 4]);
+                int z1 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 4] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 4];
                 int tmp1 = z1 * SLOW_INTEGER_FIX(1.306562965);      /* c4[16] = c2[8] */
                 int tmp2 = z1 * SLOW_INTEGER_FIX_0_541196100;       /* c12[16] = c6[8] */
 
@@ -2202,13 +2184,13 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int tmp12 = tmp0 + tmp2;
                 int tmp13 = tmp0 - tmp2;
 
-                z1 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 2],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 2]);
-                int z2 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 6],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 6]);
+                z1 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 2] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 2];
+                int z2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 6] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 6];
                 int z3 = z1 - z2;
                 int z4 = z3 * SLOW_INTEGER_FIX(0.275899379);        /* c14[16] = c7[8] */
-                z3 = z3 * SLOW_INTEGER_FIX(1.387039845);        /* c2[16] = c1[8] */
+                z3 *= SLOW_INTEGER_FIX(1.387039845);        /* c2[16] = c1[8] */
 
                 tmp0 = z3 + z2 * SLOW_INTEGER_FIX_2_562915447;  /* (c6+c2)[16] = (c3+c1)[8] */
                 tmp1 = z4 + z1 * SLOW_INTEGER_FIX_0_899976223;  /* (c6-c14)[16] = (c3-c7)[8] */
@@ -2226,14 +2208,14 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
                 /* Odd part */
 
-                z1 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 1],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 1]);
-                z2 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 3],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 3]);
-                z3 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 5],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 5]);
-                z4 = SLOW_INTEGER_DEQUANTIZE(coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7],
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 7]);
+                z1 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 1] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 1];
+                z2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 3] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 3];
+                z3 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 5] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 5];
+                z4 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7] *
+                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 7];
 
                 tmp11 = z1 + z3;
 
@@ -2241,7 +2223,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 tmp2 = tmp11 * SLOW_INTEGER_FIX(1.247225013);   /* c5 */
                 tmp3 = (z1 + z4) * SLOW_INTEGER_FIX(1.093201867);   /* c7 */
                 tmp10 = (z1 - z4) * SLOW_INTEGER_FIX(0.897167586);   /* c9 */
-                tmp11 = tmp11 * SLOW_INTEGER_FIX(0.666655658);   /* c11 */
+                tmp11 *= SLOW_INTEGER_FIX(0.666655658);   /* c11 */
                 tmp12 = (z1 - z2) * SLOW_INTEGER_FIX(0.410524528);   /* c13 */
                 tmp0 = tmp1 + tmp2 + tmp3 - z1 * SLOW_INTEGER_FIX(2.286341144);        /* c7+c5+c3-c1 */
                 tmp13 = tmp10 + tmp11 + tmp12 - z1 * SLOW_INTEGER_FIX(1.835730603);        /* c9+c11+c13-c15 */
@@ -2255,7 +2237,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 z1 = z2 * (-SLOW_INTEGER_FIX(0.666655658));      /* -c11 */
                 tmp1 += z1;
                 tmp3 += z1 + z4 * SLOW_INTEGER_FIX(1.065388962);  /* c3+c11+c15-c7 */
-                z2 = z2 * (-SLOW_INTEGER_FIX(1.247225013));      /* -c5 */
+                z2 *= (-SLOW_INTEGER_FIX(1.247225013));      /* -c5 */
                 tmp10 += z2 + z4 * SLOW_INTEGER_FIX(3.141271809);  /* c1+c5+c9-c13 */
                 tmp12 += z2;
                 z2 = (z3 + z4) * (-SLOW_INTEGER_FIX(1.353318001)); /* -c3 */
@@ -2267,22 +2249,22 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
                 /* Final output stage */
 
-                workspace[workspaceIndex + 8 * 0] = JpegUtils.RIGHT_SHIFT(tmp20 + tmp0, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 15] = JpegUtils.RIGHT_SHIFT(tmp20 - tmp0, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 1] = JpegUtils.RIGHT_SHIFT(tmp21 + tmp1, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 14] = JpegUtils.RIGHT_SHIFT(tmp21 - tmp1, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 2] = JpegUtils.RIGHT_SHIFT(tmp22 + tmp2, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 13] = JpegUtils.RIGHT_SHIFT(tmp22 - tmp2, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 3] = JpegUtils.RIGHT_SHIFT(tmp23 + tmp3, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 12] = JpegUtils.RIGHT_SHIFT(tmp23 - tmp3, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 4] = JpegUtils.RIGHT_SHIFT(tmp24 + tmp10, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 11] = JpegUtils.RIGHT_SHIFT(tmp24 - tmp10, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 5] = JpegUtils.RIGHT_SHIFT(tmp25 + tmp11, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 10] = JpegUtils.RIGHT_SHIFT(tmp25 - tmp11, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 6] = JpegUtils.RIGHT_SHIFT(tmp26 + tmp12, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 9] = JpegUtils.RIGHT_SHIFT(tmp26 - tmp12, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 7] = JpegUtils.RIGHT_SHIFT(tmp27 + tmp13, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-                workspace[workspaceIndex + 8 * 8] = JpegUtils.RIGHT_SHIFT(tmp27 - tmp13, SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 0] = (tmp20 + tmp0) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 15] = (tmp20 - tmp0) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 1] = (tmp21 + tmp1) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 14] = (tmp21 - tmp1) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 2] = (tmp22 + tmp2) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 13] = (tmp22 - tmp2) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 3] = (tmp23 + tmp3) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 12] = (tmp23 - tmp3) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 4] = (tmp24 + tmp10) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 11] = (tmp24 - tmp10) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 5] = (tmp25 + tmp11) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 10] = (tmp25 - tmp11) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 6] = (tmp26 + tmp12) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 9] = (tmp26 - tmp12) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 7] = (tmp27 + tmp13) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
+                workspace[workspaceIndex + 8 * 8] = (tmp27 - tmp13) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
 
                 /* advance pointers to next column */
                 coefBlockIndex++;
@@ -2339,42 +2321,42 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 z3 = tmp1 + tmp3;
 
                 z1 = (z2 + z3) * SLOW_INTEGER_FIX_1_175875602;       /*  c3 */
-                z2 = z2 * (-SLOW_INTEGER_FIX_1_961570560);          /* -c3-c5 */
-                z3 = z3 * (-SLOW_INTEGER_FIX_0_390180644);          /* -c3+c5 */
+                z2 *= (-SLOW_INTEGER_FIX_1_961570560);          /* -c3-c5 */
+                z3 *= (-SLOW_INTEGER_FIX_0_390180644);          /* -c3+c5 */
                 z2 += z1;
                 z3 += z1;
 
                 z1 = (tmp0 + tmp3) * (-SLOW_INTEGER_FIX_0_899976223); /* -c3+c7 */
-                tmp0 = tmp0 * SLOW_INTEGER_FIX_0_298631336;        /* -c1+c3+c5-c7 */
-                tmp3 = tmp3 * SLOW_INTEGER_FIX_1_501321110;        /*  c1+c3-c5-c7 */
+                tmp0 *= SLOW_INTEGER_FIX_0_298631336;        /* -c1+c3+c5-c7 */
+                tmp3 *= SLOW_INTEGER_FIX_1_501321110;        /*  c1+c3-c5-c7 */
                 tmp0 += z1 + z2;
                 tmp3 += z1 + z3;
 
                 z1 = (tmp1 + tmp2) * (-SLOW_INTEGER_FIX_2_562915447); /* -c1-c3 */
-                tmp1 = tmp1 * SLOW_INTEGER_FIX_2_053119869;        /*  c1+c3-c5+c7 */
-                tmp2 = tmp2 * SLOW_INTEGER_FIX_3_072711026;        /*  c1+c3+c5-c7 */
+                tmp1 *= SLOW_INTEGER_FIX_2_053119869;        /*  c1+c3-c5+c7 */
+                tmp2 *= SLOW_INTEGER_FIX_3_072711026;        /*  c1+c3+c5-c7 */
                 tmp1 += z1 + z3;
                 tmp2 += z1 + z2;
 
                 /* Final output stage: inputs are tmp10..tmp13, tmp0..tmp3 */
                 int currentOutRow = output_row + ctr;
                 var currentOutBuffer = m_componentBuffer[currentOutRow];
-                currentOutBuffer[output_col + 0] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp10 + tmp3, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 7] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp10 - tmp3, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 1] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp11 + tmp2, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 6] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp11 - tmp2, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 2] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp12 + tmp1, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 5] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp12 - tmp1, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 3] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp13 + tmp0, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
-                currentOutBuffer[output_col + 4] = limit[limitOffset + JpegUtils.RIGHT_SHIFT(
-                    tmp13 - tmp0, SLOW_INTEGER_CONST_BITS + SLOW_INTEGER_PASS1_BITS + 3) & RANGE_MASK];
+                currentOutBuffer[output_col + 0] = limit[limitOffset + 
+                    ((tmp10 + tmp3) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 7] = limit[limitOffset + 
+                    ((tmp10 - tmp3) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 1] = limit[limitOffset + 
+                    ((tmp11 + tmp2) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 6] = limit[limitOffset + 
+                    ((tmp11 - tmp2) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 2] = limit[limitOffset + 
+                    ((tmp12 + tmp1) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 5] = limit[limitOffset + 
+                    ((tmp12 - tmp1) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 3] = limit[limitOffset + 
+                    ((tmp13 + tmp0) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
+                currentOutBuffer[output_col + 4] = limit[limitOffset + 
+                    ((tmp13 - tmp0) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
 
                 workspaceIndex += JpegConstants.DCTSIZE;		/* advance pointer to next row */
             }

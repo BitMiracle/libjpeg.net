@@ -492,14 +492,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         private bool decode_mcu_full(JBLOCK[] MCU_data)
         {
             /* Process restart marker if needed; may have to suspend */
-            if (m_cinfo.m_restart_interval != 0)
-            {
-                if (m_restarts_to_go == 0)
-                {
-                    if (!process_restart())
-                        return false;
-                }
-            }
+            if (m_cinfo.m_restart_interval != 0 && m_restarts_to_go == 0 && !process_restart())
+                return false;
 
             /* If we've run out of data, just leave the MCU set to zeroes.
              * This way, we return uniform gray for the remainder of the segment.
@@ -507,10 +501,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             if (!m_insufficient_data)
             {
                 /* Load up working state */
-                int get_buffer;
-                int bits_left;
                 bitread_working_state br_state = new bitread_working_state();
-                BITREAD_LOAD_STATE(m_bitstate, out get_buffer, out bits_left, ref br_state);
+                BITREAD_LOAD_STATE(m_bitstate, out int get_buffer, out int bits_left, ref br_state);
                 savable_state state = new savable_state();
                 state.Assign(m_saved);
 
@@ -522,8 +514,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
                     /* Section F.2.2.1: decode the DC coefficient difference */
                     d_derived_tbl htbl = m_dc_cur_tbls[blkn];
-                    int s;
-                    HUFF_DECODE(out s, ref br_state, htbl, ref get_buffer, ref bits_left);
+                    HUFF_DECODE(out int s, ref br_state, htbl, ref get_buffer, ref bits_left);
 
                     htbl = m_ac_cur_tbls[blkn];
                     int k = 1;
@@ -636,14 +627,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         private bool decode_mcu_sub(JBLOCK[] MCU_data)
         {
             /* Process restart marker if needed; may have to suspend */
-            if (m_cinfo.m_restart_interval != 0)
-            {
-                if (m_restarts_to_go == 0)
-                {
-                    if (!process_restart())
-                        return false;
-                }
-            }
+            if (m_cinfo.m_restart_interval != 0 && m_restarts_to_go == 0 && !process_restart())
+                return false;
 
             /* If we've run out of data, just leave the MCU set to zeroes.
              * This way, we return uniform gray for the remainder of the segment.
@@ -654,10 +639,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int Se = m_cinfo.m_Se;
 
                 /* Load up working state */
-                int get_buffer;
-                int bits_left;
                 bitread_working_state br_state = new bitread_working_state();
-                BITREAD_LOAD_STATE(m_bitstate, out get_buffer, out bits_left, ref br_state);
+                BITREAD_LOAD_STATE(m_bitstate, out int get_buffer, out int bits_left, ref br_state);
                 savable_state state = new savable_state();
                 state.Assign(m_saved);
 
@@ -796,14 +779,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         private bool decode_mcu_DC_first(JBLOCK[] MCU_data)
         {
             /* Process restart marker if needed; may have to suspend */
-            if (m_cinfo.m_restart_interval != 0)
-            {
-                if (m_restarts_to_go == 0)
-                {
-                    if (!process_restart())
-                        return false;
-                }
-            }
+            if (m_cinfo.m_restart_interval != 0 && m_restarts_to_go == 0 && !process_restart())
+                return false;
 
             /* If we've run out of data, just leave the MCU set to zeroes.
              * This way, we return uniform gray for the remainder of the segment.
@@ -811,10 +788,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             if (!m_insufficient_data)
             {
                 /* Load up working state */
-                int get_buffer;
-                int bits_left;
                 bitread_working_state br_state = new bitread_working_state();
-                BITREAD_LOAD_STATE(m_bitstate, out get_buffer, out bits_left, ref br_state);
+                BITREAD_LOAD_STATE(m_bitstate, out int get_buffer, out int bits_left, ref br_state);
                 savable_state state = new savable_state();
                 state.Assign(m_saved);
 
@@ -826,8 +801,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                     /* Decode a single block's worth of coefficients */
 
                     /* Section F.2.2.1: decode the DC coefficient difference */
-                    int s;
-                    HUFF_DECODE(out s, ref br_state, derived_tbls[m_cinfo.Comp_info[m_cinfo.m_cur_comp_info[ci]].Dc_tbl_no], ref get_buffer, ref bits_left);
+                    HUFF_DECODE(out int s, ref br_state, derived_tbls[m_cinfo.Comp_info[m_cinfo.m_cur_comp_info[ci]].Dc_tbl_no], ref get_buffer, ref bits_left);
 
                     if (s != 0)
                     {
@@ -863,14 +837,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         private bool decode_mcu_AC_first(JBLOCK[] MCU_data)
         {
             /* Process restart marker if needed; may have to suspend */
-            if (m_cinfo.m_restart_interval != 0)
-            {
-                if (m_restarts_to_go == 0)
-                {
-                    if (!process_restart())
-                        return false;
-                }
-            }
+            if (m_cinfo.m_restart_interval != 0 && m_restarts_to_go == 0 && !process_restart())
+                return false;
 
             /* If we've run out of data, just leave the MCU set to zeroes.
              * This way, we return uniform gray for the remainder of the segment.
@@ -893,15 +861,12 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 }
                 else
                 {
-                    int get_buffer;
-                    int bits_left;
                     bitread_working_state br_state = new bitread_working_state();
-                    BITREAD_LOAD_STATE(m_bitstate, out get_buffer, out bits_left, ref br_state);
+                    BITREAD_LOAD_STATE(m_bitstate, out int get_buffer, out int bits_left, ref br_state);
 
                     for (int k = m_cinfo.m_Ss; k <= m_cinfo.m_Se; k++)
                     {
-                        int s;
-                        HUFF_DECODE(out s, ref br_state, ac_derived_tbl, ref get_buffer, ref bits_left);
+                        HUFF_DECODE(out int s, ref br_state, ac_derived_tbl, ref get_buffer, ref bits_left);
 
                         int r = s >> 4;
                         s &= 15;
@@ -961,24 +926,16 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         private bool decode_mcu_DC_refine(JBLOCK[] MCU_data)
         {
             /* Process restart marker if needed; may have to suspend */
-            if (m_cinfo.m_restart_interval != 0)
-            {
-                if (m_restarts_to_go == 0)
-                {
-                    if (!process_restart())
-                        return false;
-                }
-            }
+            if (m_cinfo.m_restart_interval != 0 && m_restarts_to_go == 0 && !process_restart())
+                return false;
 
             /* Not worth the cycles to check insufficient_data here,
              * since we will not change the data anyway if we read zeroes.
              */
 
             /* Load up working state */
-            int get_buffer;
-            int bits_left;
             bitread_working_state br_state = new bitread_working_state();
-            BITREAD_LOAD_STATE(m_bitstate, out get_buffer, out bits_left, ref br_state);
+            BITREAD_LOAD_STATE(m_bitstate, out int get_buffer, out int bits_left, ref br_state);
 
             int p1 = 1 << m_cinfo.m_Al;
 
@@ -1011,14 +968,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
         private bool decode_mcu_AC_refine(JBLOCK[] MCU_data)
         {
             /* Process restart marker if needed; may have to suspend */
-            if (m_cinfo.m_restart_interval != 0)
-            {
-                if (m_restarts_to_go == 0)
-                {
-                    if (!process_restart())
-                        return false;
-                }
-            }
+            if (m_cinfo.m_restart_interval != 0 && m_restarts_to_go == 0 && !process_restart())
+                return false;
 
             /* If we've run out of data, don't modify the MCU.
              */
@@ -1029,10 +980,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int[] natural_order = m_cinfo.natural_order;
 
                 /* Load up working state */
-                int get_buffer;
-                int bits_left;
                 bitread_working_state br_state = new bitread_working_state();
-                BITREAD_LOAD_STATE(m_bitstate, out get_buffer, out bits_left, ref br_state);
+                BITREAD_LOAD_STATE(m_bitstate, out int get_buffer, out int bits_left, ref br_state);
                 uint EOBRUN = m_saved.EOBRUN; /* only part of saved state we need */
 
                 /* If we are forced to suspend, we must undo the assignments to any newly
@@ -1051,8 +1000,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 {
                     do
                     {
-                        int s;
-                        HUFF_DECODE(out s, ref br_state, ac_derived_tbl, ref get_buffer, ref bits_left);
+                        HUFF_DECODE(out int s, ref br_state, ac_derived_tbl, ref get_buffer, ref bits_left);
 
                         int r = s >> 4;
                         s &= 15;
@@ -1188,16 +1136,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             return true;
         }
 
-        /// <summary>
-        /// MCU decoding for AC successive approximation refinement scan.
-        /// </summary>
-        private static void undo_decode_mcu_AC_refine(JBLOCK[] block, int[] newnz_pos, int num_newnz)
-        {
-            /* Re-zero any output coefficients that we made newly nonzero */
-            while (num_newnz > 0)
-                block[0][newnz_pos[--num_newnz]] = 0;
-        }
-
         /*
          * Finish up at the end of a Huffman-compressed scan.
          */
@@ -1289,12 +1227,8 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
         private static int GET_BITS(int nbits, int get_buffer, ref int bits_left)
         {
-            return (((int)(get_buffer >> (bits_left -= nbits))) & bmask[nbits]);
-        }
-
-        private static int PEEK_BITS(int nbits, int get_buffer, int bits_left)
-        {
-            return (((int)(get_buffer >> (bits_left - nbits))) & bmask[nbits]);
+            bits_left -= nbits;
+            return get_buffer >> bits_left & bmask[nbits];
         }
 
         private static void DROP_BITS(int nbits, ref int bits_left)
@@ -1338,7 +1272,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
             if (!doSlow)
             {
-                int look = PEEK_BITS(JpegConstants.HUFF_LOOKAHEAD, get_buffer, bits_left);
+                int look = get_buffer >> (bits_left - JpegConstants.HUFF_LOOKAHEAD) & bmask[JpegConstants.HUFF_LOOKAHEAD];
                 if ((nb = htbl.look_nbits[look]) != 0)
                 {
                     DROP_BITS(nb, ref bits_left);
@@ -1369,8 +1303,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 /* cannot advance past a marker */
                 while (bits_left < MIN_GET_BITS)
                 {
-                    int c;
-                    state.cinfo.m_src.GetByte(out c);
+                    state.cinfo.m_src.GetByte(out int c);
 
                     /* If it's 0xFF, check and discard stuffed zero byte */
                     if (c == 0xFF)

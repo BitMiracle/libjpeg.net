@@ -203,7 +203,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int cr = inputBuffer2[inputIndex2++];
 
                 int cred = m_Cr_r_tab[cr];
-                int cgreen = JpegUtils.RIGHT_SHIFT(m_Cb_g_tab[cb] + m_Cr_g_tab[cr], SCALEBITS);
+                int cgreen = (m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS;
                 int cblue = m_Cb_b_tab[cb];
 
                 /* Fetch 2 Y values and emit 2 pixels */
@@ -228,7 +228,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int cb = inputBuffer1[inputIndex1];
                 int cr = inputBuffer2[inputIndex2];
                 int cred = m_Cr_r_tab[cr];
-                int cgreen = JpegUtils.RIGHT_SHIFT(m_Cb_g_tab[cb] + m_Cr_g_tab[cr], SCALEBITS);
+                int cgreen = (m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS;
                 int cblue = m_Cb_b_tab[cb];
                 
                 int y = inputBuffer0[inputIndex0];
@@ -270,7 +270,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int cr = inputBuffer2[inputIndex2++];
 
                 int cred = m_Cr_r_tab[cr];
-                int cgreen = JpegUtils.RIGHT_SHIFT(m_Cb_g_tab[cb] + m_Cr_g_tab[cr], SCALEBITS);
+                int cgreen = (m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS;
                 int cblue = m_Cb_b_tab[cb];
 
                 /* Fetch 4 Y values and emit 4 pixels */
@@ -309,7 +309,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 int cb = inputBuffer1[inputIndex1];
                 int cr = inputBuffer2[inputIndex2];
                 int cred = m_Cr_r_tab[cr];
-                int cgreen = JpegUtils.RIGHT_SHIFT(m_Cb_g_tab[cb] + m_Cr_g_tab[cr], SCALEBITS);
+                int cgreen = (m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS;
                 int cblue = m_Cb_b_tab[cb];
 
                 int y = inputBuffer00[inputIndex00];
@@ -342,10 +342,10 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 /* i is the actual input pixel value, in the range 0..MAXJSAMPLE */
                 /* The Cb or Cr value we are thinking of is x = i - CENTERJSAMPLE */
                 /* Cr=>R value is nearest int to 1.402 * x */
-                m_Cr_r_tab[i] = JpegUtils.RIGHT_SHIFT(FIX(1.402) * x + ONE_HALF, SCALEBITS);
+                m_Cr_r_tab[i] = (FIX(1.402) * x + ONE_HALF) >> SCALEBITS;
 
                 /* Cb=>B value is nearest int to 1.772 * x */
-                m_Cb_b_tab[i] = JpegUtils.RIGHT_SHIFT(FIX(1.772) * x + ONE_HALF, SCALEBITS);
+                m_Cb_b_tab[i] = (FIX(1.772) * x + ONE_HALF) >> SCALEBITS;
 
                 /* Cr=>G value is scaled-up -0.714136286 * x */
                 m_Cr_g_tab[i] = (-FIX(0.714136286)) * x;
@@ -374,10 +374,10 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 /* i is the actual input pixel value, in the range 0..MAXJSAMPLE */
                 /* The Cb or Cr value we are thinking of is x = i - CENTERJSAMPLE */
                 /* Cr=>R value is nearest int to 2.804 * x */
-                m_Cr_r_tab[i] = JpegUtils.RIGHT_SHIFT(FIX(2.804) * x + ONE_HALF, SCALEBITS);
+                m_Cr_r_tab[i] = (FIX(2.804) * x + ONE_HALF) >> SCALEBITS;
 
                 /* Cb=>B value is nearest int to 3.544 * x */
-                m_Cb_b_tab[i] = JpegUtils.RIGHT_SHIFT(FIX(3.544) * x + ONE_HALF, SCALEBITS);
+                m_Cb_b_tab[i] = (FIX(3.544) * x + ONE_HALF) >> SCALEBITS;
 
                 /* Cr=>G value is scaled-up -1.428272572 * x */
                 m_Cr_g_tab[i] = (-FIX(1.428272572)) * x;
