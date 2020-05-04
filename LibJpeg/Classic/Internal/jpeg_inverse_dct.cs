@@ -490,14 +490,10 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             /* Note results are scaled up by sqrt(8) compared to a true IDCT; */
             /* furthermore, we scale the results by 2**SLOW_INTEGER_PASS1_BITS. */
 
-            int coefBlockIndex = 0;
-
             int[] quantTable = m_dctTables[component_index].int_array;
-            int quantTableIndex = 0;
-
-            int workspaceIndex = 0;
-
-            for (int ctr = JpegConstants.DCTSIZE; ctr > 0; ctr--)
+            for (int ctr = JpegConstants.DCTSIZE, coefBlockIndex = 0, quantTableIndex = 0, workspaceIndex = 0;
+                ctr > 0;
+                ctr--, coefBlockIndex++, quantTableIndex++, workspaceIndex++)
             {
                 /* Due to quantization, we will usually find that many of the input
                 * coefficients are zero, especially the AC terms.  We can exploit this
@@ -517,9 +513,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                     coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 7] == 0)
                 {
                     /* AC terms all zero */
-                    int dcval = (coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0] *
-                        quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0]) << SLOW_INTEGER_PASS1_BITS;
-
+                    int dcval = (coef_block[coefBlockIndex] * quantTable[quantTableIndex]) << SLOW_INTEGER_PASS1_BITS;
                     m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 0] = dcval;
                     m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 1] = dcval;
                     m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 2] = dcval;
@@ -528,19 +522,13 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                     m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 5] = dcval;
                     m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 6] = dcval;
                     m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 7] = dcval;
-
-                    /* advance pointers to next column */
-                    coefBlockIndex++;
-                    quantTableIndex++;
-                    workspaceIndex++;
                     continue;
                 }
 
                 /* Even part: reverse the even part of the forward DCT. */
                 /* The rotator is c(-6). */
 
-                int z2 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 0] * 
-                    quantTable[quantTableIndex + JpegConstants.DCTSIZE * 0];
+                int z2 = coef_block[coefBlockIndex] * quantTable[quantTableIndex];
                 int z3 = coef_block[coefBlockIndex + JpegConstants.DCTSIZE * 4] *
                     quantTable[quantTableIndex + JpegConstants.DCTSIZE * 4];
 
@@ -610,25 +598,21 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 5] = (tmp12 - tmp1) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
                 m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 3] = (tmp13 + tmp0) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
                 m_workspace[workspaceIndex + JpegConstants.DCTSIZE * 4] = (tmp13 - tmp0) >> (SLOW_INTEGER_CONST_BITS - SLOW_INTEGER_PASS1_BITS);
-
-                /* advance pointers to next column */
-                coefBlockIndex++;
-                quantTableIndex++;
-                workspaceIndex++;
             }
 
             /* Pass 2: process rows from work array, store into output array. */
             /* Note that we must descale the results by a factor of 8 == 2**3, */
             /* and also undo the SLOW_INTEGER_PASS1_BITS scaling. */
 
-            workspaceIndex = 0;
             byte[] limit = m_cinfo.m_sample_range_limit;
             int limitOffset = m_cinfo.m_sampleRangeLimitOffset - RANGE_SUBSET;
 
-            for (int ctr = 0; ctr < JpegConstants.DCTSIZE; ctr++)
+            for (int ctr = 0, workspaceIndex = 0;
+                ctr < JpegConstants.DCTSIZE;
+                ctr++, workspaceIndex += JpegConstants.DCTSIZE)
             {
                 /* Add range center and fudge factor for final descale and range-limit. */
-                int z2 = m_workspace[workspaceIndex + 0] +
+                int z2 = m_workspace[workspaceIndex] +
                     (RANGE_CENTER << (SLOW_INTEGER_PASS1_BITS + 3)) +
                     (1 << (SLOW_INTEGER_PASS1_BITS + 2));
 
@@ -651,7 +635,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 {
                     /* AC terms all zero */
                     byte dcval = limit[limitOffset + ((z2 >> (SLOW_INTEGER_PASS1_BITS + 3)) & RANGE_MASK)];
-
                     currentOutBuffer[output_col + 0] = dcval;
                     currentOutBuffer[output_col + 1] = dcval;
                     currentOutBuffer[output_col + 2] = dcval;
@@ -660,8 +643,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                     currentOutBuffer[output_col + 5] = dcval;
                     currentOutBuffer[output_col + 6] = dcval;
                     currentOutBuffer[output_col + 7] = dcval;
-
-                    workspaceIndex += JpegConstants.DCTSIZE;       /* advance pointer to next row */
                     continue;
                 }
 
@@ -725,9 +706,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 currentOutBuffer[output_col + 5] = limit[limitOffset + ((tmp12 - tmp1) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
                 currentOutBuffer[output_col + 3] = limit[limitOffset + ((tmp13 + tmp0) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
                 currentOutBuffer[output_col + 4] = limit[limitOffset + ((tmp13 - tmp0) >> SLOW_INTEGER_PASS1_PLUS3_BITS) & RANGE_MASK];
-
-                /* advance pointer to next row */
-                workspaceIndex += JpegConstants.DCTSIZE;
             }
         }
 
