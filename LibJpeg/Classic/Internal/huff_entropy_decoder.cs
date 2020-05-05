@@ -40,8 +40,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
         /*
         * Out-of-line code for bit fetching.
-        * Note: current values of get_buffer and bits_left are passed as parameters,
-        * but are returned in the corresponding fields of the state struct.
         *
         * On most machines MIN_GET_BITS should be 25 to allow the full 32-bit width
         * of get_buffer to be used.  (On machines with wider words, an even larger
@@ -1269,7 +1267,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
             if (m_cinfo.m_unread_marker == 0)
             {
-                /* cannot advance past a marker */
                 while (bits_left < MIN_GET_BITS)
                 {
                     m_cinfo.m_src.GetByte(out int c);
@@ -1317,6 +1314,7 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             }
             else
             {
+                /* cannot advance past a marker */
                 /* We get here if we've read the marker that terminates the compressed
                 * data segment.  There should be enough bits in the buffer register
                 * to satisfy the request; if so, no problem.
