@@ -172,10 +172,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
         private readonly jpeg_decompress_struct m_cinfo;
 
-        // Bit buffer at start of MCU (loaded from m_bitstate) or after last call
-        // to jpeg_fill_bit_buffer or jpeg_huff_decode
-        private readonly bitread_working_state br_state = new bitread_working_state();
-
         // Working bit buffer state
         private int get_buffer;
         private int bits_left;
@@ -1346,10 +1342,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 get_buffer <<= MIN_GET_BITS - bits_left;
                 bits_left = MIN_GET_BITS;
             }
-
-            /* Unload the local registers */
-            br_state.get_buffer = get_buffer;
-            br_state.bits_left = bits_left;
         }
 
         /// <summary>
@@ -1506,10 +1498,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 code |= get_buffer >> bits_left & bmask[1];
                 l++;
             }
-
-            /* Unload the local registers */
-            br_state.get_buffer = get_buffer;
-            br_state.bits_left = bits_left;
 
             /* With garbage input we may reach the sentinel value l = 17. */
 
