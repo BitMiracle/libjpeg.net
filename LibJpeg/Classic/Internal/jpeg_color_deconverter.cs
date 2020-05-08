@@ -608,31 +608,34 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             int limitOffset = m_cinfo.m_sampleRangeLimitOffset;
 
             int num_cols = m_cinfo.m_output_width;
+            var component0 = input_buf[0];
+            var component1 = input_buf[1];
+            var component2 = input_buf[2];
+            var component3 = input_buf[3];
             for (int row = 0; row < num_rows; row++)
             {
                 int columnOffset = 0;
-                var inputBuffer0 = input_buf[0][input_row + component0RowOffset];
-                var inputBuffer1 = input_buf[1][input_row + component1RowOffset];
-                var inputBuffer2 = input_buf[2][input_row + component2RowOffset];
-                var inputBuffer3 = input_buf[3][input_row + component3RowOffset];
+                var inputBuffer0 = component0[input_row + component0RowOffset];
+                var inputBuffer1 = component1[input_row + component1RowOffset];
+                var inputBuffer2 = component2[input_row + component2RowOffset];
+                var inputBuffer3 = component3[input_row + component3RowOffset];
                 var outputBuffer = output_buf[output_row + row];
                 for (int col = 0; col < num_cols; col++)
                 {
-                    int y = inputBuffer0[col];
+                    int yAdjusted = limitOffset + JpegConstants.MAXJSAMPLE - inputBuffer0[col];
                     int cb = inputBuffer1[col];
                     int cr = inputBuffer2[col];
 
                     /* Range-limiting is essential due to noise introduced by DCT losses,
                      * and for extended gamut encodings (sYCC).
                      */
-                    outputBuffer[columnOffset] = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + m_Cr_r_tab[cr])]; /* red */
-                    outputBuffer[columnOffset + 1] = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + ((m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS))]; /* green */
-                    outputBuffer[columnOffset + 2] = limit[limitOffset + JpegConstants.MAXJSAMPLE - (y + m_Cb_b_tab[cb])]; /* blue */
+                    outputBuffer[columnOffset++] = limit[yAdjusted - m_Cr_r_tab[cr]]; /* red */
+                    outputBuffer[columnOffset++] = limit[yAdjusted - ((m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS)]; /* green */
+                    outputBuffer[columnOffset++] = limit[yAdjusted - m_Cb_b_tab[cb]]; /* blue */
 
                     /* K passes through unchanged */
                     /* don't need GETJSAMPLE here */
-                    outputBuffer[columnOffset + 3] = inputBuffer3[col];
-                    columnOffset += 4;
+                    outputBuffer[columnOffset++] = inputBuffer3[col];
                 }
 
                 input_row++;
