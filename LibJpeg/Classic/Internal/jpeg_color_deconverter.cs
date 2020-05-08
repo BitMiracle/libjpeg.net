@@ -397,26 +397,28 @@ namespace BitMiracle.LibJpeg.Classic.Internal
             byte[] limit = m_cinfo.m_sample_range_limit;
             int limitOffset = m_cinfo.m_sampleRangeLimitOffset;
 
+            var component0 = input_buf[0];
+            var component1 = input_buf[1];
+            var component2 = input_buf[2];
             for (int row = 0; row < num_rows; row++)
             {
                 int columnOffset = 0;
-                var inputBuffer0 = input_buf[0][input_row + component0RowOffset];
-                var inputBuffer1 = input_buf[1][input_row + component1RowOffset];
-                var inputBuffer2 = input_buf[2][input_row + component2RowOffset];
+                var inputBuffer0 = component0[input_row + component0RowOffset];
+                var inputBuffer1 = component1[input_row + component1RowOffset];
+                var inputBuffer2 = component2[input_row + component2RowOffset];
                 var outputBuffer = output_buf[output_row + row];
                 for (int col = 0; col < m_cinfo.m_output_width; col++)
                 {
-                    int y = inputBuffer0[col];
+                    int yPlusOffset = inputBuffer0[col] + limitOffset;
                     int cb = inputBuffer1[col];
                     int cr = inputBuffer2[col];
 
                     /* Range-limiting is essential due to noise introduced by DCT losses.
                      * for extended gamut (sYCC) and wide gamut (bg-sYCC) encodings.
                      */
-                    outputBuffer[columnOffset + JpegConstants.RGB_RED] = limit[limitOffset + y + m_Cr_r_tab[cr]];
-                    outputBuffer[columnOffset + JpegConstants.RGB_GREEN] = limit[limitOffset + y + ((m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS)];
-                    outputBuffer[columnOffset + JpegConstants.RGB_BLUE] = limit[limitOffset + y + m_Cb_b_tab[cb]];
-                    columnOffset += JpegConstants.RGB_PIXELSIZE;
+                    outputBuffer[columnOffset++] = limit[yPlusOffset + m_Cr_r_tab[cr]];
+                    outputBuffer[columnOffset++] = limit[yPlusOffset + ((m_Cb_g_tab[cb] + m_Cr_g_tab[cr]) >> SCALEBITS)];
+                    outputBuffer[columnOffset++] = limit[yPlusOffset + m_Cb_b_tab[cb]];
                 }
 
                 input_row++;
