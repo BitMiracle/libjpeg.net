@@ -986,18 +986,10 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                 BITREAD_LOAD_STATE();
                 uint EOBRUN = m_saved.EOBRUN; /* only part of saved state we need */
 
-                /* If we are forced to suspend, we must undo the assignments to any newly
-                 * nonzero coefficients in the block, because otherwise we'd get confused
-                 * next time about which coefficients were already nonzero.
-                 * But we need not undo addition of bits to already-nonzero coefficients.
-                 * instead, we can test the current bit to see if we already did it.
-                 */
-                int num_newnz = 0;
-                int[] newnz_pos = new int[JpegConstants.DCTSIZE2];
-
                 /* initialize coefficient loop counter to start of band */
                 int k = m_cinfo.m_Ss;
 
+                var mcuDataBlock = MCU_data[0].data;
                 if (EOBRUN == 0)
                 {
                     do
@@ -1050,7 +1042,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                          * appending correction bits to the nonzeroes.  A correction bit is 1
                          * if the absolute value of the coefficient must be increased.
                          */
-                        var mcuDataBlock = MCU_data[0].data;
                         do
                         {
                             int blockIndex = natural_order[k];
@@ -1086,9 +1077,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
 
                             /* Output newly nonzero coefficient */
                             mcuDataBlock[pos] = (short)s;
-
-                            /* Remember its position in case we have to suspend */
-                            newnz_pos[num_newnz++] = pos;
                         }
 
                         k++;
@@ -1102,7 +1090,6 @@ namespace BitMiracle.LibJpeg.Classic.Internal
                      * bit to each already-nonzero coefficient.  A correction bit is 1
                      * if the absolute value of the coefficient must be increased.
                      */
-                    var mcuDataBlock = MCU_data[0].data;
                     do
                     {
                         int blockIndex = natural_order[k];
