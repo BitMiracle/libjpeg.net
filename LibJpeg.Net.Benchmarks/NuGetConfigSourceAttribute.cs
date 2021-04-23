@@ -17,11 +17,10 @@ namespace LibJpeg.Net.Benchmarks
             string[] versions =
             {
                 BaselineVersion,
-                "1.5.314",
+                "1.5.324",
             };
             Runtime[] runtimes =
             {
-                ClrRuntime.Net472,
                 CoreRuntime.Core31
             };
 
@@ -30,7 +29,7 @@ namespace LibJpeg.Net.Benchmarks
             {
                 foreach (string version in versions)
                 {
-                    bool baseline = (version == BaselineVersion && runtime == ClrRuntime.Net472);
+                    bool baseline = version == BaselineVersion;
                     config.AddJob(createJob("BitMiracle.LibJpeg.NET", version, runtime, baseline));
                 }
             }

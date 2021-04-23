@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net472;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>LibJpeg.Net.Benchmarks</AssemblyName>
     <PackageId>LibJpeg.Net.Benchmarks</PackageId>
@@ -16,7 +16,7 @@
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
     <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.12.1" />
-    <PackageReference Include="BitMiracle.LibJpeg.NET" Version="1.4.309.0" />
+    <PackageReference Include="BitMiracle.LibJpeg.NET" Version="1.5.324" />
   </ItemGroup>
 
 </Project>
