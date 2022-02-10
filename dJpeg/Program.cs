@@ -94,7 +94,7 @@ namespace BitMiracle.dJpeg
             }
             else
             {
-                Console.WriteLine(string.Format("{0}: sorry, can't read file from console"));
+                Console.WriteLine($"{progname}: sorry, can't read file from console");
                 return;
             }
 

@@ -56,7 +56,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\cdJpeg\cdjpeg_utils.cs">
+      <Link>cdjpeg_utils.cs</Link>
+    </Compile>
     <Compile Include="AssemblyVersion.cs" />
+    <Compile Include="JCOPY_OPTION.cs" />
+    <Compile Include="JCROP_CODE.cs" />
+    <Compile Include="jpeg_transform_info.cs" />
+    <Compile Include="jtransform.cs" />
+    <Compile Include="JXFORM_CODE.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +74,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibJpeg\LibJpeg.csproj">
+      <Project>{7300CDF5-1C93-4611-8CC9-47FE79F340AB}</Project>
+      <Name>LibJpeg</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
