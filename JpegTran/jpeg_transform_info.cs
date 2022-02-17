@@ -102,7 +102,10 @@ namespace BitMiracle.JpegTran
         /// </summary>
         public int num_components;
 
-        //// public jvirt_barray_ptr[] workspace_coef_arrays; // workspace for transformations
+        /// <summary>
+        /// workspace for transformations
+        /// </summary>
+        public jvirt_array<JBLOCK>[] workspace_coef_arrays;
 
         /// <summary>
         /// cropped destination dimensions
