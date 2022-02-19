@@ -14,6 +14,8 @@ namespace BitMiracle.JpegTran
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles")]
     class jtransform
     {
+        private static byte JPEG_APP0 = 0xE0; /* APP0 marker code */
+
         /* Parse a crop specification (written in X11 geometry style).
          * The routine returns true if the spec string is valid, false if not.
          *
@@ -485,7 +487,104 @@ namespace BitMiracle.JpegTran
             jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo,
             jvirt_array<JBLOCK>[] src_coef_arrays, jpeg_transform_info info)
         {
-            throw new NotImplementedException();
+            /* If force-to-grayscale is requested, adjust destination parameters */
+            if (info.force_grayscale)
+            {
+                /* First, ensure we have YCC or grayscale data, and that the source's
+                 * Y channel is full resolution.  (No reasonable person would make Y
+                 * be less than full resolution, so actually coping with that case
+                 * isn't worth extra code space.  But we check it to avoid crashing.)
+                 */
+                if ((((dstinfo.Jpeg_color_space == J_COLOR_SPACE.JCS_YCbCr ||
+                    dstinfo.Jpeg_color_space == J_COLOR_SPACE.JCS_BG_YCC) &&
+                    dstinfo.Num_components == 3) ||
+                    (dstinfo.Jpeg_color_space == J_COLOR_SPACE.JCS_GRAYSCALE &&
+                    dstinfo.Num_components == 1)) &&
+                    srcinfo.Comp_info[0].H_samp_factor == srcinfo.m_max_h_samp_factor &&
+                    srcinfo.Comp_info[0].V_samp_factor == srcinfo.m_max_v_samp_factor)
+                {
+                    /* We use jpeg_set_colorspace to make sure subsidiary settings get fixed
+                     * properly.  Among other things, it sets the target h_samp_factor &
+                     * v_samp_factor to 1, which typically won't match the source.
+                     * We have to preserve the source's quantization table number, however.
+                     */
+                    int sv_quant_tbl_no = dstinfo.Component_info[0].Quant_tbl_no;
+                    dstinfo.jpeg_set_colorspace(J_COLOR_SPACE.JCS_GRAYSCALE);
+                    dstinfo.Component_info[0].Quant_tbl_no = sv_quant_tbl_no;
+                }
+                else
+                {
+                    /* Sorry, can't do it */
+                    dstinfo.ERREXIT(J_MESSAGE_CODE.JERR_CONVERSION_NOTIMPL);
+                }
+            }
+            else if (info.num_components == 1)
+            {
+                /* For a single-component source, we force the destination sampling factors
+                 * to 1x1, with or without force_grayscale.  This is useful because some
+                 * decoders choke on grayscale images with other sampling factors.
+                 */
+                dstinfo.Component_info[0].H_samp_factor = 1;
+                dstinfo.Component_info[0].V_samp_factor = 1;
+            }
+
+            /* Correct the destination's image dimensions as necessary
+             * for rotate/flip, resize, and crop operations.
+             */
+            dstinfo.jpeg_width = info.output_width;
+            dstinfo.jpeg_height = info.output_height;
+
+            /* Transpose destination image parameters, adjust quantization */
+            switch (info.transform)
+            {
+                case JXFORM_CODE.JXFORM_TRANSPOSE:
+                case JXFORM_CODE.JXFORM_TRANSVERSE:
+                case JXFORM_CODE.JXFORM_ROT_90:
+                case JXFORM_CODE.JXFORM_ROT_270:
+                    transpose_critical_parameters(dstinfo);
+                    break;
+
+                case JXFORM_CODE.JXFORM_DROP:
+                    if (info.drop_width != 0 && info.drop_height != 0)
+                    {
+                        adjust_quant(srcinfo, src_coef_arrays, info.drop_ptr,
+                            info.drop_coef_arrays, info.trim, dstinfo);
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+
+            /* Adjust Exif properties */
+            if (srcinfo.Marker_list?.Count > 0 &&
+                srcinfo.Marker_list[0].Marker == JPEG_APP0 + 1 &&
+                srcinfo.Marker_list[0].Data.Length >= 6 &&
+                srcinfo.Marker_list[0].Data[0] == 0x45 &&
+                srcinfo.Marker_list[0].Data[1] == 0x78 &&
+                srcinfo.Marker_list[0].Data[2] == 0x69 &&
+                srcinfo.Marker_list[0].Data[3] == 0x66 &&
+                srcinfo.Marker_list[0].Data[4] == 0 &&
+                srcinfo.Marker_list[0].Data[5] == 0)
+            {
+                /* Suppress output of JFIF marker */
+                dstinfo.Write_JFIF_header = false;
+
+                /* Adjust Exif image parameters */
+                if (dstinfo.jpeg_width != srcinfo.Image_width || dstinfo.jpeg_height != srcinfo.Image_height)
+                {
+                    /* Align data segment to start of TIFF structure for parsing */
+                    adjust_exif_parameters(
+                        srcinfo.Marker_list[0].Data, 6, srcinfo.Marker_list[0].Data.Length - 6,
+                        dstinfo.jpeg_width, dstinfo.jpeg_height);
+                }
+            }
+
+            /* Return the appropriate output data set */
+            if (info.workspace_coef_arrays != null)
+                return info.workspace_coef_arrays;
+
+            return src_coef_arrays;
         }
 
         /* Copy markers saved in the given source object to the destination object.
@@ -496,7 +595,43 @@ namespace BitMiracle.JpegTran
          */
         public static void jcopy_markers_execute(jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo)
         {
-            throw new NotImplementedException();
+            /* In the current implementation, we don't actually need to examine the
+             * option flag here; we just copy everything that got saved.
+             * But to avoid confusion, we do not output JFIF and Adobe APP14 markers
+             * if the encoder library already wrote one.
+             */
+            for (int i = 0; i < srcinfo.Marker_list.Count; i++)
+            {
+                var marker = srcinfo.Marker_list[i];
+
+                if (dstinfo.Write_JFIF_header &&
+                    marker.Marker == JPEG_APP0 &&
+                    marker.Data.Length >= 5 &&
+                    marker.Data[0] == 0x4A &&
+                    marker.Data[1] == 0x46 &&
+                    marker.Data[2] == 0x49 &&
+                    marker.Data[3] == 0x46 &&
+                    marker.Data[4] == 0)
+                {
+                    /* reject duplicate JFIF */
+                    continue;
+                }
+
+                if (dstinfo.Write_Adobe_marker &&
+                    marker.Marker == JPEG_APP0 + 14 &&
+                    marker.Data.Length >= 5 &&
+                    marker.Data[0] == 0x41 &&
+                    marker.Data[1] == 0x64 &&
+                    marker.Data[2] == 0x6F &&
+                    marker.Data[3] == 0x62 &&
+                    marker.Data[4] == 0x65)
+                {
+                    /* reject duplicate Adobe */
+                    continue;
+                }
+
+                dstinfo.jpeg_write_marker(marker.Marker, marker.Data);
+            }
         }
 
         /* Execute the actual transformation, if any.
@@ -586,6 +721,63 @@ namespace BitMiracle.JpegTran
         }
 
         private static void drop_request_from_src(jpeg_decompress_struct dropinfo, jpeg_decompress_struct srcinfo)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Transpose destination image parameters */
+        private static void transpose_critical_parameters(jpeg_compress_struct dstinfo)
+        {
+            /* Transpose image dimensions */
+            var jtemp = dstinfo.Image_width;
+            dstinfo.Image_width = dstinfo.Image_height;
+            dstinfo.Image_height = jtemp;
+            
+            var itemp = dstinfo.min_DCT_h_scaled_size;
+            dstinfo.min_DCT_h_scaled_size = dstinfo.min_DCT_v_scaled_size;
+            dstinfo.min_DCT_v_scaled_size = itemp;
+
+            /* Transpose sampling factors */
+            for (int ci = 0; ci < dstinfo.Num_components; ci++)
+            {
+                var compptr = dstinfo.Component_info[ci];
+                itemp = compptr.H_samp_factor;
+                compptr.H_samp_factor = compptr.V_samp_factor;
+                compptr.V_samp_factor = itemp;
+            }
+
+            /* Transpose quantization tables */
+            for (int tblno = 0; tblno < JpegConstants.NUM_QUANT_TBLS; tblno++)
+            {
+                var qtblptr = dstinfo.Quant_tbl_ptrs[tblno];
+                if (qtblptr == null)
+                    continue;
+
+                for (int i = 0; i < JpegConstants.DCTSIZE; i++)
+                {
+                    for (int j = 0; j < i; j++)
+                    {
+                        var qtemp = qtblptr.quantval[i * JpegConstants.DCTSIZE + j];
+                        qtblptr.quantval[i * JpegConstants.DCTSIZE + j] = qtblptr.quantval[j * JpegConstants.DCTSIZE + i];
+                        qtblptr.quantval[j * JpegConstants.DCTSIZE + i] = qtemp;
+                    }
+                }
+            }
+        }
+
+        private static void adjust_quant(jpeg_decompress_struct srcinfo,
+            jvirt_array<JBLOCK>[] src_coef_arrays, jpeg_decompress_struct dropinfo,
+            jvirt_array<JBLOCK>[] drop_coef_arrays, bool trim, jpeg_compress_struct dstinfo)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Adjust Exif image parameters.
+         *
+         * We try to adjust the Tags ExifImageWidth and ExifImageHeight if possible.
+         */
+        private static void adjust_exif_parameters(
+            byte[] data, int offset, int length, JDIMENSION new_width, JDIMENSION new_height)
         {
             throw new NotImplementedException();
         }

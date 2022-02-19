@@ -93,7 +93,7 @@ namespace BitMiracle.JpegTran
         /// </summary>
         public jpeg_decompress_struct drop_ptr;
 
-        // public jvirt_barray_ptr[] drop_coef_arrays;
+        public jvirt_array<JBLOCK>[] drop_coef_arrays;
 
         /* Internal workspace: caller should not touch these */
 
