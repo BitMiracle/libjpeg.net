@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
@@ -7,8 +8,8 @@ namespace UnitTests
 {
     class Tester
     {
-        private static object locked = new object();
-        private bool m_compression;
+        private static readonly object locked = new object();
+        private readonly Action<string[]> m_action;
 
         public static readonly string Testcase;
 
@@ -39,6 +40,24 @@ namespace UnitTests
 
         }
 
+        private Tester(Action<string[]> action)
+        {
+            m_action = action;
+        }
+
+        public static Tester CreateForCompression(bool compression)
+        {
+            if (compression)
+                return new Tester(BitMiracle.cJpeg.Program.Main);
+
+            return new Tester(BitMiracle.dJpeg.Program.Main);
+        }
+
+        public static Tester CreateForTransformations()
+        {
+            return new Tester(BitMiracle.JpegTran.Program.Main);
+        }
+
         public static string MapOpenPath(string path)
         {
             return Path.Combine(Testcase, path);
@@ -66,7 +85,7 @@ namespace UnitTests
 
         public static void PerformTest(string[] args, string file, string suffix, bool compression)
         {
-            Tester Tester = new Tester(compression);
+            Tester Tester = Tester.CreateForCompression(compression);
             string inputFile = Path.Combine(Testcase, Path.GetFileName(file));
 
             string ext;
@@ -79,14 +98,19 @@ namespace UnitTests
             Tester.Run(args, inputFile, outputFile);
         }
 
-        public Tester(bool compression)
+        public static void TestTransform(string prefix, string file, params string[] args)
         {
-            m_compression = compression;
+            Tester Tester = Tester.CreateForTransformations();
+            string inputFile = Path.Combine(Testcase, Path.GetFileName(file));
+
+            string outputName = $"{prefix}_{Path.GetFileNameWithoutExtension(file)}.jpg";
+            string outputFile = MapOutputPath(outputName);
+            Tester.Run(args, inputFile, outputFile);
         }
 
         public void Run(string[] args, string sourceImage, string targetImage)
         {
-            // xJpeg.Program.Main is static, so lock concurent access to a test code
+            // actions can be static, so lock concurent access to a test code
             // use a private field to lock upon 
 
             lock (locked)
@@ -99,10 +123,7 @@ namespace UnitTests
                 completeArgs.Add(sourceImage);
                 completeArgs.Add(targetImage);
 
-                if (m_compression)
-                    BitMiracle.cJpeg.Program.Main(completeArgs.ToArray());
-                else
-                    BitMiracle.dJpeg.Program.Main(completeArgs.ToArray());
+                m_action(completeArgs.ToArray());
 
                 string sampleFile = targetImage.Replace(@"\Output\", @"\Expected\");
                 FileAssert.AreEqual(sampleFile, targetImage);

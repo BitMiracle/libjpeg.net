@@ -49,6 +49,7 @@
   <ItemGroup>
     <ProjectReference Include="..\cJpeg\cJpeg.csproj" />
     <ProjectReference Include="..\dJpeg\dJpeg.csproj" />
+    <ProjectReference Include="..\JpegTran\JpegTran.csproj" />
     <ProjectReference Include="..\Jpeg\Jpeg.csproj" />
     <ProjectReference Include="..\LibJpeg\LibJpeg.csproj" />
   </ItemGroup>

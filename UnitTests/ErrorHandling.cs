@@ -8,8 +8,8 @@ namespace UnitTests
     [TestFixture]
     public class ErrorHandlingTests
     {
-        private Tester m_testerCompress = new Tester(true);
-        private Tester m_testerDecompress = new Tester(false);
+        private Tester m_testerCompress = Tester.CreateForCompression(true);
+        private Tester m_testerDecompress = Tester.CreateForCompression(false);
 
         private TextWriter m_consoleOutBefore;
 

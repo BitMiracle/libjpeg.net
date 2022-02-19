@@ -22,7 +22,7 @@ namespace BitMiracle.JpegTran
         static bool printed_version;
 
         /* image transformation options */
-        static jpeg_transform_info transformoption = new jpeg_transform_info();
+        static readonly jpeg_transform_info transformoption = new jpeg_transform_info();
 
         static string outfilename; /* for -outfile switch */
         static string dropfilename;	/* for -drop switch */
@@ -30,7 +30,7 @@ namespace BitMiracle.JpegTran
 
         static JCOPY_OPTION copyoption;	/* -copy switch */
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             progName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
 
