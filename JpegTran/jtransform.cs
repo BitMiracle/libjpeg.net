@@ -14,7 +14,7 @@ namespace BitMiracle.JpegTran
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles")]
     class jtransform
     {
-        private static byte JPEG_APP0 = 0xE0; /* APP0 marker code */
+        private static readonly byte JPEG_APP0 = 0xE0; /* APP0 marker code */
 
         /* Parse a crop specification (written in X11 geometry style).
          * The routine returns true if the spec string is valid, false if not.
@@ -646,7 +646,117 @@ namespace BitMiracle.JpegTran
             jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo,
             jvirt_array<JBLOCK>[] src_coef_arrays, jpeg_transform_info info)
         {
-            throw new NotImplementedException();
+            var dst_coef_arrays = info.workspace_coef_arrays;
+
+            /* Note: conditions tested here should match those in switch statement
+             * in jtransform_request_workspace()
+             */
+            switch (info.transform)
+            {
+                case JXFORM_CODE.JXFORM_NONE:
+                    if (info.output_width > srcinfo.Output_width ||
+                        info.output_height > srcinfo.Output_height)
+                    {
+                        if (info.output_width > srcinfo.Output_width &&
+                            info.crop_width_set == JCROP_CODE.JCROP_REFLECT)
+                        {
+                            do_crop_ext_reflect(srcinfo, dstinfo, info.x_crop_offset,
+                                info.y_crop_offset, src_coef_arrays, dst_coef_arrays);
+                        }
+                        else if (info.output_width > srcinfo.Output_width &&
+                            info.crop_width_set == JCROP_CODE.JCROP_FORCE)
+                        {
+                            do_crop_ext_flat(srcinfo, dstinfo, info.x_crop_offset,
+                                info.y_crop_offset, src_coef_arrays, dst_coef_arrays);
+                        }
+                        else
+                        {
+                            do_crop_ext_zero(srcinfo, dstinfo, info.x_crop_offset,
+                                info.y_crop_offset, src_coef_arrays, dst_coef_arrays);
+                        }
+                    }
+                    else if (info.x_crop_offset != 0 || info.y_crop_offset != 0)
+                    {
+                        do_crop(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                            src_coef_arrays, dst_coef_arrays);
+                    }
+                    break;
+
+                case JXFORM_CODE.JXFORM_FLIP_H:
+                    if (info.y_crop_offset != 0)
+                    {
+                        do_flip_h(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                            src_coef_arrays, dst_coef_arrays);
+                    }
+                    else
+                    {
+                        do_flip_h_no_crop(srcinfo, dstinfo, info.x_crop_offset, src_coef_arrays);
+                    }
+                    break;
+
+                case JXFORM_CODE.JXFORM_FLIP_V:
+                    do_flip_v(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                        src_coef_arrays, dst_coef_arrays);
+                    break;
+
+                case JXFORM_CODE.JXFORM_TRANSPOSE:
+                    do_transpose(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                        src_coef_arrays, dst_coef_arrays);
+                    break;
+
+                case JXFORM_CODE.JXFORM_TRANSVERSE:
+                    do_transverse(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                        src_coef_arrays, dst_coef_arrays);
+                    break;
+
+                case JXFORM_CODE.JXFORM_ROT_90:
+                    do_rot_90(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                        src_coef_arrays, dst_coef_arrays);
+                    break;
+
+                case JXFORM_CODE.JXFORM_ROT_180:
+                    do_rot_180(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                        src_coef_arrays, dst_coef_arrays);
+                    break;
+
+                case JXFORM_CODE.JXFORM_ROT_270:
+                    do_rot_270(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                        src_coef_arrays, dst_coef_arrays);
+                    break;
+
+                case JXFORM_CODE.JXFORM_WIPE:
+                    if (info.crop_width_set == JCROP_CODE.JCROP_REFLECT &&
+                        info.y_crop_offset == 0 &&
+                        info.drop_height ==
+                        (JDIMENSION)JpegUtils.jdiv_round_up(info.output_height, info.iMCU_sample_height) &&
+                        (info.x_crop_offset == 0 ||
+                        info.x_crop_offset + info.drop_width ==
+                        (JDIMENSION)JpegUtils.jdiv_round_up(info.output_width, info.iMCU_sample_width)))
+                    {
+                        do_reflect(srcinfo, dstinfo, info.x_crop_offset, src_coef_arrays,
+                            info.drop_width, info.drop_height);
+                    }
+                    else if (info.crop_width_set == JCROP_CODE.JCROP_FORCE)
+                    {
+                        do_flatten(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                            src_coef_arrays, info.drop_width, info.drop_height);
+                    }
+                    else
+                    {
+                        do_wipe(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                            src_coef_arrays, info.drop_width, info.drop_height);
+                    }
+                    break;
+
+                case JXFORM_CODE.JXFORM_DROP:
+                    if (info.drop_width != 0 && info.drop_height != 0)
+                    {
+                        do_drop(srcinfo, dstinfo, info.x_crop_offset, info.y_crop_offset,
+                            src_coef_arrays, info.drop_ptr, info.drop_coef_arrays,
+                            info.drop_width, info.drop_height);
+                    }
+                    break;
+            }
         }
 
         /*
@@ -726,13 +836,14 @@ namespace BitMiracle.JpegTran
         }
 
         /* Transpose destination image parameters */
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0180:Use tuple to swap values")]
         private static void transpose_critical_parameters(jpeg_compress_struct dstinfo)
         {
             /* Transpose image dimensions */
             var jtemp = dstinfo.Image_width;
             dstinfo.Image_width = dstinfo.Image_height;
             dstinfo.Image_height = jtemp;
-            
+
             var itemp = dstinfo.min_DCT_h_scaled_size;
             dstinfo.min_DCT_h_scaled_size = dstinfo.min_DCT_v_scaled_size;
             dstinfo.min_DCT_v_scaled_size = itemp;
@@ -778,6 +889,193 @@ namespace BitMiracle.JpegTran
          */
         private static void adjust_exif_parameters(
             byte[] data, int offset, int length, JDIMENSION new_width, JDIMENSION new_height)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Crop.  This is only used when no rotate/flip is requested with the crop.
+         * Extension: The destination width is larger than the source and we fill in
+         * the extra area with repeated reflections of the source region.  Note we
+         * also have to fill partial iMCUs at the right and bottom edge of the source
+         * image area in this case.
+         */
+        private static void do_crop_ext_reflect(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Crop.  This is only used when no rotate/flip is requested with the crop.
+         * Extension: The destination width is larger than the source and we fill in
+         * the extra area with the DC of the adjacent block.  Note we also have to
+         * fill partial iMCUs at the right and bottom edge of the source image area
+         * in this case.
+         */
+        private static void do_crop_ext_flat(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Crop.  This is only used when no rotate/flip is requested with the crop.
+         * Extension: If the destination size is larger than the source, we fill in
+         * the extra area with zero (neutral gray).  Note we also have to zero partial
+         * iMCUs at the right and bottom edge of the source image area in this case.
+         */
+        private static void do_crop_ext_zero(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Crop.  This is only used when no rotate/flip is requested with the crop. */
+        private static void do_crop(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Horizontal flip in general cropping case */
+        private static void do_flip_h(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Horizontal flip; done in-place, so no separate dest array is required.
+         * NB: this only works when y_crop_offset is zero.
+         */
+        private static void do_flip_h_no_crop(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            jvirt_array<JBLOCK>[] src_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Vertical flip */
+        private static void do_flip_v(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Transpose source into destination */
+        private static void do_transpose(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Transverse transpose is equivalent to
+         *   1. 180 degree rotation;
+         *   2. Transposition;
+         * or
+         *   1. Horizontal mirroring;
+         *   2. Transposition;
+         *   3. Horizontal mirroring.
+         * These steps are merged into a single processing routine.
+         */
+        private static void do_transverse(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* 90 degree rotation is equivalent to
+         *   1. Transposing the image;
+         *   2. Horizontal mirroring.
+         * These two steps are merged into a single processing routine.
+         */
+        private static void do_rot_90(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* 180 degree rotation is equivalent to
+         *   1. Vertical mirroring;
+         *   2. Horizontal mirroring.
+         * These two steps are merged into a single processing routine.
+         */
+        private static void do_rot_180(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* 270 degree rotation is equivalent to
+         *   1. Horizontal mirroring;
+         *   2. Transposing the image.
+         * These two steps are merged into a single processing routine.
+         */
+        private static void do_rot_270(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jvirt_array<JBLOCK>[] dst_coef_arrays)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Reflect - drop content of specified area, similar to wipe, but
+         * fill with repeated reflections of the outside area, instead of zero.
+         * NB: y_crop_offset is assumed to be zero.
+         */
+        private static void do_reflect(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            jvirt_array<JBLOCK>[] src_coef_arrays, JDIMENSION drop_width, JDIMENSION drop_height)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Flatten - drop content of specified area, similar to wipe,
+         * but fill with average of adjacent blocks, instead of zero.
+         */
+        private static void do_flatten(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays, JDIMENSION drop_width,
+            JDIMENSION drop_height)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Wipe - drop content of specified area, fill with zero (neutral gray) */
+        private static void do_wipe(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays, JDIMENSION drop_width,
+            JDIMENSION drop_height)
+        {
+            throw new NotImplementedException();
+        }
+
+        /* Drop.  If the dropinfo component number is smaller than the destination's,
+         * we fill in the remaining components with zero.  This provides the feature
+         * of dropping grayscale into (arbitrarily sampled) color images.
+         */
+        private static void do_drop(
+            jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
+            JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
+            jpeg_decompress_struct dropinfo, jvirt_array<JBLOCK>[] drop_coef_arrays,
+            JDIMENSION drop_width, JDIMENSION drop_height)
         {
             throw new NotImplementedException();
         }
