@@ -8,8 +8,8 @@ namespace UnitTests
     [TestFixture]
     public class ErrorHandlingTests
     {
-        private Tester m_testerCompress = Tester.CreateForCompression(true);
-        private Tester m_testerDecompress = Tester.CreateForCompression(false);
+        private readonly Tester m_testerCompress = Tester.CreateForCompression(true);
+        private readonly Tester m_testerDecompress = Tester.CreateForCompression(false);
 
         private TextWriter m_consoleOutBefore;
 
@@ -34,7 +34,7 @@ namespace UnitTests
         [Test]
         public void TestEmptyTargetImage_Compress()
         {
-            Assert.Throws<DirectoryNotFoundException>(() =>
+            Assert.Throws<FileNotFoundException>(() =>
             {
                 m_testerCompress.Run(new string[] { }, Tester.MapOpenPath("testimg.bmp"), Tester.Testcase);
             });
@@ -43,7 +43,7 @@ namespace UnitTests
         [Test]
         public void TestEmptyTargetImage_Decompress()
         {
-            Assert.Throws<DirectoryNotFoundException>(() =>
+            Assert.Throws<FileNotFoundException>(() =>
             {
                 m_testerDecompress.Run(new string[] { }, Tester.MapOpenPath("3D.JPG"), Tester.Testcase);
             });

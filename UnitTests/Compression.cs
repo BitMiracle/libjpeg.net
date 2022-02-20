@@ -22,31 +22,31 @@ namespace UnitTests
             }
         }
 
-        [Test, TestCaseSource("Files")]
+        [Test, TestCaseSource(nameof(Files))]
         public void TestCompression(string file)
         {
             Tester.PerformCompressionTest(new string[] { }, file, "");
         }
 
-        [Test, TestCaseSource("Files")]
+        [Test, TestCaseSource(nameof(Files))]
         public void TestQuality(string file)
         {
             Tester.PerformCompressionTest(new string[] { "-quality", "25" }, file, "_25");
         }
 
-        [Test, TestCaseSource("Files")]
+        [Test, TestCaseSource(nameof(Files))]
         public void TestOptimized(string file)
         {
             Tester.PerformCompressionTest(new string[] { "-optimize" }, file, "_opt");
         }
 
-        [Test, TestCaseSource("Files")]
+        [Test, TestCaseSource(nameof(Files))]
         public void TestProgressive(string file)
         {
             Tester.PerformCompressionTest(new string[] { "-progressive" }, file, "_prog");
         }
 
-        [Test, TestCaseSource("Files")]
+        [Test, TestCaseSource(nameof(Files))]
         public void TestGrayscale(string file)
         {
             Tester.PerformCompressionTest(new string[] { "-grayscale" }, file, "_gray");
@@ -57,11 +57,13 @@ namespace UnitTests
         {
             using (MemoryStream stream = new MemoryStream())
             {
-                jpeg_compress_struct compressor = new jpeg_compress_struct(new jpeg_error_mgr());
-                compressor.Image_height = 100;
-                compressor.Image_width = 100;
-                compressor.In_color_space = J_COLOR_SPACE.JCS_GRAYSCALE;
-                compressor.Input_components = 1;
+                jpeg_compress_struct compressor = new jpeg_compress_struct(new jpeg_error_mgr())
+                {
+                    Image_height = 100,
+                    Image_width = 100,
+                    In_color_space = J_COLOR_SPACE.JCS_GRAYSCALE,
+                    Input_components = 1
+                };
                 compressor.jpeg_set_defaults();
 
                 compressor.Dct_method = J_DCT_METHOD.JDCT_IFAST;
@@ -89,8 +91,11 @@ namespace UnitTests
                 byte[] bytes = stream.ToArray();
 
                 string filename = "TestCompressorWithContextRows.jpg";
-                File.WriteAllBytes(Tester.MapOutputPath(filename), bytes);
-                FileAssert.AreEqual(Tester.MapExpectedPath(filename), Tester.MapOutputPath(filename));
+                var outputPath = Tester.MapOutputPath(filename);
+                File.WriteAllBytes(outputPath, bytes);
+                FileAssert.AreEqual(Tester.MapExpectedPath(filename), outputPath);
+
+                File.Delete(outputPath);
             }
         }
     }

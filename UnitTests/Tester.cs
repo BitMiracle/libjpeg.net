@@ -123,10 +123,19 @@ namespace UnitTests
                 completeArgs.Add(sourceImage);
                 completeArgs.Add(targetImage);
 
+                if (!File.Exists(sourceImage))
+                    throw new FileNotFoundException("Source image does not exist", sourceImage);
+
                 m_action(completeArgs.ToArray());
 
                 string sampleFile = targetImage.Replace(@"\Output\", @"\Expected\");
+
+                if (!File.Exists(sampleFile))
+                    throw new FileNotFoundException("Expected image does not exist", sampleFile);
+
                 FileAssert.AreEqual(sampleFile, targetImage);
+
+                File.Delete(targetImage);
             }
         }
     }
