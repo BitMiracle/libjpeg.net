@@ -16,9 +16,12 @@ namespace UnitTests
         [TestCase("ExifOrientation.jpg", "1")] // 1 = Horizontal (normal) 
         [TestCase("ExifOrientation.jpg", "2", "-flip", "horizontal")] // 2 = Mirror horizontal 
         [TestCase("ExifOrientation.jpg", "6", "-rotate", "90")] // 6 = Rotate 90 CW 
-        [TestCase("ExifOrientation2.jpg", "1")] // 1 = Horizontal (normal) 
-        [TestCase("ExifOrientation2.jpg", "2", "-flip", "horizontal")] // 2 = Mirror horizontal 
-        [TestCase("ExifOrientation2.jpg", "6", "-rotate", "90")] // 6 = Rotate 90 CW 
+        [TestCase("ExifOrientation2.jpg", "1")]
+        [TestCase("ExifOrientation2.jpg", "2", "-flip", "horizontal")]
+        [TestCase("ExifOrientation2.jpg", "6", "-rotate", "90")]
+        [TestCase("ExifOrientation3.jpg", "1")]
+        [TestCase("ExifOrientation3.jpg", "2", "-flip", "horizontal")]
+        [TestCase("ExifOrientation3.jpg", "6", "-rotate", "90")]
         public void RotateImageWithExif(string fileName, string tag, params string[] extraArgs)
         {
             var args = new string[] { "-copy", "none" };
