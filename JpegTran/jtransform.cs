@@ -1029,7 +1029,80 @@ namespace BitMiracle.JpegTran
             JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
             jvirt_array<JBLOCK>[] dst_coef_arrays)
         {
-            throw new NotImplementedException();
+            /* We output into a separate array because we can't touch different
+             * rows of the source virtual array simultaneously.  Otherwise, this
+             * is a pretty straightforward analog of horizontal flip.
+             * Within a DCT block, vertical mirroring is done by changing the signs
+             * of odd-numbered rows.
+             * Partial iMCUs at the bottom edge are copied verbatim.
+             */
+            JDIMENSION MCU_rows = srcinfo.Output_height /
+                (dstinfo.m_max_v_samp_factor * dstinfo.min_DCT_v_scaled_size);
+
+            for (int ci = 0; ci < dstinfo.Num_components; ci++)
+            {
+                var compptr = dstinfo.Component_info[ci];
+                JDIMENSION comp_height = MCU_rows * compptr.V_samp_factor;
+                JDIMENSION x_crop_blocks = x_crop_offset * compptr.H_samp_factor;
+                JDIMENSION y_crop_blocks = y_crop_offset * compptr.V_samp_factor;
+                for (JDIMENSION dst_blk_y = 0;
+                    dst_blk_y < compptr.height_in_blocks;
+                    dst_blk_y += compptr.V_samp_factor)
+                {
+                    var dst_buffer = dst_coef_arrays[ci].Access(dst_blk_y, compptr.V_samp_factor);
+                    JBLOCK[][] src_buffer;
+                    if (y_crop_blocks + dst_blk_y < comp_height)
+                    {
+                        /* Row is within the mirrorable area. */
+                        src_buffer = src_coef_arrays[ci].Access(
+                            comp_height - y_crop_blocks - dst_blk_y - compptr.V_samp_factor,
+                            compptr.V_samp_factor);
+                    }
+                    else
+                    {
+                        /* Bottom-edge blocks will be copied verbatim. */
+                        src_buffer = src_coef_arrays[ci].Access(
+                            dst_blk_y + y_crop_blocks, compptr.V_samp_factor);
+                    }
+
+                    for (int offset_y = 0; offset_y < compptr.V_samp_factor; offset_y++)
+                    {
+                        if (y_crop_blocks + dst_blk_y < comp_height)
+                        {
+                            /* Row is within the mirrorable area. */
+                            var dst_row_ptr = dst_buffer[offset_y];
+                            var src_row_ptr = src_buffer[compptr.V_samp_factor - offset_y - 1];
+                            for (JDIMENSION dst_blk_x = 0;
+                                dst_blk_x < compptr.Width_in_blocks;
+                                dst_blk_x++)
+                            {
+                                var dst_ptr = dst_row_ptr[dst_blk_x];
+                                var dstOffset = 0;
+
+                                var src_ptr = src_row_ptr[x_crop_blocks + dst_blk_x];
+                                var srcOffset = 0;
+
+                                for (int i = 0; i < JpegConstants.DCTSIZE; i += 2)
+                                {
+                                    /* copy even row */
+                                    for (int j = 0; j < JpegConstants.DCTSIZE; j++)
+                                        dst_ptr[dstOffset++] = src_ptr[srcOffset++];
+
+                                    /* copy odd row with sign change */
+                                    for (int j = 0; j < JpegConstants.DCTSIZE; j++)
+                                        dst_ptr[dstOffset++] = (short)-src_ptr[srcOffset++];
+                                }
+                            }
+                        }
+                        else
+                        {
+                            /* Just copy row verbatim. */
+                            jcopy_block_row(src_buffer[offset_y], x_crop_blocks,
+                                dst_buffer[offset_y], 0, compptr.Width_in_blocks);
+                        }
+                    }
+                }
+            }
         }
 
         /* Transpose source into destination */
@@ -1161,14 +1234,6 @@ namespace BitMiracle.JpegTran
             JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
             jvirt_array<JBLOCK>[] dst_coef_arrays)
         {
-            ////JDIMENSION MCU_cols, MCU_rows, comp_width, comp_height, dst_blk_x, dst_blk_y;
-            ////JDIMENSION x_crop_blocks, y_crop_blocks;
-            ////int ci, i, j, offset_y;
-            ////JBLOCKARRAY src_buffer, dst_buffer;
-            ////JBLOCKROW src_row_ptr, dst_row_ptr;
-            ////JCOEFPTR src_ptr, dst_ptr;
-            ////jpeg_component_info* compptr;
-
             JDIMENSION MCU_cols = srcinfo.Output_width /
                 (dstinfo.m_max_h_samp_factor * dstinfo.min_DCT_h_scaled_size);
             JDIMENSION MCU_rows = srcinfo.Output_height /
