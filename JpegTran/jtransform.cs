@@ -959,7 +959,68 @@ namespace BitMiracle.JpegTran
             jpeg_decompress_struct srcinfo, jpeg_compress_struct dstinfo, JDIMENSION x_crop_offset,
             jvirt_array<JBLOCK>[] src_coef_arrays)
         {
-            throw new NotImplementedException();
+            /* Horizontal mirroring of DCT blocks is accomplished by swapping
+             * pairs of blocks in-place.  Within a DCT block, we perform horizontal
+             * mirroring by changing the signs of odd-numbered columns.
+             * Partial iMCUs at the right edge are left untouched.
+             */
+            JDIMENSION MCU_cols = srcinfo.Output_width / 
+                (dstinfo.m_max_h_samp_factor * dstinfo.min_DCT_h_scaled_size);
+
+            for (int ci = 0; ci < dstinfo.Num_components; ci++)
+            {
+                var compptr = dstinfo.Component_info[ci];
+                JDIMENSION comp_width = MCU_cols * compptr.H_samp_factor;
+                JDIMENSION x_crop_blocks = x_crop_offset * compptr.H_samp_factor;
+                for (JDIMENSION blk_y = 0;
+                    blk_y < compptr.height_in_blocks;
+                    blk_y += compptr.V_samp_factor)
+                {
+                    var buffer = src_coef_arrays[ci].Access(blk_y, compptr.V_samp_factor);
+                    for (int offset_y = 0; offset_y < compptr.V_samp_factor; offset_y++)
+                    {
+                        /* Do the mirroring */
+                        for (JDIMENSION blk_x = 0; blk_x * 2 < comp_width; blk_x++)
+                        {
+                            var ptr1 = buffer[offset_y][blk_x];
+                            var ptr1Offset = 0;
+
+                            var ptr2 = buffer[offset_y][comp_width - blk_x - 1];
+                            var ptr2Offset = 0;
+
+                            /* this unrolled loop doesn't need to know which row it's on... */
+                            for (int k = 0; k < JpegConstants.DCTSIZE2; k += 2)
+                            {
+                                /* swap even column */
+                                short temp1 = ptr1[ptr1Offset];
+                                short temp2 = ptr2[ptr2Offset];
+                                ptr1[ptr1Offset++] = temp2;
+                                ptr2[ptr2Offset++] = temp1;
+
+                                /* swap odd column with sign change */
+                                temp1 = ptr1[ptr1Offset];
+                                temp2 = ptr2[ptr2Offset];
+                                ptr1[ptr1Offset++] = (short)-temp2;
+                                ptr2[ptr2Offset++] = (short)-temp1;
+                            }
+                        }
+
+                        if (x_crop_blocks > 0)
+                        {
+                            /* Now left-justify the portion of the data to be kept.
+                             * We can't use a single jcopy_block_row() call because that routine
+                             * depends on memcpy(), whose behavior is unspecified for overlapping
+                             * source and destination areas.  Sigh.
+                             */
+                            for (JDIMENSION blk_x = 0; blk_x < compptr.Width_in_blocks; blk_x++)
+                            {
+                                jcopy_block_row(buffer[offset_y], blk_x + x_crop_blocks,
+                                    buffer[offset_y], blk_x, 1);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         /* Vertical flip */
@@ -1158,6 +1219,18 @@ namespace BitMiracle.JpegTran
             JDIMENSION drop_width, JDIMENSION drop_height)
         {
             throw new NotImplementedException();
+        }
+
+        /* Copy a row of coefficient blocks from one place to another. */
+        private static void jcopy_block_row(
+            JBLOCK[] input_row, int inputOffset, JBLOCK[] output_row, int outputOffset, JDIMENSION num_blocks)
+        {
+            for (int i = 0; i < num_blocks; i++)
+            {
+                var input = input_row[inputOffset + i];
+                var output = output_row[outputOffset + i];
+                Array.Copy(input.data, output.data, JpegConstants.DCTSIZE2);
+            }
         }
     }
 }
