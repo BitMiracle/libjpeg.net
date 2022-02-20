@@ -1161,7 +1161,129 @@ namespace BitMiracle.JpegTran
             JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
             jvirt_array<JBLOCK>[] dst_coef_arrays)
         {
-            throw new NotImplementedException();
+            ////JDIMENSION MCU_cols, MCU_rows, comp_width, comp_height, dst_blk_x, dst_blk_y;
+            ////JDIMENSION x_crop_blocks, y_crop_blocks;
+            ////int ci, i, j, offset_y;
+            ////JBLOCKARRAY src_buffer, dst_buffer;
+            ////JBLOCKROW src_row_ptr, dst_row_ptr;
+            ////JCOEFPTR src_ptr, dst_ptr;
+            ////jpeg_component_info* compptr;
+
+            JDIMENSION MCU_cols = srcinfo.Output_width /
+                (dstinfo.m_max_h_samp_factor * dstinfo.min_DCT_h_scaled_size);
+            JDIMENSION MCU_rows = srcinfo.Output_height /
+                (dstinfo.m_max_v_samp_factor * dstinfo.min_DCT_v_scaled_size);
+
+            for (int ci = 0; ci < dstinfo.Num_components; ci++)
+            {
+                var compptr = dstinfo.Component_info[ci];
+                JDIMENSION comp_width = MCU_cols * compptr.H_samp_factor;
+                JDIMENSION comp_height = MCU_rows * compptr.V_samp_factor;
+                JDIMENSION x_crop_blocks = x_crop_offset * compptr.H_samp_factor;
+                JDIMENSION y_crop_blocks = y_crop_offset * compptr.V_samp_factor;
+                for (JDIMENSION dst_blk_y = 0;
+                    dst_blk_y < compptr.height_in_blocks;
+                    dst_blk_y += compptr.V_samp_factor)
+                {
+                    var dst_buffer = dst_coef_arrays[ci].Access(dst_blk_y, compptr.V_samp_factor);
+                    JBLOCK[][] src_buffer;
+                    if (y_crop_blocks + dst_blk_y < comp_height)
+                    {
+                        /* Row is within the vertically mirrorable area. */
+                        src_buffer = src_coef_arrays[ci].Access(
+                            comp_height - y_crop_blocks - dst_blk_y - compptr.V_samp_factor,
+                            compptr.V_samp_factor);
+                    }
+                    else
+                    {
+                        /* Bottom-edge rows are only mirrored horizontally. */
+                        src_buffer = src_coef_arrays[ci].Access(
+                            dst_blk_y + y_crop_blocks, compptr.V_samp_factor);
+                    }
+
+                    for (int offset_y = 0; offset_y < compptr.V_samp_factor; offset_y++)
+                    {
+                        var dst_row_ptr = dst_buffer[offset_y];
+                        if (y_crop_blocks + dst_blk_y < comp_height)
+                        {
+                            /* Row is within the mirrorable area. */
+                            var src_row_ptr = src_buffer[compptr.V_samp_factor - offset_y - 1];
+                            for (JDIMENSION dst_blk_x = 0; dst_blk_x < compptr.Width_in_blocks; dst_blk_x++)
+                            {
+                                var dst_ptr = dst_row_ptr[dst_blk_x];
+                                var dstOffset = 0;
+
+                                if (x_crop_blocks + dst_blk_x < comp_width)
+                                {
+                                    /* Process the blocks that can be mirrored both ways. */
+                                    var src_ptr = src_row_ptr[comp_width - x_crop_blocks - dst_blk_x - 1];
+                                    var srcOffset = 0;
+
+                                    for (int i = 0; i < JpegConstants.DCTSIZE; i += 2)
+                                    {
+                                        /* For even row, negate every odd column. */
+                                        for (int j = 0; j < JpegConstants.DCTSIZE; j += 2)
+                                        {
+                                            dst_ptr[dstOffset++] = src_ptr[srcOffset++];
+                                            dst_ptr[dstOffset++] = (short)-src_ptr[srcOffset++];
+                                        }
+
+                                        /* For odd row, negate every even column. */
+                                        for (int j = 0; j < JpegConstants.DCTSIZE; j += 2)
+                                        {
+                                            dst_ptr[dstOffset++] = (short)-src_ptr[srcOffset++];
+                                            dst_ptr[dstOffset++] = src_ptr[srcOffset++];
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    /* Any remaining right-edge blocks are only mirrored vertically. */
+                                    var src_ptr = src_row_ptr[x_crop_blocks + dst_blk_x];
+                                    var srcOffset = 0;
+                                    for (int i = 0; i < JpegConstants.DCTSIZE; i += 2)
+                                    {
+                                        for (int j = 0; j < JpegConstants.DCTSIZE; j++)
+                                            dst_ptr[dstOffset++] = src_ptr[srcOffset++];
+
+                                        for (int j = 0; j < JpegConstants.DCTSIZE; j++)
+                                            dst_ptr[dstOffset++] = (short)-src_ptr[srcOffset++];
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            /* Remaining rows are just mirrored horizontally. */
+                            var src_row_ptr = src_buffer[offset_y];
+                            for (JDIMENSION dst_blk_x = 0; dst_blk_x < compptr.Width_in_blocks; dst_blk_x++)
+                            {
+                                if (x_crop_blocks + dst_blk_x < comp_width)
+                                {
+                                    /* Process the blocks that can be mirrored. */
+                                    var dst_ptr = dst_row_ptr[dst_blk_x];
+                                    var dstOffset = 0;
+
+                                    var src_ptr = src_row_ptr[comp_width - x_crop_blocks - dst_blk_x - 1];
+                                    var srcOffset = 0;
+
+                                    for (int i = 0; i < JpegConstants.DCTSIZE2; i += 2)
+                                    {
+                                        dst_ptr[dstOffset++] = src_ptr[srcOffset++];
+                                        dst_ptr[dstOffset++] = (short)-src_ptr[srcOffset++];
+                                    }
+                                }
+                                else
+                                {
+                                    /* Any remaining right-edge blocks are only copied. */
+                                    jcopy_block_row(
+                                        src_row_ptr, dst_blk_x + x_crop_blocks, dst_row_ptr, dst_blk_x, 1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         /* 270 degree rotation is equivalent to
