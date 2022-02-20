@@ -1361,7 +1361,71 @@ namespace BitMiracle.JpegTran
             JDIMENSION y_crop_offset, jvirt_array<JBLOCK>[] src_coef_arrays,
             jvirt_array<JBLOCK>[] dst_coef_arrays)
         {
-            throw new NotImplementedException();
+            /* Because of the horizontal mirror step, we can't process partial iMCUs
+             * at the (output) bottom edge properly.  They just get transposed and
+             * not mirrored.
+             */
+            JDIMENSION MCU_rows = srcinfo.Output_width /
+                (dstinfo.m_max_v_samp_factor * dstinfo.min_DCT_v_scaled_size);
+
+            for (int ci = 0; ci < dstinfo.Num_components; ci++)
+            {
+                var compptr = dstinfo.Component_info[ci];
+                JDIMENSION comp_height = MCU_rows * compptr.V_samp_factor;
+                JDIMENSION x_crop_blocks = x_crop_offset * compptr.H_samp_factor;
+                JDIMENSION y_crop_blocks = y_crop_offset * compptr.V_samp_factor;
+                for (JDIMENSION dst_blk_y = 0;
+                    dst_blk_y < compptr.height_in_blocks;
+                    dst_blk_y += compptr.V_samp_factor)
+                {
+                    var dst_buffer = dst_coef_arrays[ci].Access(dst_blk_y, compptr.V_samp_factor);
+                    for (int offset_y = 0; offset_y < compptr.V_samp_factor; offset_y++)
+                    {
+                        for (JDIMENSION dst_blk_x = 0;
+                            dst_blk_x < compptr.Width_in_blocks;
+                            dst_blk_x += compptr.H_samp_factor)
+                        {
+                            var src_buffer = src_coef_arrays[ci].Access(
+                                dst_blk_x + x_crop_blocks, compptr.H_samp_factor);
+                            for (int offset_x = 0; offset_x < compptr.H_samp_factor; offset_x++)
+                            {
+                                var dst_ptr = dst_buffer[offset_y][dst_blk_x + offset_x];
+                                if (y_crop_blocks + dst_blk_y < comp_height)
+                                {
+                                    /* Block is within the mirrorable area. */
+                                    var src_ptr = src_buffer[offset_x][comp_height - y_crop_blocks - dst_blk_y - offset_y - 1];
+                                    for (int i = 0; i < JpegConstants.DCTSIZE; i++)
+                                    {
+                                        for (int j = 0; j < JpegConstants.DCTSIZE; j++)
+                                        {
+                                            dst_ptr[j * JpegConstants.DCTSIZE + i] =
+                                                src_ptr[i * JpegConstants.DCTSIZE + j];
+
+                                            j++;
+                                            
+                                            dst_ptr[j * JpegConstants.DCTSIZE + i] =
+                                                (short)-src_ptr[i * JpegConstants.DCTSIZE + j];
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    /* Edge blocks are transposed but not mirrored. */
+                                    var src_ptr = src_buffer[offset_x][dst_blk_y + offset_y + y_crop_blocks];
+                                    for (int i = 0; i < JpegConstants.DCTSIZE; i++)
+                                    {
+                                        for (int j = 0; j < JpegConstants.DCTSIZE; j++)
+                                        {
+                                            dst_ptr[j * JpegConstants.DCTSIZE + i] =
+                                                src_ptr[i * JpegConstants.DCTSIZE + j];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         /* Reflect - drop content of specified area, similar to wipe, but

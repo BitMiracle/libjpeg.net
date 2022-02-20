@@ -239,6 +239,8 @@ namespace BitMiracle.JpegTran
             Console.WriteLine("  -verbose  or  -debug   Emit debug output");
             Console.WriteLine("Switches for wizards:");
             Console.WriteLine("  -scans file    Create multi-scan JPEG per script file");
+
+            throw new ArgumentException();
         }
 
         /// <summary>
